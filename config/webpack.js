@@ -42,7 +42,11 @@ module.exports = env => {
 			}]
 		},
 		plugins: setup(isProd),
-		devtool: !isProd && 'eval',
+		devtool: !isProd ?
+			// Produces an external source map (lives next to bundle output files).
+      'source-map'
+      // Produces no source map.
+      : 'hidden-source-map',
 		devServer: {
 			contentBase: dist,
 			port: process.env.PORT || 3000,

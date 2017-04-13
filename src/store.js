@@ -1,24 +1,162 @@
-import { createStore } from 'redux';
+import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
+import todoApp from './views/todo/reducers'
 
-let ACTIONS = {
-	ADD_TODO: ({ todos, ...state }, { text }) => ({
-		todos: [...todos, {
-			id: Math.random().toString(36).substring(2),
-			text
-		}],
-		...state
-	}),
+/**
+ * Logs all actions and states after they are dispatched.
+ */
+const logger = store => next => action => {
+	console.group(action.type)
+	console.info('dispatching', action)
+	let result = next(action)
+	console.log('next state', store.getState())
+	console.groupEnd(action.type)
+	return result
+}
 
-	REMOVE_TODO: ({ todos, ...state }, { todo }) => ({
-		todos: todos.filter( i => i!==todo ),
-		...state
-	})
-};
+/**
+ * Sends crash reports as state is updated and listeners are notified.
+ */
+const crashReporter = store => next => action => {
+	try {
+		return next(action)
+	} catch (err) {
+		console.error('Caught an exception!', err)
+		Raven.captureException(err, {
+			extra: {
+				action,
+				state: store.getState()
+			}
+		})
+		throw err
+	}
+}
 
-const INITIAL = {
-	todos: []
-};
+/**
+ * Schedules actions with { meta: { delay: N } } to be delayed by N milliseconds.
+ * Makes `dispatch` return a function to cancel the timeout in this case.
+ */
+const timeoutScheduler = store => next => action => {
+	if (!action.meta || !action.meta.delay) {
+		return next(action)
+	}
 
-export default createStore( (state, action) => (
-	action && ACTIONS[action.type] ? ACTIONS[action.type](state, action) : state
-), INITIAL, window.devToolsExtension && window.devToolsExtension());
+	let timeoutId = setTimeout(
+		() => next(action),
+		action.meta.delay
+	)
+
+	return function cancel() {
+		clearTimeout(timeoutId)
+	}
+}
+
+/**
+ * Schedules actions with { meta: { raf: true } } to be dispatched inside a rAF loop
+ * frame.  Makes `dispatch` return a function to remove the action from the queue in
+ * this case.
+ */
+const rafScheduler = store => next => {
+	let queuedActions = []
+	let frame = null
+
+	function loop() {
+		frame = null
+		try {
+			if (queuedActions.length) {
+				next(queuedActions.shift())
+			}
+		} finally {
+			maybeRaf()
+		}
+	}
+
+	function maybeRaf() {
+		if (queuedActions.length && !frame) {
+			frame = requestAnimationFrame(loop)
+		}
+	}
+
+	return action => {
+		if (!action.meta || !action.meta.raf) {
+			return next(action)
+		}
+
+		queuedActions.push(action)
+		maybeRaf()
+
+		return function cancel() {
+			queuedActions = queuedActions.filter(a => a !== action)
+		}
+	}
+}
+
+/**
+ * Lets you dispatch promises in addition to actions.
+ * If the promise is resolved, its result will be dispatched as an action.
+ * The promise is returned from `dispatch` so the caller may handle rejection.
+ */
+const vanillaPromise = store => next => action => {
+	if (typeof action.then !== 'function') {
+		return next(action)
+	}
+
+	return Promise.resolve(action).then(store.dispatch)
+}
+
+/**
+ * Lets you dispatch special actions with a { promise } field.
+ *
+ * This middleware will turn them into a single action at the beginning,
+ * and a single success (or failure) action when the `promise` resolves.
+ *
+ * For convenience, `dispatch` will return the promise so the caller can wait.
+ */
+const readyStatePromise = store => next => action => {
+	if (!action.promise) {
+		return next(action)
+	}
+
+	function makeAction(ready, data) {
+		let newAction = Object.assign({}, action, { ready }, data)
+		delete newAction.promise
+		return newAction
+	}
+
+	next(makeAction(false))
+	return action.promise.then(
+		result => next(makeAction(true, { result })),
+		error => next(makeAction(true, { error }))
+	)
+}
+
+/**
+ * Lets you dispatch a function instead of an action.
+ * This function will receive `dispatch` and `getState` as arguments.
+ *
+ * Useful for early exits (conditions over `getState()`), as well
+ * as for async control flow (it can `dispatch()` something else).
+ *
+ * `dispatch` will return the return value of the dispatched function.
+ */
+const thunk = store => next => action =>
+	typeof action === 'function' ?
+		action(store.dispatch, store.getState) :
+		next(action)
+
+// You can use all of them! (It doesn't mean you should.)
+// let todoApp = combineReducers(todoReducer)
+export default createStore(
+	todoApp,
+	compose(
+		applyMiddleware(
+			rafScheduler,
+			timeoutScheduler,
+			thunk,
+			vanillaPromise,
+			readyStatePromise,
+			logger,
+			crashReporter
+		),
+		(typeof window.__REDUX_DEVTOOLS_EXTENSION__ !== 'undefined') ? window.__REDUX_DEVTOOLS_EXTENSION__() : f => f
+	)
+)

@@ -9,7 +9,7 @@ import Article from './pages/article';
 import Error404 from './pages/errors/404';
 import Credit from './pages/credit';
 import Blog from './pages/blog';
-import Todo from './pages/todo';
+import Todo from './todo';
 
 // track pages on route change
 const onChange = obj => window.ga && ga('send', 'pageview', obj.url);

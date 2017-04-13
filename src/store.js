@@ -1,5 +1,7 @@
-import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
-import todoApp from './views/todo/reducers'
+import { createStore, combineReducers, applyMiddleware, compose } from 'redux'
+import { ApolloClient } from 'react-apollo'
+import todos from './views/todo/reducers/todos'
+import visibilityFilter from './views/todo/reducers/visibilityFilter'
 
 /**
  * Logs all actions and states after they are dispatched.
@@ -143,10 +145,17 @@ const thunk = store => next => action =>
 		action(store.dispatch, store.getState) :
 		next(action)
 
+export const client = new ApolloClient();
+
 // You can use all of them! (It doesn't mean you should.)
 // let todoApp = combineReducers(todoReducer)
 export default createStore(
-	todoApp,
+	combineReducers({
+	  todos,
+	  visibilityFilter,
+		apollo: client.reducer()
+	}),
+	{},
 	compose(
 		applyMiddleware(
 			rafScheduler,
@@ -155,7 +164,8 @@ export default createStore(
 			vanillaPromise,
 			readyStatePromise,
 			logger,
-			crashReporter
+			crashReporter,
+			client.middleware()
 		),
 		(typeof window.__REDUX_DEVTOOLS_EXTENSION__ !== 'undefined') ? window.__REDUX_DEVTOOLS_EXTENSION__() : f => f
 	)

@@ -16,11 +16,12 @@
     "test": "ava"
   },
   "dependencies": {
-    "babel-plugin-transform-decorators-legacy": "^1.3.4",
     "md-colors": "^1.0.0",
     "preact": "^7.2.0",
+    "preact-compat": "^3.14.3",
     "preact-redux": "^2.0.1",
     "preact-router": "^2.4.1",
+    "react-apollo": "^1.0.1",
     "redux": "^3.6.0"
   },
   "devDependencies": {
@@ -28,6 +29,7 @@
     "ava": "^0.19.1",
     "babel-core": "^6.22.1",
     "babel-loader": "^6.2.10",
+    "babel-plugin-transform-decorators-legacy": "^1.3.4",
     "babel-plugin-transform-react-jsx": "^6.22.0",
     "babel-preset-babili": "0.0.12",
     "babel-preset-es2015": "^6.22.0",

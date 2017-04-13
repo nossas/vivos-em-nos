@@ -1,8 +1,9 @@
 import { h } from 'preact'
 import { Router } from 'preact-router';
 import { Provider } from 'preact-redux';
+import {ApolloProvider } from 'react-apollo';
 
-import store from '../store';
+import store, { client } from '../store';
 import Home from './pages/home';
 import Layout from './tags/layout';
 import Article from './pages/article';
@@ -16,15 +17,17 @@ const onChange = obj => window.ga && ga('send', 'pageview', obj.url);
 
 export default (
 	<Provider store={store}>
-		<Layout>
-			<Router onChange={ onChange }>
-				<Home path="/" />
-				<Todo path="/todo" />
-				<Blog path="/blog" />
-				<Article path="/blog/:title" />
-				<Credit path="/credit" />
-				<Error404 default />
-			</Router>
-		</Layout>
+		<ApolloProvider store={store} client={client}>
+			<Layout>
+				<Router onChange={ onChange }>
+					<Home path="/" />
+					<Todo path="/todo" />
+					<Blog path="/blog" />
+					<Article path="/blog/:title" />
+					<Credit path="/credit" />
+					<Error404 default />
+				</Router>
+			</Layout>
+		</ApolloProvider>
 	</Provider>
 );

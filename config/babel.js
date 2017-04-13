@@ -4,6 +4,7 @@ module.exports = {
 		'stage-2'
 	],
 	plugins: [
+		['transform-decorators-legacy'],
 		['transform-react-jsx', {pragma: 'h'}]
 	]
 };

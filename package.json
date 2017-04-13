@@ -15,9 +15,12 @@
     "watch": "webpack-dashboard -- webpack-dev-server --config config/webpack"
   },
   "dependencies": {
+    "babel-plugin-transform-decorators-legacy": "^1.3.4",
     "md-colors": "^1.0.0",
     "preact": "^7.2.0",
-    "preact-router": "^2.4.1"
+    "preact-redux": "^2.0.1",
+    "preact-router": "^2.4.1",
+    "redux": "^3.6.0"
   },
   "devDependencies": {
     "autoprefixer": "^6.7.2",

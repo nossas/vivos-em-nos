@@ -1,5 +1,5 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux'
-import { ApolloClient } from 'react-apollo'
+import { createNetworkInterface, ApolloClient } from 'react-apollo'
 import todos from './views/todo/reducers/todos'
 import visibilityFilter from './views/todo/reducers/visibilityFilter'
 
@@ -145,7 +145,12 @@ const thunk = store => next => action =>
 		action(store.dispatch, store.getState) :
 		next(action)
 
-export const client = new ApolloClient();
+export const client = new ApolloClient({
+  networkInterface: createNetworkInterface({
+    uri: process.env.GRAPHQL_URL || 'http://data.vivo-em-nos.devel:3003/graphql',
+		connectToDevTools: true
+  }),
+})
 
 // You can use all of them! (It doesn't mean you should.)
 // let todoApp = combineReducers(todoReducer)

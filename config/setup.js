@@ -48,34 +48,38 @@ module.exports = isProd => {
         dontCacheBustUrlsMatching: /./,
         navigateFallback: 'index.html',
         staticFileGlobsIgnorePatterns: [/\.map$/],
-      }),
-      new S3Plugin({
-        include: /\.html$|\.js$|\.css$|\.svg$|\.ttf$|\.eot$|\.png$|\.otf|woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-        s3Options: {
-          accessKeyId: accessKeyId,
-          secretAccessKey: secretAccessKey,
-          region: 'sa-east-1',
-        },
-        s3UploadOptions: {
-          Bucket: s3BucketName,
-          ContentEncoding (fileName) {
-            if (/\.js$|\.css$|\.svg$/.test(fileName)) {
-              return 'gzip'
-            }
-          },
-        },
-        cloudfrontInvalidateOptions: {
-          DistributionId: distributionId,
-          Items: ["/*"]
-        },
-      }),
+      })
     )
+    if (accessKeyId != 'xxx' && secretAccessKey != 'yyy' && distributionId != 'zzz') {
+      plugins.push(
+        new S3Plugin({
+          include: /\.html$|\.js$|\.css$|\.svg$|\.ttf$|\.eot$|\.png$|\.otf|woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+          s3Options: {
+            accessKeyId: accessKeyId,
+            secretAccessKey: secretAccessKey,
+            region: 'sa-east-1',
+          },
+          s3UploadOptions: {
+            Bucket: s3BucketName,
+            ContentEncoding (fileName) {
+              if (/\.js$|\.css$|\.svg$/.test(fileName)) {
+                return 'gzip'
+              }
+            },
+          },
+          cloudfrontInvalidateOptions: {
+            DistributionId: distributionId,
+            Items: ["/*"]
+          },
+        })
+      )
+    }
   } else {
     // dev only
     plugins.push(
       new webpack.HotModuleReplacementPlugin(),
       new webpack.NamedModulesPlugin(),
-      new Dashboard(),
+      new Dashboard()
     )
   }
 

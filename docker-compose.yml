@@ -14,9 +14,10 @@ services:
     ports:
       - 5432:5432
     volumes:
-      #- ./tools/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./config/init.sql:/docker-entrypoint-initdb.d/init.sql
       - postgres-data:/var/lib/postgresql/data
     environment:
+      POSTGRES_DB: vivos-em-nos-pwa
       POSTGRES_PASSWORD: 3x4mpl3
 
   web:
@@ -43,7 +44,7 @@ services:
       - img:data.vivo-em-nos.devel
     command: npm run dev
     environment:
-      DATABASE_URL: postgres://postgres:3x4mpl3@db.vivo-em-nos.devel:5432/vivo-em-nos-pwa
+      DATABASE_URL: postgres://postgres:3x4mpl3@db.vivo-em-nos.devel:5432/vivos-em-nos-pwa
       PORT: 3003
 
   img:

@@ -25,7 +25,8 @@ module.exports = (env) => {
       alias: {
         // you may need `preact-compat` instead!
         'react': 'preact-compat',
-        'react-dom': 'preact-compat'
+        'react-dom': 'preact-compat',
+        'react-redux': 'preact-redux'
       }
     },
     module: {

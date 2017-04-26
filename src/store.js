@@ -1,5 +1,7 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux'
 import { createNetworkInterface, ApolloClient } from 'react-apollo'
+
+import { reducer as formReducer } from 'redux-form'
 import todos from './views/todo/reducers/todos'
 import visibilityFilter from './views/todo/reducers/visibilityFilter'
 
@@ -158,7 +160,8 @@ export default createStore(
 	combineReducers({
 	  todos,
 	  visibilityFilter,
-		apollo: client.reducer()
+	  form: formReducer,
+	  apollo: client.reducer()
 	}),
 	{},
 	compose(

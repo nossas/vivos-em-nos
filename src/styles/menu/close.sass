@@ -1,0 +1,24 @@
+.components--menu-close
+  width: 25px
+  height: 25px
+  position: absolute
+  right: 16px
+  top: 16px
+  outline: none
+
+  &:before, &:after
+    content: ''
+    width: 35px
+    height: 1px
+    background-color: #FA901D
+    position: absolute
+    left: -5px
+    top: 12px
+
+  &:before
+    transform: rotate(45deg)
+
+  &:after
+    transform: rotate(-45deg)
+
+

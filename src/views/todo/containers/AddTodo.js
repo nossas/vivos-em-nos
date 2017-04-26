@@ -2,11 +2,14 @@ import { h } from 'preact'
 import { connect } from 'preact-redux'
 import { addTodo } from '../actions'
 
+import Textfield from 'preact-material-components/Textfield'
+
 let AddTodo = ({ dispatch }) => {
   let input
 
   return (
     <div>
+      <Textfield multiline={true} label="Textarea tag"/>
       <form onSubmit={e => {
         e.preventDefault()
         if (!input.value.trim()) {

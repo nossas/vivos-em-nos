@@ -3,7 +3,7 @@ import { Textfield } from 'preact-material-components'
 import FormGroup from './form-group'
 
 export default ({ input, label, type, fullwidth, multiline, meta }) => (
-  <FormGroup htmlForm={input.name} label={label} meta={meta}>
+  <FormGroup meta={meta}>
     <Textfield
       {...input}
       label={label}

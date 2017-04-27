@@ -1,6 +1,6 @@
 module.exports = {
   presets: [
-    'env',
+    ['env', { loose: true, modules: false }],
     'flow',
   ],
   plugins: [

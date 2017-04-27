@@ -16,21 +16,21 @@ const secretAccessKey = process.env.AWS_SECRET_ACCESS_KEY || 'yyy'
 const distributionId = process.env.CLOUDFRONT_DISTRIBUTION_ID || 'zzz'
 const root = join(__dirname, '..')
 
-module.exports = isProd => {
+module.exports = (isProd) => {
   // base plugins array
   const plugins = [
     new Clean(['dist'], { root }),
     new Copy([{ context: 'src/static/', from: '**/*.*' }]),
     new webpack.optimize.CommonsChunkPlugin({ name: 'vendor' }),
     new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify(isProd ? 'production' : 'development')
+      'process.env.NODE_ENV': JSON.stringify(isProd ? 'production' : 'development'),
     }),
     new HTML({ template: 'src/index.html' }),
     new webpack.LoaderOptionsPlugin({
       options: {
         babel,
         postcss: [
-          require('autoprefixer')({ browsers: ['last 3 version'] })
+          require('autoprefixer')({ browsers: ['last 2 version'] }),
         ],
       },
     }),
@@ -50,7 +50,7 @@ module.exports = isProd => {
         staticFileGlobsIgnorePatterns: [/\.map$/],
       })
     )
-    if (accessKeyId != 'xxx' && secretAccessKey != 'yyy' && distributionId != 'zzz') {
+    if (accessKeyId !== 'xxx' && secretAccessKey !== 'yyy' && distributionId !== 'zzz') {
       plugins.push(
         new S3Plugin({
           include: /\.html$|\.js$|\.css$|\.svg$|\.ttf$|\.eot$|\.png$|\.otf|woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
@@ -61,15 +61,16 @@ module.exports = isProd => {
           },
           s3UploadOptions: {
             Bucket: s3BucketName,
-            ContentEncoding (fileName) {
+            ContentEncoding(fileName) {
               if (/\.js$|\.css$|\.svg$/.test(fileName)) {
                 return 'gzip'
               }
+              return false
             },
           },
           cloudfrontInvalidateOptions: {
             DistributionId: distributionId,
-            Items: ["/*"]
+            Items: ['/*'],
           },
         })
       )

@@ -1,0 +1,26 @@
+.quote
+  font-size: 16px
+  font-weight: bold
+  color: #464646
+  line-height: 22px
+  text-align: center
+  padding: 16px
+  margin-top: 60px
+  position: relative
+
+  &:before
+    content: ''
+    width: 58px
+    height: 41px
+    background-image: url('/img/quote-open.svg')
+    position: absolute
+    left: 0
+    top: -35px
+  &:after
+    content: ''
+    width: 55px
+    height: 38px
+    background-image: url('/img/quote-close.svg')
+    position: absolute
+    right: 0
+    bottom: -35px

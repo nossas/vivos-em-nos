@@ -1,7 +1,7 @@
 import { h } from 'preact' /** @jsx h */
 import { connect } from 'preact-redux'
 import * as MenuActions from '../../menu/redux/action-creators'
-import { MyLayout } from '../tags/layout'
+import { LayoutDefault } from '../tags/layout'
 import { ButtonPrimary } from '../components'
 import { FeaturedMemories } from '../sections'
 
@@ -27,7 +27,7 @@ const Home = ({ setMenuActive }) => (
 )
 
 const HomePage = ({ setMenuActive }) => (
-  <MyLayout><Home setMenuActive={setMenuActive} /></MyLayout>
+  <LayoutDefault><Home setMenuActive={setMenuActive} /></LayoutDefault>
 )
 
 const mapDispatchToProps = {

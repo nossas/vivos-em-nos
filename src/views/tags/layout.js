@@ -4,7 +4,7 @@ import { Menu, MenuItem } from '../../menu/components'
 
 function Header() {}
 
-function MyLayout({ children }) {
+function LayoutDefault({ children }) {
   return (
     <Layout>
       <Menu>
@@ -21,5 +21,5 @@ function MyLayout({ children }) {
 
 export {
   Header,
-  MyLayout,
+  LayoutDefault,
 }

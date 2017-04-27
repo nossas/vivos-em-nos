@@ -1,3 +1,131 @@
 /**
  * `Home` Page Component
  */
+.page__home
+  section
+    margin-top: 70px
+
+    header
+      font-family: Roboto
+      font-weight: 300
+      font-size: 28px
+      color: #F7901E
+      line-height: 26px
+      position: relative
+      padding-bottom: 20px
+
+      &:before
+        content: ''
+        width: 20%
+        height: 3px
+        background-color: #F7901E
+        position: absolute
+        left: 0
+        bottom: 0
+
+      .silhouette
+        height: 380px
+        overflow: hidden
+        position: absolute
+        right: -16px
+        top: 8px
+
+    article
+      margin-top: 16px
+      position: relative
+
+      .memory-image
+        width: 164px
+        height: 132px
+        background-size: cover
+        border-radius: 55px
+
+      .ornament
+        &:before
+          content: ''
+          width: 10px
+          height: 10px
+          border-radius: 50%
+          background-color: #FF7D00
+          position: absolute
+          right: 96px
+          top: 43px
+        &:after
+          content: ''
+          width: 112px
+          height: 2px
+          background-color: #FF7D00
+          position: absolute
+          right: -16px
+          top: 47px
+
+      .memory-summary
+        position: absolute
+        left: 127px
+        top: 68px
+        color: #FFFFFF
+        font-size: 14px
+
+        .memory-identity
+          display: inline-block
+          border-radius: 25px
+          background-color: #674DA0
+          padding: 7px 18px 18px 7px
+          margin-bottom: -10px
+
+          .name
+            font-size: 22px
+            color: #F7901E
+            margin-bottom: -4px
+
+        .memory-description > span
+          background-color: #674DA0
+          box-decoration-break: clone
+          border-radius: 15px
+          padding: 5px 10px
+
+      .quote
+        font-size: 16px
+        font-weight: bold
+        color: #464646
+        line-height: 22px
+        text-align: center
+        padding: 16px
+        margin-top: 60px
+        position: relative
+
+        &:before
+          content: ''
+          width: 58px
+          height: 41px
+          background-image: url('/img/quote-open.svg')
+          position: absolute
+          left: 0
+          top: -35px
+        &:after
+          content: ''
+          width: 55px
+          height: 38px
+          background-image: url('/img/quote-close.svg')
+          position: absolute
+          right: 0
+          bottom: -35px
+
+    footer
+      margin-top: 16px
+
+      .memory-carousel-navigator
+        text-align: center
+        margin-bottom: 16px
+
+        .carousel-item
+          width: 8px
+          height: 8px
+          margin-right: 8px
+          background-color: transparent
+          border: 1px solid #FF7D00
+          display: inline-block
+          border-radius: 50%
+
+          &.active
+            background-color: #FF7D00

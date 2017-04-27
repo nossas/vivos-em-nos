@@ -9,7 +9,7 @@ import Article from './pages/article'
 import Error404 from './pages/errors/404'
 import Credit from './pages/credit'
 import Blog from './pages/blog'
-import Todo from './todo'
+import Memory from './pages/memory'
 
 // track pages on route change
 const onChange = obj => window.ga && ga('send', 'pageview', obj.url)
@@ -19,8 +19,8 @@ export default (
     <ApolloProvider store={store} client={client}>
       <Router onChange={onChange}>
         <Home path="/" />
-        <Todo path="/todo" />
         <Blog path="/blog" />
+        <Memory path="/homenagem" />
         <Article path="/blog/:title" />
         <Credit path="/credit" />
         <Error404 default />

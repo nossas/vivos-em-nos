@@ -1,15 +1,27 @@
 import { h } from 'preact' /** @jsx h */
-import { Link } from 'preact-router'
+import { connect } from 'preact-redux'
+import * as MenuActions from '../../menu/redux/action-creators'
 
-export default function SmallHeader() {
+function SmallHeader({ setMenuActive }) {
   return (
     <div className="header">
-      <h1>Preact Starter</h1>
-      <nav>
-        <Link href="/">Home</Link>
-        <Link href="/blog">Blog</Link>
-        <Link href="/credit">Credit</Link>
-      </nav>
+      <div className="row">
+        <div className="col-xs-3 menu-box">
+          <button className="menu-open" onClick={() => setMenuActive(true)}>
+            <img src="/img/icone-menu.svg" alt="hamburguer menu" />
+          </button>
+        </div>
+        <div className="col-xs-6 menu-box">
+          <h1 className="logo"><img src="/img/logo-vivos-em-nos.svg" alt="logo vivos em nos" /></h1>
+        </div>
+      </div>
     </div>
   )
 }
+
+
+const mapDispatchToProps = {
+  setMenuActive: MenuActions.setActive,
+}
+
+export default connect(undefined, mapDispatchToProps)(SmallHeader)

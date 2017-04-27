@@ -3,7 +3,7 @@ import Card from '../tags/card'
 import CardLink from '../tags/card-link'
 
 import { Header, MyLayout } from '../tags/layout'
-import { SmallHeader } from '../tags/header'
+import SmallHeader from '../tags/header'
 
 function Blog() {
   return (

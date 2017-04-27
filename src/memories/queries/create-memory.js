@@ -15,9 +15,7 @@ export default gql`
     $victimGoodWords: String,
     $victimPhoto: String!,
     $victimSilhouette: String!,
-    $authorizedToSite: Boolean!,
-    $createdAt: Datetime!,
-    $updatedAt: Datetime!
+    $authorizedToSite: Boolean!
   ) {
     createMemory(input: {
         memory: {
@@ -34,14 +32,12 @@ export default gql`
             victimGoodWords: $victimGoodWords,
             victimPhoto: $victimPhoto,
             victimSilhouette: $victimSilhouette,
-            authorizedToSite: $authorizedToSite,
-            createdAt: $createdAt,
-            updatedAt: $updatedAt
+            authorizedToSite: $authorizedToSite
         }
     }) {
       memory {
-        token,
-        ownerFirstName
+        id,
+        victimName
       }
     }
   }

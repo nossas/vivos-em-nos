@@ -94,8 +94,8 @@ CREATE TABLE memories (
     victim_photo text NOT NULL,
     victim_silhouette character varying NOT NULL,
     authorized_to_site boolean DEFAULT false,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone,
     token uuid DEFAULT uuid_generate_v4()
 );
 
@@ -302,6 +302,33 @@ ALTER TABLE ONLY memory_comments
 
 
 --
+-- Update fields
+--
+
+ALTER TABLE memories
+    ALTER COLUMN created_at SET DEFAULT now();
+
+ALTER TABLE memory_assets
+    ALTER COLUMN created_at SET DEFAULT now();
+
+ALTER TABLE memory_comments
+    ALTER COLUMN created_at SET DEFAULT now();
+
+CREATE FUNCTION update_updated_at() RETURNS trigger AS $$
+    BEGIN
+        NEW.updated_at := NOW();
+        RETURN NEW;
+    END;
+$$ language plpgsql;
+
+CREATE TRIGGER update_updated_at BEFORE UPDATE ON memories FOR EACH ROW EXECUTE PROCEDURE update_updated_at();
+
+CREATE TRIGGER update_updated_at BEFORE UPDATE ON memory_assets FOR EACH ROW EXECUTE PROCEDURE update_updated_at();
+
+CREATE TRIGGER update_updated_at BEFORE UPDATE ON memory_comments FOR EACH ROW EXECUTE PROCEDURE update_updated_at();
+
+
+--
 -- PostgreSQL database dump complete
 --
 
@@ -312,5 +339,3 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20170419111719'),
 ('20170419112030'),
 ('20170419115336');
-
-

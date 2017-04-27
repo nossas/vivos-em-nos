@@ -5,13 +5,14 @@ import {
   MemorySummary,
   Quote,
   SectionHeader,
-  SectionPrimary
+  SectionPrimary,
+  Silhouette
 } from '../components'
 import { Carousel, CarouselNavigator } from '../../carousel/components'
 
 const Header = (
   <SectionHeader title='Veja algumas homenagens'>
-    <img className='silhouette' src='/img/silhouette-02.svg' height='380' />
+    <Silhouette variation='2' height='380' />
   </SectionHeader>
 )
 

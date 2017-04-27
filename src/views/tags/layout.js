@@ -1,20 +1,25 @@
-import { h } from 'preact';
-import Header from './header';
+import { h } from 'preact' /** @jsx h */
+import { Layout, Section } from 'preact-layout'
 import { Menu, MenuItem } from '../../menu/components'
 
-export default function (props) {
+function Header() {}
+
+function MyLayout({ children }) {
   return (
-    <div id="app">
-      <Header />
+    <Layout>
       <Menu>
-        <MenuItem href='/'>Início</MenuItem>
+        <MenuItem href="/">Início</MenuItem>
         <MenuItem>Criar Homenagem</MenuItem>
         <MenuItem>Editar Homenagem</MenuItem>
         <MenuItem>Quem Somos</MenuItem>
       </Menu>
-      <main id="content">
-        { props.children }
-      </main>
-    </div>
-  );
+      <Section type={Header} />
+      <Section>{children}</Section>
+    </Layout>
+  )
+}
+
+export {
+  Header,
+  MyLayout,
 }

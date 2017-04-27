@@ -2,6 +2,7 @@ import { createStore, combineReducers, applyMiddleware, compose } from 'redux'
 import { createNetworkInterface, ApolloClient } from 'react-apollo'
 import todos from './views/todo/reducers/todos'
 import visibilityFilter from './views/todo/reducers/visibilityFilter'
+import menu from './menu/redux/reducers'
 
 /**
  * Logs all actions and states after they are dispatched.
@@ -158,7 +159,8 @@ export default createStore(
 	combineReducers({
 	  todos,
 	  visibilityFilter,
-		apollo: client.reducer()
+		apollo: client.reducer(),
+		menu
 	}),
 	{},
 	compose(

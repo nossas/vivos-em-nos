@@ -1,11 +1,12 @@
 module.exports = {
   presets: [
-    ['es2015', { modules: false }],
-    'stage-2',
-    'flow'
+    'env',
+    'flow',
   ],
   plugins: [
     ['transform-react-jsx', { pragma: 'h' }],
-    ['transform-decorators-legacy']
-  ]
+    ['transform-decorators-legacy'],
+    ['syntax-trailing-function-commas'],
+    ['transform-object-rest-spread'],
+  ],
 }

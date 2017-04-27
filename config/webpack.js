@@ -3,7 +3,6 @@ const ExtractText = require('extract-text-webpack-plugin')
 const setup = require('./setup')
 const babel = require('./babel')
 const dist = join(__dirname, '../dist')
-const exclude = /(node_modules\/(?!preact-material-components)|bower_components)/
 
 module.exports = (env) => {
   const isProd = env && env.production
@@ -13,36 +12,52 @@ module.exports = (env) => {
       app: './src/index.js',
       vendor: [
         // pull these to a `vendor.js` file
-        'preact'
-      ]
+        'preact',
+      ],
     },
     output: {
       path: dist,
       filename: '[name].[hash].js',
-      publicPath: '/'
+      publicPath: '/',
     },
     resolve: {
       alias: {
         // you may need `preact-compat` instead!
-        'react': 'preact-compat',
+        react: 'preact-compat',
         'react-dom': 'preact-compat',
-        'react-redux': 'preact-redux'
-      }
+        'react-redux': 'preact-redux',
+      },
     },
     module: {
-      rules: [{
-        test: /\.(js|jsx)$/,
-        exclude: exclude,
-        loader: 'babel-loader',
-        options: babel
-      },
-      {
-        test: /\.(sass|scss)$/,
-        loader: isProd ? ExtractText.extract({
-          fallbackLoader: 'style-loader',
-          loader: 'css-loader!postcss-loader!sass-loader'
-        }) : 'style-loader!css-loader!postcss-loader!sass-loader'
-      }]
+      rules: [
+        {
+          test: /\.(js|jsx)$/,
+          // exclude: exclude,
+          include: /src|node_modules\/preact-material-components|node_modules\/@material/,
+          use: {
+            loader: 'babel-loader',
+            options: babel,
+          },
+        },
+        {
+          test: /\.(sass|scss)$/,
+          use: isProd ? ExtractText.extract({
+            fallback: 'style-loader',
+            loader: 'css-loader!postcss-loader!sass-loader',
+          }) :
+          [
+            'style-loader',
+            {
+              loader: 'css-loader',
+              options: {
+                importLoaders: 1,
+              },
+            },
+            'postcss-loader',
+            'sass-loader',
+          ],
+        },
+      ],
     },
     plugins: setup(isProd),
     devtool: !isProd ?
@@ -56,7 +71,7 @@ module.exports = (env) => {
       historyApiFallback: true,
       compress: isProd,
       inline: !isProd,
-      hot: !isProd
-    }
+      hot: !isProd,
+    },
   }
 }

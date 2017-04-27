@@ -1,6 +1,6 @@
 import { connect } from 'preact-redux'
 import { graphql } from 'react-apollo'
-import { reduxForm, formValueSelector } from 'redux-form'
+import { reduxForm, formValueSelector, SubmissionError } from 'redux-form'
 
 import { createMemory } from '../queries'
 import MemoryForm from './memory-form'
@@ -37,16 +37,13 @@ export default graphql(createMemory, {
   props: ({ mutate }) => ({
     onSubmit: values => {
       return mutate({
-        variables: {...values,
-          createdAt: new Date(),
-          updatedAt: new Date()
-        }
+        variables: {...values }
       })
-      .then(resp => {
-        console.log(resp)
+      .then(response => {
+        console.log(response)
       })
-      .catch(ex => {
-        console.log(ex)
+      .catch(error => {
+        throw new SubmissionError({ _error: '(500) Erro interno no servidor.' })
       })
     },
   }),

@@ -1,11 +1,26 @@
 import { h } from 'preact' /** @jsx h */
 import { Field } from 'redux-form'
-
-import { Button, Section, CheckboxField, TextField, SelectField } from './forms'
+import { Form, Button, Section, CheckboxField, TextField, SelectField } from './forms'
+import AlertBox from './alert-box'
 import { COUNTRIES } from '../constants'
 
-export default ({ ownerFirstName, authorizedToSite, handleSubmit }) => (
-  <form onSubmit={handleSubmit}>
+
+export default ({ ownerFirstName, authorizedToSite, handleSubmit, error, submitSucceeded }) => submitSucceeded ? (
+  <AlertBox
+    done={() => {
+      window.location.href = '/'
+    }}
+  >
+    <h1>Sua página foi publicada!</h1>
+    <p>
+      Se você quiser editá-la ou visualizá-la novamente,
+      é só seguir as informações que acabamos de enviar por
+      e-mail. Qualquer dúvida, entre em contato com a gente
+      em <a href='mailto:contato@instintodevida.org' target='_blank'>contato@instintodevida.org</a>
+    </p>
+  </AlertBox>
+) : (
+  <Form error={error} handleSubmit={handleSubmit}>
     <Section header='Sobre você'>
       <Field
         label='Nome*'
@@ -98,5 +113,5 @@ export default ({ ownerFirstName, authorizedToSite, handleSubmit }) => (
     </Section>
 
     <Button disabled={!authorizedToSite} type='submit'>Publique sua homenagem</Button>
-  </form>
+  </Form>
 )

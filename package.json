@@ -20,6 +20,7 @@
     "preact": "^8.1.0",
     "preact-compat": "^3.15",
     "preact-material-components": "^1.0.1",
+    "preact-layout": "^1.0.2",
     "preact-redux": "^2.0.1",
     "preact-router": "^2.4.1",
     "react-apollo": "^1.0.1",

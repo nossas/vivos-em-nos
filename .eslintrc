@@ -10,7 +10,9 @@
     node: true
   },
   rules: {
-    semi: [ 2, "never" ]
+    semi: [ 2, "never" ],
+    "react/prop-types": 0,
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
   },
   plugins: [
     "babel",

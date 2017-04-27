@@ -49,7 +49,7 @@ export default class FeaturedMemories extends Component {
 
         <footer>
           <CarouselNavigator />
-          <ButtonPrimary href='/homenagem'>
+          <ButtonPrimary href={memory.url}>
             Ver homenagem completa
           </ButtonPrimary>
         </footer>

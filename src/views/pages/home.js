@@ -2,6 +2,7 @@ import { h } from 'preact' /** @jsx h */
 import { connect } from 'preact-redux'
 import ButtonPrimary from '../components/ButtonPrimary'
 import * as MenuActions from '../../menu/redux/action-creators'
+import { Header, MyLayout } from '../tags/layout'
 
 const Home = ({ setMenuActive }) => (
   <div className="page page__home">
@@ -19,8 +20,16 @@ const Home = ({ setMenuActive }) => (
   </div>
 )
 
+const HomePage = ({ setMenuActive }) => {
+  return (
+      <MyLayout>
+      <Home setMenuActive={ setMenuActive } />
+      </MyLayout>
+  )
+}
+
 const mapDispatchToProps = {
   setMenuActive: MenuActions.setActive
 }
 
-export default connect(undefined, mapDispatchToProps)(Home)
+export default connect(undefined, mapDispatchToProps)(HomePage)

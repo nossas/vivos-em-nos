@@ -7,7 +7,7 @@ import { MyLayout } from '../tags/layout'
 const Home = ({ setMenuActive }) => (
   <div className="page page__home">
     <div className="card splash">
-      <button className="menu" onClick={() => setMenuActive(true)}>
+      <button className="menu-open" onClick={() => setMenuActive(true)}>
         <img src="/img/icone-menu.svg" alt="hamburguer menu" />
       </button>
       <h1 className="logo"><img src="/img/logo-vivos-em-nos.svg" alt="logo vivos em nos" /></h1>

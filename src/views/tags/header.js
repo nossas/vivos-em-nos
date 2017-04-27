@@ -1,5 +1,6 @@
 import { h } from 'preact' /** @jsx h */
 import { connect } from 'preact-redux'
+import { Link } from 'preact-router'
 import * as MenuActions from '../../menu/redux/action-creators'
 
 function SmallHeader({ setMenuActive }) {
@@ -12,7 +13,9 @@ function SmallHeader({ setMenuActive }) {
           </button>
         </div>
         <div className="col-xs-6 menu-box">
-          <h1 className="logo"><img src="/img/logo-vivos-em-nos.svg" alt="logo vivos em nos" /></h1>
+          <h1 className="logo"><Link href="/">
+            <img src="/img/logo-vivos-em-nos.svg" alt="logo vivos em nos" />
+          </Link></h1>
         </div>
       </div>
     </div>

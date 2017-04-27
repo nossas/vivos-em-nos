@@ -2,7 +2,7 @@ import { h } from 'preact' /** @jsx h */
 import { connect } from 'preact-redux'
 import * as MenuActions from '../../menu/redux/action-creators'
 import { MyLayout } from '../tags/layout'
-import { ButtonPrimary, Quote } from '../components'
+import { ButtonPrimary, Quote, SectionHeader } from '../components'
 
 const Home = ({ setMenuActive }) => (
   <div className="page page__home">
@@ -14,17 +14,17 @@ const Home = ({ setMenuActive }) => (
       <p>
         Vamos usar a memória como ferramenta para mudança. Homenageando
         aqueles que estão #VivosEmNós, podemos transformar saudade
-        em mobilização e, juntos, lutar por mais respeito à vida. </p>
-        <ButtonPrimary href='/homenagem'>
-          Crie sua homenagem
-        </ButtonPrimary>
+        em mobilização e, juntos, lutar por mais respeito à vida.
+      </p>
+      <ButtonPrimary href='/homenagem'>
+        Crie sua homenagem
+      </ButtonPrimary>
     </div>
 
     <section>
-      <header>
-        Veja algumas homenagens
+      <SectionHeader title='Veja algumas homenagens'>
         <img className='silhouette' src='/img/silhouette-02.svg' height='380' />
-      </header>
+      </SectionHeader>
       <article>
         <div className='ornament' />
         <div

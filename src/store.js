@@ -5,35 +5,36 @@ import { reducer as formReducer } from 'redux-form'
 import todos from './views/todo/reducers/todos'
 import visibilityFilter from './views/todo/reducers/visibilityFilter'
 import menu from './menu/redux/reducers'
+import carousel from './carousel/redux/reducers'
 
 /**
  * Logs all actions and states after they are dispatched.
  */
 const logger = store => next => action => {
-	console.group(action.type)
-	console.info('dispatching', action)
-	let result = next(action)
-	console.log('next state', store.getState())
-	console.groupEnd(action.type)
-	return result
+  console.group(action.type)
+  console.info('dispatching', action)
+  let result = next(action)
+  console.log('next state', store.getState())
+  console.groupEnd(action.type)
+  return result
 }
 
 /**
  * Sends crash reports as state is updated and listeners are notified.
  */
 const crashReporter = store => next => action => {
-	try {
-		return next(action)
-	} catch (err) {
-		console.error('Caught an exception!', err)
-		Raven.captureException(err, {
-			extra: {
-				action,
-				state: store.getState()
-			}
-		})
-		throw err
-	}
+  try {
+    return next(action)
+  } catch (err) {
+    console.error('Caught an exception!', err)
+    Raven.captureException(err, {
+      extra: {
+        action,
+        state: store.getState()
+      }
+    })
+    throw err
+  }
 }
 
 /**
@@ -41,18 +42,18 @@ const crashReporter = store => next => action => {
  * Makes `dispatch` return a function to cancel the timeout in this case.
  */
 const timeoutScheduler = store => next => action => {
-	if (!action.meta || !action.meta.delay) {
-		return next(action)
-	}
+  if (!action.meta || !action.meta.delay) {
+    return next(action)
+  }
 
-	let timeoutId = setTimeout(
-		() => next(action),
-		action.meta.delay
-	)
+  let timeoutId = setTimeout(
+    () => next(action),
+    action.meta.delay
+  )
 
-	return function cancel() {
-		clearTimeout(timeoutId)
-	}
+  return function cancel() {
+    clearTimeout(timeoutId)
+  }
 }
 
 /**
@@ -61,38 +62,38 @@ const timeoutScheduler = store => next => action => {
  * this case.
  */
 const rafScheduler = store => next => {
-	let queuedActions = []
-	let frame = null
+  let queuedActions = []
+  let frame = null
 
-	function loop() {
-		frame = null
-		try {
-			if (queuedActions.length) {
-				next(queuedActions.shift())
-			}
-		} finally {
-			maybeRaf()
-		}
-	}
+  function loop() {
+    frame = null
+    try {
+      if (queuedActions.length) {
+        next(queuedActions.shift())
+      }
+    } finally {
+      maybeRaf()
+    }
+  }
 
-	function maybeRaf() {
-		if (queuedActions.length && !frame) {
-			frame = requestAnimationFrame(loop)
-		}
-	}
+  function maybeRaf() {
+    if (queuedActions.length && !frame) {
+      frame = requestAnimationFrame(loop)
+    }
+  }
 
-	return action => {
-		if (!action.meta || !action.meta.raf) {
-			return next(action)
-		}
+  return action => {
+    if (!action.meta || !action.meta.raf) {
+      return next(action)
+    }
 
-		queuedActions.push(action)
-		maybeRaf()
+    queuedActions.push(action)
+    maybeRaf()
 
-		return function cancel() {
-			queuedActions = queuedActions.filter(a => a !== action)
-		}
-	}
+    return function cancel() {
+      queuedActions = queuedActions.filter(a => a !== action)
+    }
+  }
 }
 
 /**
@@ -101,11 +102,11 @@ const rafScheduler = store => next => {
  * The promise is returned from `dispatch` so the caller may handle rejection.
  */
 const vanillaPromise = store => next => action => {
-	if (typeof action.then !== 'function') {
-		return next(action)
-	}
+  if (typeof action.then !== 'function') {
+    return next(action)
+  }
 
-	return Promise.resolve(action).then(store.dispatch)
+  return Promise.resolve(action).then(store.dispatch)
 }
 
 /**
@@ -117,21 +118,21 @@ const vanillaPromise = store => next => action => {
  * For convenience, `dispatch` will return the promise so the caller can wait.
  */
 const readyStatePromise = store => next => action => {
-	if (!action.promise) {
-		return next(action)
-	}
+  if (!action.promise) {
+    return next(action)
+  }
 
-	function makeAction(ready, data) {
-		let newAction = Object.assign({}, action, { ready }, data)
-		delete newAction.promise
-		return newAction
-	}
+  function makeAction(ready, data) {
+    let newAction = Object.assign({}, action, { ready }, data)
+    delete newAction.promise
+    return newAction
+  }
 
-	next(makeAction(false))
-	return action.promise.then(
-		result => next(makeAction(true, { result })),
-		error => next(makeAction(true, { error }))
-	)
+  next(makeAction(false))
+  return action.promise.then(
+    result => next(makeAction(true, { result })),
+    error => next(makeAction(true, { error }))
+  )
 }
 
 /**
@@ -144,39 +145,40 @@ const readyStatePromise = store => next => action => {
  * `dispatch` will return the return value of the dispatched function.
  */
 const thunk = store => next => action =>
-	typeof action === 'function' ?
-		action(store.dispatch, store.getState) :
-		next(action)
+  typeof action === 'function' ?
+    action(store.dispatch, store.getState) :
+    next(action)
 
 export const client = new ApolloClient({
   networkInterface: createNetworkInterface({
     uri: process.env.GRAPHQL_URL || 'http://data.vivo-em-nos.devel:3003/graphql',
-		connectToDevTools: true
+    connectToDevTools: true
   }),
 })
 
 // You can use all of them! (It doesn't mean you should.)
 // let todoApp = combineReducers(todoReducer)
 export default createStore(
-	combineReducers({
-	  form: formReducer,
-	  apollo: client.reducer(),
+  combineReducers({
+    form: formReducer,
+    apollo: client.reducer(),
     todos,
-	  visibilityFilter,
-		menu	  
-	}),
-	{},
-	compose(
-		applyMiddleware(
-			rafScheduler,
-			timeoutScheduler,
-			thunk,
-			vanillaPromise,
-			readyStatePromise,
-			logger,
-			crashReporter,
-			client.middleware()
-		),
-		(typeof window.__REDUX_DEVTOOLS_EXTENSION__ !== 'undefined') ? window.__REDUX_DEVTOOLS_EXTENSION__() : f => f
-	)
+    visibilityFilter,
+    menu,
+    carousel
+  }),
+  {},
+  compose(
+    applyMiddleware(
+      rafScheduler,
+      timeoutScheduler,
+      thunk,
+      vanillaPromise,
+      readyStatePromise,
+      logger,
+      crashReporter,
+      client.middleware()
+    ),
+    (typeof window.__REDUX_DEVTOOLS_EXTENSION__ !== 'undefined') ? window.__REDUX_DEVTOOLS_EXTENSION__() : f => f
+  )
 )

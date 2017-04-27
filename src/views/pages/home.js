@@ -6,12 +6,12 @@ import { ButtonPrimary } from '../components'
 import { FeaturedMemories } from '../sections'
 
 const Home = ({ setMenuActive }) => (
-  <div className="page page__home">
-    <div className="card splash">
-      <button className="menu-open" onClick={() => setMenuActive(true)}>
-        <img src="/img/icone-menu.svg" alt="hamburguer menu" />
+  <div className='page page__home'>
+    <div className='card splash'>
+      <button className='menu-open' onClick={() => setMenuActive(true)}>
+        <img src='/img/icone-menu.svg' alt='hamburguer menu' />
       </button>
-      <h1 className="logo"><img src="/img/logo-vivos-em-nos.svg" alt="logo vivos em nos" /></h1>
+      <h1 className='logo'><img src='/img/logo-vivos-em-nos.svg' alt='logo vivos em nos' /></h1>
       <p>
         Vamos usar a memória como ferramenta para mudança. Homenageando
         aqueles que estão #VivosEmNós, podemos transformar saudade
@@ -31,7 +31,7 @@ const HomePage = ({ setMenuActive }) => (
 )
 
 const mapDispatchToProps = {
-  setMenuActive: MenuActions.setActive,
+  setMenuActive: MenuActions.setActive
 }
 
 export default connect(undefined, mapDispatchToProps)(HomePage)

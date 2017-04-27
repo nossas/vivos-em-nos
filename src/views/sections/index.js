@@ -1,1 +1,1 @@
-export { default as FeaturedMemories } from './featured-memories'
+export { default as FeaturedMemories } from './featured-memories.connected'

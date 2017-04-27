@@ -5915,6 +5915,10 @@ react-apollo@^1.0.1:
     object-assign "^4.1.0"
     prop-types "~15.5.7"
 
+react-swipeable@^3.9.2:
+  version "3.9.2"
+  resolved "https://registry.yarnpkg.com/react-swipeable/-/react-swipeable-3.9.2.tgz#bbaab62688b1aed4a4f73830d272eedd168f3627"
+
 read-all-stream@^3.0.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/read-all-stream/-/read-all-stream-3.1.0.tgz#35c3e177f2078ef789ee4bfafa4373074eaef4fa"

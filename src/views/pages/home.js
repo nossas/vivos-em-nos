@@ -10,7 +10,7 @@ const Home = ({ setMenuActive }) => (
       <button className="menu" onClick={() => setMenuActive(true)}>
         <img src="/img/icone-menu.svg" alt="hamburguer menu" />
       </button>
-      <h1><img src="/img/logo-vivos-em-nos.svg" alt="logo vivos em nos" /></h1>
+      <h1 className="logo"><img src="/img/logo-vivos-em-nos.svg" alt="logo vivos em nos" /></h1>
       <p>
         Vamos usar a memória como ferramenta para mudança. Homenageando
         aqueles que estão #VivosEmNós, podemos transformar saudade

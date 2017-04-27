@@ -1,10 +1,10 @@
 import { h } from 'preact' /** @jsx h */
 import { Field } from 'redux-form'
 
-import { Button, Section, TextField, SelectField } from './forms'
+import { Button, Section, CheckboxField, TextField, SelectField } from './forms'
 import { COUNTRIES } from '../constants'
 
-export default ({ handleSubmit }) => (
+export default ({ ownerFirstName, authorizedToSite, handleSubmit }) => (
   <form onSubmit={handleSubmit}>
     <Section header='Sobre você'>
       <Field
@@ -25,7 +25,12 @@ export default ({ handleSubmit }) => (
         type='email'
         component={TextField}
       />
-      <Field label='País*' name='ownerCountry' component={SelectField}>
+      <Field
+        label='País*'
+        name='ownerCountry'
+        hintText='Selecione o país'
+        component={SelectField}
+      >
         {COUNTRIES.map(c => <option key={c.code} value={c.name}>{c.name}</option>)}
       </Field>
     </Section>
@@ -63,20 +68,35 @@ export default ({ handleSubmit }) => (
         multiline={true}
       />
       <Field
-        label={`Quando eu penso em [FNAME] eu me lembro de*`}
-        name='victimRememberHistory'
+        label={`Quando eu penso em ${ownerFirstName} eu me lembro de*`}
+        name='victimRememberText'
         type='text'
         component={TextField}
         multiline={true}
       />
       <Field
-        label={`Se eu pudesse escolher uma palavra para descrever [FNAME], eu escolheria`}
+        label={`Se eu pudesse escolher uma palavra para descrever ${ownerFirstName}, eu escolheria`}
         name='victimGoodWords'
         type='text'
         component={TextField}
       />
+      <Field
+        label={`Foto de ${ownerFirstName}`}
+        name='victimPhoto'
+        type='text'
+        component={TextField}
+      />
+      <Field
+        label='Silhueta'
+        name='victimSilhouette'
+        type='text'
+        component={TextField}
+      />
+      <Field name='authorizedToSite' component={CheckboxField}>
+        Autorizo a divulgação dessa homenagem no site #VivosEmNós
+      </Field>
     </Section>
 
-    <Button type='submit'>Publique sua homenagem</Button>
+    <Button disabled={!authorizedToSite} type='submit'>Publique sua homenagem</Button>
   </form>
 )

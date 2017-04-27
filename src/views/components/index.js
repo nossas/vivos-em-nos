@@ -1,3 +1,6 @@
 export { default as ButtonPrimary } from './button-primary'
+export { default as MemoryImage } from './memory-image'
+export { default as MemorySummary } from './memory-summary'
 export { default as Quote } from './quote'
 export { default as SectionHeader } from './section-header'
+export { default as SectionPrimary } from './section-primary'

@@ -1,7 +1,7 @@
 import { h } from 'preact' /** @jsx h */
 import { Link } from 'preact-router'
 
-export function SmallHeader () {
+export default function SmallHeader() {
   return (
     <div className="header">
       <h1>Preact Starter</h1>

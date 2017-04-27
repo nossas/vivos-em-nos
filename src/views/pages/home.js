@@ -1,8 +1,8 @@
 import { h } from 'preact' /** @jsx h */
 import { connect } from 'preact-redux'
-import ButtonPrimary from '../components/ButtonPrimary'
 import * as MenuActions from '../../menu/redux/action-creators'
 import { MyLayout } from '../tags/layout'
+import { ButtonPrimary, Quote } from '../components'
 
 const Home = ({ setMenuActive }) => (
   <div className="page page__home">
@@ -15,7 +15,9 @@ const Home = ({ setMenuActive }) => (
         Vamos usar a memória como ferramenta para mudança. Homenageando
         aqueles que estão #VivosEmNós, podemos transformar saudade
         em mobilização e, juntos, lutar por mais respeito à vida. </p>
-      <ButtonPrimary text="crie sua homenagem" href="/homenagem" />
+        <ButtonPrimary href='/homenagem'>
+          Crie sua homenagem
+        </ButtonPrimary>
     </div>
 
     <section>
@@ -39,11 +41,11 @@ const Home = ({ setMenuActive }) => (
           </div>
         </div>
 
-        <div className='quote'>
+        <Quote>
           Minha filha sonhava em ser médica, em trabalhar com crianças. Pra gente aqui é tudo
           muito difícil, mas ela trabalhava de dia e conseguia pagar a faculdade à noite. Sempre
           foi muito batalhadora...
-        </div>
+        </Quote>
       </article>
       <footer>
         <div className='memory-carousel-navigator'>
@@ -53,10 +55,9 @@ const Home = ({ setMenuActive }) => (
           <div className='carousel-item' />
           <div className='carousel-item' />
         </div>
-        <ButtonPrimary
-          text="ver homenagem completa"
-          href="/homenagem"
-        />
+        <ButtonPrimary href='/homenagem'>
+          Ver homenagem completa
+        </ButtonPrimary>
       </footer>
     </section>
   </div>

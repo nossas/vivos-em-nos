@@ -10,6 +10,7 @@ import Error404 from './pages/errors/404'
 import Credit from './pages/credit'
 import Blog from './pages/blog'
 import Memory from './pages/memory'
+import MemoryVictim from './pages/memory-victim'
 
 // track pages on route change
 const onChange = obj => window.ga && ga('send', 'pageview', obj.url)
@@ -21,6 +22,7 @@ export default (
         <Home path="/" />
         <Blog path="/blog" />
         <Memory path="/homenagem" />
+        <MemoryVictim path="/homenagem/:id" />
         <Article path="/blog/:title" />
         <Credit path="/credit" />
         <Error404 default />

@@ -1,9 +1,14 @@
 import { h } from 'preact' /** @jsx h */
 
-export default ({ title, subtitle, children }) => (
-  <header className='components--section-header'>
-    {title}
-    <div>{subtitle}</div>
-    {children}
-  </header>
-)
+export default ({ title, subtitle, children, hideBorder }) => {
+  const conditionalClassNames = []
+  if (hideBorder) conditionalClassNames.push('hide-border')
+
+  return (
+    <header className={`components--section-header ${conditionalClassNames.join(' ')}`}>
+      {title}
+      <div>{subtitle}</div>
+      {children}
+    </header>
+  )
+}

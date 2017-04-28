@@ -1,7 +1,7 @@
 FROM kkarczmarczyk/node-yarn
 MAINTAINER Nossas <tech@nossas.org>
 
-ARG AWS_BUCKET=vivos-em-nos-staging
+ARG AWS_BUCKET=vivo-em-nos-production
 ARG AWS_ACCESS_KEY_ID=xxx
 ARG AWS_SECRET_ACCESS_KEY=yyy
 ARG CLOUDFRONT_DISTRIBUTION_ID=zzz

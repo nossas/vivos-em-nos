@@ -34,6 +34,8 @@ services:
       GRAPHQL_URL: http://data.vivos-em-nos.devel
       WEB_CONCURRENCY: 1
       WEB_MEMORY: 256
+      NEW_RELIC_NO_CONFIG_FILE: 1
+      NEW_RELIC_ENABLED: 0
 
   data:
     image: nossas/bonde-graphql

@@ -58,12 +58,6 @@ module.exports = (isProd) => {
           },
           s3UploadOptions: {
             Bucket: s3BucketName,
-            ContentEncoding(fileName) {
-              if (/\.js$|\.css$|\.svg$/.test(fileName)) {
-                return 'gzip'
-              }
-              return false
-            },
           },
           cloudfrontInvalidateOptions: {
             DistributionId: distributionId,

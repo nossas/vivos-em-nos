@@ -1,8 +1,11 @@
 const { join } = require('path')
 const ExtractText = require('extract-text-webpack-plugin')
+
 const setup = require('./setup')
 
 const dist = join(__dirname, '../dist')
+
+const s3BucketName = process.env.AWS_BUCKET || 'vivo-em-nos-staging'
 
 module.exports = (env) => {
   const isProd = env && env.production
@@ -13,12 +16,14 @@ module.exports = (env) => {
       vendor: [
         // pull these to a `vendor.js` file
         'preact',
+        'lodash'
       ],
     },
     output: {
       path: dist,
       filename: '[name].[hash].js',
-      publicPath: '/',
+      publicPath: isProd ? `https://vivosemnos.org/` : '/',
+
     },
     resolve: {
       alias: {

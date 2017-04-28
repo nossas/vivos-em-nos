@@ -8,6 +8,7 @@ import {
   Quote,
   SectionPrimary,
   SectionHeader,
+  OrnamentPageFooter,
 } from '../components'
 import * as mocks from '../../__tmp/mocks'
 
@@ -67,6 +68,8 @@ export default () => (
       >
         === comment form ===
       </SectionPrimary>
+
+      <OrnamentPageFooter />
     </div>
   </LayoutDefault>
 )

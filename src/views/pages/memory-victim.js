@@ -1,6 +1,9 @@
 import { h } from 'preact' /** @jsx h */
 import { Header, LayoutDefault } from '../tags/layout'
-import { TopBar, MemoryImage, MemorySummary } from '../components'
+import { TopBar, MemoryImage, MemorySummary, Silhouette, Quote } from '../components'
+import * as mocks from '../../__tmp/mocks'
+
+const memory = mocks.memories[1]
 
 export default () => (
   <LayoutDefault>
@@ -8,21 +11,33 @@ export default () => (
       <TopBar />
     </Header>
 
-    <div className='page pages--memory-victim'>
-      <section className='section--victim-data'>
+    <div className="page pages--memory-victim">
+      <section className="section--victim-data">
         <MemoryImage
-          source='http://bit.ly/2proUwJ'
-          width='223px'
-          height='179px'
+          source={memory.image}
+          width="223px"
+          height="179px"
         />
         <MemorySummary
-          name='Marina'
-          birthYear='1990'
-          deathYear='2015'
-          description='Baleada em um assalto quando saía da faculdade.'
+          name={memory.name}
+          birthYear={memory.birthYear}
+          deathYear={memory.deathYear}
+          description={memory.description}
         />
       </section>
-      victim memory page
+
+      <section className="section--quote">
+        <Silhouette variation="big-blue" height="594" />
+        <div className="title">GARRA</div>
+        <Quote>
+          {memory.quote}
+        </Quote>
+        <div className='gallery'>
+          {memory.gallery && memory.gallery.map(image => (
+            <img src={image} />
+          ))}
+        </div>
+      </section>
     </div>
   </LayoutDefault>
 )

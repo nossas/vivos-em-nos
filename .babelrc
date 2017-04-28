@@ -1,6 +1,6 @@
 {
   "presets": [
-    ['env'],
+    'env',
     'flow',
   ],
   "plugins": [
@@ -8,5 +8,10 @@
     'transform-decorators-legacy',
     'syntax-trailing-function-commas',
     'transform-object-rest-spread',
-  ]
+  ],
+  "env": {
+    "production": {
+      "presets": 'babili'
+    }
+  }
 }

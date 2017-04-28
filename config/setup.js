@@ -35,7 +35,6 @@ module.exports = (isProd) => {
   ]
 
   if (isProd) {
-    babel.presets.push('babili')
 
     plugins.push(
       new webpack.LoaderOptionsPlugin({ minimize: true, debug: false }),

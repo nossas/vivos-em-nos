@@ -1,7 +1,7 @@
 const { join } = require('path')
 const ExtractText = require('extract-text-webpack-plugin')
 const setup = require('./setup')
-const babel = require('./babel')
+
 const dist = join(__dirname, '../dist')
 
 module.exports = (env) => {
@@ -9,7 +9,7 @@ module.exports = (env) => {
 
   return {
     entry: {
-      app: './src/index.js',
+      app: './src/client.js',
       vendor: [
         // pull these to a `vendor.js` file
         'preact',
@@ -36,7 +36,6 @@ module.exports = (env) => {
           include: /src|node_modules\/preact-material-components|node_modules\/@material/,
           use: {
             loader: 'babel-loader',
-            options: babel,
           },
         },
         {

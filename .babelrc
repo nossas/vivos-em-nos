@@ -8,6 +8,9 @@
     'transform-decorators-legacy',
     'syntax-trailing-function-commas',
     'transform-object-rest-spread',
+    'transform-node-env-inline',
+    'transform-react-remove-prop-types',
+    'transform-class-properties',
   ],
   "env": {
     "production": {

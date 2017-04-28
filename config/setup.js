@@ -35,7 +35,6 @@ module.exports = (isProd) => {
   ]
 
   if (isProd) {
-
     plugins.push(
       new webpack.LoaderOptionsPlugin({ minimize: true, debug: false }),
       new webpack.optimize.UglifyJsPlugin(uglify),
@@ -47,13 +46,13 @@ module.exports = (isProd) => {
         staticFileGlobsIgnorePatterns: [/\.map$/],
       })
     )
-    if (accessKeyId !== 'xxx' && secretAccessKey !== 'yyy' && distributionId !== 'zzz') {
+    if (accessKeyId !== 'xxx' && secretAccessKey !== 'yyy' && distributionId !== 'zzz' && process.env.NODE_ENV !== 'test') {
       plugins.push(
         new S3Plugin({
           include: /\.html$|\.js$|\.css$|\.svg$|\.ttf$|\.eot$|\.png$|\.otf|woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
           s3Options: {
-            accessKeyId: accessKeyId,
-            secretAccessKey: secretAccessKey,
+            accessKeyId,
+            secretAccessKey,
             region: 'sa-east-1',
           },
           s3UploadOptions: {

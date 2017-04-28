@@ -3,6 +3,16 @@ import request from 'supertest'
 import { exec } from 'mz/child_process'
 import createServer from './dist/server.builded'
 
+const serverConfig = {
+  nodeEnv: test,
+  port: 6006,
+  timeout: 28000,
+  schemaName: 'public',
+  databaseUrl: '',
+  sentryDns: '',
+  s3BucketName: 'vivo-em-nos-staging',
+}
+
 test('build application', async (t) => {
   t.plan(1)
   const build = exec('yarn run prestart')
@@ -29,20 +39,25 @@ test('build application', async (t) => {
 test('render index.html as static file', async (t) => {
   t.plan(2)
 
-  const res = await request(createServer({
-    nodeEnv: test,
-    port: 6006,
-    timeout: 28000,
-    schemaName: 'public',
-    databaseUrl: '',
-    sentryDns: '',
-  }))
+  const res = await request(createServer(serverConfig))
     .get('/index.html')
 
   t.is(res.status, 200)
   t.truthy(res.text.indexOf('<div id="root"></div>'), 'html container with root id was found')
 })
 
+test('get s3 signed url', async (t) => {
+  t.plan(2)
+
+  const fileName = 'textura.png'
+  const fileType = 'image/png'
+
+  const res = await request(createServer(serverConfig))
+    .get(`/sign-s3?file-name=${fileName}&file-type=${fileType}`)
+
+  t.is(res.status, 200)
+  t.not(JSON.parse(res.text).signedRequest, '')
+})
 // test('responds to any route with the index.html', async (t) => {
 //   const r = request(app)
 //     .get('/index.html')

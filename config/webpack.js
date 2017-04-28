@@ -8,7 +8,7 @@ const dist = join(__dirname, '../dist')
 const s3BucketName = process.env.AWS_BUCKET || 'vivo-em-nos-staging'
 
 module.exports = (env) => {
-  const isProd = env && env.production && process.env.NODE_ENV !== 'test'
+  const isProd = env && env.production
 
   return {
     entry: {

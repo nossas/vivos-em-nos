@@ -3,6 +3,8 @@ pipeline:
     image: kkarczmarczyk/node-yarn
     commands:
       - yarn
+      - yarn build
+      - yarn prestart
       - yarn test
 
   publish:

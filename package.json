@@ -1,37 +1,52 @@
 {
   "private": true,
-  "name": "preact-starter",
-  "version": "1.1.1",
-  "license": "MIT",
-  "repository": "lukeed/preact-starter",
+  "name": "vivos-em-nos",
+  "version": "0.0.1",
+  "license": "GPL-3.0",
+  "repository": "nossas/vivos-em-nos",
   "author": {
-    "name": "Luke Edwards",
-    "email": "luke.edwards05@gmail.com",
-    "url": "https://lukeed.com"
+    "name": "Nossas",
+    "email": "tech@nossas.org",
+    "url": "https://nossas.org"
   },
   "scripts": {
     "build": "webpack --env.production --config config/webpack",
-    "start": "serve dist -s",
     "watch": "webpack-dashboard -- webpack-dev-server --config config/webpack",
-    "test": "ava"
+    "test": "NEW_RELIC_NO_CONFIG_FILE=true NEW_RELIC_ENABLED=false ava",
+    "dev": "NODE_ENV=development NEW_RELIC_NO_CONFIG_FILE=true NEW_RELIC_ENABLED=false node -r \"babel-register\" ./src/server.js",
+    "prestart": "NODE_ENV=production babel ./src/server.js --out-file ./dist/server.builded.js",
+    "start": "NODE_ENV=production node ./dist/server.builded.js"
   },
   "dependencies": {
+    "compression": "^1.6.2",
+    "cors": "^2.8.3",
+    "dotenv": "^4.0.0",
+    "express": "^4.15.2",
+    "express-winston": "^2.4.0",
     "flexboxgrid": "^6.3.1",
+    "helmet": "^3.5.0",
+    "hpp": "^0.2.2",
+    "http": "0.0.0",
+    "newrelic": "^1.38.2",
     "preact": "^8.1.0",
     "preact-compat": "^3.15",
     "preact-layout": "^1.0.2",
     "preact-material-components": "^1.0.1",
     "preact-redux": "^2.0.1",
     "preact-router": "^2.4.1",
+    "raven": "^1.2.1",
     "react-apollo": "^1.0.1",
+    "react-swipeable": "^3.9.2",
     "redux": "^3.6.0",
     "redux-form": "^6.6.3",
-    "react-swipeable": "^3.9.2"
+    "throng": "^4.0.0",
+    "winston": "^2.3.1"
   },
   "devDependencies": {
     "autoprefixer": "^6.7.2",
     "ava": "^0.19.1",
     "babel-cli": "^6.24.1",
+    "babel-register": "^6.24.1",
     "babel-core": "^6.22.1",
     "babel-eslint": "^7.2.2",
     "babel-loader": "^6.2.10",
@@ -54,16 +69,18 @@
     "extract-text-webpack-plugin": "^2.1.0",
     "flow-bin": "^0.44.2",
     "html-webpack-plugin": "^2.28.0",
+    "mz": "^2.6.0",
     "node-sass": "^4.5.0",
     "postcss-loader": "^1.2.2",
     "sass-loader": "^6.0.3",
     "serve": "^5.0.2",
     "style-loader": "^0.13.1",
+    "supertest": "^3.0.0",
     "sw-precache-webpack-plugin": "^0.9.0",
+    "uglify-js": "git+https://github.com/mishoo/UglifyJS2.git#harmony",
     "webpack": "^2.3",
     "webpack-dashboard": "^0.3.0",
     "webpack-dev-server": "^2.3.0",
-    "webpack-s3-plugin": "^1.0.0-rc.0",
-    "uglify-js": "git+https://github.com/mishoo/UglifyJS2.git#harmony"
+    "webpack-s3-plugin": "^1.0.0-rc.0"
   }
 }

@@ -304,7 +304,18 @@ ALTER TABLE ONLY memory_comments
 --
 -- Update fields
 --
+alter table memories 
+    alter column created_at drop not null,
+    alter column updated_at drop not null;
 
+alter table memory_assets
+    alter column created_at drop not null,
+    alter column updated_at drop not null;
+
+alter table memory_comments
+    alter column created_at drop not null,
+    alter column updated_at drop not null;
+    
 ALTER TABLE memories
     ALTER COLUMN created_at SET DEFAULT now();
 
@@ -327,6 +338,14 @@ CREATE TRIGGER update_updated_at BEFORE UPDATE ON memory_assets FOR EACH ROW EXE
 
 CREATE TRIGGER update_updated_at BEFORE UPDATE ON memory_comments FOR EACH ROW EXECUTE PROCEDURE update_updated_at();
 
+CREATE OR REPLACE FUNCTION notify_new_memory() RETURNS trigger language plpgsql as $$
+    begin
+        perform pg_notify('new_memories', row_to_json(NEW.*)::text);
+        return null;
+    end;
+$$;
+
+CREATE TRIGGER notify_new_memory AFTER INSERT ON memories FOR EACH ROW EXECUTE PROCEDURE notify_new_memory();
 
 --
 -- PostgreSQL database dump complete

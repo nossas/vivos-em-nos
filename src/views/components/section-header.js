@@ -7,7 +7,7 @@ export default ({ title, subtitle, children, hideBorder }) => {
   return (
     <header className={`components--section-header ${conditionalClassNames.join(' ')}`}>
       {title}
-      <div>{subtitle}</div>
+      <div className="subtitle">{subtitle}</div>
       {children}
     </header>
   )

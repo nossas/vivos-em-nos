@@ -55,6 +55,18 @@ export default () => (
         <img src="/img/share-twitter.svg" width="51" />
         <img src="/img/share-whatsapp.svg" width="51" />
       </SectionPrimary>
+
+      <SectionPrimary
+        className="section--known-victim"
+        header={
+          <SectionHeader
+            title="Se você conheceu essa pessoa"
+            subtitle="use este espaço para contar o que está vivo em você sobre ela."
+          />
+        }
+      >
+        === comment form ===
+      </SectionPrimary>
     </div>
   </LayoutDefault>
 )

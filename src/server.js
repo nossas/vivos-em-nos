@@ -11,7 +11,6 @@ import throng from 'throng'
 import Raven from 'raven'
 import dotenv from 'dotenv'
 import path from 'path'
-import aws from 'aws-sdk'
 
 dotenv.config({ path: path.resolve(__dirname, '..', '.env') })
 
@@ -49,31 +48,11 @@ const createServer = (config) => {
 
   app.use(express.static(path.resolve(__dirname, '..', 'dist')))
 
-  app.get('/sign-s3', (req, res) => {
-    const s3 = new aws.S3()
-    const fileName = req.query['file-name']
-    const fileType = req.query['file-type']
-    const s3Params = {
-      Bucket: config.s3BucketName,
-      Key: `uploads/${fileName}`,
-      Expires: 60,
-      ContentType: fileType,
-      ACL: 'public-read',
-    }
-
-    s3.getSignedUrl('putObject', s3Params, (err, data) => {
-      if (err) {
-        winston.log(err)
-        return res.end()
-      }
-      const returnData = {
-        signedRequest: data,
-        url: `https://${config.s3BucketName}.s3.amazonaws.com/${fileName}`,
-      }
-      res.write(JSON.stringify(returnData))
-      return res.end()
-    })
-  })
+  app.use('/s3', require('react-s3-uploader/s3router')({
+    bucket: `${config.s3BucketName}`,
+    uniquePrefix: false,
+    ACL: 'public-read'
+  }));
 
   app.get('*', (req, res) => {
     res.sendFile(path.resolve(__dirname, '..', 'dist', 'index.html'))

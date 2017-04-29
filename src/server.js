@@ -14,6 +14,8 @@ import path from 'path'
 import aws from 'aws-sdk'
 import pg from 'pg'
 import EventEmitter from 'events'
+import _ from 'lodash'
+import fs from 'fs'
 
 dotenv.config({ path: path.resolve(__dirname, '..', '.env') })
 
@@ -21,6 +23,8 @@ const DefaultServerConfig = {
   nodeEnv: process.env.NODE_ENV,
   port: process.env.PORT,
   timeout: 28000,
+  accessKeyId: process.env.AWS_ACCESS_KEY_ID || 'xxx',
+  secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY || 'yyy',
   schemaName: process.env.SCHEMA_NAME,
   databaseUrl: process.env.DATABASE_URL || 'postgres://postgres@localhost/vivos-em-nos-pwa',
   sentryDns: process.env.SENTRY_DSN,
@@ -41,7 +45,7 @@ const createMemoriesListener = (config, emailEmitter) => {
 
     return client
     // client.end(function (err) {
-    //   if (err) throw err;
+    //   if (err) throw err
     // });
   })
 }
@@ -121,12 +125,67 @@ const startServer = (serverConfig) => {
   const emailEmitter = new EmailEmitter()
   createMemoriesListener(config, emailEmitter)
 
-  emailEmitter.on('memory_created', (msg) => {
-    winston.info(msg)
+  emailEmitter.on('memory_created', ({ payload }) => {
+    const p = JSON.parse(payload)
+    // const {
+    //   owner_first_name,
+    //   owner_last_name,
+    //   owner_email,
+    //   owner_country,
+    //   victim_name,
+    //   victim_born_at,
+    //   victim_dead_at,
+    //   victim_city,
+    //   token
+    // } = p
+    const fileNameEmailTemplate = path.resolve(__dirname, 'static',
+      'template-email-edicao-memoria.html')
+    let EmailTemplate
+
+    fs.readFile(fileNameEmailTemplate, 'utf8', (err, data) => {
+      if (err) throw err
+      EmailTemplate = _.template(data.toString())
+
+    const ses = new aws.SES({
+      accessKeyId: config.accessKeyId,
+      secretAccessKey: config.secretAccessKey,
+      region: 'us-east-1',
+    })
+    const eparam = {
+      Destination: {
+        ToAddresses: [`${p.owner_first_name}<${p.owner_email}>`],
+      },
+      Message: {
+        Body: {
+          Html: {
+            Data: EmailTemplate(p),
+          },
+          Text: {
+            Data: 'Hello, this is a test email!',
+          },
+        },
+        Subject: {
+          Data: 'Sua homenagem ficou pronta, acesse!',
+        },
+      },
+      Source: 'Vivos Em Nós <notificacoes@vivosemnos.org>',
+      ReplyToAddresses: ['Vivos Em Nós <notificacoes@vivosemnos.org>'],
+      ReturnPath: 'Vivos Em Nós <notificacoes@vivosemnos.org>',
+    }
+
+    ses.sendEmail(eparam, function (err, data) {
+      if (err) {
+        throw (err)
+      } else {
+        winston.info(data)
+      }
+    })
+        })
+
   })
 
   server.listen(config.port, (err) => {
-    if (err) winston.log(err)
+    if (err) throw err
     winston.info(`server ${config.id} listening on port ${config.port}`)
   })
 }

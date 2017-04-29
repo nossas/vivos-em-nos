@@ -4,3 +4,28 @@
   .Error
     color: red
     font-size: 14px
+
+  .UploadFileField
+
+    .FileHandler::before
+      content: "+"
+      font-size: 36px
+      color: #fff
+      position: absolute
+      top: 48px
+      left: 48px
+
+    .FileHandler
+      position: relative
+      display: table
+      width: 128px
+      height: 128px
+      background-color: #F7901E
+      border-radius: 45px
+
+      .UploadFileField--Preview
+        display: table-row
+        vertical-align: middle
+
+  .mdc-textfield
+    width: 100%

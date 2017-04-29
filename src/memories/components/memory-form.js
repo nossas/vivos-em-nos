@@ -1,6 +1,6 @@
 import { h } from 'preact' /** @jsx h */
 import { Field } from 'redux-form'
-import { Form, Button, Section, CheckboxField, TextField, SelectField } from './forms'
+import { Form, Button, Section, CheckboxField, TextField, SelectField, UploadFileField } from './forms'
 import AlertBox from './alert-box'
 import { COUNTRIES } from '../constants'
 
@@ -98,8 +98,7 @@ export default ({ ownerFirstName, authorizedToSite, handleSubmit, error, submitS
       <Field
         label={`Foto de ${ownerFirstName}`}
         name='victimPhoto'
-        type='text'
-        component={TextField}
+        component={UploadFileField}
       />
       <Field
         label='Silhueta'

@@ -13,7 +13,7 @@
     "build": "webpack --env.production --config config/webpack",
     "watch": "webpack-dashboard -- webpack-dev-server --config config/webpack",
     "test": "NEW_RELIC_NO_CONFIG_FILE=true NEW_RELIC_ENABLED=false ava",
-    "dev": "NODE_ENV=development NEW_RELIC_NO_CONFIG_FILE=true NEW_RELIC_ENABLED=false node -r \"babel-register\" ./src/server.js",
+    "dev": "NODE_ENV=development NEW_RELIC_NO_CONFIG_FILE=true NEW_RELIC_ENABLED=false nodemon -r \"babel-register\" --watch ./src/server.js ./src/server.js",
     "prestart": "NODE_ENV=production babel ./src/server.js --out-file ./dist/server.builded.js",
     "start": "NODE_ENV=production node ./dist/server.builded.js"
   },
@@ -29,6 +29,8 @@
     "hpp": "^0.2.2",
     "http": "0.0.0",
     "newrelic": "^1.38.2",
+    "nodemon": "^1.11.0",
+    "pg": "^6.1.5",
     "preact": "^8.1.0",
     "preact-compat": "^3.15",
     "preact-layout": "^1.0.2",

@@ -11,6 +11,8 @@ import throng from 'throng'
 import Raven from 'raven'
 import dotenv from 'dotenv'
 import path from 'path'
+import aws from 'aws-sdk'
+import pg from 'pg'
 
 dotenv.config({ path: path.resolve(__dirname, '..', '.env') })
 
@@ -19,9 +21,27 @@ const DefaultServerConfig = {
   port: process.env.PORT,
   timeout: 28000,
   schemaName: process.env.SCHEMA_NAME,
-  databaseUrl: process.env.DATABASE_URL,
+  databaseUrl: process.env.DATABASE_URL || 'postgres://postgres@localhost/vivos-em-nos-pwa',
   sentryDns: process.env.SENTRY_DSN,
   s3BucketName: process.env.AWS_BUCKET || 'vivo-em-nos-staging',
+}
+
+const createMemoriesListener = (config) => {
+  const client = new pg.Client(config.databaseUrl)
+
+  client.connect((err) => {
+    if (err) throw err
+
+    client.on('notification', (msg) => {
+      winston.info(msg)
+    })
+
+    client.query('LISTEN new_memories')
+
+    // client.end(function (err) {
+    //   if (err) throw err;
+    // });
+  })
 }
 
 const createServer = (config) => {
@@ -92,8 +112,10 @@ const createServer = (config) => {
 
 const startServer = (serverConfig) => {
   const config = { ...DefaultServerConfig, ...serverConfig }
-
   const server = createServer(config)
+
+  createMemoriesListener(config)
+
   server.listen(config.port, (err) => {
     if (err) winston.log(err)
     winston.info(`server ${config.id} listening on port ${config.port}`)

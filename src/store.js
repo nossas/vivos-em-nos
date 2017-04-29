@@ -10,10 +10,10 @@ import carousel from './carousel/redux/reducers'
 /**
  * Logs all actions and states after they are dispatched.
  */
-const logger = store => next => action => {
+const logger = store => next => (action) => {
   console.group(action.type)
   console.info('dispatching', action)
-  let result = next(action)
+  const result = next(action)
   console.log('next state', store.getState())
   console.groupEnd(action.type)
   return result
@@ -22,7 +22,7 @@ const logger = store => next => action => {
 /**
  * Sends crash reports as state is updated and listeners are notified.
  */
-const crashReporter = store => next => action => {
+const crashReporter = store => next => (action) => {
   try {
     return next(action)
   } catch (err) {
@@ -30,8 +30,8 @@ const crashReporter = store => next => action => {
     Raven.captureException(err, {
       extra: {
         action,
-        state: store.getState()
-      }
+        state: store.getState(),
+      },
     })
     throw err
   }
@@ -41,14 +41,14 @@ const crashReporter = store => next => action => {
  * Schedules actions with { meta: { delay: N } } to be delayed by N milliseconds.
  * Makes `dispatch` return a function to cancel the timeout in this case.
  */
-const timeoutScheduler = store => next => action => {
+const timeoutScheduler = store => next => (action) => {
   if (!action.meta || !action.meta.delay) {
     return next(action)
   }
 
-  let timeoutId = setTimeout(
+  const timeoutId = setTimeout(
     () => next(action),
-    action.meta.delay
+    action.meta.delay,
   )
 
   return function cancel() {
@@ -61,7 +61,7 @@ const timeoutScheduler = store => next => action => {
  * frame.  Makes `dispatch` return a function to remove the action from the queue in
  * this case.
  */
-const rafScheduler = store => next => {
+const rafScheduler = store => (next) => {
   let queuedActions = []
   let frame = null
 
@@ -82,7 +82,7 @@ const rafScheduler = store => next => {
     }
   }
 
-  return action => {
+  return (action) => {
     if (!action.meta || !action.meta.raf) {
       return next(action)
     }
@@ -101,7 +101,7 @@ const rafScheduler = store => next => {
  * If the promise is resolved, its result will be dispatched as an action.
  * The promise is returned from `dispatch` so the caller may handle rejection.
  */
-const vanillaPromise = store => next => action => {
+const vanillaPromise = store => next => (action) => {
   if (typeof action.then !== 'function') {
     return next(action)
   }
@@ -117,13 +117,13 @@ const vanillaPromise = store => next => action => {
  *
  * For convenience, `dispatch` will return the promise so the caller can wait.
  */
-const readyStatePromise = store => next => action => {
+const readyStatePromise = store => next => (action) => {
   if (!action.promise) {
     return next(action)
   }
 
   function makeAction(ready, data) {
-    let newAction = Object.assign({}, action, { ready }, data)
+    const newAction = Object.assign({}, action, { ready }, data)
     delete newAction.promise
     return newAction
   }
@@ -131,7 +131,7 @@ const readyStatePromise = store => next => action => {
   next(makeAction(false))
   return action.promise.then(
     result => next(makeAction(true, { result })),
-    error => next(makeAction(true, { error }))
+    error => next(makeAction(true, { error })),
   )
 }
 
@@ -151,8 +151,8 @@ const thunk = store => next => action =>
 
 export const client = new ApolloClient({
   networkInterface: createNetworkInterface({
-    uri: process.env.GRAPHQL_URL || 'http://data.vivo-em-nos.devel:3003/graphql',
-    connectToDevTools: true
+    uri: process.env.GRAPHQL_URL,
+    connectToDevTools: true,
   }),
 })
 
@@ -165,7 +165,7 @@ export default createStore(
     todos,
     visibilityFilter,
     menu,
-    carousel
+    carousel,
   }),
   {},
   compose(
@@ -177,8 +177,8 @@ export default createStore(
       readyStatePromise,
       logger,
       crashReporter,
-      client.middleware()
+      client.middleware(),
     ),
-    (typeof window.__REDUX_DEVTOOLS_EXTENSION__ !== 'undefined') ? window.__REDUX_DEVTOOLS_EXTENSION__() : f => f
-  )
+    (typeof window.__REDUX_DEVTOOLS_EXTENSION__ !== 'undefined') ? window.__REDUX_DEVTOOLS_EXTENSION__() : f => f,
+  ),
 )

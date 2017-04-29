@@ -1,5 +1,4 @@
 import { h, Component } from 'preact' /** @jsx h */
-import DropZone from 'react-dropzone'
 import FormGroup from './form-group'
 import ReactS3Uploader from 'react-s3-uploader'
 

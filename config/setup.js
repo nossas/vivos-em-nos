@@ -13,6 +13,8 @@ const s3BucketName = process.env.AWS_BUCKET || 'vivo-em-nos-staging'
 const accessKeyId = process.env.AWS_ACCESS_KEY_ID || 'xxx'
 const secretAccessKey = process.env.AWS_SECRET_ACCESS_KEY || 'yyy'
 const distributionId = process.env.CLOUDFRONT_DISTRIBUTION_ID || 'zzz'
+const graphqlUrl = process.env.GRAPHQL_URL || 'http://data.vivos-em-nos.devel:3003/graphql'
+
 const root = join(__dirname, '..')
 
 module.exports = (isProd) => {
@@ -23,6 +25,7 @@ module.exports = (isProd) => {
     new webpack.optimize.CommonsChunkPlugin({ name: 'vendor' }),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify(isProd ? 'production' : 'development'),
+      'process.env.GRAPHQL_URL': JSON.stringify(graphqlUrl)
     }),
     new HTML({ template: 'src/index.html' }),
     new webpack.LoaderOptionsPlugin({

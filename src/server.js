@@ -13,6 +13,7 @@ import dotenv from 'dotenv'
 import path from 'path'
 import aws from 'aws-sdk'
 import pg from 'pg'
+import EventEmitter from 'events'
 
 dotenv.config({ path: path.resolve(__dirname, '..', '.env') })
 
@@ -26,18 +27,19 @@ const DefaultServerConfig = {
   s3BucketName: process.env.AWS_BUCKET || 'vivo-em-nos-staging',
 }
 
-const createMemoriesListener = (config) => {
+const createMemoriesListener = (config, emailEmitter) => {
   const client = new pg.Client(config.databaseUrl)
 
-  client.connect((err) => {
+  return client.connect((err) => {
     if (err) throw err
 
     client.on('notification', (msg) => {
-      winston.info(msg)
+      emailEmitter.emit('memory_created', msg)
     })
 
     client.query('LISTEN new_memories')
 
+    return client
     // client.end(function (err) {
     //   if (err) throw err;
     // });
@@ -110,11 +112,18 @@ const createServer = (config) => {
   return server
 }
 
+class EmailEmitter extends EventEmitter {}
+
 const startServer = (serverConfig) => {
   const config = { ...DefaultServerConfig, ...serverConfig }
   const server = createServer(config)
 
-  createMemoriesListener(config)
+  const emailEmitter = new EmailEmitter()
+  createMemoriesListener(config, emailEmitter)
+
+  emailEmitter.on('memory_created', (msg) => {
+    winston.info(msg)
+  })
 
   server.listen(config.port, (err) => {
     if (err) winston.log(err)

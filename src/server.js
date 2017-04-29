@@ -31,6 +31,8 @@ const DefaultServerConfig = {
   s3BucketName: process.env.AWS_BUCKET || 'vivo-em-nos-staging',
 }
 
+class EmailEmitter extends EventEmitter {}
+
 const createMemoriesListener = (config, emailEmitter) => {
   const client = new pg.Client(config.databaseUrl)
 
@@ -116,8 +118,6 @@ const createServer = (config) => {
   return server
 }
 
-class EmailEmitter extends EventEmitter {}
-
 const startServer = (serverConfig) => {
   const config = { ...DefaultServerConfig, ...serverConfig }
   const server = createServer(config)
@@ -126,62 +126,64 @@ const startServer = (serverConfig) => {
   createMemoriesListener(config, emailEmitter)
 
   emailEmitter.on('memory_created', ({ payload }) => {
+    let EmailTemplate
     const p = JSON.parse(payload)
-    // const {
-    //   owner_first_name,
-    //   owner_last_name,
-    //   owner_email,
-    //   owner_country,
-    //   victim_name,
-    //   victim_born_at,
-    //   victim_dead_at,
-    //   victim_city,
-    //   token
-    // } = p
     const fileNameEmailTemplate = path.resolve(__dirname, 'static',
       'template-email-edicao-memoria.html')
-    let EmailTemplate
 
-    fs.readFile(fileNameEmailTemplate, 'utf8', (err, data) => {
+    fs.readFile(fileNameEmailTemplate, 'utf8', (err, fileContent) => {
       if (err) throw err
-      EmailTemplate = _.template(data.toString())
+      const data = fileContent.toString()
+      EmailTemplate = _.template(data)
 
-    const ses = new aws.SES({
-      accessKeyId: config.accessKeyId,
-      secretAccessKey: config.secretAccessKey,
-      region: 'us-east-1',
-    })
-    const eparam = {
-      Destination: {
-        ToAddresses: [`${p.owner_first_name}<${p.owner_email}>`],
-      },
-      Message: {
-        Body: {
-          Html: {
-            Data: EmailTemplate(p),
+      const ses = new aws.SES({
+        accessKeyId: config.accessKeyId,
+        secretAccessKey: config.secretAccessKey,
+        region: 'us-east-1',
+      })
+      const eparam = {
+        Destination: {
+          ToAddresses: [`${p.owner_first_name}<${p.owner_email}>`],
+        },
+        Message: {
+          Body: {
+            Html: {
+              Data: EmailTemplate(p),
+            },
+            Text: {
+              Data: `Olá ${data.owner_first_name}!
+
+Sua homenagem criada no #VivoEmNos está pronta. Caso tenha visto algo que não goste, você pode editar copiando e colando no navegador o link abaixo.
+
+https://vivosemnos.org/homenagem/editar?token=${data.token}
+
+Saudações,
+Equipe Vivo Em Nós
+
+Este email foi enviado porque foi criada uma homenagem no site www.vivosemnos.org. Se não foi você, desconsidere esse e-mail.
+
+Caso esse email te incomode, fique à vontade para enviar um email para notificacoes@vivosemnos.org e pedir o cancelamento.
+
+Brazil - Rio De Janeiro, RJ - Botafogo - Rua Visconde Silva, 21 - 22271-043`,
+            },
           },
-          Text: {
-            Data: 'Hello, this is a test email!',
+          Subject: {
+            Data: 'Sua homenagem ficou pronta, acesse!',
           },
         },
-        Subject: {
-          Data: 'Sua homenagem ficou pronta, acesse!',
-        },
-      },
-      Source: 'Vivos Em Nós <notificacoes@vivosemnos.org>',
-      ReplyToAddresses: ['Vivos Em Nós <notificacoes@vivosemnos.org>'],
-      ReturnPath: 'Vivos Em Nós <notificacoes@vivosemnos.org>',
-    }
-
-    ses.sendEmail(eparam, function (err, data) {
-      if (err) {
-        throw (err)
-      } else {
-        winston.info(data)
+        Source: 'Vivos Em Nós <notificacoes@vivosemnos.org>',
+        ReplyToAddresses: ['Vivos Em Nós <notificacoes@vivosemnos.org>'],
+        ReturnPath: 'Vivos Em Nós <notificacoes@vivosemnos.org>',
       }
-    })
-        })
 
+      ses.sendEmail(eparam, function (err, data) {
+        if (err) {
+          throw (err)
+        } else {
+          winston.info(data)
+        }
+      })
+    })
   })
 
   server.listen(config.port, (err) => {

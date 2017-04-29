@@ -53,7 +53,7 @@ test('get s3 signed url', async (t) => {
   const fileType = 'image/png'
 
   const res = await request(createServer(serverConfig))
-    .get(`/sign-s3?file-name=${fileName}&file-type=${fileType}`)
+    .get(`/s3/sign?objectName=${fileName}&contentType=${fileType}`)
 
   t.is(res.status, 200)
   t.not(JSON.parse(res.text).signedRequest, '')

@@ -1,6 +1,6 @@
 import { connect } from 'preact-redux'
 import { graphql } from 'react-apollo'
-import * as queries from '../../../graphql/queries'
+import * as MemoryQueries from '../../../memories/queries'
 import MemoryVictim from './page'
 
 const mapStateToProps = (state, props) => ({
@@ -8,4 +8,4 @@ const mapStateToProps = (state, props) => ({
   loading: props.data.loading,
 })
 
-export default graphql(queries.memory)(connect(mapStateToProps)(MemoryVictim))
+export default graphql(MemoryQueries.memory)(connect(mapStateToProps)(MemoryVictim))

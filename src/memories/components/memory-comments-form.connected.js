@@ -1,6 +1,5 @@
-import { connect } from 'preact-redux'
 import { graphql } from 'react-apollo'
-import { reduxForm, formValueSelector, SubmissionError } from 'redux-form'
+import { reduxForm, SubmissionError } from 'redux-form'
 import * as validation from '../../utils/validation'
 import * as queries from '../queries'
 import MemoryCommentsForm from './memory-comments-form'
@@ -12,6 +11,10 @@ const REQUIRED_FIELDS = ['memoryId', 'comment', 'firstName', 'lastName', 'email'
 const validate = (values) => {
   const errors = {}
 
+  if (!validation.email(values.email)) {
+    errors.email = 'Formato de email inválido'
+  }
+
   REQUIRED_FIELDS.map((field) => {
     if (!values[field]) {
       errors[field] = 'Preenchimento obrigatório'
@@ -19,18 +22,7 @@ const validate = (values) => {
     return field
   })
 
-  if (!validation.email(values.email)) {
-    errors.email = 'Formato de email inválido'
-  }
-
   return errors
-}
-
-const mapStateToProps = (state) => {
-  const selector = formValueSelector(form)
-  return {
-    ...selector(state, 'firstName'),
-  }
 }
 
 export default graphql(queries.memoryCommentCreate, {
@@ -42,6 +34,4 @@ export default graphql(queries.memoryCommentCreate, {
           throw new SubmissionError({ _error: '(500) Erro interno no servidor.' })
         }),
   }),
-})(connect(mapStateToProps)(
-  reduxForm({ form, validate })(MemoryCommentsForm),
-))
+})(reduxForm({ form, validate })(MemoryCommentsForm))

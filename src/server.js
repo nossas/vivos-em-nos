@@ -143,7 +143,7 @@ const startServer = (serverConfig) => {
       const ses = new aws.SES({
         accessKeyId: config.accessKeyId,
         secretAccessKey: config.secretAccessKey,
-        region: 'us-east-1',
+        region: 'us-west-2',
       })
       const eparam = {
         Destination: {

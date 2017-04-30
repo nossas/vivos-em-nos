@@ -60,11 +60,11 @@ export default ({ memory, loading }) => (
         >
           <ShareFacebookButton
             className="share-button"
-            href="http://vivosemnos.org/"
+            href="https://vivosemnos.org/"
           />
           <ShareTwitterButton
             className="share-button"
-            href="http://vivosemnos.org/"
+            href="https://vivosemnos.org/"
             text={
               '#VivosEmNós quer usar a memória como ferramenta para mudança. Se você conhece ' +
               'alguém que teve a sua história interrompida pela violência, crie aqui uma página ' +
@@ -73,7 +73,7 @@ export default ({ memory, loading }) => (
           />
           <ShareWhatsappButton
             className="share-button"
-            text="http://vivosemnos.org/"
+            text="https://vivosemnos.org/"
           />
         </SectionPrimary>
 

@@ -1,5 +1,5 @@
 import { h } from 'preact' /** @jsx h */
-import { Header, LayoutDefault } from '../tags/layout'
+import { Header, LayoutDefault } from '../../../views/tags/layout'
 import {
   TopBar,
   MemoryImage,
@@ -9,8 +9,8 @@ import {
   SectionPrimary,
   SectionHeader,
   OrnamentPageFooter,
-} from '../components'
-import * as mocks from '../../__tmp/mocks'
+} from '../../../views/components'
+import * as mocks from '../../../__tmp/mocks'
 
 const _memory = mocks.memories[1]
 

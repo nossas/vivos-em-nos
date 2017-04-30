@@ -159,7 +159,7 @@ const startServer = (serverConfig) => {
 
 Sua homenagem criada no #VivoEmNos está pronta. Caso tenha visto algo que não goste, você pode editar copiando e colando no navegador o link abaixo.
 
-https://vivosemnos.org/homenagem/editar?token=${data.token}
+https://vivosemnos.org/memory/edit?token=${data.token}
 
 Saudações,
 Equipe Vivo Em Nós

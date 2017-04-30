@@ -9,6 +9,7 @@ import {
   SectionPrimary,
   ShareFacebookButton,
   ShareTwitterButton,
+  ShareWhatsappButton,
   Silhouette,
   TopBar,
 } from '../../../views/components'
@@ -70,7 +71,10 @@ export default ({ memory, loading }) => (
               'de homenagem para se juntar à luta por mais respeito à vida.'
             }
           />
-          <img src="/img/share-whatsapp.svg" width="51" />
+          <ShareWhatsappButton
+            className="share-button"
+            text="http://vivosemnos.org/"
+          />
         </SectionPrimary>
 
         <SectionPrimary

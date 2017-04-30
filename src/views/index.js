@@ -7,7 +7,6 @@ import store, { client } from '../store'
 import Home from './pages/home'
 import Article from './pages/article'
 import Error404 from './pages/errors/404'
-import Credit from './pages/credit'
 import Blog from './pages/blog'
 import { MemoryCreate, MemoryVictim } from '../memories/pages'
 
@@ -24,7 +23,6 @@ export default (
         <MemoryCreate path="/homenagem" />
         <MemoryVictim path="/homenagem/:id" />
         <Article path="/blog/:title" />
-        <Credit path="/credit" />
         <Error404 default />
       </Router>
     </ApolloProvider>

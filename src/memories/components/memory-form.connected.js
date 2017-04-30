@@ -29,7 +29,7 @@ const validate = (values) => {
 const mapStateToProps = (state) => {
   const selector = formValueSelector(FORM)
   return {
-    ...selector(state, 'ownerFirstName', 'authorizedToSite'),
+    ...selector(state, 'victimName', 'authorizedToSite'),
   }
 }
 

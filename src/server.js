@@ -16,6 +16,7 @@ import pg from 'pg'
 import EventEmitter from 'events'
 import _ from 'lodash'
 import fs from 'fs'
+import os from 'os'
 
 dotenv.config({ path: path.resolve(__dirname, '..', '.env') })
 
@@ -33,10 +34,8 @@ const DefaultServerConfig = {
 
 class EmailEmitter extends EventEmitter {}
 
-const createMemoriesListener = (config, emailEmitter) => {
-  const client = new pg.Client(config.databaseUrl)
-
-  return client.connect((err) => {
+const createMemoriesListener = (client, emailEmitter) =>
+  client.connect((err) => {
     if (err) throw err
 
     client.on('notification', (msg) => {
@@ -50,9 +49,39 @@ const createMemoriesListener = (config, emailEmitter) => {
     //   if (err) throw err
     // });
   })
-}
 
-const createServer = (config) => {
+// https://github.com/FastIT/health-check
+const checkPostgres = (client) =>
+  client.query('SELECT NOW() AS "the_time"', (err, res) => {
+    if (err) {
+      return ({ status: 'ko', online: false, error: err })
+    }
+
+    return {
+      online: true,
+      os: {
+        arch: os.arch(),
+        loadavg: os.loadavg(),
+        freemem: os.freemem(),
+        platform: os.platform(),
+        totalmem: os.totalmem(),
+        uptime: os.uptime(),
+        release: os.release(),
+      },
+      process: {
+        execArgv: process.execArgv,
+        execPath: process.execPath,
+        memoryUsage: process.memoryUsage(),
+        pid: process.pid,
+        platform: process.platform,
+        uptime: process.uptime(),
+      },
+      uptime: process.uptime(),
+      status: 'ok',
+    }
+  })
+
+const createServer = (client, config) => {
   const PROD = config.nodeEnv === 'production'
   const app = express()
 
@@ -75,6 +104,10 @@ const createServer = (config) => {
   app.use(compression())
 
   app.use(express.static(path.resolve(__dirname, '..', 'dist')))
+
+  app.use('/ping', (req, res) => {
+    return res.json(checkPostgres(client))
+  })
 
   app.use('/s3', require('react-s3-uploader/s3router')({
     bucket: `${config.s3BucketName}`,
@@ -124,10 +157,11 @@ const createServer = (config) => {
 
 const startServer = (serverConfig) => {
   const config = { ...DefaultServerConfig, ...serverConfig }
-  const server = createServer(config)
-
   const emailEmitter = new EmailEmitter()
-  createMemoriesListener(config, emailEmitter)
+  const client = new pg.Client(config.databaseUrl)
+  const server = createServer(client, config)
+
+  createMemoriesListener(client, emailEmitter)
 
   emailEmitter.on('memory_created', ({ payload }) => {
     let EmailTemplate

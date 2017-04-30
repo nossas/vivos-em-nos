@@ -113,6 +113,19 @@ CREATE SEQUENCE memories_id_seq
 
 
 --
+-- Name: memories id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY memories ALTER COLUMN id SET DEFAULT nextval('memories_id_seq'::regclass);
+
+--
+-- Name: memories memories_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY memories
+    ADD CONSTRAINT memories_pkey PRIMARY KEY (id);
+
+--
 -- Name: memories_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
@@ -125,7 +138,7 @@ ALTER SEQUENCE memories_id_seq OWNED BY memories.id;
 
 CREATE TABLE memory_assets (
     id integer NOT NULL,
-    memory_id integer,
+    memory_id int not null references memories(id),
     asset_type character varying NOT NULL,
     asset_url text NOT NULL,
     created_at timestamp without time zone NOT NULL,
@@ -197,13 +210,6 @@ CREATE TABLE schema_migrations (
 
 
 --
--- Name: memories id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY memories ALTER COLUMN id SET DEFAULT nextval('memories_id_seq'::regclass);
-
-
---
 -- Name: memory_assets id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -225,12 +231,6 @@ ALTER TABLE ONLY ar_internal_metadata
     ADD CONSTRAINT ar_internal_metadata_pkey PRIMARY KEY (key);
 
 
---
--- Name: memories memories_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY memories
-    ADD CONSTRAINT memories_pkey PRIMARY KEY (id);
 
 
 --
@@ -304,7 +304,7 @@ ALTER TABLE ONLY memory_comments
 --
 -- Update fields
 --
-alter table memories 
+alter table memories
     alter column created_at drop not null,
     alter column updated_at drop not null;
 
@@ -315,7 +315,7 @@ alter table memory_assets
 alter table memory_comments
     alter column created_at drop not null,
     alter column updated_at drop not null;
-    
+
 ALTER TABLE memories
     ALTER COLUMN created_at SET DEFAULT now();
 

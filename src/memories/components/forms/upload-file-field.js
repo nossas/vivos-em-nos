@@ -8,7 +8,7 @@ export default class UploadFileField extends Component {
 
   constructor(props) {
     super(props)
-    this.state = { isLoading: false, publicUrl: undefined, error: undefined }
+    this.state = { isLoading: false }
   }
 
   onUploadStart() {
@@ -23,7 +23,8 @@ export default class UploadFileField extends Component {
 
   onFinish({ publicUrl }) {
     this.props.input.onChange(publicUrl)
-    this.setState({ isLoading: false, publicUrl })
+    this.setState({ isLoading: false })
+    this.props.onFinish && this.props.onFinish()
   }
 
   render() {
@@ -47,9 +48,9 @@ export default class UploadFileField extends Component {
             contentDisposition="auto"
             style={{ visibility: 'hidden', position: 'absolute', top: '0' }}
           />
-          {this.state.publicUrl && (
+          {this.props.input.value && (
             <div className='UploadFileField--Preview'>
-              <img src={`${AWS_S3UPLOADER_URL}${this.state.publicUrl}`} />
+              <img src={`${AWS_S3UPLOADER_URL}${this.props.input.value}`} />
             </div>
           )}
         </div>

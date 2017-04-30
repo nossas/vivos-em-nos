@@ -8,6 +8,7 @@ import {
   SectionHeader,
   SectionPrimary,
   ShareFacebookButton,
+  ShareTwitterButton,
   Silhouette,
   TopBar,
 } from '../../../views/components'
@@ -56,8 +57,19 @@ export default ({ memory, loading }) => (
           className="section--share"
           header={<SectionHeader title="Compartilhe" hideBorder />}
         >
-          <ShareFacebookButton className="share-button" href="http://vivosemnos.org/" />
-          <img src="/img/share-twitter.svg" width="51" />
+          <ShareFacebookButton
+            className="share-button"
+            href="http://vivosemnos.org/"
+          />
+          <ShareTwitterButton
+            className="share-button"
+            href="http://vivosemnos.org/"
+            text={
+              '#VivosEmNós quer usar a memória como ferramenta para mudança. Se você conhece ' +
+              'alguém que teve a sua história interrompida pela violência, crie aqui uma página ' +
+              'de homenagem para se juntar à luta por mais respeito à vida.'
+            }
+          />
           <img src="/img/share-whatsapp.svg" width="51" />
         </SectionPrimary>
 

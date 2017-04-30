@@ -10,7 +10,11 @@ export default ({ href, className }) => {
   }
 
   return (
-    <button className={className} onClick={handleClick}>
+    <button
+      title="Compartilhar no Facebook"
+      className={className}
+      onClick={handleClick}
+    >
       <img src="/img/share-facebook.svg" width="51" />
     </button>
   )

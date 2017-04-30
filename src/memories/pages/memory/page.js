@@ -14,6 +14,7 @@ import {
   TopBar,
 } from '../../../views/components'
 import * as mocks from '../../../__tmp/mocks'
+import * as detect from '../../../utils/detect'
 
 const _memory = mocks.memories[1]
 
@@ -71,10 +72,12 @@ export default ({ memory, loading }) => (
               'de homenagem para se juntar à luta por mais respeito à vida.'
             }
           />
-          <ShareWhatsappButton
-            className="share-button"
-            text="https://vivosemnos.org/"
-          />
+          {!detect.mobile ? <i /> : (
+            <ShareWhatsappButton
+              className="share-button"
+              text="https://vivosemnos.org/"
+            />
+          )}
         </SectionPrimary>
 
         <SectionPrimary

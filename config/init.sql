@@ -332,6 +332,24 @@ CREATE FUNCTION update_updated_at() RETURNS trigger AS $$
     END;
 $$ language plpgsql;
 
+CREATE FUNCTION update_created_at() RETURNS trigger AS $$
+    BEGIN
+        NEW.created_at := NOW();
+        RETURN NEW;
+    END;
+$$ language plpgsql;
+
+CREATE FUNCTION update_token() RETURNS trigger AS $$
+    BEGIN
+        NEW.token := uuid_generate_v4();
+        RETURN NEW;
+    END;
+$$ language plpgsql;
+
+CREATE TRIGGER update_token AFTER INSERT ON memories FOR EACH ROW EXECUTE PROCEDURE update_token();
+
+CREATE TRIGGER update_created_at AFTER INSERT ON memories FOR EACH ROW EXECUTE PROCEDURE update_created_at();
+
 CREATE TRIGGER update_updated_at BEFORE UPDATE ON memories FOR EACH ROW EXECUTE PROCEDURE update_updated_at();
 
 CREATE TRIGGER update_updated_at BEFORE UPDATE ON memory_assets FOR EACH ROW EXECUTE PROCEDURE update_updated_at();

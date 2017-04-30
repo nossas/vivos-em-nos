@@ -11,6 +11,7 @@ import {
 } from './forms'
 import AlertBox from './alert-box'
 import { COUNTRIES } from '../constants'
+import * as paths from '../../paths'
 
 
 export default ({
@@ -22,7 +23,7 @@ export default ({
 }) => submitSucceeded ? (
   <AlertBox
     done={() => {
-      window.location.href = '/'
+      window.location.href = paths.home()
     }}
   >
     <h1>Sua página foi publicada!</h1>

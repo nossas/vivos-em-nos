@@ -10,7 +10,7 @@ import Error404 from './pages/errors/404'
 import Credit from './pages/credit'
 import Blog from './pages/blog'
 import Memory from './pages/memory'
-import MemoryVictim from './pages/memory-victim'
+import MemoryVictim from './pages/memory-victim.connected'
 
 // track pages on route change
 const onChange = obj => window.ga && ga('send', 'pageview', obj.url)

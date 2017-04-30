@@ -1,9 +1,11 @@
 import { connect } from 'preact-redux'
+import { graphql } from 'react-apollo'
+import * as queries from '../../graphql/queries'
 import MemoryVictim from './memory-victim'
-import * as mocks from '../../__tmp/mocks'
 
-const mapStateToProps = state => ({
-  memory: mocks.memories[1]
+const mapStateToProps = (state, props) => ({
+  memory: props.data.loading ? {} : props.data.memoryById,
+  loading: props.data.loading,
 })
 
-export default connect(mapStateToProps)(MemoryVictim)
+export default graphql(queries.memory)(connect(mapStateToProps)(MemoryVictim))

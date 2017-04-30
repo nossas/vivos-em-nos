@@ -34,17 +34,13 @@ const mapStateToProps = (state) => {
 }
 
 export default graphql(queries.memoryCommentCreate, {
-  props: (props) => ({
-    onSubmit: values => {
-      console.log('values', values)
-      console.log('props', props)
-      console.log('queries.memoryCommentCreate', queries.memoryCommentCreate)
-      return props.mutate({ variables: values })
-        .then((response) => { console.log(response) })
+  props: ({ mutate }) => ({
+    onSubmit: values =>
+      mutate({ variables: values })
+        .then(() => {})
         .catch(() => {
           throw new SubmissionError({ _error: '(500) Erro interno no servidor.' })
-        })
-    }
+        }),
   }),
 })(connect(mapStateToProps)(
   reduxForm({ form, validate })(MemoryCommentsForm),

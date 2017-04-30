@@ -6,51 +6,62 @@ import {
   Quote,
   SectionHeader,
   SectionPrimary,
-  Silhouette
+  Silhouette,
 } from '../components'
 import { Carousel, CarouselNavigator } from '../../carousel/components'
 
 const Header = (
-  <SectionHeader title='Veja algumas homenagens'>
-    <Silhouette variation='2' height='380' />
+  <SectionHeader title="Veja algumas homenagens">
+    <Silhouette variation="2" height="380" />
   </SectionHeader>
 )
 
 export default class FeaturedMemories extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
 
     const { memories, setListCarousel } = this.props
     setListCarousel(memories)
   }
 
-  render () {
-    const { memories, currentCarouselIndex } = this.props
-    const memory = memories[currentCarouselIndex]
+  //
+  // This method should not exists when we have some fetching tool
+  // like redial, to fetch the data on ssr.
+  //
+  componentWillReceiveProps(nextProps) {
+    const str = JSON.stringify
+    if (str(this.props.memories) !== str(nextProps.memories)) {
+      this.props.setListCarousel(nextProps.memories)
+    }
+  }
 
-    return (
+  render() {
+    const { loading, memories, currentCarouselIndex } = this.props
+    const memory = memories[currentCarouselIndex] || {}
+
+    return loading ? null : (
       <SectionPrimary header={Header}>
-        <div className='ornament' />
+        <div className="ornament" />
         <Carousel>
           <MemoryImage
-            source={memory.image}
-            width='164px'
-            height='132px'
+            source={memory.victimPhoto || ''}
+            width="164px"
+            height="132px"
           />
           <MemorySummary
-            name={memory.name}
-            birthYear={memory.birthYear}
-            deathYear={memory.deathYear}
-            description={memory.description}
+            name={memory.victimName}
+            birthYear={memory.victimBornAt}
+            deathYear={memory.victimDeadAt}
+            description={memory.victimHistory}
           />
           <Quote>
-            {memory.quote}
+            {memory.victimRememberText}
           </Quote>
         </Carousel>
 
         <footer>
           <CarouselNavigator />
-          <ButtonPrimary href={memory.url}>
+          <ButtonPrimary href={`/homenagem/${memory.id}`}>
             Ver homenagem completa
           </ButtonPrimary>
         </footer>

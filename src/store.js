@@ -2,8 +2,6 @@ import { createStore, combineReducers, applyMiddleware, compose } from 'redux'
 import { createNetworkInterface, ApolloClient } from 'react-apollo'
 
 import { reducer as formReducer } from 'redux-form'
-import todos from './views/todo/reducers/todos'
-import visibilityFilter from './views/todo/reducers/visibilityFilter'
 import menu from './menu/redux/reducers'
 import carousel from './carousel/redux/reducers'
 
@@ -157,13 +155,10 @@ export const client = new ApolloClient({
 })
 
 // You can use all of them! (It doesn't mean you should.)
-// let todoApp = combineReducers(todoReducer)
 export default createStore(
   combineReducers({
     form: formReducer,
     apollo: client.reducer(),
-    todos,
-    visibilityFilter,
     menu,
     carousel,
   }),

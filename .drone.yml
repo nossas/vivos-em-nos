@@ -7,48 +7,58 @@ pipeline:
       - yarn prestart
       - yarn test
     environment:
-      - NODE_ENV=test
       - AWS_BUCKET=vivo-em-nos-staging
       - AWS_ACCESS_KEY_ID=${PROD_AWS_ACCESS_KEY_ID}
       - AWS_SECRET_ACCESS_KEY=${PROD_AWS_SECRET_ACCESS_KEY}
 
   publish:
-    image: plugins/docker
-    repo: nossas/vivos-em-nos
-    username: lpirola
-    password: ${DOCKER_PASSWORD}
-    tags:
-      - ${DRONE_BRANCH}
+    image: plugins/ecr
+    access_key: ${PROD_AWS_ACCESS_KEY_ID}
+    secret_key: ${PROD_AWS_SECRET_ACCESS_KEY}
+    repo: ${VEN_ECR_REPO}.dkr.ecr.us-west-1.amazonaws.com/vivos-em-nos
     build_args:
+      - PUBLISH_S3=true
       - AWS_BUCKET=vivo-em-nos-production
       - AWS_ACCESS_KEY_ID=${PROD_AWS_ACCESS_KEY_ID}
       - AWS_SECRET_ACCESS_KEY=${PROD_AWS_SECRET_ACCESS_KEY}
       - CLOUDFRONT_DISTRIBUTION_ID=${PROD_AWS_CLOUDFRONT_DISTRIBUTION_ID}
-      - NODE_ENV=production
-      - NEW_RELIC_HOME=./src
-      - PORT=5001
-      - APP_DOMAIN=server.vivosemnos.org
+      - GRAPHQL_URL=http://data.vivosemnos.org
+      - SERVER_DOMAIN=http://server.vivosemnos.org
     when:
       status: success
       branch: [master]
 
-  # deploy:
-  #   image: peloton/drone-ecs
-  #   access_key:
-  #   secret_key:
-  #   service: vivos-em-nos
-  #   region: us-west-1
-  #   family: server
-  #   image_name: nossas/vivos-em-nos
-  #   image_tag: latest
-  #   environment_variables:
-  #     - DATABASE_URI=database uri
-  #   port_mappings:
-  #     - 5001 5001
-  #   memory: 128
-  #   when:
-  #     status: success
-  #     branch: [master]
+  # publish-client:
+  #   s3:
+  #     image: plugins/s3
+  #     bucket: vivo-em-nos-production
+  #     access_key:
+  #     secret_key:
+  #     source: dist/**/*
+  #     target: /
+
+  deploy:
+    image: peloton/drone-ecs
+    access_key: ${PROD_AWS_ACCESS_KEY_ID}
+    secret_key: ${PROD_AWS_SECRET_ACCESS_KEY}
+    service: vivos-em-nos
+    region: us-west-1
+    family: server
+    image_name: nossas/vivos-em-nos
+    image_tag: latest
+    environment_variables:
+      - DATABASE_URI=${VEN_DATABASE_URL}
+      - AWS_ACCESS_KEY_ID=${PROD_AWS_ACCESS_KEY_ID}
+      - AWS_SECRET_ACCESS_KEY=${PROD_AWS_SECRET_ACCESS_KEY}
+      - NODE_ENV=production
+
+    port_mappings:
+      - 80 5001
+      - 443 5001
+    memory: 512
+    when:
+      status: success
+      branch: [master]
 
   notify:
     image: plugins/slack

@@ -79,8 +79,12 @@ const createServer = (config) => {
   app.use('/s3', require('react-s3-uploader/s3router')({
     bucket: `${config.s3BucketName}`,
     uniquePrefix: false,
-    ACL: 'public-read'
-  }));
+    ACL: 'public-read',
+    s3Options: {
+      accessKeyId: config.accessKeyId,
+      secretKeyId: config.secretKeyId,
+    },
+  }))
 
   app.get('*', (req, res) => {
     res.sendFile(path.resolve(__dirname, '..', 'dist', 'index.html'))
@@ -139,7 +143,7 @@ const startServer = (serverConfig) => {
       const ses = new aws.SES({
         accessKeyId: config.accessKeyId,
         secretAccessKey: config.secretAccessKey,
-        region: 'us-east-1',
+        region: 'us-west-2',
       })
       const eparam = {
         Destination: {

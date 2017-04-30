@@ -9,12 +9,13 @@ const HTML = require('html-webpack-plugin')
 const S3Plugin = require('webpack-s3-plugin')
 const uglify = require('./uglify')
 
+const publishS3 = process.env.PUBLISH_S3 || 'false'
 const s3BucketName = process.env.AWS_BUCKET || 'vivo-em-nos-staging'
 const accessKeyId = process.env.AWS_ACCESS_KEY_ID || 'xxx'
 const secretAccessKey = process.env.AWS_SECRET_ACCESS_KEY || 'yyy'
 const distributionId = process.env.CLOUDFRONT_DISTRIBUTION_ID || 'zzz'
-const graphqlUrl = process.env.GRAPHQL_URL || 'http://data.vivos-em-nos.devel:3003/graphql'
-
+const serverDomain = process.env.SERVER_DOMAIN || 'localhost:5001'
+const graphqlUrl = process.env.GRAPHQL_URL || 'localhost:3003'
 const root = join(__dirname, '..')
 
 module.exports = (isProd) => {
@@ -25,7 +26,8 @@ module.exports = (isProd) => {
     new webpack.optimize.CommonsChunkPlugin({ name: 'vendor' }),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify(isProd ? 'production' : 'development'),
-      'process.env.GRAPHQL_URL': JSON.stringify(graphqlUrl)
+      'process.env.SERVER_DOMAIN': JSON.stringify(serverDomain),
+      'process.env.GRAPHQL_URL': JSON.stringify(graphqlUrl),
     }),
     new HTML({ template: 'src/index.html' }),
     new webpack.LoaderOptionsPlugin({
@@ -49,7 +51,8 @@ module.exports = (isProd) => {
         staticFileGlobsIgnorePatterns: [/\.map$/],
       })
     )
-    if (accessKeyId !== 'xxx' && secretAccessKey !== 'yyy' && distributionId !== 'zzz' && process.env.NODE_ENV !== 'test') {
+
+    if (publishS3 === 'true') {
       plugins.push(
         new S3Plugin({
           include: /\.html$|\.js$|\.css$|\.svg$|\.ttf$|\.eot$|\.png$|\.otf|woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
@@ -58,6 +61,7 @@ module.exports = (isProd) => {
             secretAccessKey,
             region: 'sa-east-1',
           },
+          directory: './dist/',
           s3UploadOptions: {
             Bucket: s3BucketName,
           },

@@ -2,7 +2,7 @@ import { h, Component } from 'preact' /** @jsx h */
 import FormGroup from './form-group'
 import ReactS3Uploader from 'react-s3-uploader'
 
-const AWS_S3UPLOADER_URL = 'http://localhost:1337'
+const AWS_S3UPLOADER_URL = process.env.SERVER_DOMAIN
 
 export default class UploadFileField extends Component {
 

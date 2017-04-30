@@ -1,14 +1,15 @@
 import { h } from 'preact' /** @jsx h */
 import { Header, LayoutDefault } from '../../../views/layout/layout'
 import {
-  TopBar,
   MemoryImage,
   MemorySummary,
-  Silhouette,
-  Quote,
-  SectionPrimary,
-  SectionHeader,
   OrnamentPageFooter,
+  Quote,
+  SectionHeader,
+  SectionPrimary,
+  ShareFacebookButton,
+  Silhouette,
+  TopBar,
 } from '../../../views/components'
 import * as mocks from '../../../__tmp/mocks'
 
@@ -55,7 +56,7 @@ export default ({ memory, loading }) => (
           className="section--share"
           header={<SectionHeader title="Compartilhe" hideBorder />}
         >
-          <img src="/img/share-facebook.svg" width="51" />
+          <ShareFacebookButton className="share-button" href="http://vivosemnos.org/" />
           <img src="/img/share-twitter.svg" width="51" />
           <img src="/img/share-whatsapp.svg" width="51" />
         </SectionPrimary>

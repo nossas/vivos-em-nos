@@ -13,12 +13,13 @@ import {
   Silhouette,
   TopBar,
 } from '../../../views/components'
+import { MemoryCommentsForm } from '../../components'
 import * as mocks from '../../../__tmp/mocks'
 import * as detect from '../../../utils/detect'
 
 const _memory = mocks.memories[1]
 
-export default ({ memory, loading }) => (
+export default ({ id, memory, loading }) => (
   <LayoutDefault>
     <Header>
       <TopBar />
@@ -89,7 +90,7 @@ export default ({ memory, loading }) => (
             />
           }
         >
-          === comment form ===
+          <MemoryCommentsForm memoryId={id} />
         </SectionPrimary>
 
         <OrnamentPageFooter />

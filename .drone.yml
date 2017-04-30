@@ -16,6 +16,7 @@ pipeline:
     access_key: ${PROD_AWS_ACCESS_KEY_ID}
     secret_key: ${PROD_AWS_SECRET_ACCESS_KEY}
     repo: ${VEN_ECR_REPO}.dkr.ecr.us-west-1.amazonaws.com/vivos-em-nos
+    region: us-west-1
     build_args:
       - PUBLISH_S3=true
       - AWS_BUCKET=vivo-em-nos-production
@@ -28,34 +29,35 @@ pipeline:
       status: success
       branch: [master]
 
-  # publish-client:
-  #   s3:
-  #     image: plugins/s3
-  #     bucket: vivo-em-nos-production
-  #     access_key:
-  #     secret_key:
-  #     source: dist/**/*
-  #     target: /
-
   deploy:
     image: peloton/drone-ecs
+
+    region: us-west-1
     access_key: ${PROD_AWS_ACCESS_KEY_ID}
     secret_key: ${PROD_AWS_SECRET_ACCESS_KEY}
-    service: vivos-em-nos
-    region: us-west-1
     family: server
-    image_name: nossas/vivos-em-nos
-    image_tag: latest
+    docker_image: nossas/vivos-em-nos
+    service: vivos-em-nos
+    # task_role_arn: arn:aws:iam::012345678901:role/rolename
     environment_variables:
-      - DATABASE_URI=${VEN_DATABASE_URL}
-      - AWS_ACCESS_KEY_ID=${PROD_AWS_ACCESS_KEY_ID}
-      - AWS_SECRET_ACCESS_KEY=${PROD_AWS_SECRET_ACCESS_KEY}
       - NODE_ENV=production
-
+      - AWS_ACCESS_KEY_ID=${VEN_AWS_ACCESS_KEY_ID}
+      - AWS_BUCKET=${VEN_AWS_BUCKET}
+      - AWS_SECRET_ACCESS_KEY=${VEN_AWS_SECRET_ACCESS_KEY}
+      - CLOUDFRONT_DISTRIBUTION_ID=${VEN_CLOUDFRONT_DISTRIBUTION_ID}
+      - DATABASE_URL=${VEN_DATABASE_URL}
+      - GRAPHQL_URL=${VEN_GRAPHQL_URL}
+      - NEW_RELIC_LICENSE_KEY=${VEN_NEW_RELIC_LICENSE_KEY}
+      - SCHEMA_NAME=${VEN_SCHEMA_NAME}
+      - SENTRY_DSN=${VEN_SENTRY_DSN}
+      - SERVER_DOMAIN=${VEN_SERVER_DOMAIN}
     port_mappings:
       - 80 5001
       - 443 5001
-    memory: 512
+    memoryReservation: 128
+    cpu: 512
+    desired_count: 1
+    deployment_configuration: 50 200
     when:
       status: success
       branch: [master]
@@ -68,3 +70,12 @@ pipeline:
     when:
       event: [ push, tag, build, publish, deployment, pull_request ]
       status: [ success, failure ]
+
+  # publish-client:
+  #   s3:
+  #     image: plugins/s3
+  #     bucket: vivo-em-nos-production
+  #     access_key:
+  #     secret_key:
+  #     source: dist/**/*
+  #     target: /

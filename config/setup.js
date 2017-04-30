@@ -14,8 +14,8 @@ const s3BucketName = process.env.AWS_BUCKET || 'vivo-em-nos-staging'
 const accessKeyId = process.env.AWS_ACCESS_KEY_ID || 'xxx'
 const secretAccessKey = process.env.AWS_SECRET_ACCESS_KEY || 'yyy'
 const distributionId = process.env.CLOUDFRONT_DISTRIBUTION_ID || 'zzz'
-const serverDomain = process.env.SERVER_DOMAIN || 'localhost:5001'
-const graphqlUrl = process.env.GRAPHQL_URL || 'localhost:3003'
+const serverDomain = process.env.SERVER_DOMAIN || 'http://localhost:5001'
+const graphqlUrl = process.env.GRAPHQL_URL || 'http://localhost:3003/graphql'
 const root = join(__dirname, '..')
 
 module.exports = (isProd) => {

@@ -35,7 +35,7 @@ services:
       - img:img.vivos-em-nos.devel
     command: npm run dev
     environment:
-      GRAPHQL_URL: http://data.vivos-em-nos.devel:3003
+      GRAPHQL_URL: http://localhost:3003/graphql
       WEB_CONCURRENCY: 1
       WEB_MEMORY: 256
       NEW_RELIC_NO_CONFIG_FILE: 1
@@ -45,6 +45,9 @@ services:
     image: nossas/bonde-graphql
     ports:
       - "3003:3003"
+    # build:
+    #   context: ./../postgraphql-production/
+    #   dockerfile: Dockerfile
     links:
       - postgres:db.vivos-em-nos.devel
       - img:data.vivos-em-nos.devel

@@ -9,10 +9,10 @@ import Article from './pages/article'
 import Error404 from './pages/errors/404'
 import Credit from './pages/credit'
 import Blog from './pages/blog'
-import Memory from './pages/memory'
-import { MemoryVictim } from '../memories/pages'
+import { MemoryCreate, MemoryVictim } from '../memories/pages'
 
 // track pages on route change
+// eslint-disable-next-line
 const onChange = obj => window.ga && ga('send', 'pageview', obj.url)
 
 export default (
@@ -21,7 +21,7 @@ export default (
       <Router onChange={onChange}>
         <Home path="/" />
         <Blog path="/blog" />
-        <Memory path="/homenagem" />
+        <MemoryCreate path="/homenagem" />
         <MemoryVictim path="/homenagem/:id" />
         <Article path="/blog/:title" />
         <Credit path="/credit" />

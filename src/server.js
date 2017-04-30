@@ -35,9 +35,7 @@ const DefaultServerConfig = {
 class EmailEmitter extends EventEmitter {}
 
 const createMemoriesListener = (client, emailEmitter) =>
-  client.connect((err) => {
-    if (err) throw err
-
+  () => {
     client.on('notification', (msg) => {
       emailEmitter.emit('memory_created', msg)
     })
@@ -48,16 +46,16 @@ const createMemoriesListener = (client, emailEmitter) =>
     // client.end(function (err) {
     //   if (err) throw err
     // });
-  })
+  }
 
 // https://github.com/FastIT/health-check
-const checkPostgres = (client) =>
-  client.query('SELECT NOW() AS "the_time"', (err, res) => {
-    if (err) {
-      return ({ status: 'ko', online: false, error: err })
+const checkPostgres = (client, res) => {
+  client.query('SELECT NOW() AS "the_time"', (err, resDb) => {
+    if (!err) {
+      res.json({ status: 'ko', online: false, error: err })
     }
 
-    return {
+    res.json({
       online: true,
       os: {
         arch: os.arch(),
@@ -78,8 +76,9 @@ const checkPostgres = (client) =>
       },
       uptime: process.uptime(),
       status: 'ok',
-    }
+    })
   })
+}
 
 const createServer = (client, config) => {
   const PROD = config.nodeEnv === 'production'
@@ -106,7 +105,7 @@ const createServer = (client, config) => {
   app.use(express.static(path.resolve(__dirname, '..', 'dist')))
 
   app.use('/ping', (req, res) => {
-    return res.json(checkPostgres(client))
+    checkPostgres(client, res)
   })
 
   app.use('/s3', require('react-s3-uploader/s3router')({
@@ -158,10 +157,26 @@ const createServer = (client, config) => {
 const startServer = (serverConfig) => {
   const config = { ...DefaultServerConfig, ...serverConfig }
   const emailEmitter = new EmailEmitter()
-  const client = new pg.Client(config.databaseUrl)
-  const server = createServer(client, config)
+  // const client = new pg.Client(config.databaseUrl)
+  const pool = new pg.Pool(config);
 
-  createMemoriesListener(client, emailEmitter)
+  pool.on('error', function (err, client) {
+    // if an error is encountered by a client while it sits idle in the pool
+    // the pool itself will emit an error event with both the error and
+    // the client which emitted the original error
+    // this is a rare occurrence but can happen if there is a network partition
+    // between your application and the database, the database restarts, etc.
+    // and so you might want to handle it and at least log it out
+    console.error('idle client error', err.message, err.stack);
+  })
+
+  // pool.connect((err) => {
+  //   if (err) throw err
+
+
+  const server = createServer(pool, config)
+
+  createMemoriesListener(pool, emailEmitter)
 
   emailEmitter.on('memory_created', ({ payload }) => {
     let EmailTemplate

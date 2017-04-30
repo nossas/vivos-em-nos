@@ -6,7 +6,7 @@ import { ApolloProvider } from 'react-apollo'
 import store, { client } from '../store'
 import Home from './pages/home'
 import Error404 from './pages/errors/404'
-import { MemoryCreate, MemoryVictim } from '../memories/pages'
+import { Memory, MemoryCreate } from '../memories/pages'
 
 // track pages on route change
 // eslint-disable-next-line
@@ -17,8 +17,8 @@ export default (
     <ApolloProvider store={store} client={client}>
       <Router onChange={onChange}>
         <Home path="/" />
+        <Memory path="/homenagem/:id" />
         <MemoryCreate path="/homenagem" />
-        <MemoryVictim path="/homenagem/:id" />
         <Error404 default />
       </Router>
     </ApolloProvider>

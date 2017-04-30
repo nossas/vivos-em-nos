@@ -3527,13 +3527,9 @@ filename-regex@^2.0.0:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/filename-regex/-/filename-regex-2.0.1.tgz#c1c4b9bee3e09725ddb106b75c1e301fe2f18b26"
 
-filesize@3.5.6:
+filesize@3.5.6, filesize@^3.3.0:
   version "3.5.6"
   resolved "https://registry.yarnpkg.com/filesize/-/filesize-3.5.6.tgz#5fd98f3eac94ec9516ef8ed5782fad84a01a0a1a"
-
-filesize@^3.3.0:
-  version "3.5.8"
-  resolved "https://registry.yarnpkg.com/filesize/-/filesize-3.5.8.tgz#5cd23aef46eeeaf812707f7098d245de513e4328"
 
 fill-range@^2.1.0:
   version "2.2.3"

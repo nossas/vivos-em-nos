@@ -10,6 +10,8 @@ pipeline:
       - AWS_BUCKET=vivo-em-nos-staging
       - AWS_ACCESS_KEY_ID=${PROD_AWS_ACCESS_KEY_ID}
       - AWS_SECRET_ACCESS_KEY=${PROD_AWS_SECRET_ACCESS_KEY}
+    when:
+      event: [push]
 
   publish:
     image: plugins/ecr
@@ -53,7 +55,7 @@ pipeline:
       - SENTRY_DSN=${VEN_SENTRY_DSN}
       - SERVER_DOMAIN=${VEN_SERVER_DOMAIN}
     port_mappings:
-      - 80 5001
+      - 5001 5001
       - 443 5001
     memoryReservation: 128
     cpu: 512

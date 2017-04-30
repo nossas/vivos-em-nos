@@ -1,16 +1,20 @@
 import { h } from 'preact' /** @jsx h */
 import { Header, LayoutDefault } from '../../../views/layout/layout'
 import {
-  TopBar,
   MemoryImage,
   MemorySummary,
-  Silhouette,
-  Quote,
-  SectionPrimary,
-  SectionHeader,
   OrnamentPageFooter,
+  Quote,
+  SectionHeader,
+  SectionPrimary,
+  ShareFacebookButton,
+  ShareTwitterButton,
+  ShareWhatsappButton,
+  Silhouette,
+  TopBar,
 } from '../../../views/components'
 import * as mocks from '../../../__tmp/mocks'
+import * as detect from '../../../utils/detect'
 
 const _memory = mocks.memories[1]
 
@@ -55,9 +59,25 @@ export default ({ memory, loading }) => (
           className="section--share"
           header={<SectionHeader title="Compartilhe" hideBorder />}
         >
-          <img src="/img/share-facebook.svg" width="51" />
-          <img src="/img/share-twitter.svg" width="51" />
-          <img src="/img/share-whatsapp.svg" width="51" />
+          <ShareFacebookButton
+            className="share-button"
+            href="https://vivosemnos.org/"
+          />
+          <ShareTwitterButton
+            className="share-button"
+            href="https://vivosemnos.org/"
+            text={
+              '#VivosEmNós quer usar a memória como ferramenta para mudança. Se você conhece ' +
+              'alguém que teve a sua história interrompida pela violência, crie aqui uma página ' +
+              'de homenagem para se juntar à luta por mais respeito à vida.'
+            }
+          />
+          {!detect.mobile ? <i /> : (
+            <ShareWhatsappButton
+              className="share-button"
+              text="https://vivosemnos.org/"
+            />
+          )}
         </SectionPrimary>
 
         <SectionPrimary

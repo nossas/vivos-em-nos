@@ -9,6 +9,7 @@ import {
   Silhouette,
 } from '../components'
 import { Carousel, CarouselNavigator } from '../../carousel/components'
+import * as paths from '../../paths'
 
 const Header = (
   <SectionHeader title="Veja algumas homenagens">
@@ -61,7 +62,7 @@ export default class FeaturedMemories extends Component {
 
         <footer>
           <CarouselNavigator />
-          <ButtonPrimary href={`/homenagem/${memory.id}`}>
+          <ButtonPrimary href={paths.memory(memory.id)}>
             Ver homenagem completa
           </ButtonPrimary>
         </footer>

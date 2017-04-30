@@ -1,6 +1,6 @@
 import { h } from 'preact' /** @jsx h */
 import { MenuTrigger } from '../../menu/components'
-import { LayoutDefault } from '../tags/layout'
+import { LayoutDefault } from '../layout/layout'
 import { ButtonPrimary } from '../components'
 import { FeaturedMemories } from '../sections'
 import * as paths from '../../paths'

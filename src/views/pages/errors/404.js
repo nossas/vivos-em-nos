@@ -1,5 +1,5 @@
 import { h } from 'preact' /** @jsx h */
-import Card from '../../tags/card'
+import Card from '../../layout/card'
 
 export default function (props) {
   return (

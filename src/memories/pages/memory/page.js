@@ -1,5 +1,5 @@
 import { h } from 'preact' /** @jsx h */
-import { Header, LayoutDefault } from '../../../views/tags/layout'
+import { Header, LayoutDefault } from '../../../views/layout/layout'
 import {
   TopBar,
   MemoryImage,

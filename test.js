@@ -4,7 +4,7 @@ import { exec } from 'mz/child_process'
 import createServer from './dist/server.builded'
 
 const serverConfig = {
-  nodeEnv: test,
+  nodeEnv: 'test',
   port: 6006,
   timeout: 28000,
   schemaName: 'public',
@@ -39,7 +39,7 @@ test('build application', async (t) => {
 test('render index.html as static file', async (t) => {
   t.plan(2)
 
-  const res = await request(createServer(serverConfig))
+  const res = await request(createServer({}, serverConfig))
     .get('/index.html')
 
   t.is(res.status, 200)
@@ -52,7 +52,7 @@ test('get s3 signed url', async (t) => {
   const fileName = 'textura.png'
   const fileType = 'image/png'
 
-  const res = await request(createServer(serverConfig))
+  const res = await request(createServer({}, serverConfig))
     .get(`/s3/sign?objectName=${fileName}&contentType=${fileType}`)
 
   t.is(res.status, 200)

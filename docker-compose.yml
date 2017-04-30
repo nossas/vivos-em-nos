@@ -31,7 +31,9 @@ services:
       - ./:/code
     links:
       - data:data.vivos-em-nos.devel
+      - postgres:db.vivos-em-nos.devel
       - img:img.vivos-em-nos.devel
+    command: npm run dev
     environment:
       GRAPHQL_URL: http://data.vivos-em-nos.devel:3003
       WEB_CONCURRENCY: 1

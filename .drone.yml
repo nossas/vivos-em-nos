@@ -37,6 +37,7 @@ pipeline:
     secret_key: ${PROD_AWS_SECRET_ACCESS_KEY}
     family: server
     docker_image: ${VEN_ECR_REPO}.dkr.ecr.us-west-1.amazonaws.com/vivos-em-nos
+    tag: latest
     service: vivos-em-nos
     # task_role_arn: arn:aws:iam::012345678901:role/rolename
     environment_variables:

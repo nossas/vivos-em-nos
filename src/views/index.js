@@ -17,8 +17,8 @@ export default (
     <ApolloProvider store={store} client={client}>
       <Router onChange={onChange}>
         <Home path="/" />
-        <Memory path="/homenagem/:id" />
-        <MemoryCreate path="/homenagem" />
+        <Memory path="/memory/:id" />
+        <MemoryCreate path="/memory/create" />
         <Error404 default />
       </Router>
     </ApolloProvider>

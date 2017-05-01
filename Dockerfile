@@ -1,16 +1,23 @@
 FROM kkarczmarczyk/node-yarn
 MAINTAINER Nossas <tech@nossas.org>
 
-ARG AWS_BUCKET=vivo-em-nos-staging
+ARG PUBLISH_S3=false
+ARG NODE_ENV=production
+ARG NEW_RELIC_APP_NAME=vivos-em-nos-staging
+ARG PORT=5005
 ARG AWS_ACCESS_KEY_ID=xxx
+ARG AWS_BUCKET=vivo-em-nos-staging
 ARG AWS_SECRET_ACCESS_KEY=yyy
 ARG CLOUDFRONT_DISTRIBUTION_ID=zzz
-ARG NODE_ENV=production
-ARG PORT=5001
-ARG PUBLISH_S3=false
+ARG DATABASE_URL=postgres://postgres@localhost/vivo-em-nos-pwa
 ARG GRAPHQL_URL=http://localhost:3003/graphql
+ARG NEW_RELIC_LICENSE_KEY=xxx
+ARG SCHEMA_NAME=public
+ARG SENTRY_DSN=xxx
+ARG NEW_RELIC_NO_CONFIG_FILE=true
 ARG SERVER_DOMAIN=http://localhost:5001
-ENV NEW_RELIC_HOME=./src NODE_MODULES_CACHE=false NPM_CONFIG_PRODUCTION=false PORT=5001
+
+ENV NEW_RELIC_HOME=./src PORT=5001
 
 RUN mkdir /code
 WORKDIR /code

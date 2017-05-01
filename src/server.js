@@ -17,8 +17,34 @@ import EventEmitter from 'events'
 import _ from 'lodash'
 import fs from 'fs'
 import os from 'os'
+import crypto from 'crypto'
+import WinstonCloudwatch from 'winston-cloudwatch'
+import { URL } from 'url'
 
 dotenv.config({ path: path.resolve(__dirname, '..', '.env') })
+
+const startTime = new Date().toISOString()
+
+const winstonTransport = ({ nodeEnv, accessKeyId, secretAccessKey }) => {
+  if (nodeEnv === 'production') {
+    return new WinstonCloudwatch({
+      accessKeyId,
+      secretAccessKey,
+      logGroupName: 'vivos-em-nos-production',
+      logStreamName: () => {
+        // Spread log streams across dates as the server stays up
+        let date = new Date().toISOString().split('T')[0];
+        return 'express-server-' + date + '-' +
+          crypto.createHash('md5')
+          .update(startTime)
+          .digest('hex');
+      },
+      awsRegion: 'us-west-1',
+      jsonMessage: true,
+    })
+  }
+  return new winston.transports.Console({ colorize: true })
+}
 
 const DefaultServerConfig = {
   nodeEnv: process.env.NODE_ENV,
@@ -34,19 +60,23 @@ const DefaultServerConfig = {
 
 class EmailEmitter extends EventEmitter {}
 
-const createMemoriesListener = (client, emailEmitter) =>
-  () => {
+const createMemoriesListener = (pool, emailEmitter) => {
+  pool.connect(function(err, client, done) {
+    if (err) {
+      return winston.error('error fetching client from pool', err)
+    }
     client.on('notification', (msg) => {
       emailEmitter.emit('memory_created', msg)
+      winston.info(`MEMORY CREATED: ${JSON.stringify(msg)}`)
     })
-
     client.query('LISTEN new_memories')
+  })
 
-    return client
-    // client.end(function (err) {
-    //   if (err) throw err
-    // });
-  }
+  return pool
+  // pool.end(function (err) {
+  //   if (err) throw err
+  // });
+}
 
 // https://github.com/FastIT/health-check
 const checkPostgres = (client, res) => {
@@ -90,12 +120,10 @@ const createServer = (client, config) => {
   }
 
   app.use(expressWinston.logger({
-    transports: [
-      new winston.transports.Console({ colorize: true }),
-    ],
+    transports: [winstonTransport(config)],
     msg: 'HTTP {{req.method}} {{req.url}}',
     expressFormat: true,
-    colorize: true,
+    colorize: !PROD,
   }))
   app.use(cors())
   app.use(helmet())
@@ -123,9 +151,7 @@ const createServer = (client, config) => {
   })
 
   app.use(expressWinston.errorLogger({
-    transports: [
-      new winston.transports.Console({ colorize: true }),
-    ],
+    transports: [winstonTransport(config)],
   }))
 
   if (PROD) { app.use(Raven.errorHandler()) }
@@ -138,7 +164,7 @@ const createServer = (client, config) => {
   if (config.timeout) {
     server.setTimeout(config.timeout, (socket) => {
       const message = `Timeout of ${config.timeout}ms exceeded`
-
+      // winston.error(message)
       socket.end([
         'HTTP/1.1 503 Service Unavailable',
         `Date: ${(new Date).toGMTString()}`,  // eslint-disable-line
@@ -157,8 +183,18 @@ const createServer = (client, config) => {
 const startServer = (serverConfig) => {
   const config = { ...DefaultServerConfig, ...serverConfig }
   const emailEmitter = new EmailEmitter()
-  // const client = new pg.Client(config.databaseUrl)
-  const pool = new pg.Pool(config);
+
+  const myDb = new URL(config.databaseUrl)
+
+  const pool = new pg.Pool({
+    user: myDb.username,
+    database: myDb.pathname.substr(1),
+    password: myDb.password,
+    host: myDb.hostname,
+    port: myDb.port,
+    max: 10,
+    idleTimeoutMillis: 30000,
+  })
 
   pool.on('error', function (err, client) {
     // if an error is encountered by a client while it sits idle in the pool
@@ -167,11 +203,8 @@ const startServer = (serverConfig) => {
     // this is a rare occurrence but can happen if there is a network partition
     // between your application and the database, the database restarts, etc.
     // and so you might want to handle it and at least log it out
-    console.error('idle client error', err.message, err.stack);
+    winston.error('idle client error', err.message, err.stack)
   })
-
-  // pool.connect((err) => {
-  //   if (err) throw err
 
 
   const server = createServer(pool, config)
@@ -231,6 +264,7 @@ Brazil - Rio De Janeiro, RJ - Botafogo - Rua Visconde Silva, 21 - 22271-043`,
 
       ses.sendEmail(eparam, function (err, data) {
         if (err) {
+          winston.error(err)
           throw (err)
         } else {
           winston.info(data)
@@ -240,7 +274,10 @@ Brazil - Rio De Janeiro, RJ - Botafogo - Rua Visconde Silva, 21 - 22271-043`,
   })
 
   server.listen(config.port, (err) => {
-    if (err) throw err
+    if (err) {
+      winston.error(err)
+      throw err
+    }
     winston.info(`server ${config.id} listening on port ${config.port}`)
   })
 }

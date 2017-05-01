@@ -3,7 +3,7 @@ import { compose } from 'react-apollo'
 import { graphql } from 'react-apollo'
 import { reduxForm, formValueSelector, SubmissionError } from 'redux-form'
 
-import { memoryCreate, memoryUpdate, memoryAssetCreate } from '../queries'
+import { memoryCreate, memoryUpdate, memoryAssetCreate, memoryAssetDelete } from '../queries'
 import MemoryForm from './memory-form'
 
 const FORM = 'memoryForm'
@@ -40,7 +40,22 @@ const mapActionCreatorsToProps = (dispatch, props) => ({
   onSubmit: ({ memoryAssets, ...values }) => {
     if (props.memory) {
       return props.onUpdateMemory({ variables: { ...values, nodeId: props.memory.nodeId } })
-        .then(() => {
+        .then(({ data: { updateMemory: { memory } } }) => {
+          memory.memoryAssetsByMemoryId.nodes.map(asset => {
+            props.onDeleteMemoryAsset({ variables: asset })
+          })
+          memoryAssets.map(asset => {
+            if (asset) {
+              props.onCreateMemoryAsset({
+                variables: {
+                  memoryId: memory.id,
+                  assetType: 'image',
+                  updatedAt: new Date(),
+                  assetUrl: asset.assetUrl
+                }
+              })
+            }
+          })
           return Promise.resolve()
         })
         .catch(error => {
@@ -73,7 +88,8 @@ const mapActionCreatorsToProps = (dispatch, props) => ({
 export default compose(
   graphql(memoryCreate, { name: 'onCreateMemory' }),
   graphql(memoryAssetCreate, { name: 'onCreateMemoryAsset' }),
-  graphql(memoryUpdate, { name: 'onUpdateMemory' })
+  graphql(memoryUpdate, { name: 'onUpdateMemory' }),
+  graphql(memoryAssetDelete, { name: 'onDeleteMemoryAsset' })
 )(connect(mapStateToProps, mapActionCreatorsToProps)(
   reduxForm({ form: FORM, validate })(MemoryForm),
 ))

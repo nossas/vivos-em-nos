@@ -10,7 +10,9 @@ export default class Page extends Component {
       const { allMemories: { nodes } } = this.props.getMemoryByToken
       if (nodes[0]) {
         const { memoryAssetsByMemoryId, ...memory } = nodes[0]
-        memory.memoryAssets = memoryAssetsByMemoryId.nodes
+        memory.memoryAssets = [...memoryAssetsByMemoryId.nodes,
+          {}
+        ]
         return memory
       }
     }

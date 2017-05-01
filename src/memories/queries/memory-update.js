@@ -19,27 +19,31 @@ export default gql`
     $authorizedToSite: Boolean!
   ) {
     updateMemory(input: {
-        nodeId: $nodeId,
-        memoryPatch: {
-            ownerFirstName: $ownerFirstName,
-            ownerLastName: $ownerLastName,
-            ownerEmail: $ownerEmail,
-            ownerCountry: $ownerCountry,
-            victimName: $victimName,
-            victimBornAt: $victimBornAt,
-            victimDeadAt: $victimDeadAt,
-            victimCity: $victimCity,
-            victimHistory: $victimHistory,
-            victimRememberText: $victimRememberText,
-            victimGoodWords: $victimGoodWords,
-            victimPhoto: $victimPhoto,
-            victimSilhouette: $victimSilhouette,
-            authorizedToSite: $authorizedToSite
-        }
+      nodeId: $nodeId,
+      memoryPatch: {
+        ownerFirstName: $ownerFirstName,
+        ownerLastName: $ownerLastName,
+        ownerEmail: $ownerEmail,
+        ownerCountry: $ownerCountry,
+        victimName: $victimName,
+        victimBornAt: $victimBornAt,
+        victimDeadAt: $victimDeadAt,
+        victimCity: $victimCity,
+        victimHistory: $victimHistory,
+        victimRememberText: $victimRememberText,
+        victimGoodWords: $victimGoodWords,
+        victimPhoto: $victimPhoto,
+        victimSilhouette: $victimSilhouette,
+        authorizedToSite: $authorizedToSite
+      }
     }) {
       memory {
         id,
-        victimName
+        memoryAssetsByMemoryId {
+          nodes {
+            nodeId
+          }
+        }
       }
     }
   }

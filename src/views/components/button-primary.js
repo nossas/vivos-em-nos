@@ -1,7 +1,15 @@
 import { h } from 'preact' /** @jsx h */
 
-export default ({ href, children }) => (
-  <a {...{ href }} class="button-primary">
+const ButtonPrimary = ({ TagName, children, href, type, disabled }) => (
+  <TagName {...{ href, type, disabled }} class="button-primary">
     {children}
-  </a>
+  </TagName>
 )
+
+ButtonPrimary.defaultProps = {
+  TagName: 'a',
+  type: 'button',
+  disabled: false,
+}
+
+export default ButtonPrimary

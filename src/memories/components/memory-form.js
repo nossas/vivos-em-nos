@@ -3,7 +3,6 @@ import { Field, FieldArray } from 'redux-form'
 import { Select } from 'preact-material-components'
 import {
   Form,
-  Button,
   CheckboxField,
   TextField,
   SelectField,
@@ -13,7 +12,7 @@ import {
 import AlertBox from './alert-box'
 import { COUNTRIES } from '../constants'
 import * as paths from '../../paths'
-import { SectionHeader, SectionPrimary } from '../../views/components'
+import { ButtonPrimary, SectionHeader, SectionPrimary } from '../../views/components'
 
 class MemoryForm extends Component {
   constructor(props) {
@@ -170,7 +169,13 @@ class MemoryForm extends Component {
           </Field>
         </SectionPrimary>
 
-        <Button disabled={!authorizedToSite} type="submit">Publique sua homenagem</Button>
+        <ButtonPrimary
+          TagName="button"
+          disabled={!authorizedToSite}
+          type="submit"
+        >
+          Publique sua homenagem
+        </ButtonPrimary>
       </Form>
     )
   }

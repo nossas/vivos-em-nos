@@ -5,23 +5,35 @@
     color: #F7231E
     font-size: 14px
 
+  .FormGroup.CheckboxField
+    margin-top: 20px
+
+  .CheckboxField
+    display: flex
+
+  .UploadFileField,
+  .UploadImagesField
+    label
+      display: block
+      padding: 20px 0 15px
+
   .UploadFileField
 
-    .FileHandler::before
-      content: "+"
-      font-size: 36px
-      color: #fff
-      position: absolute
-      top: 48px
-      left: 48px
-
     .FileHandler
-      position: relative
-      display: table
+      text-align: center
       width: 128px
       height: 128px
-      background-color: #F7901E
-      border-radius: 45px
+      background-color: #DE5F25
+      border-radius: 54px
+
+      &:before
+        content: '+'
+        font-size: 50px
+        font-weight: 300
+        color: #fff
+        display: flex
+        justify-content: center
+        line-height: 128px
 
       .UploadFileField--Preview
         display: table-row

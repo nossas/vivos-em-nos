@@ -61,16 +61,17 @@ const DefaultServerConfig = {
 class EmailEmitter extends EventEmitter {}
 
 const createMemoriesListener = (pool, emailEmitter) =>
-  pool.connect(function(err, client, done) {
+  pool.connect(function(err, client) {
     if (err) {
       return winston.error('error fetching client from pool', err)
     }
+    winston.info('Opened exclusive connection')
     client.on('notification', function (msg) {
       winston.info(`MEMORY CREATED: ${JSON.stringify(msg)}`)
       emailEmitter.emit('memory_created', msg)
     })
     client.query('LISTEN new_memories')
-    done()
+    // done()
   })
 
 // https://github.com/FastIT/health-check

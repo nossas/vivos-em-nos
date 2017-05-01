@@ -27,10 +27,11 @@ const validate = (values) => {
   return errors
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, props) => {
   const selector = formValueSelector(FORM)
   return {
     ...selector(state, 'victimName', 'authorizedToSite'),
+    initialValues: props.memory
   }
 }
 

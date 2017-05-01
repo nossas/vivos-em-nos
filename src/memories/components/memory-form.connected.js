@@ -1,8 +1,9 @@
 import { connect } from 'preact-redux'
+import { compose } from 'react-apollo'
 import { graphql } from 'react-apollo'
 import { reduxForm, formValueSelector, SubmissionError } from 'redux-form'
 
-import { memoryCreate } from '../queries'
+import { memoryCreate, memoryAssetCreate } from '../queries'
 import MemoryForm from './memory-form'
 
 const FORM = 'memoryForm'
@@ -33,15 +34,34 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default graphql(memoryCreate, {
-  props: ({ mutate }) => ({
-    onSubmit: values =>
-      mutate({ variables: values })
-        .then((response) => { console.log(response) })
-        .catch(() => {
-          throw new SubmissionError({ _error: '(500) Erro interno no servidor.' })
-        }),
-  }),
-})(connect(mapStateToProps)(
+const mapActionCreatorsToProps = (dispatch, props) => ({
+  ...props,
+  onSubmit: ({ memoryAssets, ...values }) => {
+    return props.onCreateMemory({ variables: values })
+      .then(({ data: { createMemory: { memory } } }) => {
+        memoryAssets.map(memoryAsset => {
+          if (memoryAsset) {
+            props.onCreateMemoryAsset({
+              variables: {
+                memoryId: memory.id,
+                assetType: 'image',
+                updatedAt: new Date(),
+                assetUrl: memoryAsset.assetUrl
+              }
+            })
+          }
+        })
+        return Promise.resolve()
+      })
+      .catch(error => {
+        throw new SubmissionError('(500) Internal server error')
+      })
+  }
+})
+
+export default compose(
+  graphql(memoryCreate, { name: 'onCreateMemory' }),
+  graphql(memoryAssetCreate, { name: 'onCreateMemoryAsset' })
+)(connect(mapStateToProps, mapActionCreatorsToProps)(
   reduxForm({ form: FORM, validate })(MemoryForm),
 ))

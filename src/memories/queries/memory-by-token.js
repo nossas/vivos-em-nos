@@ -6,7 +6,7 @@ export default gql`
   ) {
     allMemories(condition: { token: $token }) {
       nodes {
-        id,
+        nodeId,
         ownerFirstName,
         ownerLastName,
         ownerEmail,

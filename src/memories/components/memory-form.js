@@ -1,5 +1,4 @@
 import { h } from 'preact' /** @jsx h */
-import { Field } from 'redux-form'
 import {
   Form,
   Button,
@@ -8,14 +7,16 @@ import {
   TextField,
   SelectField,
   UploadFileField,
+  UploadImagesField
 } from './forms'
+import { Field, FieldArray } from 'redux-form'
 import AlertBox from './alert-box'
 import { COUNTRIES } from '../constants'
 import * as paths from '../../paths'
 
 
 export default ({
-  ownerFirstName,
+  victimName,
   authorizedToSite,
   handleSubmit,
   error,
@@ -98,22 +99,28 @@ export default ({
         multiline
       />
       <Field
-        label={`Quando eu penso em ${ownerFirstName} eu me lembro de*`}
-        name="victimRememberText"
-        type="text"
+        label={`Quando eu penso em ${victimName} eu me lembro de*`}
+        name='victimRememberText'
+        type='text'
         component={TextField}
         multiline
       />
       <Field
-        label={`Se eu pudesse escolher uma palavra para descrever ${ownerFirstName}, eu escolheria`}
-        name="victimGoodWords"
-        type="text"
+        label={`Se eu pudesse escolher uma palavra para descrever ${victimName}, eu escolheria`}
+        name='victimGoodWords'
+        type='text'
         component={TextField}
       />
       <Field
-        label={`Foto de ${ownerFirstName}`}
-        name="victimPhoto"
+        label={`Foto de ${victimName}`}
+        name='victimPhoto'
         component={UploadFileField}
+      />
+      <FieldArray
+        withRef={true}
+        label='Galeria de imagens'
+        name='memoryAssets'
+        component={UploadImagesField}
       />
       <Field
         label="Silhueta"

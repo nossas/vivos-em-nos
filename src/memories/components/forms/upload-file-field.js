@@ -28,7 +28,7 @@ export default class UploadFileField extends Component {
   }
 
   render() {
-    const { input, label, meta, getSignedUrl } = this.props
+    const { input, label, meta } = this.props
     return (
       <FormGroup fieldClassName='UploadFileField' meta={meta}>
         {label && <label htmlForm={input.name}>{label}</label>}

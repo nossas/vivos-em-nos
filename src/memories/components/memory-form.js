@@ -98,7 +98,6 @@ class MemoryForm extends Component {
             ))}
           </Field>
         </SectionPrimary>
-
         <SectionPrimary
           className="section--about-victim"
           header={<SectionHeader title="Sobre a pessoa que você quer homenagear" />}

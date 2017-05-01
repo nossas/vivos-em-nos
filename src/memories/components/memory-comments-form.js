@@ -1,6 +1,7 @@
 import { h, Component } from 'preact' /** @jsx h */
 import { Field } from 'redux-form'
-import { Form, Button, TextField } from './forms'
+import { Form, TextField } from './forms'
+import { ButtonPrimary } from '../../views/components'
 
 export default class MemoryCommentsForm extends Component {
   render() {
@@ -46,9 +47,9 @@ export default class MemoryCommentsForm extends Component {
           component={TextField}
         />
 
-        <Button type="submit">
+        <ButtonPrimary TagName="button" type="submit">
           Enviar comentário
-        </Button>
+        </ButtonPrimary>
       </Form>
     )
   }

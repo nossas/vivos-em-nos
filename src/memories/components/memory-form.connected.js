@@ -3,7 +3,7 @@ import { compose } from 'react-apollo'
 import { graphql } from 'react-apollo'
 import { reduxForm, formValueSelector, SubmissionError } from 'redux-form'
 
-import { memoryCreate, memoryAssetCreate } from '../queries'
+import { memoryCreate, memoryUpdate, memoryAssetCreate } from '../queries'
 import MemoryForm from './memory-form'
 
 const FORM = 'memoryForm'
@@ -38,6 +38,16 @@ const mapStateToProps = (state, props) => {
 const mapActionCreatorsToProps = (dispatch, props) => ({
   ...props,
   onSubmit: ({ memoryAssets, ...values }) => {
+    if (props.memory) {
+      return props.onUpdateMemory({ variables: { ...values, nodeId: props.memory.nodeId } })
+        .then(() => {
+          return Promise.resolve()
+        })
+        .catch(error => {
+          throw new SubmissionError('(500) Internal server error')
+        })
+    }
+
     return props.onCreateMemory({ variables: values })
       .then(({ data: { createMemory: { memory } } }) => {
         memoryAssets.map(memoryAsset => {
@@ -62,7 +72,8 @@ const mapActionCreatorsToProps = (dispatch, props) => ({
 
 export default compose(
   graphql(memoryCreate, { name: 'onCreateMemory' }),
-  graphql(memoryAssetCreate, { name: 'onCreateMemoryAsset' })
+  graphql(memoryAssetCreate, { name: 'onCreateMemoryAsset' }),
+  graphql(memoryUpdate, { name: 'onUpdateMemory' })
 )(connect(mapStateToProps, mapActionCreatorsToProps)(
   reduxForm({ form: FORM, validate })(MemoryForm),
 ))

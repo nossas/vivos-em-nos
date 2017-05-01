@@ -1,4 +1,5 @@
 import { h } from 'preact' /** @jsx h */
+import uuid from 'uuid'
 import { Header, LayoutDefault } from '../../../views/layout/layout'
 import {
   MemoryImage,
@@ -19,7 +20,7 @@ import * as detect from '../../../utils/detect'
 
 const _memory = mocks.memories[1]
 
-export default ({ id, memory, loading }) => (
+export default ({ id, memory, comments, loading }) => (
   <LayoutDefault>
     <Header>
       <TopBar />
@@ -50,8 +51,8 @@ export default ({ id, memory, loading }) => (
             {memory.victimRememberText}
           </Quote>
           <div className="gallery">
-            {_memory.gallery && _memory.gallery.map(image => (
-              <img src={image} />
+            {_memory.gallery && _memory.gallery.map((image, index) => (
+              <img src={image} alt={`gallery-${index}`} />
             ))}
           </div>
         </section>
@@ -91,6 +92,19 @@ export default ({ id, memory, loading }) => (
           }
         >
           <MemoryCommentsForm memoryId={id} />
+        </SectionPrimary>
+
+        <SectionPrimary className="section--memory-comments">
+          {comments.map(comment => (
+            <div className="block--memory-comment">
+              <div className="commenter--name">
+                {comment.name}
+              </div>
+              <div className="commenter-comment">
+                {comment.comment}
+              </div>
+            </div>
+          ))}
         </SectionPrimary>
 
         <OrnamentPageFooter />

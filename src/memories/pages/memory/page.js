@@ -1,5 +1,4 @@
 import { h } from 'preact' /** @jsx h */
-import uuid from 'uuid'
 import { Header, LayoutDefault } from '../../../views/layout/layout'
 import {
   MemoryImage,
@@ -18,7 +17,7 @@ import { MemoryCommentsForm } from '../../components'
 import * as mocks from '../../../__tmp/mocks'
 import * as detect from '../../../utils/detect'
 
-const _memory = mocks.memories[1]
+const memoryMock = mocks.memories[1]
 
 export default ({ id, memory, comments, loading }) => (
   <LayoutDefault>
@@ -51,7 +50,7 @@ export default ({ id, memory, comments, loading }) => (
             {memory.victimRememberText}
           </Quote>
           <div className="gallery">
-            {_memory.gallery && _memory.gallery.map((image, index) => (
+            {memoryMock.gallery && memoryMock.gallery.map((image, index) => (
               <img src={image} alt={`gallery-${index}`} />
             ))}
           </div>

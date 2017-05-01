@@ -60,23 +60,19 @@ const DefaultServerConfig = {
 
 class EmailEmitter extends EventEmitter {}
 
-const createMemoriesListener = (pool, emailEmitter) => {
+const createMemoriesListener = (pool, emailEmitter) =>
   pool.connect(function(err, client, done) {
     if (err) {
       return winston.error('error fetching client from pool', err)
     }
-    client.on('notification', (msg) => {
+    client.on('notification', function (msg) {
       emailEmitter.emit('memory_created', msg)
       winston.info(`MEMORY CREATED: ${JSON.stringify(msg)}`)
     })
     client.query('LISTEN new_memories')
-  })
 
-  return pool
-  // pool.end(function (err) {
-  //   if (err) throw err
-  // });
-}
+    return pool
+  })
 
 // https://github.com/FastIT/health-check
 const checkPostgres = (client, res) => {

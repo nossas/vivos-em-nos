@@ -6,7 +6,7 @@ import MemoryCommentsForm from './memory-comments-form'
 
 const form = 'memoryCommentsForm'
 
-const REQUIRED_FIELDS = ['memoryId', 'comment', 'firstName', 'lastName', 'email']
+const REQUIRED_FIELDS = ['memoryId', 'comment', 'name', 'email']
 
 const validate = (values) => {
   const errors = {}

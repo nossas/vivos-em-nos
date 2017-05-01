@@ -18,14 +18,8 @@ export default ({ memoryId, handleSubmit, error }) => (
       component={TextField}
     />
     <Field
-      label="Nome"
-      name="firstName"
-      type="text"
-      component={TextField}
-    />
-    <Field
-      label="Sobrenome"
-      name="lastName"
+      label="Nome completo"
+      name="name"
       type="text"
       component={TextField}
     />

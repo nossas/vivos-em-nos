@@ -63,8 +63,8 @@ const createMemoriesListener = (client, emailEmitter) =>
   () => {
     client.on('notification', (msg) => {
       emailEmitter.emit('memory_created', msg)
+      winston.info(`MEMORY CREATED: ${JSON.stringify(msg)}`)
     })
-    winston.info('MEMORY CREATED: ' + JSON.stringify(msg))
     client.query('LISTEN new_memories')
 
     return client

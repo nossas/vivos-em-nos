@@ -1,4 +1,5 @@
 import { h } from 'preact' /** @jsx h */
+import { Field, FieldArray } from 'redux-form'
 import {
   Form,
   Button,
@@ -7,12 +8,12 @@ import {
   TextField,
   SelectField,
   UploadFileField,
-  UploadImagesField
+  UploadImagesField,
 } from './forms'
-import { Field, FieldArray } from 'redux-form'
 import AlertBox from './alert-box'
 import { COUNTRIES } from '../constants'
 import * as paths from '../../paths'
+import { SectionHeader, SectionPrimary } from '../../views/components'
 
 
 export default ({
@@ -37,7 +38,10 @@ export default ({
   </AlertBox>
 ) : (
   <Form error={error} handleSubmit={handleSubmit}>
-    <Section header="Sobre você">
+    <SectionPrimary
+      className="section--about-you"
+      header={<SectionHeader title="Sobre você" />}
+    >
       <Field
         label="Nome*"
         name="ownerFirstName"
@@ -64,7 +68,7 @@ export default ({
       >
         {COUNTRIES.map(c => <option key={c.code} value={c.name}>{c.name}</option>)}
       </Field>
-    </Section>
+    </SectionPrimary>
 
     <Section header="Sobre a pessoa que você quer homenagear">
       <Field
@@ -100,26 +104,26 @@ export default ({
       />
       <Field
         label={`Quando eu penso em ${victimName} eu me lembro de*`}
-        name='victimRememberText'
-        type='text'
+        name="victimRememberText"
+        type="text"
         component={TextField}
         multiline
       />
       <Field
         label={`Se eu pudesse escolher uma palavra para descrever ${victimName}, eu escolheria`}
-        name='victimGoodWords'
-        type='text'
+        name="victimGoodWords"
+        type="text"
         component={TextField}
       />
       <Field
         label={`Foto de ${victimName}`}
-        name='victimPhoto'
+        name="victimPhoto"
         component={UploadFileField}
       />
       <FieldArray
-        withRef={true}
-        label='Galeria de imagens'
-        name='memoryAssets'
+        withRef
+        label="Galeria de imagens"
+        name="memoryAssets"
         component={UploadImagesField}
       />
       <Field

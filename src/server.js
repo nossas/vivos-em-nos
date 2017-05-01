@@ -19,6 +19,7 @@ import fs from 'fs'
 import os from 'os'
 import crypto from 'crypto'
 import WinstonCloudwatch from 'winston-cloudwatch'
+import { URL } from 'url'
 
 dotenv.config({ path: path.resolve(__dirname, '..', '.env') })
 
@@ -59,19 +60,23 @@ const DefaultServerConfig = {
 
 class EmailEmitter extends EventEmitter {}
 
-const createMemoriesListener = (client, emailEmitter) =>
-  () => {
+const createMemoriesListener = (pool, emailEmitter) => {
+  pool.connect(function(err, client, done) {
+    if (err) {
+      return winston.error('error fetching client from pool', err)
+    }
     client.on('notification', (msg) => {
       emailEmitter.emit('memory_created', msg)
       winston.info(`MEMORY CREATED: ${JSON.stringify(msg)}`)
     })
     client.query('LISTEN new_memories')
+  })
 
-    return client
-    // client.end(function (err) {
-    //   if (err) throw err
-    // });
-  }
+  return pool
+  // pool.end(function (err) {
+  //   if (err) throw err
+  // });
+}
 
 // https://github.com/FastIT/health-check
 const checkPostgres = (client, res) => {
@@ -118,7 +123,7 @@ const createServer = (client, config) => {
     transports: [winstonTransport(config)],
     msg: 'HTTP {{req.method}} {{req.url}}',
     expressFormat: true,
-    colorize: true,
+    colorize: !PROD,
   }))
   app.use(cors())
   app.use(helmet())
@@ -178,8 +183,18 @@ const createServer = (client, config) => {
 const startServer = (serverConfig) => {
   const config = { ...DefaultServerConfig, ...serverConfig }
   const emailEmitter = new EmailEmitter()
-  // const client = new pg.Client(config.databaseUrl)
-  const pool = new pg.Pool(config);
+
+  const myDb = new URL(config.databaseUrl)
+
+  const pool = new pg.Pool({
+    user: myDb.username,
+    database: myDb.pathname.substr(1),
+    password: myDb.password,
+    host: myDb.hostname,
+    port: myDb.port,
+    max: 10,
+    idleTimeoutMillis: 30000,
+  })
 
   pool.on('error', function (err, client) {
     // if an error is encountered by a client while it sits idle in the pool
@@ -190,6 +205,7 @@ const startServer = (serverConfig) => {
     // and so you might want to handle it and at least log it out
     winston.error('idle client error', err.message, err.stack)
   })
+
 
   const server = createServer(pool, config)
 

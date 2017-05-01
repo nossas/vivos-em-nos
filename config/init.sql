@@ -376,3 +376,10 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20170419111719'),
 ('20170419112030'),
 ('20170419115336');
+
+--
+-- Migration: 20170430213358
+--
+ALTER TABLE memory_comments RENAME COLUMN first_name TO name;
+ALTER TABLE memory_comments DROP COLUMN last_name;
+

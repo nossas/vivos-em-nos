@@ -44,6 +44,8 @@ pipeline:
     # task_role_arn: arn:aws:iam::012345678901:role/rolename
     environment_variables:
       - NODE_ENV=production
+      - NEW_RELIC_APP_NAME=vivos-em-nos-production
+      - PORT=5005
       - AWS_ACCESS_KEY_ID=${VEN_AWS_ACCESS_KEY_ID}
       - AWS_BUCKET=${VEN_AWS_BUCKET}
       - AWS_SECRET_ACCESS_KEY=${VEN_AWS_SECRET_ACCESS_KEY}
@@ -53,8 +55,8 @@ pipeline:
       - NEW_RELIC_LICENSE_KEY=${VEN_NEW_RELIC_LICENSE_KEY}
       - SCHEMA_NAME=${VEN_SCHEMA_NAME}
       - SENTRY_DSN=${VEN_SENTRY_DSN}
+      - NEW_RELIC_NO_CONFIG_FILE=true
       - SERVER_DOMAIN=${VEN_SERVER_DOMAIN}
-      - PORT=5005
     port_mappings:
       - 5005 5005
     memoryReservation: 128

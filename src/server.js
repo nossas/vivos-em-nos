@@ -80,7 +80,7 @@ const createMemoriesListener = (pool, emailEmitter) => {
 
 // https://github.com/FastIT/health-check
 const checkPostgres = (client, res) => {
-  client.query('SELECT NOW() AS "the_time"', (err, resDb) => {
+  client.query('SELECT NOW() AS "the_time"', function (err, resDb) {
     if (!err) {
       return res.json({ status: 'ko', online: false, error: err })
     }

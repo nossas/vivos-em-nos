@@ -32,9 +32,15 @@ const mapStateToProps = (state, { memoryId }) => ({
 
 export default graphql(queries.memoryCommentCreate, {
   props: ({ mutate }) => ({
-    onSubmit: values =>
-      mutate({ variables: values })
-        .then(() => {})
+    onSubmit: (values, dispatch, formProps) =>
+      mutate({
+        variables: values,
+        refetchQueries: [{
+          query: queries.memory,
+          variables: { id: values.memoryId },
+        }],
+      })
+        .then(() => formProps.reset())
         .catch(() => {
           throw new SubmissionError({ _error: '(500) Erro interno no servidor.' })
         }),

@@ -1,27 +1,39 @@
 .Form
   font-family: 'Roboto', sans-serif
 
-  .Error
-    color: red
+  .Error, .FieldError
+    color: #F7231E
     font-size: 14px
+
+  .FormGroup.CheckboxField
+    margin-top: 20px
+
+  .CheckboxField
+    display: flex
+
+  .UploadFileField,
+  .UploadImagesField
+    label
+      display: block
+      padding: 20px 0 15px
 
   .UploadFileField
 
-    .FileHandler::before
-      content: "+"
-      font-size: 36px
-      color: #fff
-      position: absolute
-      top: 48px
-      left: 48px
-
     .FileHandler
-      position: relative
-      display: table
+      text-align: center
       width: 128px
       height: 128px
-      background-color: #F7901E
-      border-radius: 45px
+      background-color: #DE5F25
+      border-radius: 54px
+
+      &:before
+        content: '+'
+        font-size: 50px
+        font-weight: 300
+        color: #fff
+        display: flex
+        justify-content: center
+        line-height: 128px
 
       .UploadFileField--Preview
         display: table-row
@@ -29,3 +41,41 @@
 
   .mdc-textfield
     width: 100%
+    margin-top: 0
+
+  .mdc-textfield--upgraded:not(.mdc-textfield--fullwidth):not(.mdc-textfield--multiline)::after
+    background-color: #F7901E
+    height: 2px
+
+  .mdc-textfield--focused.mdc-textfield--upgraded:not(.mdc-textfield--fullwidth):not(.mdc-textfield--multiline)::after
+    transform: translateY(100%) scaleY(1.5)
+
+  label.mdc-textfield__label.mdc-textfield__label--float-above
+    color: #9B9B9B
+
+  .mdc-select
+    max-width: 100%
+    background-position: right 10px center
+    border-bottom: 2px solid #F7901E
+    height: 45px
+    margin-top: 8px
+    background: none
+    position: relative
+
+    &:after
+      content: ''
+      width: 5px
+      height: 5px
+      border-right: 1px solid #F7901E
+      border-bottom: 1px solid #F7901E
+      transform: rotate(45deg)
+      position: absolute
+      right: 8px
+      top: 50%
+      margin-top: -5px
+
+  .mdc-textfield.mdc-textfield--multiline
+    .mdc-textfield__input
+      border: none
+      border-bottom: 2px solid #F7901E
+      width: 100%

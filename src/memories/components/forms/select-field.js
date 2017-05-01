@@ -2,11 +2,19 @@ import { h } from 'preact' /** @jsx h */
 import { Select } from 'preact-material-components'
 import FormGroup from './form-group'
 
-export default ({ input, children, label, hintText, meta }) => (
-  <FormGroup fieldClassName='SelectField' meta={meta}>
-    {label && <label htmlForm={input.name}>{label}</label>}
-    <select {...input} hintText={hintText}>
+export default ({ input, children, hintText, meta, onChangeCountry, reference, selectedIndex }) => (
+  <FormGroup fieldClassName="SelectField" meta={meta}>
+    <Select
+      {...input}
+      hintText={hintText}
+      ref={reference}
+      selectedIndex={selectedIndex}
+      onChange={(...args) => {
+        input.onChange(...args)
+        onChangeCountry()
+      }}
+    >
       {children}
-    </select>
+    </Select>
   </FormGroup>
 )

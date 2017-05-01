@@ -70,7 +70,10 @@ export default ({
       </Field>
     </SectionPrimary>
 
-    <Section header="Sobre a pessoa que você quer homenagear">
+    <SectionPrimary
+      className="section--about-victim"
+      header={<SectionHeader title="Sobre a pessoa que você quer homenagear" />}
+    >
       <Field
         label="Nome*"
         name="victimName"
@@ -135,7 +138,7 @@ export default ({
       <Field name="authorizedToSite" component={CheckboxField}>
         Autorizo a divulgação dessa homenagem no site #VivosEmNós
       </Field>
-    </Section>
+    </SectionPrimary>
 
     <Button disabled={!authorizedToSite} type="submit">Publique sua homenagem</Button>
   </Form>

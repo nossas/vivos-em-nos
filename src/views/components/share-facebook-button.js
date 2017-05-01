@@ -15,7 +15,11 @@ export default ({ href, className }) => {
       className={className}
       onClick={handleClick}
     >
-      <img src="/img/share-facebook.svg" width="51" />
+      <img
+        src="/img/share-facebook.svg"
+        alt="Share Facebook"
+        width="51"
+      />
     </button>
   )
 }

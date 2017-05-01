@@ -36,7 +36,11 @@ export default ({ href, text, className }) => {
       href={href}
       text={encodeURIComponent(text)}
     >
-      <img src="/img/share-twitter.svg" width="51" />
+      <img
+        src="/img/share-twitter.svg"
+        alt="Share Twitter"
+        width="51"
+      />
     </Component>
   )
 }

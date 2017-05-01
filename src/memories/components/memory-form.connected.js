@@ -37,7 +37,7 @@ export default graphql(memoryCreate, {
   props: ({ mutate }) => ({
     onSubmit: values =>
       mutate({ variables: values })
-        .then((response) => { console.log(response) })
+        .then(() => {})
         .catch(() => {
           throw new SubmissionError({ _error: '(500) Erro interno no servidor.' })
         }),

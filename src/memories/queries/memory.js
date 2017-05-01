@@ -12,6 +12,13 @@ export default gql`
       victimPhoto,
       victimRememberText,
       victimSilhouette,
-    }
+      memoryCommentsByMemoryId(orderBy: ID_DESC) {
+        nodes {
+          id,
+          name,
+          comment,
+        },
+      },
+    },
   }
 `

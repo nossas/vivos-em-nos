@@ -63,10 +63,12 @@ const DefaultServerConfig = {
 
 class EmailEmitter extends EventEmitter {}
 
-const createMemoriesListener = (pool, emailEmitter, log) =>
-  pool.connect(function(err, client) {
+const createMemoriesListener = (config, log, emailEmitter) => {
+  const client = new pg.Client(config.databaseUrl)
+
+  client.connect(function(err, client) {
     if (err) {
-      return log.error('error fetching client from pool', err)
+      return log.error('error fetching client from client', err)
     }
     log.info('Opened exclusive connection')
     client.on('notification', function (msg) {
@@ -74,8 +76,8 @@ const createMemoriesListener = (pool, emailEmitter, log) =>
       emailEmitter.emit('memory_created', msg)
     })
     client.query('LISTEN new_memories')
-    // done()
   })
+}
 
 // https://github.com/FastIT/health-check
 const checkPostgres = (client, res, log) => {
@@ -111,7 +113,7 @@ const checkPostgres = (client, res, log) => {
   })
 }
 
-const createServer = (client, config, log) => {
+const createServer = (pool, config, log) => {
   const PROD = config.nodeEnv === 'production'
   const app = express()
   const transports = [winstonTransport({ ...config, logStreamName: winstonLogName('express-server') })]
@@ -135,7 +137,7 @@ const createServer = (client, config, log) => {
   app.use(compression())
   app.use(express.static(path.resolve(__dirname, '..', 'dist')))
 
-  app.use('/ping', (req, res) => checkPostgres(client, res, log))
+  app.use('/ping', (req, res) => checkPostgres(pool, res, log))
 
   app.use('/s3', require('react-s3-uploader/s3router')({
     bucket: `${config.s3BucketName}`,
@@ -197,13 +199,13 @@ const startServer = (serverConfig) => {
     idleTimeoutMillis: 30000,
   })
   pool.on('error', function (err) {
-    winstonLog.error('idle client error', err.message, err.stack)
+    winstonLog.error('idle pool error', err.message, err.stack)
   })
 
   const server = createServer(pool, config, winstonLog)
 
   const emailEmitter = new EmailEmitter()
-  createMemoriesListener(pool, emailEmitter, winstonLog)
+  createMemoriesListener(config, winstonLog, emailEmitter)
 
   emailEmitter.on('memory_created', ({ payload }) => {
     let EmailTemplate

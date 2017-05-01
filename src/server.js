@@ -41,6 +41,7 @@ const winstonTransport = ({ nodeEnv, accessKeyId, secretAccessKey }) => {
       },
       awsRegion: 'us-west-1',
       jsonMessage: true,
+      ignoredRoutes: ['/ping'],
     })
   }
   return new winston.transports.Console({ colorize: true })

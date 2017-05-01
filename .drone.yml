@@ -25,8 +25,8 @@ pipeline:
       - AWS_ACCESS_KEY_ID=${PROD_AWS_ACCESS_KEY_ID}
       - AWS_SECRET_ACCESS_KEY=${PROD_AWS_SECRET_ACCESS_KEY}
       - CLOUDFRONT_DISTRIBUTION_ID=${PROD_AWS_CLOUDFRONT_DISTRIBUTION_ID}
-      - GRAPHQL_URL=http://data.vivosemnos.org/graphql
-      - SERVER_DOMAIN=http://server.vivosemnos.org
+      - GRAPHQL_URL=https://data.vivosemnos.org/graphql
+      - SERVER_DOMAIN=https://server.vivosemnos.org
     when:
       status: success
       branch: [master]

@@ -51,8 +51,8 @@ export default ({ id, memory, comments, loading }) => (
             {memory.victimRememberText}
           </Quote>
           <div className="gallery">
-            {_memory.gallery && _memory.gallery.map(image => (
-              <img src={image} />
+            {_memory.gallery && _memory.gallery.map((image, index) => (
+              <img src={image} alt={`gallery-${index}`} />
             ))}
           </div>
         </section>

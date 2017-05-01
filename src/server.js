@@ -82,10 +82,10 @@ const createMemoriesListener = (pool, emailEmitter) => {
 const checkPostgres = (client, res) => {
   client.query('SELECT NOW() AS "the_time"', (err, resDb) => {
     if (!err) {
-      res.json({ status: 'ko', online: false, error: err })
+      return res.json({ status: 'ko', online: false, error: err })
     }
 
-    res.json({
+    return res.json({
       online: true,
       os: {
         arch: os.arch(),
@@ -132,9 +132,7 @@ const createServer = (client, config) => {
 
   app.use(express.static(path.resolve(__dirname, '..', 'dist')))
 
-  app.use('/ping', (req, res) => {
-    checkPostgres(client, res)
-  })
+  app.use('/ping', (req, res) => checkPostgres(client, res))
 
   app.use('/s3', require('react-s3-uploader/s3router')({
     bucket: `${config.s3BucketName}`,

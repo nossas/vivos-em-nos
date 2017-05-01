@@ -29,3 +29,14 @@
 
   .mdc-textfield
     width: 100%
+    margin-top: 0
+
+  .mdc-textfield--upgraded:not(.mdc-textfield--fullwidth):not(.mdc-textfield--multiline)::after
+    background-color: #F7901E
+    height: 2px
+
+  .mdc-textfield--focused.mdc-textfield--upgraded:not(.mdc-textfield--fullwidth):not(.mdc-textfield--multiline)::after
+    transform: translateY(100%) scaleY(1.5)
+
+  label.mdc-textfield__label.mdc-textfield__label--float-above
+    color: #9B9B9B

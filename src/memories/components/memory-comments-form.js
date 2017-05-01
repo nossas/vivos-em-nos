@@ -2,14 +2,12 @@ import { h } from 'preact' /** @jsx h */
 import { Field } from 'redux-form'
 import { Form, Button, TextField } from './forms'
 
-export default ({ memoryId, handleSubmit, error }) => (
+export default ({ handleSubmit, error }) => (
   <Form error={error} handleSubmit={handleSubmit}>
     <Field
-      label="ID da homenagem"
       name="memoryId"
-      type="number"
-      component={TextField}
-      value={memoryId}
+      type="hidden"
+      component="input"
     />
     <Field
       label="Texto"

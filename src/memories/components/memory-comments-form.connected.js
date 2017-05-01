@@ -1,4 +1,5 @@
 import { graphql } from 'react-apollo'
+import { connect } from 'preact-redux'
 import { reduxForm, SubmissionError } from 'redux-form'
 import * as validation from '../../utils/validation'
 import * as queries from '../queries'
@@ -25,6 +26,10 @@ const validate = (values) => {
   return errors
 }
 
+const mapStateToProps = (state, { memoryId }) => ({
+  initialValues: { memoryId },
+})
+
 export default graphql(queries.memoryCommentCreate, {
   props: ({ mutate }) => ({
     onSubmit: values =>
@@ -34,4 +39,6 @@ export default graphql(queries.memoryCommentCreate, {
           throw new SubmissionError({ _error: '(500) Erro interno no servidor.' })
         }),
   }),
-})(reduxForm({ form, validate })(MemoryCommentsForm))
+})(connect(mapStateToProps)(
+  reduxForm({ form, validate })(MemoryCommentsForm),
+))

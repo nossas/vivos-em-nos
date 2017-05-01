@@ -93,6 +93,27 @@ export default ({ id, memory, loading }) => (
           <MemoryCommentsForm memoryId={id} />
         </SectionPrimary>
 
+        <SectionPrimary className="section--memory-comments">
+          <div className="block--memory-comment">
+            <div className="commenter--name">
+              fulano de Tal
+            </div>
+            <div className="commenter-comment">
+              Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh
+              Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh
+            </div>
+          </div>
+          <div className="block--memory-comment">
+            <div className="commenter--name">
+              fulano de Tal
+            </div>
+            <div className="commenter-comment">
+              Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh
+              Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh
+            </div>
+          </div>
+        </SectionPrimary>
+
         <OrnamentPageFooter />
       </div>
     )}

@@ -81,9 +81,8 @@ class MemoryForm extends Component {
             component={TextField}
           />
           <Field
-            label="País*"
+            hintText="País*"
             name="ownerCountry"
-            hintText="Selecione o país"
             component={SelectField}
             reference={(selectCountry) => { this.selectCountry = selectCountry }}
             selectedIndex={this.state.country}

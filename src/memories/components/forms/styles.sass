@@ -40,3 +40,24 @@
 
   label.mdc-textfield__label.mdc-textfield__label--float-above
     color: #9B9B9B
+
+  .mdc-select
+    max-width: 100%
+    background-position: right 10px center
+    border-bottom: 2px solid #F7901E
+    height: 45px
+    margin-top: 8px
+    background: none
+    position: relative
+
+    &:after
+      content: ''
+      width: 5px
+      height: 5px
+      border-right: 1px solid #F7901E
+      border-bottom: 1px solid #F7901E
+      transform: rotate(45deg)
+      position: absolute
+      right: 8px
+      top: 50%
+      margin-top: -5px

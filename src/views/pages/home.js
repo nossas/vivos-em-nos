@@ -1,7 +1,7 @@
 import { h } from 'preact' /** @jsx h */
 import { MenuTrigger } from '../../menu/components'
 import { LayoutDefault } from '../layout/layout'
-import { ButtonPrimary } from '../components'
+import { ButtonPrimary, SectionHeader, SectionPrimary } from '../components'
 import { FeaturedMemories } from '../sections'
 import * as paths from '../../paths'
 
@@ -27,6 +27,25 @@ export default () => (
       </div>
 
       <FeaturedMemories />
+
+      <SectionPrimary
+        className="section--about-us"
+        header={<SectionHeader title={<span>Quem<br />somos</span>} />}
+      >
+        <p>
+          <span className="color--primary">#VivosEmNós</span> é uma iniciativa da campanha
+          Instinto de Vida, uma aliança latino-americana criada a partir da união de organizações
+          não governamentais que compartilham um objetivo: reduzir à metade a violência letal
+          na região em 10 anos.
+        </p>
+        <p>
+          Essa meta requer muito foco, compromisso e pressão por políticas públicas
+          efetivas. <span className="color--primary">#VivosEmNós</span> é o espaço que criamos
+          para homenagear as pessoas levadas precocemente pela violência e unir todos que
+          desejam lutar pelo respeito à vida. A sensibilização é o primeiro passo em direção
+          à mudança.
+        </p>
+      </SectionPrimary>
     </div>
   </LayoutDefault>
 )

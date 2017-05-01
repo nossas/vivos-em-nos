@@ -66,18 +66,17 @@ const createMemoriesListener = (pool, emailEmitter) =>
       return winston.error('error fetching client from pool', err)
     }
     client.on('notification', function (msg) {
-      emailEmitter.emit('memory_created', msg)
       winston.info(`MEMORY CREATED: ${JSON.stringify(msg)}`)
+      emailEmitter.emit('memory_created', msg)
     })
     client.query('LISTEN new_memories')
-
-    return pool
+    done()
   })
 
 // https://github.com/FastIT/health-check
 const checkPostgres = (client, res) => {
   client.query('SELECT NOW() AS "the_time"', function (err, resDb) {
-    if (!err) {
+    if (err) {
       return res.json({ status: 'ko', online: false, error: err })
     }
 
@@ -92,6 +91,7 @@ const checkPostgres = (client, res) => {
         uptime: os.uptime(),
         release: os.release(),
       },
+      resDb,
       process: {
         execArgv: process.execArgv,
         execPath: process.execPath,

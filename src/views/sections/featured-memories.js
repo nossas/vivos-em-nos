@@ -13,7 +13,7 @@ import * as paths from '../../paths'
 
 const Header = ({ silhouette }) => (
   <SectionHeader title="Veja algumas homenagens">
-    <Silhouette variation={silhouette} height="380" />
+    <Silhouette variation={silhouette} forceHeight="380px" />
   </SectionHeader>
 )
 

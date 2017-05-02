@@ -13,7 +13,7 @@ const Button = ({ value, label, src, alt, input }) => (
   <div className='RadioButton' style={{ cursor: 'pointer' }} onClick={() => input.onChange(value)}>
     <input type='radio' {...input} checked={input.value === value} />
     {label && <label>{label}</label>}
-    {src && <img src={src} alt={alt} width={50} heigth={50} />}
+    {src && <img src={src} alt={alt} />}
   </div>
 )
 

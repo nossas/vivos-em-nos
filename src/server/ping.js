@@ -18,7 +18,6 @@ const createPoolConnections = function (config, log) {
     log.error('idle pool error', err.message, err.stack)
   })
 
-  log.info('Opened pool connection')
   return pool
 }
 

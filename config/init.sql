@@ -346,9 +346,9 @@ CREATE FUNCTION update_token() RETURNS trigger AS $$
     END;
 $$ language plpgsql;
 
-CREATE TRIGGER update_token AFTER INSERT ON memories FOR EACH ROW EXECUTE PROCEDURE update_token();
+CREATE TRIGGER update_token BEFORE INSERT ON memories FOR EACH ROW EXECUTE PROCEDURE update_token();
 
-CREATE TRIGGER update_created_at AFTER INSERT ON memories FOR EACH ROW EXECUTE PROCEDURE update_created_at();
+CREATE TRIGGER update_created_at BEFORE INSERT ON memories FOR EACH ROW EXECUTE PROCEDURE update_created_at();
 
 CREATE TRIGGER update_updated_at BEFORE UPDATE ON memories FOR EACH ROW EXECUTE PROCEDURE update_updated_at();
 

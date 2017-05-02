@@ -1,20 +1,19 @@
 import { h, Component } from 'preact' /** @jsx h */
 import { Field, FieldArray } from 'redux-form'
 import { Select } from 'preact-material-components'
+import * as paths from '~src/paths'
+import { COUNTRIES } from '~src/memories/constants'
+import { ButtonPrimary, SectionHeader, SectionPrimary } from '~src/views/components'
+import { TextField } from '~src/views/components/form'
+import AlertBox from './alert-box'
 import {
   Form,
   CheckboxField,
-  TextField,
   SelectField,
   UploadFileField,
   UploadImagesField,
-  RadioField
+  RadioField,
 } from './forms'
-import AlertBox from './alert-box'
-import { COUNTRIES } from '../constants'
-import * as paths from '../../paths'
-import { ButtonPrimary, SectionHeader, SectionPrimary, Silhouette } from '../../views/components'
-
 
 class MemoryForm extends Component {
   constructor(props) {
@@ -159,18 +158,18 @@ class MemoryForm extends Component {
             name="memoryAssets"
             component={UploadImagesField}
           />
-          <Field label='Silhueta' name='victimSilhouette' component={RadioField.Field}>
-                <RadioField.Button
-                  src='/img/silhouette-orange-form.svg'
-                  alt='Silhueta 1'
-                  value='1'
-                />
+          <Field label="Silhueta" name="victimSilhouette" component={RadioField.Field}>
+            <RadioField.Button
+              src="/img/silhouette-orange-form.svg"
+              alt="Silhueta 1"
+              value="1"
+            />
 
-                <RadioField.Button
-                  src='/img/silhouette-blue-form.svg'
-                  alt='Silhueta 2'
-                  value='2'
-                />
+            <RadioField.Button
+              src="/img/silhouette-blue-form.svg"
+              alt="Silhueta 2"
+              value="2"
+            />
           </Field>
           <Field name="authorizedToSite" component={CheckboxField}>
             Autorizo a divulgação dessa homenagem no site #VivosEmNós

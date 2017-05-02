@@ -1,1 +1,1 @@
-export { default } from './components/loader-hoc'
+export { LoaderHOC as default } from './components'

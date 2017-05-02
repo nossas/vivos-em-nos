@@ -77,7 +77,7 @@ const createServer = (config, winstonLog) => {
 
   app.get('*', (req, res) => {
     res.sendFile(path.resolve(__dirname, '..', '..', 'dist', 'index.html'))
-    res.end
+    res.end()
   })
 
   // app.use(expressWinston.errorLogger({

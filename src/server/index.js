@@ -43,12 +43,12 @@ const createServer = (config, winstonLog) => {
     app.use(Raven.requestHandler())
   }
 
-  // app.use(expressWinston.logger({
-  //   transports: [log.expressServerTransports(config)],
-  //   msg: 'HTTP {{req.method}} {{req.url}}',
-  //   expressFormat: true,
-  //   colorize: !PROD,
-  // }))
+  app.use(expressWinston.logger({
+    transports: [log.expressServerTransports(config)],
+    msg: 'HTTP {{req.method}} {{req.url}}',
+    expressFormat: true,
+    colorize: !PROD,
+  }))
 
   app.use(cors())
   app.use(helmet())

@@ -26,7 +26,7 @@ export default ({ id, memory, comments, assets, loading }) => (
       <div className="page pages--memory-victim">
         <section className="section--victim-data">
           <MemoryImage
-            source={memory.victimPhoto}
+            source={`${process.env.SERVER_DOMAIN}${memory.victimPhoto}`}
             width="223px"
             height="179px"
           />
@@ -53,7 +53,7 @@ export default ({ id, memory, comments, assets, loading }) => (
                 .map((asset, index) => (
                   <img
                     className="column column is-one-third"
-                    src={asset.assetUrl}
+                    src={`${process.env.SERVER_DOMAIN}${asset.assetUrl}`}
                     alt={`asset-${index}`}
                   />
                 ),

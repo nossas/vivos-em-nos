@@ -7,6 +7,7 @@ import {
   ParagraphLineRounded,
   SectionHeader,
   SectionPrimary,
+  Silhouette,
 } from '../components'
 import { FeaturedMemories } from '../sections'
 import * as paths from '../../paths'
@@ -34,7 +35,11 @@ export default () => (
 
       <SectionPrimary
         className="section--about-campaign"
-        header={<SectionHeader title={<span>Sobre<br />a campanha</span>} />}
+        header={
+          <SectionHeader title={<span>Sobre<br />a campanha</span>}>
+            <Silhouette variation="1" height="570" />
+          </SectionHeader>
+        }
       >
         <div className="caption">
           <ParagraphLineRounded>

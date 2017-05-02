@@ -11,13 +11,10 @@ import throng from 'throng'
 import Raven from 'raven'
 import dotenv from 'dotenv'
 import WinstonCloudwatch from 'winston-cloudwatch'
-import EventEmitter from 'events'
 import path from 'path'
 import log from './log'
 import mailer from './mailer'
 import ping from './ping'
-
-class EmailEmitter extends EventEmitter {}
 
 const envFile = { path: path.resolve(__dirname, '..', '.env') }
 dotenv.config(envFile)
@@ -33,7 +30,6 @@ const DefaultServerConfig = {
   sentryDns: process.env.SENTRY_DSN,
   s3BucketName: process.env.AWS_BUCKET || 'vivo-em-nos-staging',
   startTime: -1,
-  emailEmitter: new EmailEmitter(),
 }
 
 const createServer = (config, winstonLog) => {
@@ -111,7 +107,7 @@ const createServer = (config, winstonLog) => {
 
 const startServer = (serverConfig) => {
   const config = { ...DefaultServerConfig, ...serverConfig }
-
+  config.startTime = new Date().toISOString()
   winston.loggers.add('app-log', {
     transports: [log.appLogTransports(config)]
   })

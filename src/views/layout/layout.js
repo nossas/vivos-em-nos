@@ -3,8 +3,8 @@ import { Layout, Section } from 'preact-layout'
 import { Menu, MenuItem } from '../../menu/components'
 import * as paths from '../../paths'
 
-const Header = () => {}
-const Footer = () => {}
+const Header = function() { return 'Header' }
+const Footer = function() { return 'Footer' }
 
 const LayoutDefault = ({ children }) => (
   <Layout>
@@ -14,9 +14,9 @@ const LayoutDefault = ({ children }) => (
       <MenuItem>Editar Homenagem</MenuItem>
       <MenuItem>Quem Somos</MenuItem>
     </Menu>
-    <Section type={Header} />
+    <Section type={Header}>Header</Section>
     <Section>{children}</Section>
-    <Section type={Footer} />
+    <Section type={Footer}>Footer</Section>
   </Layout>
   )
 

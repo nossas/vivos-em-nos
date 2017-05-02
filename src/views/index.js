@@ -9,8 +9,11 @@ import Error404 from './pages/errors/404'
 import { Memory, MemoryCreate } from '../memories/pages'
 
 // track pages on route change
-// eslint-disable-next-line
-const onChange = obj => window.ga && ga('send', 'pageview', obj.url)
+const onChange = ({ url }) => {
+  // eslint-disable-next-line
+  window.ga && ga('send', 'pageview', url)
+  window.scrollTo(0, 0)
+}
 
 export default (
   <Provider store={store}>

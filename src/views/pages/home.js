@@ -1,6 +1,6 @@
 import { h } from 'preact' /** @jsx h */
 import { MenuTrigger } from '../../menu/components'
-import { LayoutDefault, Footer } from '../layout/layout'
+import { LayoutDefault, Footer, Header } from '../layout/layout'
 import {
   ButtonPrimary,
   OrnamentPageFooter,
@@ -14,6 +14,7 @@ import * as paths from '../../paths'
 
 export default () => (
   <LayoutDefault>
+    <Header></Header>
     <div className="page page__home">
       <div className="card splash">
         <MenuTrigger />

@@ -14,6 +14,7 @@ export default gql`
         victimName,
         victimPhoto,
         victimRememberText,
+        victimSilhouette,
       }
     }
   }

@@ -11,9 +11,9 @@ import {
 import { Carousel, CarouselNavigator } from '../../carousel/components'
 import * as paths from '../../paths'
 
-const Header = (
+const Header = ({ silhouette }) => (
   <SectionHeader title="Veja algumas homenagens">
-    <Silhouette variation="2" height="380" />
+    <Silhouette variation={silhouette} height="380" />
   </SectionHeader>
 )
 
@@ -41,7 +41,7 @@ export default class FeaturedMemories extends Component {
     const memory = memories[currentCarouselIndex] || {}
 
     return loading ? null : (
-      <SectionPrimary header={Header}>
+      <SectionPrimary header={<Header silhouette={memory.victimSilhouette} />}>
         <div className="ornament" />
         <Carousel>
           <MemoryImage

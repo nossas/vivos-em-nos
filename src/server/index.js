@@ -80,9 +80,9 @@ const createServer = (config, winstonLog) => {
     res.end()
   })
 
-  // app.use(expressWinston.errorLogger({
-  //   transports: [log.expressServerTransports(config)]
-  // }))
+  app.use(expressWinston.errorLogger({
+    transports: [log.expressServerTransports(config)]
+  }))
 
   if (PROD) { app.use(Raven.errorHandler()) }
 

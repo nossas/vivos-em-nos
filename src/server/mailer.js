@@ -16,9 +16,10 @@ const createMemoriesListener = function(config, winstonLog) {
 
     config.emailEmitter.on('memory_created', function ({ payload }) {
       const p = JSON.parse(payload)
-      const fileNameEmailTemplate = path.resolve(__dirname,
-        'notification-criacao-memoria.html')
-
+      const fileNameEmailTemplate = path.resolve(
+        __dirname, '..', '..', 'dist',
+        'notification-criacao-memoria.html'
+      )
       winstonLog.info(`EVENT TRIGGER MEMORY CREATED: ${payload}`)
 
       fs.readFile(fileNameEmailTemplate, 'utf8', function (err, fileContent) {

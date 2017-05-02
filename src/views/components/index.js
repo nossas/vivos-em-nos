@@ -1,3 +1,4 @@
+export { default as ButtonOutline } from './button-outline'
 export { default as ButtonPrimary } from './button-primary'
 export { default as MemoryImage } from './memory-image'
 export { default as MemorySummary } from './memory-summary'

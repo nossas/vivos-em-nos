@@ -111,12 +111,12 @@ const createServer = (config, winstonLog) => {
 
 const startServer = (serverConfig) => {
   const config = { ...DefaultServerConfig, ...serverConfig }
-  const winstonLog = winston.loggers.get('app-log')
-  const server = createServer(config, winstonLog)
 
   winston.loggers.add('app-log', {
     transports: [log.appLogTransports(config)]
   })
+  const winstonLog = winston.loggers.get('app-log')
+  const server = createServer(config, winstonLog)
 
   server.listen(config.port, (err) => {
     if (err) {

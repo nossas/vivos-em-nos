@@ -4,7 +4,6 @@ pipeline:
     commands:
       - yarn
       - yarn build
-      - yarn prestart
       - yarn test
     environment:
       - AWS_BUCKET=vivo-em-nos-staging

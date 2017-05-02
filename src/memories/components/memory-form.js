@@ -1,15 +1,13 @@
 import { h, Component } from 'preact' /** @jsx h */
 import { Field, FieldArray } from 'redux-form'
-import { Select } from 'preact-material-components'
 import * as paths from '~src/paths'
 import { COUNTRIES } from '~src/memories/constants'
 import { ButtonPrimary, SectionHeader, SectionPrimary } from '~src/views/components'
-import { TextField } from '~src/views/components/form'
+import { SelectField, TextField } from '~src/views/components/form'
 import AlertBox from './alert-box'
 import {
   Form,
   CheckboxField,
-  SelectField,
   UploadFileField,
   UploadImagesField,
   RadioField,
@@ -81,21 +79,14 @@ class MemoryForm extends Component {
             component={TextField}
           />
           <Field
-            hintText="País*"
+            label="País*"
             name="ownerCountry"
             component={SelectField}
-            reference={(selectCountry) => { this.selectCountry = selectCountry }}
-            selectedIndex={this.state.country}
-            onChangeCountry={() => {
-              const { selectedIndex } = this.selectCountry.MDComponent
-              this.setState({ country: selectedIndex })
-              change('ownerCountry', COUNTRIES[selectedIndex].name)
-            }}
           >
             {COUNTRIES.map(country => (
-              <Select.Item key={country.code} value={country.name}>
+              <option key={country.code} value={country.name}>
                 {country.name}
-              </Select.Item>
+              </option>
             ))}
           </Field>
         </SectionPrimary>

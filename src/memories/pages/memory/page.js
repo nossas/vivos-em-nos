@@ -14,12 +14,9 @@ import {
   TopBar,
 } from '../../../views/components'
 import { MemoryCommentsForm } from '../../components'
-import * as mocks from '../../../__tmp/mocks'
 import * as detect from '../../../utils/detect'
 
-const memoryMock = mocks.memories[1]
-
-export default ({ id, memory, comments, loading }) => (
+export default ({ id, memory, comments, assets, loading }) => (
   <LayoutDefault>
     <Header>
       <TopBar />
@@ -49,10 +46,19 @@ export default ({ id, memory, comments, loading }) => (
           <Quote>
             {memory.victimRememberText}
           </Quote>
-          <div className="gallery">
-            {memoryMock.gallery && memoryMock.gallery.map((image, index) => (
-              <img src={image} alt={`gallery-${index}`} />
-            ))}
+          <div className="gallery columns is-multiline is-desktop">
+            {assets &&
+              assets
+                .filter(asset => asset.assetType === 'image')
+                .map((asset, index) => (
+                  <img
+                    className="column column is-one-third"
+                    src={asset.assetUrl}
+                    alt={`asset-${index}`}
+                  />
+                ),
+              )
+            }
           </div>
         </section>
 

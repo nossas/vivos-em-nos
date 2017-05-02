@@ -19,6 +19,13 @@ export default gql`
           comment,
         },
       },
+      memoryAssetsByMemoryId {
+        nodes {
+          id,
+          assetType,
+          assetUrl,
+        },
+      },
     },
   }
 `

@@ -1,21 +1,25 @@
 import test from 'ava'
 import request from 'supertest'
 import { exec } from 'mz/child_process'
-import createServer from './dist/server.builded'
+import * as server from './dist/server/index'
+
 
 const serverConfig = {
-  nodeEnv: 'test',
-  port: 6006,
+  nodeEnv: process.env.NODE_ENV,
+  port: process.env.PORT,
   timeout: 28000,
-  schemaName: 'public',
-  databaseUrl: '',
-  sentryDns: '',
-  s3BucketName: 'vivo-em-nos-staging',
+  accessKeyId: process.env.AWS_ACCESS_KEY_ID || 'xxx',
+  secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY || 'yyy',
+  schemaName: process.env.SCHEMA_NAME,
+  databaseUrl: process.env.DATABASE_URL || 'postgres://postgres@localhost/vivos-em-nos-pwa',
+  sentryDns: process.env.SENTRY_DSN,
+  s3BucketName: process.env.AWS_BUCKET || 'vivo-em-nos-staging',
+  startTime: new Date().toISOString(),
 }
 
 test('build application', async (t) => {
   t.plan(1)
-  const build = exec('yarn run prestart')
+  const build = exec('yarn run build')
   const b = await build
   t.truthy(b.join().indexOf('Done'), 'build was done sucess')
 })
@@ -39,7 +43,7 @@ test('build application', async (t) => {
 test('render index.html as static file', async (t) => {
   t.plan(2)
 
-  const res = await request(createServer({}, serverConfig))
+  const res = await request(server.createServer({}, serverConfig))
     .get('/index.html')
 
   t.is(res.status, 200)
@@ -52,7 +56,7 @@ test('get s3 signed url', async (t) => {
   const fileName = 'textura.png'
   const fileType = 'image/png'
 
-  const res = await request(createServer({}, serverConfig))
+  const res = await request(server.createServer({}, serverConfig))
     .get(`/s3/sign?objectName=${fileName}&contentType=${fileType}`)
 
   t.is(res.status, 200)

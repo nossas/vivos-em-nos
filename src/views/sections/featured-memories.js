@@ -45,7 +45,7 @@ export default class FeaturedMemories extends Component {
         <div className="ornament" />
         <Carousel>
           <MemoryImage
-            source={memory.victimPhoto}
+            source={`${process.env.SERVER_DOMAIN}${memory.victimPhoto}`}
             width="164px"
             height="132px"
           />

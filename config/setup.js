@@ -28,6 +28,7 @@ module.exports = (isProd) => {
       'process.env.NODE_ENV': JSON.stringify(isProd ? 'production' : 'development'),
       'process.env.SERVER_DOMAIN': JSON.stringify(serverDomain),
       'process.env.GRAPHQL_URL': JSON.stringify(graphqlUrl),
+      'process.env.SERVER_DOMAIN': JSON.stringify(serverDomain),
     }),
     new HTML({ template: 'src/index.html' }),
     new webpack.LoaderOptionsPlugin({

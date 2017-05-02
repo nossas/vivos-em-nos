@@ -1,20 +1,23 @@
 {
   "presets": [
-    'env',
-    'flow',
+    "env",
+    "flow"
   ],
   "plugins": [
-    ['transform-react-jsx', { pragma: 'h' }],
-    'transform-decorators-legacy',
-    'syntax-trailing-function-commas',
-    'transform-object-rest-spread',
-    'transform-node-env-inline',
-    'transform-react-remove-prop-types',
-    'transform-class-properties',
+    ["transform-react-jsx", { "pragma": "h" }],
+    "transform-decorators-legacy",
+    "syntax-trailing-function-commas",
+    "transform-object-rest-spread",
+    "transform-node-env-inline",
+    "transform-react-remove-prop-types",
+    "transform-class-properties",
+    ["module-resolver", {
+      "alias": { "~src": "./src" }
+    }]
   ],
   "env": {
     "production": {
-      "presets": 'babili'
+      "presets": "babili"
     }
   }
 }

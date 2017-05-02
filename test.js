@@ -53,7 +53,7 @@ test('render index.html as static file', async (t) => {
 test('get s3 signed url', async (t) => {
   t.plan(2)
 
-  const fileName = 'textura.png'
+  const fileName = 'background.png'
   const fileType = 'image/png'
 
   const res = await request(server.createServer(serverConfig, {}))

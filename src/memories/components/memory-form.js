@@ -8,11 +8,13 @@ import {
   SelectField,
   UploadFileField,
   UploadImagesField,
+  RadioField
 } from './forms'
 import AlertBox from './alert-box'
 import { COUNTRIES } from '../constants'
 import * as paths from '../../paths'
-import { ButtonPrimary, SectionHeader, SectionPrimary } from '../../views/components'
+import { ButtonPrimary, SectionHeader, SectionPrimary, Silhouette } from '../../views/components'
+
 
 class MemoryForm extends Component {
   constructor(props) {
@@ -157,12 +159,18 @@ class MemoryForm extends Component {
             name="memoryAssets"
             component={UploadImagesField}
           />
-          <Field
-            label="Silhueta"
-            name="victimSilhouette"
-            type="text"
-            component={TextField}
-          />
+          <Field label='Silhueta' name='victimSilhouette' component={RadioField.Field}>
+            <RadioField.Button
+              src='/img/silhouette-1.svg'
+              alt='Silhueta 1'
+              value='1'
+            />
+            <RadioField.Button
+              src='/img/silhouette-2.svg'
+              alt='Silhueta 2'
+              value='2'
+            />
+          </Field>
           <Field name="authorizedToSite" component={CheckboxField}>
             Autorizo a divulgação dessa homenagem no site #VivosEmNós
           </Field>

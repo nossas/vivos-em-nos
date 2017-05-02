@@ -3,7 +3,6 @@ import { Header, LayoutDefault } from '../../../views/layout/layout'
 import {
   MemoryImage,
   MemorySummary,
-  OrnamentPageFooter,
   Quote,
   SectionHeader,
   SectionPrimary,
@@ -111,8 +110,6 @@ export default ({ id, memory, comments, assets, loading }) => (
             </div>
           ))}
         </SectionPrimary>
-
-        <OrnamentPageFooter />
       </div>
     )}
   </LayoutDefault>

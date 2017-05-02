@@ -1,5 +1,7 @@
 import { connect } from 'preact-redux'
 import { graphql } from 'react-apollo'
+import { hoc } from '../../utils/preact'
+import LoaderHOC from '../../loader'
 import * as queries from '../../memories/queries'
 import * as CarouselActions from '../../carousel/redux/action-creators'
 import CarouselSelectors from '../../carousel/redux/selectors'
@@ -19,8 +21,7 @@ const mapDispatchToProps = ({
 })
 
 export default graphql(queries.memoriesFeatured)(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps,
-  )(FeaturedMemories),
+  connect(mapStateToProps, mapDispatchToProps)(
+    hoc(LoaderHOC, FeaturedMemories),
+  ),
 )

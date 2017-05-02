@@ -11,14 +11,14 @@ export default class Page extends Component {
       if (nodes[0]) {
         const { memoryAssetsByMemoryId, ...memory } = nodes[0]
         memory.memoryAssets = [...memoryAssetsByMemoryId.nodes,
-          {}
+          {},
         ]
         return memory
       }
     }
   }
 
-  render () {
+  render() {
     const memory = this.getMemoryByToken()
 
     return (

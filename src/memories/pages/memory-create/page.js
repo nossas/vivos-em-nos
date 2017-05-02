@@ -1,21 +1,21 @@
 import { h, Component } from 'preact' /** @jsx h */
-import { Header, LayoutDefault } from '../../../views/layout/layout'
-import { MemoryForm } from '../../components'
-import { TopBar } from '../../../views/components'
+import { Header, Footer, LayoutDefault } from '~src/views/layout/layout'
+import { TopBar, OrnamentPageFooter } from '~src/views/components'
+import { MemoryForm } from '~src/memories/components'
 
 export default class Page extends Component {
-
   getMemoryByToken() {
+    let memoryByToken = {}
+
     if (this.props.getMemoryByToken.allMemories) {
-      const { allMemories: { nodes } } = this.props.getMemoryByToken
+      const { nodes } = this.props.getMemoryByToken.allMemories
       if (nodes[0]) {
         const { memoryAssetsByMemoryId, ...memory } = nodes[0]
-        memory.memoryAssets = [...memoryAssetsByMemoryId.nodes,
-          {},
-        ]
-        return memory
+        memory.memoryAssets = [...memoryAssetsByMemoryId.nodes, {}]
+        memoryByToken = memory
       }
     }
+    return memoryByToken
   }
 
   render() {
@@ -27,6 +27,8 @@ export default class Page extends Component {
           <TopBar />
         </Header>
 
+        <Footer />
+
         <div className="page page--memory-create">
           <p>
             Preenchendo o formulário abaixo, você cria uma homenagem a alguém que morreu,
@@ -37,6 +39,7 @@ export default class Page extends Component {
             e dizer a todos como essa pessoa permanece viva na sua memória.
           </p>
           <MemoryForm memory={memory} />
+          <OrnamentPageFooter />
         </div>
       </LayoutDefault>
     )

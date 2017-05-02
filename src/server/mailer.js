@@ -5,6 +5,7 @@ import fs from 'fs'
 import _ from 'lodash'
 import aws from 'aws-sdk'
 import pg from 'pg'
+import mimelib from 'mimelib'
 
 function sendMail (payload, config, winstonLog) {
   const p = JSON.parse(payload)
@@ -42,6 +43,7 @@ Caso esse email te incomode, fique à vontade para enviar um email para notifica
 
     winstonLog.info(`MEMORY READY TO MAIL: ${EmailText}`)
 
+    const replyTo = `${mimelib.encodeMimeWord("Vivos Em Nós")} <notificacoes@vivosemnos.org>`
     const eparam = {
       Destination: {
         ToAddresses: [`${p.owner_first_name}<${p.owner_email}>`],
@@ -59,9 +61,9 @@ Caso esse email te incomode, fique à vontade para enviar um email para notifica
           Data: 'Sua homenagem ficou pronta, acesse!',
         },
       },
-      Source: 'Vivos Em Nós <notificacoes@vivosemnos.org>',
-      ReplyToAddresses: ['Vivos Em Nós <notificacoes@vivosemnos.org>'],
-      ReturnPath: 'Vivos Em Nós <notificacoes@vivosemnos.org>',
+      Source: replyTo,
+      ReplyToAddresses: [replyTo],
+      ReturnPath: replyTo,
     }
 
     ses.sendEmail(eparam, function (err, data) {

@@ -3,6 +3,7 @@ import { connect } from 'preact-redux'
 import { reduxForm, SubmissionError } from 'redux-form'
 import * as validation from '../../utils/validation'
 import * as queries from '../queries'
+import * as LoaderActions from '../../loader/redux/action-creators'
 import MemoryCommentsForm from './memory-comments-form'
 
 const form = 'memoryCommentsForm'
@@ -32,7 +33,8 @@ const mapStateToProps = (state, { memoryId }) => ({
 
 export default graphql(queries.memoryCommentCreate, {
   props: ({ mutate }) => ({
-    onSubmit: (values, dispatch, formProps) =>
+    onSubmit: (values, dispatch, formProps) => {
+      dispatch(LoaderActions.setActive(true))
       mutate({
         variables: values,
         refetchQueries: [{
@@ -40,10 +42,15 @@ export default graphql(queries.memoryCommentCreate, {
           variables: { id: values.memoryId },
         }],
       })
-        .then(() => formProps.reset())
+        .then(() => {
+          dispatch(LoaderActions.setActive(false))
+          formProps.reset()
+        })
         .catch(() => {
+          dispatch(LoaderActions.setActive(false))
           throw new SubmissionError({ _error: '(500) Erro interno no servidor.' })
-        }),
+        })
+    },
   }),
 })(connect(mapStateToProps)(
   reduxForm({ form, validate })(MemoryCommentsForm),

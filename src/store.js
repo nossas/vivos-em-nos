@@ -1,13 +1,14 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux'
 import { createNetworkInterface, ApolloClient } from 'react-apollo'
-
 import { reducer as formReducer } from 'redux-form'
-import menu from './menu/redux/reducers'
-import carousel from './carousel/redux/reducers'
 
-/**
- * Logs all actions and states after they are dispatched.
- */
+import carousel from './carousel/redux/reducers'
+import loader from './loader/redux/reducers'
+import menu from './menu/redux/reducers'
+
+//
+// Logs all actions and states after they are dispatched.
+//
 const logger = store => next => (action) => {
   console.group(action.type)
   console.info('dispatching', action)
@@ -17,9 +18,9 @@ const logger = store => next => (action) => {
   return result
 }
 
-/**
- * Sends crash reports as state is updated and listeners are notified.
- */
+//
+// Sends crash reports as state is updated and listeners are notified.
+//
 const crashReporter = store => next => (action) => {
   try {
     return next(action)
@@ -35,10 +36,10 @@ const crashReporter = store => next => (action) => {
   }
 }
 
-/**
- * Schedules actions with { meta: { delay: N } } to be delayed by N milliseconds.
- * Makes `dispatch` return a function to cancel the timeout in this case.
- */
+//
+// Schedules actions with { meta: { delay: N } } to be delayed by N milliseconds.
+// Makes `dispatch` return a function to cancel the timeout in this case.
+//
 const timeoutScheduler = store => next => (action) => {
   if (!action.meta || !action.meta.delay) {
     return next(action)
@@ -54,11 +55,11 @@ const timeoutScheduler = store => next => (action) => {
   }
 }
 
-/**
- * Schedules actions with { meta: { raf: true } } to be dispatched inside a rAF loop
- * frame.  Makes `dispatch` return a function to remove the action from the queue in
- * this case.
- */
+//
+// Schedules actions with { meta: { raf: true } } to be dispatched inside a rAF loop
+// frame.  Makes `dispatch` return a function to remove the action from the queue in
+// this case.
+//
 const rafScheduler = store => (next) => {
   let queuedActions = []
   let frame = null
@@ -94,11 +95,11 @@ const rafScheduler = store => (next) => {
   }
 }
 
-/**
- * Lets you dispatch promises in addition to actions.
- * If the promise is resolved, its result will be dispatched as an action.
- * The promise is returned from `dispatch` so the caller may handle rejection.
- */
+//
+// Lets you dispatch promises in addition to actions.
+// If the promise is resolved, its result will be dispatched as an action.
+// The promise is returned from `dispatch` so the caller may handle rejection.
+//
 const vanillaPromise = store => next => (action) => {
   if (typeof action.then !== 'function') {
     return next(action)
@@ -107,14 +108,14 @@ const vanillaPromise = store => next => (action) => {
   return Promise.resolve(action).then(store.dispatch)
 }
 
-/**
- * Lets you dispatch special actions with a { promise } field.
- *
- * This middleware will turn them into a single action at the beginning,
- * and a single success (or failure) action when the `promise` resolves.
- *
- * For convenience, `dispatch` will return the promise so the caller can wait.
- */
+//
+// Lets you dispatch special actions with a { promise } field.
+//
+// This middleware will turn them into a single action at the beginning,
+// and a single success (or failure) action when the `promise` resolves.
+//
+// For convenience, `dispatch` will return the promise so the caller can wait.
+//
 const readyStatePromise = store => next => (action) => {
   if (!action.promise) {
     return next(action)
@@ -133,15 +134,15 @@ const readyStatePromise = store => next => (action) => {
   )
 }
 
-/**
- * Lets you dispatch a function instead of an action.
- * This function will receive `dispatch` and `getState` as arguments.
- *
- * Useful for early exits (conditions over `getState()`), as well
- * as for async control flow (it can `dispatch()` something else).
- *
- * `dispatch` will return the return value of the dispatched function.
- */
+//
+// Lets you dispatch a function instead of an action.
+// This function will receive `dispatch` and `getState` as arguments.
+//
+// Useful for early exits (conditions over `getState()`), as well
+// as for async control flow (it can `dispatch()` something else).
+//
+// `dispatch` will return the return value of the dispatched function.
+//
 const thunk = store => next => action =>
   typeof action === 'function' ?
     action(store.dispatch, store.getState) :
@@ -159,8 +160,9 @@ export default createStore(
   combineReducers({
     form: formReducer,
     apollo: client.reducer(),
-    menu,
     carousel,
+    loader,
+    menu,
   }),
   {},
   compose(

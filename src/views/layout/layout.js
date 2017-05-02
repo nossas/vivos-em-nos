@@ -4,6 +4,7 @@ import { Menu, MenuItem } from '../../menu/components'
 import * as paths from '../../paths'
 
 const Header = () => {}
+const Footer = () => {}
 
 const LayoutDefault = ({ children }) => (
   <Layout>
@@ -15,10 +16,12 @@ const LayoutDefault = ({ children }) => (
     </Menu>
     <Section type={Header} />
     <Section>{children}</Section>
+    <Section type={Footer} />
   </Layout>
   )
 
 export {
+  Footer,
   Header,
   LayoutDefault,
 }

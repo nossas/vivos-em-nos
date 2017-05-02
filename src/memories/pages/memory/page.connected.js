@@ -8,6 +8,7 @@ import MemoryVictim from './page'
 const mapStateToProps = (state, { data: { loading, memoryById } }) => ({
   memory: loading ? {} : memoryById,
   comments: loading ? [] : memoryById.memoryCommentsByMemoryId.nodes,
+  assets: loading ? [] : memoryById.memoryAssetsByMemoryId.nodes,
   loading,
 })
 

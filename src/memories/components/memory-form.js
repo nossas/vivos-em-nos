@@ -160,16 +160,17 @@ class MemoryForm extends Component {
             component={UploadImagesField}
           />
           <Field label='Silhueta' name='victimSilhouette' component={RadioField.Field}>
-            <RadioField.Button
-              src='/img/silhouette-1.svg'
-              alt='Silhueta 1'
-              value='1'
-            />
-            <RadioField.Button
-              src='/img/silhouette-2.svg'
-              alt='Silhueta 2'
-              value='2'
-            />
+                <RadioField.Button
+                  src='/img/silhouette-orange-form.svg'
+                  alt='Silhueta 1'
+                  value='1'
+                />
+
+                <RadioField.Button
+                  src='/img/silhouette-blue-form.svg'
+                  alt='Silhueta 2'
+                  value='2'
+                />
           </Field>
           <Field name="authorizedToSite" component={CheckboxField}>
             Autorizo a divulgação dessa homenagem no site #VivosEmNós

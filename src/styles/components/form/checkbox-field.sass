@@ -1,0 +1,25 @@
+.checkbox-field
+  position: relative
+
+  .checkbox
+    display: flex
+    align-items: center
+
+    input[type="checkbox"]
+      -webkit-appearance: none
+      width: 30px
+      min-width: 14px
+      min-height: 14px
+      width: 14px
+      height: 14px
+      background-color: transparent
+      border: 2px solid transparent
+      outline: 2px solid $secondary
+
+      &:checked
+        background-color: $secondary
+        border-color: white
+
+    .label
+      margin-left: 20px
+      font-weight: normal

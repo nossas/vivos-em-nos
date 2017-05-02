@@ -3,15 +3,9 @@ import { Field, FieldArray } from 'redux-form'
 import * as paths from '~src/paths'
 import { COUNTRIES } from '~src/memories/constants'
 import { ButtonPrimary, SectionHeader, SectionPrimary } from '~src/views/components'
-import { SelectField, TextField } from '~src/views/components/form'
+import { CheckboxField, SelectField, TextField } from '~src/views/components/form'
 import AlertBox from './alert-box'
-import {
-  Form,
-  CheckboxField,
-  UploadFileField,
-  UploadImagesField,
-  RadioField,
-} from './forms'
+import { Form, UploadFileField, UploadImagesField, RadioField } from './forms'
 
 class MemoryForm extends Component {
   constructor(props) {
@@ -28,7 +22,6 @@ class MemoryForm extends Component {
       handleSubmit,
       error,
       submitSucceeded,
-      change,
     } = this.props
 
     if (submitSucceeded) {
@@ -149,7 +142,11 @@ class MemoryForm extends Component {
             name="memoryAssets"
             component={UploadImagesField}
           />
-          <Field label="Silhueta" name="victimSilhouette" component={RadioField.Field}>
+          <Field
+            label="Silhueta"
+            name="victimSilhouette"
+            component={RadioField.Field}
+          >
             <RadioField.Button
               src="/img/silhouette-orange-form.svg"
               alt="Silhueta 1"
@@ -162,8 +159,12 @@ class MemoryForm extends Component {
               value="2"
             />
           </Field>
-          <Field name="authorizedToSite" component={CheckboxField}>
-            Autorizo a divulgação dessa homenagem no site #VivosEmNós
+          <Field
+            name="authorizedToSite"
+            component={CheckboxField}
+          >
+            Autorizo a divulgação dessa homenagem
+            no site <span className="color--primary">#VivosEmNós</span>
           </Field>
         </SectionPrimary>
 

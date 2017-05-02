@@ -32,7 +32,7 @@ const DefaultServerConfig = {
   databaseUrl: process.env.DATABASE_URL || 'postgres://postgres@localhost/vivos-em-nos-pwa',
   sentryDns: process.env.SENTRY_DSN,
   s3BucketName: process.env.AWS_BUCKET || 'vivo-em-nos-staging',
-  startTime: new Date().toISOString(),
+  startTime: -1,
   emailEmitter: new EmailEmitter(),
 }
 
@@ -80,9 +80,9 @@ const createServer = (config, winstonLog) => {
     res.end()
   })
 
-  // app.use(expressWinston.errorLogger({
-  //   transports: [log.expressServerTransports(config)]
-  // }))
+  app.use(expressWinston.errorLogger({
+    transports: [log.expressServerTransports(config)]
+  }))
 
   if (PROD) { app.use(Raven.errorHandler()) }
 

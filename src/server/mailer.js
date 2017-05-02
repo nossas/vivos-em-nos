@@ -1,3 +1,4 @@
+
 import { URL } from 'url'
 import path from 'path'
 import fs from 'fs'
@@ -5,7 +6,7 @@ import _ from 'lodash'
 import aws from 'aws-sdk'
 import pg from 'pg'
 
-const createMemoriesListener = (config, winstonLog) => {
+const createMemoriesListener = function(config, winstonLog) {
   const client = new pg.Client(config.databaseUrl)
   client.connect(function(err, client) {
     if (err) {
@@ -15,8 +16,11 @@ const createMemoriesListener = (config, winstonLog) => {
 
     config.emailEmitter.on('memory_created', function ({ payload }) {
       const p = JSON.parse(payload)
-      const fileNameEmailTemplate = path.resolve(__dirname,
-        'notification-criacao-memoria.html')
+      const fileNameEmailTemplate = path.resolve(
+        __dirname, '..', '..', 'dist',
+        'notification-criacao-memoria.html'
+      )
+      winstonLog.info(`EVENT TRIGGER MEMORY CREATED: ${payload}`)
 
       fs.readFile(fileNameEmailTemplate, 'utf8', function (err, fileContent) {
         if (err) {

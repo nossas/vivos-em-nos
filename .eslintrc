@@ -1,21 +1,26 @@
 {
   "parser": "babel-eslint",
-  extends: "airbnb",
-  ecmaFeatures: {
-    jsx: true,
-    modules: true
+  "extends": "airbnb",
+  "ecmaFeatures": {
+    "jsx": true,
+    "modules": true
   },
-  env: {
-    browser: true,
-    node: true
+  "env": {
+    "browser": true,
+    "node": true
   },
-  rules: {
-    semi: [ 2, "never" ],
+  "rules": {
+    "semi": [ 2, "never" ],
     "react/prop-types": 0,
-    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }]
   },
-  plugins: [
+  "plugins": [
     "babel",
     "react"
-  ]
+  ],
+  "settings": {
+    "import/resolver": {
+      "babel-module": {}
+    }
+  }
 }

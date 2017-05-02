@@ -16,7 +16,7 @@ import log from './log'
 import mailer from './mailer'
 import ping from './ping'
 
-const envFile = { path: path.resolve(__dirname, '..', '.env') }
+const envFile = { path: path.resolve(__dirname, '../..', '.env') }
 dotenv.config(envFile)
 
 const DefaultServerConfig = {
@@ -35,6 +35,8 @@ const DefaultServerConfig = {
 const createServer = (config, winstonLog) => {
   const PROD = config.nodeEnv === 'production'
   const app = express()
+
+  console.log('config', config)
 
   if (PROD) {
     winstonLog.info(envFile, process.env)
@@ -62,12 +64,12 @@ const createServer = (config, winstonLog) => {
   })
 
   app.use('/s3', require('react-s3-uploader/s3router')({
-    bucket: `${config.s3BucketName}`,
+    bucket: `${DefaultServerConfig.s3BucketName}`,
     uniquePrefix: false,
     ACL: 'public-read',
     s3Options: {
-      accessKeyId: config.accessKeyId,
-      secretKeyId: config.secretKeyId,
+      accessKeyId: DefaultServerConfig.accessKeyId,
+      secretKeyId: DefaultServerConfig.secretKeyId,
     },
   }))
 

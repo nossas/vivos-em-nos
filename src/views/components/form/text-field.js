@@ -12,6 +12,7 @@ export default class TextField extends Component {
   render() {
     const { isFocused } = this.state
     const { input, label, type, meta } = this.props
+    const focusedClassName = (isFocused || input.value) ? 'focused' : ''
 
     return (
       <FormGroup meta={meta}>
@@ -19,7 +20,7 @@ export default class TextField extends Component {
           <div className="label-placeholder">{label}</div>
           <div className="field-container">
             <label
-              className={`label ${isFocused ? 'focused' : ''}`}
+              className={`label ${focusedClassName}`}
               htmlFor={input.name}
             >
               {label}

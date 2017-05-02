@@ -2,6 +2,7 @@ import { h } from 'preact' /** @jsx h */
 import { Layout, Section } from 'preact-layout'
 import { Menu, MenuItem } from '../../menu/components'
 import * as paths from '../../paths'
+import MainFooter from './footer'
 
 const Header = function() { return 'Header' }
 const Footer = function() { return 'Footer' }
@@ -16,7 +17,7 @@ const LayoutDefault = ({ children }) => (
     </Menu>
     <Section type={Header}>Header</Section>
     <Section>{children}</Section>
-    <Section type={Footer}>Footer</Section>
+    <Section type={Footer}><MainFooter /></Section>
   </Layout>
   )
 

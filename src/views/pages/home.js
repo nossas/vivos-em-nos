@@ -3,7 +3,6 @@ import { MenuTrigger } from '../../menu/components'
 import { LayoutDefault, Footer, Header } from '../layout/layout'
 import {
   ButtonPrimary,
-  OrnamentPageFooter,
   ParagraphLineRounded,
   SectionHeader,
   SectionPrimary,
@@ -83,35 +82,5 @@ export default () => (
         </p>
       </SectionPrimary>
     </div>
-    <Footer>
-      <footer className="footer--home">
-        <div className="container--logos">
-          <img
-            src="/img/logo-vivos-em-nos.svg"
-            alt="Logo Vivos em Nós"
-            width="102"
-            height="63"
-          />
-          <img
-            src="/img/logo-instinto-de-vida.png"
-            alt="Logo Instinto de Vida"
-            width="85"
-            height="68"
-          />
-        </div>
-        <div>
-          Fale conosco: <br />
-          <a
-            className="link"
-            href="mailto:contato@instintodevida.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            contato@instintodevida.org
-          </a>
-        </div>
-        <OrnamentPageFooter />
-      </footer>
-    </Footer>
   </LayoutDefault>
 )

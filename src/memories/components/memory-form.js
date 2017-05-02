@@ -27,12 +27,8 @@ class MemoryForm extends Component {
 
     if (submitSucceeded) {
       return (
-        <AlertBox
-          done={() => {
-            window.location.href = paths.home()
-          }}
-        >
-          <h1>Sua página foi publicada!</h1>
+        <AlertBox next={() => { window.location.href = paths.home() }}>
+          <h1>Sua página<br />foi publicada!</h1>
           <p>
             Se você quiser editá-la ou visualizá-la novamente, é só seguir as informações que
             acabamos de enviar por e-mail. Qualquer dúvida, entre em contato com a gente

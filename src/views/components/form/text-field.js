@@ -20,13 +20,13 @@ export default class TextField extends Component {
         <div className="field text-field">
           <div className="label-placeholder">{label}</div>
           <div className="field-container">
-            <label
-              className={`label ${focusedClassName}`}
-              htmlFor={input.name}
-            >
-              {label}
-            </label>
             <p className="control">
+              <label
+                className={`label ${focusedClassName}`}
+                htmlFor={input.name}
+              >
+                {label}
+              </label>
               <input
                 name={input.name}
                 id={input.name}
@@ -38,8 +38,12 @@ export default class TextField extends Component {
                 onKeyUp={e => input.onChange(e.target.value)}
                 value={input.value}
               />
-              {maxLength && <span className='help'>{`${inputSize} caracteres`}</span>}
             </p>
+            {maxLength && (
+              <span className="help color--primary">
+                {`${inputSize} caracteres`}
+              </span>
+            )}
           </div>
         </div>
       </FormGroup>

@@ -9,6 +9,7 @@ export default class MemoryCommentsForm extends Component {
 
     return (
       <Form
+        className="columns is-multiline"
         error={error}
         onSubmit={handleSubmit((...args) =>
           this.props.onSave(...args)
@@ -31,6 +32,7 @@ export default class MemoryCommentsForm extends Component {
           ref={(comment) => { this.comment = comment }}
           type="text"
           component={TextField}
+          formGroupClassName="column is-12"
         />
         <Field
           label="Nome completo"
@@ -38,6 +40,7 @@ export default class MemoryCommentsForm extends Component {
           ref={(name) => { this.name = name }}
           type="text"
           component={TextField}
+          formGroupClassName="column is-half-desktop"
         />
         <Field
           label="Email"
@@ -45,6 +48,7 @@ export default class MemoryCommentsForm extends Component {
           ref={(email) => { this.email = email }}
           type="email"
           component={TextField}
+          formGroupClassName="column is-half-desktop"
         />
 
         <ButtonPrimary TagName="button" type="submit">

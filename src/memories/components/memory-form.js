@@ -118,24 +118,33 @@ class MemoryForm extends Component {
             component={TextField}
             multiline
           />
-          <Field
-            label={`Quando eu penso em ${victimName} eu me lembro de*`}
-            name="victimRememberText"
-            type="text"
-            component={TextField}
-            multiline
-          />
-          <Field
-            label={`Se eu pudesse escolher uma palavra para descrever ${victimName}, eu escolheria`}
-            name="victimGoodWords"
-            type="text"
-            component={TextField}
-          />
-          <Field
-            label={`Foto de ${victimName}`}
-            name="victimPhoto"
-            component={UploadFileField}
-          />
+          {!victimName ? <div /> : (
+            <Field
+              label={`Quando eu penso em ${victimName} eu me lembro de*`}
+              name="victimRememberText"
+              type="text"
+              component={TextField}
+              multiline
+            />
+          )}
+          {!victimName ? <div /> : (
+            <Field
+              label={
+                'Se eu pudesse escolher uma palavra para ' +
+                `descrever ${victimName}, eu escolheria`
+              }
+              name="victimGoodWords"
+              type="text"
+              component={TextField}
+            />
+          )}
+          {!victimName ? <div /> : (
+            <Field
+              label={`Foto de ${victimName}`}
+              name="victimPhoto"
+              component={UploadFileField}
+            />
+          )}
           <FieldArray
             withRef
             label="Galeria de imagens"

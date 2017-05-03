@@ -9,6 +9,7 @@ import {
   RadioField,
   SelectField,
   TextField,
+  TextareaField,
   UploadField,
   UploadMultiplesField,
 } from '~src/views/components/form'
@@ -154,19 +155,16 @@ class MemoryForm extends Component {
           <Field
             label="O que aconteceu?*"
             name="victimHistory"
-            type="text"
             maxLength={200}
-            component={TextField}
+            component={TextareaField}
             formGroupClassName="column is-12"
           />
           {victimName && (
             <Field
               label={`Quando eu penso em ${victimName} eu me lembro de*`}
               name="victimRememberText"
-              type="text"
-              component={TextField}
               maxLength={500}
-              multiline
+              component={TextareaField}
               formGroupClassName="column is-12"
             />
           )}

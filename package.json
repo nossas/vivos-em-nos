@@ -44,6 +44,7 @@
     "react-apollo": "^1.0.1",
     "react-s3-uploader": "^4.1.1",
     "react-swipeable": "^3.9.2",
+    "react-textarea-autosize": "^4.3.0",
     "redux": "^3.6.0",
     "redux-form": "^6.6.3",
     "throng": "^4.0.0",

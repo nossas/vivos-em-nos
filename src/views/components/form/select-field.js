@@ -8,7 +8,11 @@ const SelectField = ({ input, children, label, meta, formGroupClassName }) => (
         <span className="select is-fullwidth">
           <select {...input}>
             <option value="" disabled>{label}</option>
-            {children && children.map(child => cloneElement(child, { selected: input.value === child.value }))}
+            {children && children.map(
+              child => cloneElement(child, {
+                selected: input.value === child.value,
+              }),
+            )}
           </select>
         </span>
       </p>

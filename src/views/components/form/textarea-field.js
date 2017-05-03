@@ -1,41 +1,57 @@
 import { h, Component } from 'preact' /** @jsx h */
+import Textarea from 'react-textarea-autosize'
 import { FormGroup, InputCounter } from '~src/views/components/form'
 
-export default class TextField extends Component {
-
+class TextareaField extends Component {
   constructor(props) {
     super(props)
-    this.state = { isFocused: false }
+    this.state = {
+      isFocused: false,
+    }
   }
 
   render() {
     const { isFocused } = this.state
-    const { input, label, maxLength, type, meta, formGroupClassName } = this.props
+    const {
+      children,
+      input,
+      meta,
+      label,
+      rows,
+      minRows,
+      maxRows,
+      maxHeight,
+      maxLength,
+      formGroupClassName,
+    } = this.props
     const focusedClassName = (isFocused || input.value) ? 'focused' : ''
 
     return (
       <FormGroup className={formGroupClassName} meta={meta}>
-        <div className="field text-field">
+        <div className="field textarea-field">
           <div className="label-placeholder">{label}</div>
           <div className="field-container">
+            <label
+              className={`label ${focusedClassName}`}
+              htmlFor={input.name}
+            >
+              {label}
+            </label>
             <p className="control">
-              <label
-                className={`label ${focusedClassName}`}
-                htmlFor={input.name}
-              >
-                {label}
-              </label>
-              <input
-                name={input.name}
+              <Textarea
+                {...input}
                 id={input.name}
+                className="textarea"
+                style={{ maxHeight }}
                 maxLength={maxLength}
-                className="input"
-                type={type}
                 onFocus={() => this.setState({ isFocused: true })}
                 onBlur={() => this.setState({ isFocused: false })}
-                onKeyUp={e => input.onChange(e.target.value)}
-                value={input.value}
-              />
+                rows={rows}
+                minRows={minRows}
+                maxRows={maxRows}
+              >
+                {children}
+              </Textarea>
             </p>
             {maxLength && (
               <InputCounter
@@ -49,3 +65,9 @@ export default class TextField extends Component {
     )
   }
 }
+
+TextareaField.defaultProps = {
+  className: '',
+}
+
+export default TextareaField

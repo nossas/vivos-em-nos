@@ -1,4 +1,6 @@
-.text-field
+.textarea-field
+  position: relative
+
   .label-placeholder
     font-size: 14px
     line-height: 14px
@@ -6,28 +8,33 @@
 
   .control
     margin-bottom: 0
+    padding: 0.625em 0
 
   .field-container
-    position: relative
-
     .label
       position: absolute
       left: 0
-      bottom: 0
+      top: 0
       font-weight: normal
+      z-index: 1
       transition: all 300ms
 
       &.focused
-        bottom: calc(100% - 11px)
+        top: -21px
         font-size: 14px
         line-height: 16px
         color: #9B9B9B
 
-    .input
+    .textarea
       background-color: transparent
       border-radius: 0
       box-shadow: inset 0 -1px 0 $tertiary
-      height: 35px
+      height: 20px
+      border: none
+      resize: none
+      min-height: 0
+      padding: 0
+      padding-bottom: 0.625em
 
       &.is-active,
       &.is-focused,

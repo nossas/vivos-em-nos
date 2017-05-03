@@ -47,6 +47,8 @@ class MemoryForm extends Component {
       )
     }
 
+    const currentYear = new Date().getFullYear()
+
     return (
       <Form error={error} handleSubmit={handleSubmit}>
         <SectionPrimary
@@ -96,15 +98,31 @@ class MemoryForm extends Component {
           <Field
             label="Ano em que nasceu*"
             name="victimBornAt"
-            type="number"
-            component={TextField}
-          />
+            component={SelectField}
+          >
+            {Array(75).fill('').map((e, index) => {
+              const year = currentYear - index
+              return (
+                <option key={`victim-born-year-${year}`} value={year}>
+                  {year}
+                </option>
+              )
+            })}
+          </Field>
           <Field
             label="Ano do assassinato*"
             name="victimDeadAt"
-            type="number"
-            component={TextField}
-          />
+            component={SelectField}
+          >
+            {Array(75).fill('').map((e, index) => {
+              const year = currentYear - index
+              return (
+                <option key={`victim-dead-year-${year}`} value={year}>
+                  {year}
+                </option>
+              )
+            })}
+          </Field>
           <Field
             label="Cidade onde morreu*"
             name="victimCity"

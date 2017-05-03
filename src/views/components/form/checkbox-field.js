@@ -1,5 +1,5 @@
 import { h } from 'preact' /** @jsx h */
-import { FormGroup } from '~src/memories/components/forms'
+import { FormGroup } from '~src/views/components/form'
 
 export default ({ input, children, meta }) => (
   <FormGroup meta={meta}>

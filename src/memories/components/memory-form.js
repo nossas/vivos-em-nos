@@ -4,6 +4,7 @@ import * as paths from '~src/paths'
 import { COUNTRIES } from '~src/memories/constants'
 import { ButtonPrimary, SectionHeader, SectionPrimary } from '~src/views/components'
 import {
+  Form,
   CheckboxField,
   RadioField,
   SelectField,
@@ -12,7 +13,6 @@ import {
   UploadMultiplesField,
 } from '~src/views/components/form'
 import AlertBox from './alert-box'
-import { Form } from './forms'
 
 class MemoryForm extends Component {
   constructor(props) {

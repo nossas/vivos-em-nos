@@ -1,7 +1,6 @@
 import { h, Component } from 'preact' /** @jsx h */
 import { Field } from 'redux-form'
-import { UploadField } from '~src/views/components/form'
-import { FormGroup } from '~src/memories/components/forms'
+import { FormGroup, UploadField } from '~src/views/components/form'
 
 export default class UploadMultiplesField extends Component {
   componentDidMount() {

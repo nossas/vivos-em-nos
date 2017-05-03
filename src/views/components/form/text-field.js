@@ -1,5 +1,5 @@
 import { h, Component } from 'preact' /** @jsx h */
-import { FormGroup } from '~src/memories/components/forms'
+import { FormGroup } from '~src/views/components/form'
 
 export default class TextField extends Component {
   constructor(props) {

@@ -1,5 +1,5 @@
 import { h, cloneElement } from 'preact' /** @jsx h */
-import { FormGroup } from '~src/memories/components/forms'
+import { FormGroup } from '~src/views/components/form'
 
 const Field = ({
   children,

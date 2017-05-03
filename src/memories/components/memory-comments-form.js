@@ -1,8 +1,7 @@
 import { h, Component } from 'preact' /** @jsx h */
 import { Field } from 'redux-form'
-import { TextField } from '~src/views/components/form'
-import { Form } from './forms'
-import { ButtonPrimary } from '../../views/components'
+import { ButtonPrimary } from '~src/views/components'
+import { Form, TextField } from '~src/views/components/form'
 
 export default class MemoryCommentsForm extends Component {
   render() {

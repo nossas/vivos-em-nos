@@ -1,6 +1,10 @@
 import { h } from 'preact' /** @jsx h */
 
-const FormGroup = ({ className, children, meta: { touched, error, warning } }) => (
+const FormGroup = ({
+  className,
+  children,
+  meta: { touched, error, warning },
+}) => (
   <div className={`form-group ${className}`}>
     {children}
     {touched && (

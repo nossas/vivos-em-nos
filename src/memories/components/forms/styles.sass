@@ -10,6 +10,11 @@
   .form-group
     margin-bottom: 8px
 
+    .UploadImagesField
+      label
+        display: block
+        padding: 20px 0 15px
+
   .RadioField--Buttons
     .RadioButton
       display: inline-block
@@ -18,34 +23,6 @@
       vertical-align: top
       img
         height: 200px
-
-  .UploadFileField,
-  .UploadImagesField
-    label
-      display: block
-      padding: 20px 0 15px
-
-  .UploadFileField
-
-    .FileHandler
-      text-align: center
-      width: 128px
-      height: 128px
-      background-color: #DE5F25
-      border-radius: 54px
-
-      &:before
-        content: '+'
-        font-size: 50px
-        font-weight: 300
-        color: #fff
-        display: flex
-        justify-content: center
-        line-height: 128px
-
-      .UploadFileField--Preview
-        display: table-row
-        vertical-align: middle
 
   .mdc-textfield
     width: 100%

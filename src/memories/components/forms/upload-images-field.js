@@ -1,7 +1,7 @@
 import { h, Component } from 'preact' /** @jsx h */
 import { Field } from 'redux-form'
+import { UploadField } from '~src/views/components/form'
 import FormGroup from './form-group'
-import UploadFileField from './upload-file-field'
 
 
 export default class UploadImagesField extends Component {
@@ -14,11 +14,16 @@ export default class UploadImagesField extends Component {
     const { fields, label, meta } = this.props
 
     return (
-      <FormGroup fieldClassName='UploadImagesField' meta={meta}>
+      <FormGroup fieldClassName="UploadImagesField" meta={meta}>
         {label && <label>{label}</label>}
-        <div className='Images'>
-          {fields && fields.map((imageField, index) => (
-            <Field name={`${imageField}.assetUrl`} component={UploadFileField} onFinish={() => fields.push()} />
+        <div className="Images">
+          {fields && fields.map((field, index) => (
+            <Field
+              id={`${field.name}-${index}`}
+              name={`${field}.assetUrl`}
+              component={UploadField}
+              onFinish={() => fields.push()}
+            />
           ))}
         </div>
       </FormGroup>

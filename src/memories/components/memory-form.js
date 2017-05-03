@@ -3,9 +3,9 @@ import { Field, FieldArray } from 'redux-form'
 import * as paths from '~src/paths'
 import { COUNTRIES } from '~src/memories/constants'
 import { ButtonPrimary, SectionHeader, SectionPrimary } from '~src/views/components'
-import { CheckboxField, SelectField, TextField } from '~src/views/components/form'
+import { CheckboxField, SelectField, TextField, UploadField } from '~src/views/components/form'
 import AlertBox from './alert-box'
-import { Form, UploadFileField, UploadImagesField, RadioField } from './forms'
+import { Form, UploadImagesField, RadioField } from './forms'
 
 class MemoryForm extends Component {
   constructor(props) {
@@ -160,7 +160,8 @@ class MemoryForm extends Component {
             <Field
               label={`Foto de ${victimName}`}
               name="victimPhoto"
-              component={UploadFileField}
+              id="victimPhoto"
+              component={UploadField}
             />
           )}
           <FieldArray

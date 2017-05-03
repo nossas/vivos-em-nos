@@ -8,8 +8,8 @@ const FormGroup = ({
   <div className={`form-group ${className}`}>
     {children}
     {touched && (
-      (error && <span className="FieldError">{error}</span>) ||
-      (warning && <span className="FieldWarning">{warning}</span>)
+      (error && <span className="field-error">{error}</span>) ||
+      (warning && <span className="field-warning">{warning}</span>)
     )}
   </div>
 )

@@ -11,6 +11,7 @@ const Button = ({
   optionsClassName: className,
 }) => (
   <button
+    type='button'
     className={`input--radio-button ${className}`}
     onClick={() => input.onChange(value)}
   >

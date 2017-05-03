@@ -15,12 +15,6 @@ import {
 import AlertBox from './alert-box'
 
 class MemoryForm extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      country: undefined,
-    }
-  }
 
   render() {
     const {

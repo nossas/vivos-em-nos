@@ -145,6 +145,7 @@ class MemoryForm extends Component {
             label="O que aconteceu?*"
             name="victimHistory"
             type="text"
+            maxLength={200}
             component={TextField}
             multiline
           />
@@ -154,6 +155,7 @@ class MemoryForm extends Component {
               name="victimRememberText"
               type="text"
               component={TextField}
+              maxLength={500}
               multiline
             />
           )}

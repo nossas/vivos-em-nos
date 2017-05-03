@@ -1,4 +1,4 @@
-import { h } from 'preact' /** @jsx h */
+import { h, cloneElement } from 'preact' /** @jsx h */
 import { FormGroup } from '~src/views/components/form'
 
 export default ({ input, children, label, meta }) => (
@@ -8,7 +8,7 @@ export default ({ input, children, label, meta }) => (
         <span className="select is-fullwidth">
           <select {...input}>
             <option value="" disabled>{label}</option>
-            {children}
+            {children && children.map(child => cloneElement(child, { selected: input.value === child.value }))}
           </select>
         </span>
       </p>

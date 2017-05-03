@@ -6,7 +6,7 @@ export default ({ input, children, meta }) => (
     <div className="field checkbox-field">
       <p className="control">
         <label className="checkbox" htmlFor={input.name}>
-          <input {...input} type="checkbox" id={input.name} />
+          <input {...input} checked={input.value} type="checkbox" id={input.name} />
           <div className="label">{children}</div>
         </label>
       </p>

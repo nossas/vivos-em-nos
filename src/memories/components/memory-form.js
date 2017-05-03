@@ -3,9 +3,15 @@ import { Field, FieldArray } from 'redux-form'
 import * as paths from '~src/paths'
 import { COUNTRIES } from '~src/memories/constants'
 import { ButtonPrimary, SectionHeader, SectionPrimary } from '~src/views/components'
-import { CheckboxField, SelectField, TextField, UploadField } from '~src/views/components/form'
+import {
+  CheckboxField,
+  SelectField,
+  TextField,
+  UploadField,
+  UploadMultiplesField,
+} from '~src/views/components/form'
 import AlertBox from './alert-box'
-import { Form, UploadImagesField, RadioField } from './forms'
+import { Form, RadioField } from './forms'
 
 class MemoryForm extends Component {
   constructor(props) {
@@ -168,7 +174,7 @@ class MemoryForm extends Component {
             withRef
             label="Galeria de imagens"
             name="memoryAssets"
-            component={UploadImagesField}
+            component={UploadMultiplesField}
           />
           <Field
             label="Silhueta"

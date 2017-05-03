@@ -157,38 +157,32 @@ class MemoryForm extends Component {
             name="victimHistory"
             maxLength={200}
             component={TextareaField}
+            formGroupClassName="column is-12 is-paddingless-y"
+          />
+          <Field
+            label={`Quando eu penso em ${victimName || ''} eu me lembro de*`}
+            name="victimRememberText"
+            maxLength={500}
+            component={TextareaField}
+            formGroupClassName="column is-12 is-paddingless-y"
+          />
+          <Field
+            label={
+              'Se eu pudesse escolher uma palavra para ' +
+              `descrever ${victimName || ''}, eu escolheria`
+            }
+            name="victimGoodWords"
+            type="text"
+            component={TextField}
             formGroupClassName="column is-12"
           />
-          {victimName && (
-            <Field
-              label={`Quando eu penso em ${victimName} eu me lembro de*`}
-              name="victimRememberText"
-              maxLength={500}
-              component={TextareaField}
-              formGroupClassName="column is-12"
-            />
-          )}
-          {victimName && (
-            <Field
-              label={
-                'Se eu pudesse escolher uma palavra para ' +
-                `descrever ${victimName}, eu escolheria`
-              }
-              name="victimGoodWords"
-              type="text"
-              component={TextField}
-              formGroupClassName="column is-12"
-            />
-          )}
-          {victimName && (
-            <Field
-              label={`Foto de ${victimName}`}
-              name="victimPhoto"
-              id="victimPhoto"
-              component={UploadField}
-              formGroupClassName="column is-12"
-            />
-          )}
+          <Field
+            label={`Foto de ${victimName || ''}`}
+            name="victimPhoto"
+            id="victimPhoto"
+            component={UploadField}
+            formGroupClassName="column is-12"
+          />
           <FieldArray
             withRef
             label="Galeria de imagens"

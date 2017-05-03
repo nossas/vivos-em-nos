@@ -1,5 +1,5 @@
 import { h } from 'preact' /** @jsx h */
-import { Header, LayoutDefault } from '../../../views/layout/layout'
+import { Header, LayoutDefault } from '~src/views/layout/layout'
 import {
   MemoryImage,
   MemorySummary,
@@ -11,9 +11,9 @@ import {
   ShareWhatsappButton,
   Silhouette,
   TopBar,
-} from '../../../views/components'
-import { MemoryCommentsForm } from '../../components'
-import * as detect from '../../../utils/detect'
+} from '~src/views/components'
+import { MemoryCommentsForm } from '~src/memories/components'
+import * as detect from '~src/utils/detect'
 
 export default ({ id, memory, comments, assets, loading }) => (
   <LayoutDefault>

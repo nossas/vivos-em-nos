@@ -1,7 +1,7 @@
 import { h, Component } from 'preact' /** @jsx h */
 import { Field } from 'redux-form'
-import { Form, TextField } from './forms'
-import { ButtonPrimary } from '../../views/components'
+import { ButtonPrimary } from '~src/views/components'
+import { Form, TextField } from '~src/views/components/form'
 
 export default class MemoryCommentsForm extends Component {
   render() {
@@ -15,9 +15,9 @@ export default class MemoryCommentsForm extends Component {
           //
           // blur fields after submit
           //
-          this.comment.base.children[0].children.comment.blur()
-          this.name.base.children[0].children.name.blur()
-          this.email.base.children[0].children.email.blur()
+          this.comment.base.children[0].children[1].children[1].children.comment.blur()
+          this.name.base.children[0].children[1].children[1].children.name.blur()
+          this.email.base.children[0].children[1].children[1].children.email.blur()
         })}
       >
         <Field

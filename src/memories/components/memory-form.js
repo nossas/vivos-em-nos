@@ -1,28 +1,20 @@
 import { h, Component } from 'preact' /** @jsx h */
 import { Field, FieldArray } from 'redux-form'
-import { Select } from 'preact-material-components'
+import * as paths from '~src/paths'
+import { COUNTRIES } from '~src/memories/constants'
+import { ButtonPrimary, SectionHeader, SectionPrimary } from '~src/views/components'
 import {
   Form,
   CheckboxField,
-  TextField,
+  RadioField,
   SelectField,
-  UploadFileField,
-  UploadImagesField,
-  RadioField
-} from './forms'
+  TextField,
+  UploadField,
+  UploadMultiplesField,
+} from '~src/views/components/form'
 import AlertBox from './alert-box'
-import { COUNTRIES } from '../constants'
-import * as paths from '../../paths'
-import { ButtonPrimary, SectionHeader, SectionPrimary, Silhouette } from '../../views/components'
-
 
 class MemoryForm extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      country: undefined,
-    }
-  }
 
   render() {
     const {
@@ -31,7 +23,6 @@ class MemoryForm extends Component {
       handleSubmit,
       error,
       submitSucceeded,
-      change,
     } = this.props
 
     if (submitSucceeded) {
@@ -56,6 +47,8 @@ class MemoryForm extends Component {
         </AlertBox>
       )
     }
+
+    const currentYear = new Date().getFullYear()
 
     return (
       <Form error={error} handleSubmit={handleSubmit}>
@@ -82,21 +75,14 @@ class MemoryForm extends Component {
             component={TextField}
           />
           <Field
-            hintText="País*"
+            label="País*"
             name="ownerCountry"
             component={SelectField}
-            reference={(selectCountry) => { this.selectCountry = selectCountry }}
-            selectedIndex={this.state.country}
-            onChangeCountry={() => {
-              const { selectedIndex } = this.selectCountry.MDComponent
-              this.setState({ country: selectedIndex })
-              change('ownerCountry', COUNTRIES[selectedIndex].name)
-            }}
           >
             {COUNTRIES.map(country => (
-              <Select.Item key={country.code} value={country.name}>
+              <option key={country.code} value={country.name}>
                 {country.name}
-              </Select.Item>
+              </option>
             ))}
           </Field>
         </SectionPrimary>
@@ -113,15 +99,31 @@ class MemoryForm extends Component {
           <Field
             label="Ano em que nasceu*"
             name="victimBornAt"
-            type="number"
-            component={TextField}
-          />
+            component={SelectField}
+          >
+            {Array(75).fill('').map((e, index) => {
+              const year = currentYear - index
+              return (
+                <option key={`victim-born-year-${year}`} value={year}>
+                  {year}
+                </option>
+              )
+            })}
+          </Field>
           <Field
             label="Ano do assassinato*"
             name="victimDeadAt"
-            type="number"
-            component={TextField}
-          />
+            component={SelectField}
+          >
+            {Array(75).fill('').map((e, index) => {
+              const year = currentYear - index
+              return (
+                <option key={`victim-dead-year-${year}`} value={year}>
+                  {year}
+                </option>
+              )
+            })}
+          </Field>
           <Field
             label="Cidade onde morreu*"
             name="victimCity"
@@ -135,45 +137,65 @@ class MemoryForm extends Component {
             component={TextField}
             multiline
           />
-          <Field
-            label={`Quando eu penso em ${victimName} eu me lembro de*`}
-            name="victimRememberText"
-            type="text"
-            component={TextField}
-            multiline
-          />
-          <Field
-            label={`Se eu pudesse escolher uma palavra para descrever ${victimName}, eu escolheria`}
-            name="victimGoodWords"
-            type="text"
-            component={TextField}
-          />
-          <Field
-            label={`Foto de ${victimName}`}
-            name="victimPhoto"
-            component={UploadFileField}
-          />
+          {!victimName ? <div /> : (
+            <Field
+              label={`Quando eu penso em ${victimName} eu me lembro de*`}
+              name="victimRememberText"
+              type="text"
+              component={TextField}
+              multiline
+            />
+          )}
+          {!victimName ? <div /> : (
+            <Field
+              label={
+                'Se eu pudesse escolher uma palavra para ' +
+                `descrever ${victimName}, eu escolheria`
+              }
+              name="victimGoodWords"
+              type="text"
+              component={TextField}
+            />
+          )}
+          {!victimName ? <div /> : (
+            <Field
+              label={`Foto de ${victimName}`}
+              name="victimPhoto"
+              id="victimPhoto"
+              component={UploadField}
+            />
+          )}
           <FieldArray
             withRef
             label="Galeria de imagens"
             name="memoryAssets"
-            component={UploadImagesField}
+            component={UploadMultiplesField}
           />
-          <Field label='Silhueta' name='victimSilhouette' component={RadioField.Field}>
-                <RadioField.Button
-                  src='/img/silhouette-orange-form.svg'
-                  alt='Silhueta 1'
-                  value='1'
-                />
-
-                <RadioField.Button
-                  src='/img/silhouette-blue-form.svg'
-                  alt='Silhueta 2'
-                  value='2'
-                />
+          <Field
+            label="Silhueta"
+            name="victimSilhouette"
+            component={RadioField.Field}
+            className="columns is-multiline is-mobile"
+            optionsHeight="200px"
+            optionsClassName="column is-half"
+          >
+            <RadioField.Button
+              src="/img/silhouette-orange-form.svg"
+              alt="Silhueta 1"
+              value="1"
+            />
+            <RadioField.Button
+              src="/img/silhouette-blue-form.svg"
+              alt="Silhueta 2"
+              value="2"
+            />
           </Field>
-          <Field name="authorizedToSite" component={CheckboxField}>
-            Autorizo a divulgação dessa homenagem no site #VivosEmNós
+          <Field
+            name="authorizedToSite"
+            component={CheckboxField}
+          >
+            Autorizo a divulgação dessa homenagem
+            no site <span className="color--primary">#VivosEmNós</span>
           </Field>
         </SectionPrimary>
 

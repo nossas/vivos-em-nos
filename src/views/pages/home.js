@@ -1,15 +1,15 @@
 import { h } from 'preact' /** @jsx h */
-import { MenuTrigger } from '../../menu/components'
-import { LayoutDefault, Footer, Header } from '../layout/layout'
+import { MenuTrigger } from '~src/menu/components'
+import { LayoutDefault, Header } from '~src/views/layout/layout'
 import {
   ButtonPrimary,
   ParagraphLineRounded,
   SectionHeader,
   SectionPrimary,
   Silhouette,
-} from '../components'
-import { FeaturedMemories } from '../sections'
-import * as paths from '../../paths'
+} from '~src/views/components'
+import { FeaturedMemories } from '~src/views/sections'
+import * as paths from '~src/paths'
 
 export default () => (
   <LayoutDefault>

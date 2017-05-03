@@ -1,0 +1,36 @@
+.text-field
+  .label-placeholder
+    font-size: 14px
+    line-height: 14px
+    visibility: hidden
+
+  .control
+    margin-bottom: 0
+
+  .field-container
+    position: relative
+
+    .label
+      position: absolute
+      left: 0
+      bottom: 0
+      font-weight: normal
+      transition: all 300ms
+
+      &.focused
+        bottom: calc(100% - 11px)
+        font-size: 14px
+        line-height: 16px
+        color: #9B9B9B
+
+    .input
+      background-color: transparent
+      border-radius: 0
+      box-shadow: inset 0 -1px 0 $tertiary
+      height: 35px
+
+      &.is-active,
+      &.is-focused,
+      &:active,
+      &:focus
+        box-shadow: inset 0 -2px 0 $tertiary

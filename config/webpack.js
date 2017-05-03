@@ -38,7 +38,7 @@ module.exports = (env) => {
         {
           test: /\.(js|jsx)$/,
           // exclude: exclude,
-          include: /src|node_modules\/preact-material-components|node_modules\/@material/,
+          include: /src/,
           use: {
             loader: 'babel-loader',
           },

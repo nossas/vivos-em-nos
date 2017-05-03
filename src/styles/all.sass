@@ -4,8 +4,10 @@
 .fake-load { background-image: url('/img/logo.png') }
 // '~' denotes npm module
 @import '~flexboxgrid/css/flexboxgrid'
-@import '~preact-material-components/style'
 @import '~bulma/bulma'
+
+// bulma theme
+@import 'bulma/materia'
 
 // font-faces
 @import 'font-faces/liebe-doris'
@@ -38,6 +40,7 @@
 // higher-order components
 @import 'loader/loader'
 
+// components
 @import 'components/button-primary'
 @import 'components/memory-image'
 @import 'components/memory-summary'
@@ -48,3 +51,14 @@
 @import 'components/section-primary'
 @import 'components/silhouette'
 @import 'components/top-bar'
+
+// components form
+@import 'components/form/form'
+@import 'components/form/form-group'
+// ---
+@import 'components/form/checkbox-field'
+@import 'components/form/radio-field'
+@import 'components/form/select-field'
+@import 'components/form/text-field'
+@import 'components/form/upload-field'
+@import 'components/form/upload-multiples-field'

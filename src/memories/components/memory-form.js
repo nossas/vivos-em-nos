@@ -1,5 +1,5 @@
 import { h, Component } from 'preact' /** @jsx h */
-import { Field, FieldArray } from 'redux-form'
+import { Field, FieldArray, SubmissionError } from 'redux-form'
 import * as paths from '~src/paths'
 import { COUNTRIES } from '~src/memories/constants'
 import { ButtonPrimary, SectionHeader, SectionPrimary } from '~src/views/components'
@@ -16,6 +16,13 @@ import AlertBox from './alert-box'
 
 class MemoryForm extends Component {
 
+  onSubmit(values) {
+    return this.props.onSave(values)
+      .then(({ memory }) => {
+        this.setState({ memoryId: memory.id })
+      })
+  }
+
   render() {
     const {
       victimName,
@@ -27,7 +34,15 @@ class MemoryForm extends Component {
 
     if (submitSucceeded) {
       return (
-        <AlertBox next={() => { window.location.href = paths.home() }}>
+        <AlertBox
+          next={() => {
+            if (this.state.memoryId) {
+              window.location.href = paths.memory(this.state.memoryId)
+            } else {
+              window.location.href = paths.home()
+            }
+          }}
+        >
           <h1>Sua página<br />foi publicada!</h1>
           <p>
             Se você quiser editá-la ou visualizá-la novamente, é só seguir as informações que
@@ -47,7 +62,7 @@ class MemoryForm extends Component {
     const currentYear = new Date().getFullYear()
 
     return (
-      <Form error={error} handleSubmit={handleSubmit}>
+      <Form error={error} onSubmit={handleSubmit(this.onSubmit.bind(this))}>
         <SectionPrimary
           className="section--about-you"
           header={<SectionHeader title="Sobre você" />}
@@ -133,7 +148,7 @@ class MemoryForm extends Component {
             component={TextField}
             multiline
           />
-          {!victimName ? <div /> : (
+          {victimName && (
             <Field
               label={`Quando eu penso em ${victimName} eu me lembro de*`}
               name="victimRememberText"
@@ -142,7 +157,7 @@ class MemoryForm extends Component {
               multiline
             />
           )}
-          {!victimName ? <div /> : (
+          {victimName && (
             <Field
               label={
                 'Se eu pudesse escolher uma palavra para ' +
@@ -153,7 +168,7 @@ class MemoryForm extends Component {
               component={TextField}
             />
           )}
-          {!victimName ? <div /> : (
+          {victimName && (
             <Field
               label={`Foto de ${victimName}`}
               name="victimPhoto"

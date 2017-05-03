@@ -29,7 +29,7 @@ const validate = (values) => {
 }
 
 const mapStateToProps = (state, props) => {
-  const selector = formValueSelector(FORM)
+  const selector = formValueSelector(props.form)
   return {
     ...selector(state, 'victimName', 'authorizedToSite'),
     initialValues: props.memory,
@@ -38,7 +38,7 @@ const mapStateToProps = (state, props) => {
 
 const mapActionCreatorsToProps = (dispatch, props) => ({
   ...props,
-  onSubmit: ({ memoryAssets, ...values }) => {
+  onSave: ({ memoryAssets, ...values }) => {
     if (props.memory) {
       return props.onUpdateMemory({ variables: { ...values, nodeId: props.memory.nodeId } })
         .then(({ data: { updateMemory: { memory } } }) => {
@@ -59,7 +59,7 @@ const mapActionCreatorsToProps = (dispatch, props) => ({
             }
             return asset
           })
-          return Promise.resolve()
+          return Promise.resolve({ memory })
         })
         .catch(() => {
           throw new SubmissionError('(500) Internal server error')
@@ -81,7 +81,7 @@ const mapActionCreatorsToProps = (dispatch, props) => ({
           }
           return memoryAsset
         })
-        return Promise.resolve()
+        return Promise.resolve({ memory })
       })
       .catch(() => {
         throw new SubmissionError('(500) Internal server error')

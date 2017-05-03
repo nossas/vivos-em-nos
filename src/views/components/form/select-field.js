@@ -1,8 +1,8 @@
 import { h, cloneElement } from 'preact' /** @jsx h */
 import { FormGroup } from '~src/views/components/form'
 
-export default ({ input, children, label, meta }) => (
-  <FormGroup meta={meta}>
+const SelectField = ({ input, children, label, meta, formGroupClassName }) => (
+  <FormGroup className={formGroupClassName} meta={meta}>
     <div className="field select-field">
       <p className="control is-expanded">
         <span className="select is-fullwidth">
@@ -15,3 +15,9 @@ export default ({ input, children, label, meta }) => (
     </div>
   </FormGroup>
 )
+
+SelectField.defaultProps = {
+  formGroupClassName: '',
+}
+
+export default SelectField

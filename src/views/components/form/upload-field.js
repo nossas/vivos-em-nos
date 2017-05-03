@@ -11,9 +11,9 @@ class UploadField extends Component {
   }
 
   render() {
-    const { input, label, meta, className, id, onFinish } = this.props
+    const { input, label, meta, className, id, onFinish, formGroupClassName } = this.props
     return (
-      <FormGroup meta={meta}>
+      <FormGroup className={formGroupClassName} meta={meta}>
         <div className="components--upload-field">
           {!label ? <div /> : (
             <label htmlFor={id}>

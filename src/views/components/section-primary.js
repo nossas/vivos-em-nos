@@ -1,10 +1,17 @@
 import { h } from 'preact' /** @jsx h */
 
-export default ({ children, header, className }) => (
+const SectionPrimary = ({ children, header, className, articleClassName }) => (
   <section className={`components--section-primary ${className}`}>
     {header}
-    <article>
+    <article className={articleClassName}>
       {children}
     </article>
   </section>
 )
+
+SectionPrimary.defaultProps = {
+  className: '',
+  articleClassName: '',
+}
+
+export default SectionPrimary

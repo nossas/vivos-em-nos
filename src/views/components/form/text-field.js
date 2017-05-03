@@ -10,13 +10,13 @@ export default class TextField extends Component {
 
   render() {
     const { isFocused } = this.state
-    const { input, label, maxLength, type, meta } = this.props
+    const { input, label, maxLength, type, meta, formGroupClassName } = this.props
     const focusedClassName = (isFocused || input.value) ? 'focused' : ''
 
     const inputSize = input.value ? maxLength - input.value.length : maxLength
 
     return (
-      <FormGroup meta={meta}>
+      <FormGroup className={formGroupClassName} meta={meta}>
         <div className="field text-field">
           <div className="label-placeholder">{label}</div>
           <div className="field-container">

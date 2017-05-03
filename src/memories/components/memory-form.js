@@ -65,6 +65,7 @@ class MemoryForm extends Component {
       <Form error={error} onSubmit={handleSubmit(this.onSubmit.bind(this))}>
         <SectionPrimary
           className="section--about-you"
+          articleClassName="columns is-multiline"
           header={<SectionHeader title="Sobre você" />}
         >
           <Field
@@ -72,23 +73,27 @@ class MemoryForm extends Component {
             name="ownerFirstName"
             type="text"
             component={TextField}
+            formGroupClassName="column is-half-desktop"
           />
           <Field
             label="Sobrenome*"
             name="ownerLastName"
             type="text"
             component={TextField}
+            formGroupClassName="column is-half-desktop"
           />
           <Field
             label="E-mail*"
             name="ownerEmail"
             type="email"
             component={TextField}
+            formGroupClassName="column is-12"
           />
           <Field
             label="País*"
             name="ownerCountry"
             component={SelectField}
+            formGroupClassName="column is-12"
           >
             {COUNTRIES.map(country => (
               <option key={country.code} value={country.name}>
@@ -99,6 +104,7 @@ class MemoryForm extends Component {
         </SectionPrimary>
         <SectionPrimary
           className="section--about-victim"
+          articleClassName="columns is-multiline"
           header={<SectionHeader title="Sobre a pessoa que você quer homenagear" />}
         >
           <Field
@@ -106,11 +112,13 @@ class MemoryForm extends Component {
             name="victimName"
             type="text"
             component={TextField}
+            formGroupClassName="column is-12"
           />
           <Field
             label="Ano em que nasceu*"
             name="victimBornAt"
             component={SelectField}
+            formGroupClassName="column is-half-desktop"
           >
             {Array(75).fill('').map((e, index) => {
               const year = currentYear - index
@@ -125,6 +133,7 @@ class MemoryForm extends Component {
             label="Ano do assassinato*"
             name="victimDeadAt"
             component={SelectField}
+            formGroupClassName="column is-half-desktop"
           >
             {Array(75).fill('').map((e, index) => {
               const year = currentYear - index
@@ -140,6 +149,7 @@ class MemoryForm extends Component {
             name="victimCity"
             type="text"
             component={TextField}
+            formGroupClassName="column is-12"
           />
           <Field
             label="O que aconteceu?*"
@@ -147,7 +157,7 @@ class MemoryForm extends Component {
             type="text"
             maxLength={200}
             component={TextField}
-            multiline
+            formGroupClassName="column is-12"
           />
           {victimName && (
             <Field
@@ -157,6 +167,7 @@ class MemoryForm extends Component {
               component={TextField}
               maxLength={500}
               multiline
+              formGroupClassName="column is-12"
             />
           )}
           {victimName && (
@@ -168,6 +179,7 @@ class MemoryForm extends Component {
               name="victimGoodWords"
               type="text"
               component={TextField}
+              formGroupClassName="column is-12"
             />
           )}
           {victimName && (
@@ -176,6 +188,7 @@ class MemoryForm extends Component {
               name="victimPhoto"
               id="victimPhoto"
               component={UploadField}
+              formGroupClassName="column is-12"
             />
           )}
           <FieldArray
@@ -183,14 +196,16 @@ class MemoryForm extends Component {
             label="Galeria de imagens"
             name="memoryAssets"
             component={UploadMultiplesField}
+            formGroupClassName="column is-12"
           />
           <Field
             label="Silhueta"
             name="victimSilhouette"
             component={RadioField.Field}
+            formGroupClassName="column is-12"
             className="columns is-multiline is-mobile"
             optionsHeight="200px"
-            optionsClassName="column is-half"
+            optionsClassName="column is-half-mobile is-half-tablet is-one-third-desktop"
           >
             <RadioField.Button
               src="/img/silhouette-orange-form.svg"
@@ -206,6 +221,7 @@ class MemoryForm extends Component {
           <Field
             name="authorizedToSite"
             component={CheckboxField}
+            formGroupClassName="column is-12"
           >
             Autorizo a divulgação dessa homenagem
             no site <span className="color--primary">#VivosEmNós</span>

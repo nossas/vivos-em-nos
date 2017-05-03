@@ -5,13 +5,14 @@ import { COUNTRIES } from '~src/memories/constants'
 import { ButtonPrimary, SectionHeader, SectionPrimary } from '~src/views/components'
 import {
   CheckboxField,
+  RadioField,
   SelectField,
   TextField,
   UploadField,
   UploadMultiplesField,
 } from '~src/views/components/form'
 import AlertBox from './alert-box'
-import { Form, RadioField } from './forms'
+import { Form } from './forms'
 
 class MemoryForm extends Component {
   constructor(props) {
@@ -180,13 +181,15 @@ class MemoryForm extends Component {
             label="Silhueta"
             name="victimSilhouette"
             component={RadioField.Field}
+            className="columns is-multiline is-mobile"
+            optionsHeight="200px"
+            optionsClassName="column is-half"
           >
             <RadioField.Button
               src="/img/silhouette-orange-form.svg"
               alt="Silhueta 1"
               value="1"
             />
-
             <RadioField.Button
               src="/img/silhouette-blue-form.svg"
               alt="Silhueta 2"

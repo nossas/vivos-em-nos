@@ -22,6 +22,7 @@ class UploadField extends Component {
           )}
 
           <button
+            type='button'
             className={`button--file-handler ${className}`}
             onClick={() => { this.uploadInput.base.click() }}
           >

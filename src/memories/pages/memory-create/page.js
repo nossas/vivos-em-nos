@@ -3,7 +3,7 @@ import { Header, Footer, LayoutDefault } from '~src/views/layout/layout'
 import { TopBar, OrnamentPageFooter } from '~src/views/components'
 import { MemoryForm } from '~src/memories/components'
 
-export default ({ memory }) => (
+export default ({ token, memory }) => (
   <LayoutDefault>
     <Header>
       <TopBar />
@@ -20,7 +20,10 @@ export default ({ memory }) => (
         Depois de publicada, você vai poder compartilhar essa página nas suas redes sociais
         e dizer a todos como essa pessoa permanece viva na sua memória.
       </p>
-      <MemoryForm memory={memory} />
+      <MemoryForm
+        form={token ? 'editMemoryForm' : 'addMemoryForm'}
+        memory={memory}
+      />
       <OrnamentPageFooter />
     </div>
   </LayoutDefault>

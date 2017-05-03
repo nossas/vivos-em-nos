@@ -1,15 +1,20 @@
-import { h } from 'preact'
+import { h } from 'preact' /** @jsx h */
+import { ButtonOutline } from '../../../views/components'
 import './styles.sass'
 
-const AlertBox = ({ children, onClick, done, doneText }) => (
-  <div className='AlertBox'>
+const AlertBox = ({ children, next, doneText }) => (
+  <div className="AlertBox">
     {children}
-    {done && <button className='ButtonPrimary' onClick={done}>{doneText}</button>}
+    {next && (
+      <ButtonOutline onClick={next}>
+        {doneText}
+      </ButtonOutline>
+    )}
   </div>
 )
 
 AlertBox.defaultProps = {
-  doneText: 'Ok entendi'
+  doneText: 'Ok entendi',
 }
 
 export default AlertBox

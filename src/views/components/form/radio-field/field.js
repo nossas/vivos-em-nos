@@ -10,8 +10,9 @@ const Field = ({
   optionsWidth,
   optionsHeight,
   optionsClassName,
+  formGroupClassName,
 }) => (
-  <FormGroup meta={meta}>
+  <FormGroup className={formGroupClassName} meta={meta}>
     <div className="components--radio-field">
       {!label ? <div /> : (
         <span className="label">

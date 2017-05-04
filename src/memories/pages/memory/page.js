@@ -1,7 +1,6 @@
 import { h } from 'preact' /** @jsx h */
-import { Header, LayoutDefault } from '../../../views/layout/layout'
+import { Header, LayoutDefault } from '~src/views/layout/layout'
 import {
-  MemoryImage,
   MemorySummary,
   Quote,
   SectionHeader,
@@ -11,9 +10,9 @@ import {
   ShareWhatsappButton,
   Silhouette,
   TopBar,
-} from '../../../views/components'
-import { MemoryCommentsForm } from '../../components'
-import * as detect from '../../../utils/detect'
+} from '~src/views/components'
+import { MemoryCommentsForm } from '~src/memories/components'
+import * as detect from '~src/utils/detect'
 
 export default ({ id, memory, comments, assets, loading }) => (
   <LayoutDefault>
@@ -24,16 +23,18 @@ export default ({ id, memory, comments, assets, loading }) => (
     {loading ? <div /> : (
       <div className="page pages--memory-victim">
         <section className="section--victim-data">
-          <MemoryImage
-            source={`${process.env.SERVER_DOMAIN}${memory.victimPhoto}`}
-            width="223px"
-            height="179px"
-          />
           <MemorySummary
             name={memory.victimName}
             birthYear={memory.victimBornAt}
             deathYear={memory.victimDeadAt}
             description={memory.victimHistory}
+            image={`${process.env.SERVER_DOMAIN}${memory.victimPhoto}`}
+            imageWidth="223px"
+            imageHeight="179px"
+            imageAlignment="right"
+            baseFontSize="16px"
+            distanceY="84px"
+            width="80%"
           />
         </section>
 

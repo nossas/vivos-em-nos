@@ -4,25 +4,40 @@
     padding: 20px 0 15px
 
   .button--file-handler
+    $size: 128px
+
     text-align: center
-    width: 128px
-    height: 128px
+    width: $size
+    height: $size
+    line-height: $size
     background-color: #DE5F25
     border-radius: 54px
     border: none
     outline: none
     margin-bottom: 10px
+    padding: 0
+    box-shadow: none
+    display: inline-block
+    cursor: pointer
+    background-size: cover
+    margin-right: 20px
 
     &:before
-      content: '+'
-      font-size: 50px
-      font-weight: 300
-      color: #fff
-      display: flex
-      justify-content: center
-      position: relative
-      top: -6px
+      color: $white
+      font-size: 30px
+      text-shadow: 1px 1px 2px rgba(0,0,0,.3)
+      // bulma button class overrides
+      background-image: none
+      transform: initial
+      opacity: 1
 
-    .image--preview
-      display: table-row
-      vertical-align: middle
+    &.is-loading
+      &:after
+        // bulma is-loading class overrides
+        left: calc(50% - (2em / 2))
+        top: calc(50% - (2em / 2))
+        width: 2em
+        height: 2rem
+        border-width: 3px
+        border-bottom-color: white
+        border-left-color: white

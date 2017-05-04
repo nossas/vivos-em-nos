@@ -8,19 +8,22 @@ export default class UploadMultiplesField extends Component {
   }
 
   render() {
-    const { fields, label, meta } = this.props
+    const { fields, label, meta, formGroupClassName } = this.props
 
     return (
-      <FormGroup meta={meta}>
+      <FormGroup className={formGroupClassName} meta={meta}>
         <div className="components--upload-multiples-field">
           {label && <span className="label">{label}</span>}
-          <div className="Images">
+          <div className="images">
             {fields && fields.map((field, index) => (
               <Field
                 id={`${field.name}-${index}`}
                 name={`${field}.assetUrl`}
                 component={UploadField}
                 onFinish={() => fields.push()}
+                iconDefault="icon-plus"
+                iconAfterUpload="icon-trash"
+                onClickWhenFilled={() => fields.remove(index)}
               />
             ))}
           </div>

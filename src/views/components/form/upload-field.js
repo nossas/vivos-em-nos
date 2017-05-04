@@ -11,7 +11,32 @@ class UploadField extends Component {
   }
 
   render() {
-    const { input, label, meta, className, id, onFinish, formGroupClassName } = this.props
+    const {
+      input,
+      label,
+      meta,
+      className,
+      id,
+      onClickWhenFilled,
+      onFinish,
+      formGroupClassName,
+      iconDefault,
+      iconAfterUpload,
+    } = this.props
+
+    const iconDefaultStrategy = iconDefault || 'icon-camera'
+    const iconAfterUploadStrategy = iconAfterUpload || 'icon-reload'
+
+    const buttonIcon = input.value ? iconAfterUploadStrategy : iconDefaultStrategy
+    const buttonLoading = this.state.isLoading ? 'is-loading' : buttonIcon
+    const buttonStyle = !input.value ? {} : {
+      backgroundImage: `url(${AWS_S3UPLOADER_URL}${input.value})`,
+    }
+
+    const onClickDefault = () => { this.uploadInput.base.click() }
+    const onClickWhenFilledStrategy = onClickWhenFilled || onClickDefault
+    const onClickStrategy = input.value ? onClickWhenFilledStrategy : onClickDefault
+
     return (
       <FormGroup className={formGroupClassName} meta={meta}>
         <div className="components--upload-field">
@@ -22,9 +47,10 @@ class UploadField extends Component {
           )}
 
           <button
-            type='button'
-            className={`button--file-handler ${className}`}
-            onClick={() => { this.uploadInput.base.click() }}
+            type="button"
+            className={`button--file-handler button ${buttonLoading} ${className}`}
+            onClick={onClickStrategy}
+            style={buttonStyle}
           >
             <ReactS3Uploader
               id={id}
@@ -49,15 +75,6 @@ class UploadField extends Component {
               contentDisposition="auto"
               style={{ visibility: 'hidden', position: 'absolute', top: '0' }}
             />
-
-            {!input.value ? <div /> : (
-              <div className="image--preview">
-                <img
-                  src={`${AWS_S3UPLOADER_URL}${input.value}`}
-                  alt="Foto da vítima"
-                />
-              </div>
-            )}
           </button>
         </div>
       </FormGroup>

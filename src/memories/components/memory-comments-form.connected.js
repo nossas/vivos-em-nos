@@ -33,7 +33,7 @@ const mapStateToProps = (state, { memoryId }) => ({
 
 export default graphql(queries.memoryCommentCreate, {
   props: ({ mutate }) => ({
-    onSubmit: (values, dispatch, formProps) => {
+    onSave: (values, dispatch, formProps) => {
       dispatch(LoaderActions.setActive(true))
       mutate({
         variables: values,

@@ -4,8 +4,8 @@ import { Menu, MenuItem } from '../../menu/components'
 import * as paths from '../../paths'
 import MainFooter from './footer'
 
-const Header = function() { return 'Header' }
-const Footer = function() { return 'Footer' }
+const Header = () => 'Header'
+const Footer = () => 'Footer'
 
 const LayoutDefault = ({ children }) => (
   <Layout>
@@ -13,7 +13,7 @@ const LayoutDefault = ({ children }) => (
       <MenuItem href={paths.home()}>Início</MenuItem>
       <MenuItem href={paths.memoryCreate()}>Criar Homenagem</MenuItem>
       <MenuItem>Editar Homenagem</MenuItem>
-      <MenuItem>Quem Somos</MenuItem>
+      <MenuItem href={paths.aboutUs()}>Quem Somos</MenuItem>
     </Menu>
     <Section type={Header}>Header</Section>
     <Section>{children}</Section>

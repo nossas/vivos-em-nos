@@ -1,4 +1,5 @@
 export const home = () => '/'
+export const aboutUs = () => '/#about-us'
 
 //
 // Modules paths interface

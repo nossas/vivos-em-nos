@@ -64,6 +64,7 @@ export default () => (
       <FeaturedMemories />
 
       <SectionPrimary
+        id="about-us"
         className="section--about-us"
         header={<SectionHeader title={<span>Quem<br />somos</span>} />}
       >

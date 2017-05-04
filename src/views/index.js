@@ -3,6 +3,7 @@ import { Router } from 'preact-router'
 import { Provider } from 'preact-redux'
 import { ApolloProvider } from 'react-apollo'
 
+import { scrollStrategy } from '~src/utils/navigation'
 import store, { client } from '../store'
 import Home from './pages/home'
 import Error404 from './pages/errors/404'
@@ -12,7 +13,7 @@ import { Memory, MemoryCreate } from '../memories/pages'
 const onChange = ({ url }) => {
   // eslint-disable-next-line
   window.ga && ga('send', 'pageview', url)
-  window.scrollTo(0, 0)
+  scrollStrategy()
 }
 
 export default (

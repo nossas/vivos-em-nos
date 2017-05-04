@@ -1,7 +1,6 @@
 import { h, Component } from 'preact' /** @jsx h */
 import {
   ButtonPrimary,
-  MemoryImage,
   MemorySummary,
   Quote,
   SectionHeader,
@@ -44,16 +43,18 @@ export default class FeaturedMemories extends Component {
       <SectionPrimary header={<Header silhouette={memory.victimSilhouette} />}>
         <div className="ornament" />
         <Carousel>
-          <MemoryImage
-            source={`${process.env.SERVER_DOMAIN}${memory.victimPhoto}`}
-            width="164px"
-            height="132px"
-          />
           <MemorySummary
             name={memory.victimName}
             birthYear={memory.victimBornAt}
             deathYear={memory.victimDeadAt}
             description={memory.victimHistory}
+            image={`${process.env.SERVER_DOMAIN}${memory.victimPhoto}`}
+            imageWidth="164px"
+            imageHeight="132px"
+            imageAlignment="left"
+            distanceY="100px"
+            distanceX="36%"
+            width="63%"
           />
           <Quote>
             {memory.victimRememberText}

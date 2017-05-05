@@ -69,21 +69,20 @@ export default ({ id, memory, comments, assets, loading }) => (
         >
           <ShareFacebookButton
             className="share-button"
-            href="https://vivosemnos.org/"
+            href={`https://vivosemnos.org/memory/${memory.id}`}
           />
           <ShareTwitterButton
             className="share-button"
-            href="https://vivosemnos.org/"
-            text={
-              '#VivosEmNós quer usar a memória como ferramenta para mudança. Se você conhece ' +
-              'alguém que teve a sua história interrompida pela violência, crie aqui uma página ' +
-              'de homenagem para se juntar à luta por mais respeito à vida.'
-            }
+            href={`https://vivosemnos.org/memory/${memory.id}`}
+            text={`Uma homenagem para @ ${memory.victimName} `}
           />
           {!detect.mobile ? <i /> : (
             <ShareWhatsappButton
               className="share-button"
-              text="https://vivosemnos.org/"
+              text={
+                `Uma homenagem para @ ${memory.victimName} ` +
+                `https://vivosemnos.org/memory/${memory.id}`
+              }
             />
           )}
         </SectionPrimary>

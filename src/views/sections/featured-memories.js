@@ -35,7 +35,7 @@ class FeaturedMemoriesSection extends Component {
     return loading ? null : (
       <SectionPrimary
         className={`section--featured-memories ${className}`}
-        header={<SectionHeader title={<span>Veja algumas<br />homenagens</span>} />}
+        header={<SectionHeader title="Homenagens" />}
       >
         <Carousel>
           <MemorySummary

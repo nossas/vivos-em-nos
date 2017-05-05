@@ -19,7 +19,7 @@ pipeline:
     repo: ${VEN_ECR_REPO}.dkr.ecr.us-west-1.amazonaws.com/vivos-em-nos
     region: us-west-1
     build_args:
-      - PUBLISH_S3=true
+      - PUBLISH_S3=false
       - AWS_BUCKET=vivo-em-nos-production
       - AWS_ACCESS_KEY_ID=${PROD_AWS_ACCESS_KEY_ID}
       - AWS_SECRET_ACCESS_KEY=${PROD_AWS_SECRET_ACCESS_KEY}

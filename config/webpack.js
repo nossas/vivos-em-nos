@@ -22,7 +22,7 @@ module.exports = (env) => {
     output: {
       path: dist,
       filename: '[name].[hash].js',
-      publicPath: isProd ? `https://vivosemnos.org/` : '/',
+      publicPath: isProd ? `https://staging.vivosemnos.org/` : '/',
 
     },
     resolve: {

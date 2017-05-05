@@ -25,6 +25,7 @@ export default ({ id, memory, comments, assets, loading }) => (
         <section className="section--victim-data">
           <MemorySummary
             name={memory.victimName}
+            owner={memory.ownerFirstName}
             birthYear={memory.victimBornAt}
             deathYear={memory.victimDeadAt}
             description={memory.victimHistory}

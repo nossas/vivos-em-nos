@@ -155,7 +155,7 @@ class MemoryForm extends Component {
           <Field
             label="O que aconteceu?*"
             name="victimHistory"
-            maxLength={200}
+            maxLength={80}
             component={TextareaField}
             formGroupClassName="column is-12 is-paddingless-y"
           />

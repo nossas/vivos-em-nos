@@ -40,6 +40,7 @@ class FeaturedMemoriesSection extends Component {
         <Carousel>
           <MemorySummary
             name={memory.victimName}
+            owner={memory.ownerFirstName}
             birthYear={memory.victimBornAt}
             deathYear={memory.victimDeadAt}
             description={memory.victimHistory}

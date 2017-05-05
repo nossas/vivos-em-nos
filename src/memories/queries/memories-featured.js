@@ -8,6 +8,7 @@ export default gql`
     ) {
       nodes {
         id,
+        ownerFirstName,
         victimBornAt,
         victimDeadAt,
         victimHistory,

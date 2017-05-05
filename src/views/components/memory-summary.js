@@ -3,6 +3,7 @@ import { ParagraphLineRounded } from '../../views/components'
 
 export default ({
   name,
+  owner,
   birthYear,
   deathYear,
   description,
@@ -38,6 +39,9 @@ export default ({
       <div className="memory-identity">
         <div className="name">{name}</div>
         <span className="lifetime">{birthYear} / {deathYear}</span>
+        <div className="owner">
+          Homenageada por: {owner}
+        </div>
       </div>
       <div className="memory-description">
         <ParagraphLineRounded>

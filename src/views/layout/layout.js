@@ -1,24 +1,33 @@
 import { h } from 'preact' /** @jsx h */
 import { Layout, Section } from 'preact-layout'
-import { Menu, MenuItem } from '../../menu/components'
-import * as paths from '../../paths'
+import { connect } from 'preact-redux'
+import { Loader } from '~src/loader/components'
+import LoaderSelectors from '~src/loader/redux/selectors'
+import { Menu, MenuItem } from '~src/menu/components'
+import * as paths from '~src/paths'
 import MainFooter from './footer'
 
 const Header = () => 'Header'
 const Footer = () => 'Footer'
 
-const LayoutDefault = ({ children }) => (
-  <Layout>
-    <Menu>
-      <MenuItem href={paths.home()}>Início</MenuItem>
-      <MenuItem href={paths.memoryCreate()}>Criar Homenagem</MenuItem>
-      <MenuItem href={paths.aboutUs()}>Quem Somos</MenuItem>
-    </Menu>
-    <Section type={Header}>Header</Section>
-    <Section>{children}</Section>
-    <Section type={Footer}><MainFooter /></Section>
-  </Layout>
-  )
+const mapStateToProps = state => ({
+  isLoaderActive: LoaderSelectors(state).isActive(),
+})
+const LayoutDefault = connect(mapStateToProps)(
+  ({ children, isLoaderActive }) => (
+    <Layout>
+      {!isLoaderActive ? <div /> : <Loader />}
+      <Menu>
+        <MenuItem href={paths.home()}>Início</MenuItem>
+        <MenuItem href={paths.memoryCreate()}>Criar Homenagem</MenuItem>
+        <MenuItem href={paths.aboutUs()}>Quem Somos</MenuItem>
+      </Menu>
+      <Section type={Header}>Header</Section>
+      <Section>{children}</Section>
+      <Section type={Footer}><MainFooter /></Section>
+    </Layout>
+  ),
+)
 
 export {
   Footer,

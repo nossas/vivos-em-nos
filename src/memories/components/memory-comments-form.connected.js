@@ -36,7 +36,7 @@ export default graphql(queries.memoryCommentCreate, {
   props: ({ mutate }) => ({
     onSave: (values, dispatch, formProps) => {
       dispatch(LoaderActions.setActive(true))
-      mutate({
+      return mutate({
         variables: values,
         refetchQueries: [{
           query: queries.memory,
@@ -46,6 +46,7 @@ export default graphql(queries.memoryCommentCreate, {
         .then(() => {
           dispatch(LoaderActions.setActive(false))
           formProps.reset()
+          return Promise.resolve()
         })
         .catch(() => {
           dispatch(LoaderActions.setActive(false))

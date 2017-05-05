@@ -12,7 +12,6 @@ const LayoutDefault = ({ children }) => (
     <Menu>
       <MenuItem href={paths.home()}>Início</MenuItem>
       <MenuItem href={paths.memoryCreate()}>Criar Homenagem</MenuItem>
-      <MenuItem>Editar Homenagem</MenuItem>
       <MenuItem href={paths.aboutUs()}>Quem Somos</MenuItem>
     </Menu>
     <Section type={Header}>Header</Section>

@@ -92,8 +92,8 @@ export default ({ id, memory, comments, assets, loading }) => (
           className="section--known-victim"
           header={
             <SectionHeader
-              title="Se você conheceu essa pessoa"
-              subtitle="use este espaço para contar o que está vivo em você sobre ela."
+              title="Quer contribuir para essa homenagem? "
+              subtitle="Conte aqui também a sua memória"
             />
           }
         >

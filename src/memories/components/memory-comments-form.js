@@ -28,14 +28,6 @@ export default class MemoryCommentsForm extends Component {
             component="input"
           />
           <Field
-            label="Texto"
-            name="comment"
-            ref={(comment) => { this.comment = comment }}
-            type="text"
-            component={TextareaField}
-            formGroupClassName="column is-12"
-          />
-          <Field
             label="Nome completo"
             name="name"
             ref={(name) => { this.name = name }}
@@ -50,6 +42,14 @@ export default class MemoryCommentsForm extends Component {
             type="email"
             component={TextField}
             formGroupClassName="column is-half-desktop"
+          />
+          <Field
+            label="Texto"
+            name="comment"
+            ref={(comment) => { this.comment = comment }}
+            type="text"
+            component={TextField}
+            formGroupClassName="column is-12"
           />
         </div>
 

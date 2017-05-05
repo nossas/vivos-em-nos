@@ -19,7 +19,7 @@ export default () => (
         transformar saudade em mobilização e, juntos, lutar por mais respeito à vida.
       </p>
       <ButtonPrimary href={paths.memoryCreate()}>
-        Crie sua homenagem
+        Criar sua homenagem
       </ButtonPrimary>
     </div>
 

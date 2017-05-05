@@ -6,9 +6,9 @@ import {
   SectionHeader,
   SectionPrimary,
   Silhouette,
-} from '../components'
-import { Carousel, CarouselNavigator } from '../../carousel/components'
-import * as paths from '../../paths'
+} from '~src/views/components'
+import { Carousel, CarouselNavigator } from '~src/carousel/components'
+import * as paths from '~src/paths'
 
 const Header = ({ silhouette }) => (
   <SectionHeader title="Veja algumas homenagens">
@@ -16,7 +16,7 @@ const Header = ({ silhouette }) => (
   </SectionHeader>
 )
 
-export default class FeaturedMemories extends Component {
+class FeaturedMemoriesSection extends Component {
   constructor(props) {
     super(props)
 
@@ -36,11 +36,14 @@ export default class FeaturedMemories extends Component {
   }
 
   render() {
-    const { loading, memories, currentCarouselIndex } = this.props
+    const { loading, memories, currentCarouselIndex, className } = this.props
     const memory = memories[currentCarouselIndex] || {}
 
     return loading ? null : (
-      <SectionPrimary header={<Header silhouette={memory.victimSilhouette} />}>
+      <SectionPrimary
+        className={className}
+        header={<Header silhouette={memory.victimSilhouette} />}
+      >
         <div className="ornament" />
         <Carousel>
           <MemorySummary
@@ -71,3 +74,9 @@ export default class FeaturedMemories extends Component {
     )
   }
 }
+
+FeaturedMemoriesSection.defaultProps = {
+  className: '',
+}
+
+export default FeaturedMemoriesSection

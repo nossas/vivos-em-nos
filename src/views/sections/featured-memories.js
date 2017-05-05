@@ -43,17 +43,6 @@ class FeaturedMemoriesSection extends Component {
     }
   }
 
-  //
-  // This method should not exists when we have some fetching tool
-  // like redial, to fetch the data on ssr.
-  //
-  componentWillReceiveProps(nextProps) {
-    const str = JSON.stringify
-    if (str(this.props.memories) !== str(nextProps.memories)) {
-      this.props.setListCarousel(nextProps.memories)
-    }
-  }
-
   render() {
     const { loading, memories, className } = this.props
 

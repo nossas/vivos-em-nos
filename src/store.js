@@ -2,7 +2,6 @@ import { createStore, combineReducers, applyMiddleware, compose } from 'redux'
 import { createNetworkInterface, ApolloClient } from 'react-apollo'
 import { reducer as formReducer } from 'redux-form'
 
-import carousel from './carousel/redux/reducers'
 import loader from './loader/redux/reducers'
 import menu from './menu/redux/reducers'
 
@@ -160,7 +159,6 @@ export default createStore(
   combineReducers({
     form: formReducer,
     apollo: client.reducer(),
-    carousel,
     loader,
     menu,
   }),

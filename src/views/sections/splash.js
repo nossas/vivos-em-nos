@@ -35,7 +35,17 @@ export default () => (
           quem somos
         </MenuHorizontalItem>
       </MenuHorizontal>
-      <div>
+      <div
+        style={{
+          height: 'calc(100% - 59px)',
+          width: '100%',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          border: '1px dashed rgba(255,255,255,.3)',
+          marginTop: '30px',
+        }}
+      >
         === image placeholder ===
       </div>
     </div>

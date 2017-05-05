@@ -160,7 +160,7 @@ class MemoryForm extends Component {
             formGroupClassName="column is-12 is-paddingless-y"
           />
           <Field
-            label={`Quando eu penso em ${victimName || ''} eu me lembro de*`}
+            label={`Quando eu penso em ${victimName || ''}, eu me lembro de: *`}
             name="victimRememberText"
             maxLength={500}
             component={TextareaField}
@@ -177,7 +177,7 @@ class MemoryForm extends Component {
             formGroupClassName="column is-12"
           />
           <Field
-            label={`Foto de ${victimName || ''}`}
+            label={`Selecione uma foto de ${victimName || ''}`}
             name="victimPhoto"
             id="victimPhoto"
             component={UploadField}
@@ -185,13 +185,13 @@ class MemoryForm extends Component {
           />
           <FieldArray
             withRef
-            label="Galeria de imagens"
+            label="Crie uma galeria de imagens"
             name="memoryAssets"
             component={UploadMultiplesField}
             formGroupClassName="column is-12"
           />
           <Field
-            label="Silhueta"
+            label="Imagem"
             name="victimSilhouette"
             component={RadioField.Field}
             formGroupClassName="column is-12"

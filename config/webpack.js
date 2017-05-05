@@ -31,6 +31,7 @@ module.exports = (env) => {
         react: 'preact-compat',
         'react-dom': 'preact-compat',
         'react-redux': 'preact-redux',
+        'react-motion': 'preact-motion',
       },
     },
     module: {

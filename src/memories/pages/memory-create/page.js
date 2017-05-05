@@ -9,8 +9,6 @@ export default ({ token, memory }) => (
       <TopBar />
     </Header>
 
-    <Footer />
-
     <div className="page page--memory-create">
       <p>
         Preenchendo o formulário abaixo, você cria uma homenagem a alguém que morreu,
@@ -24,7 +22,6 @@ export default ({ token, memory }) => (
         form={token ? 'editMemoryForm' : 'addMemoryForm'}
         memory={memory}
       />
-      <OrnamentPageFooter />
     </div>
   </LayoutDefault>
 )

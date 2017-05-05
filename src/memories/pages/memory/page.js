@@ -88,6 +88,7 @@ export default ({ id, memory, comments, assets, loading }) => (
         </SectionPrimary>
 
         <SectionPrimary
+          id="comments"
           className="section--known-victim"
           header={
             <SectionHeader
@@ -105,7 +106,7 @@ export default ({ id, memory, comments, assets, loading }) => (
               <div className="commenter--name">
                 {comment.name}
               </div>
-              <div className="commenter-comment">
+              <div className="commenter--comment">
                 {comment.comment}
               </div>
             </div>

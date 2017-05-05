@@ -1,24 +1,25 @@
 import { h, Component } from 'preact' /** @jsx h */
 import { Field } from 'redux-form'
 import { ButtonPrimary } from '~src/views/components'
-import { Form, TextField } from '~src/views/components/form'
+import { Form, TextField, TextareaField } from '~src/views/components/form'
+import * as paths from '~src/paths'
 
 export default class MemoryCommentsForm extends Component {
   render() {
-    const { handleSubmit, error } = this.props
+    const { handleSubmit, error, memoryId } = this.props
 
     return (
       <Form
         error={error}
-        onSubmit={handleSubmit((...args) =>
+        onSubmit={handleSubmit((...args) => {
           this.props.onSave(...args)
-            .then(() => {
-              // blur fields after submit
-              this.comment.base.children[0].children[1].children[1].children.comment.blur()
-              this.name.base.children[0].children[1].children[1].children.name.blur()
-              this.email.base.children[0].children[1].children[1].children.email.blur()
-            }),
-        )}
+
+          // blur fields after submit
+          this.comment.base.children[0].children[1].children[1].children.comment.blur()
+          this.name.base.children[0].children[1].children[0].children.name.blur()
+          this.email.base.children[0].children[1].children[0].children.email.blur()
+          window.location = paths.memoryComments(memoryId)
+        })}
       >
         <div className="columns is-multiline">
           <Field
@@ -31,7 +32,7 @@ export default class MemoryCommentsForm extends Component {
             name="comment"
             ref={(comment) => { this.comment = comment }}
             type="text"
-            component={TextField}
+            component={TextareaField}
             formGroupClassName="column is-12"
           />
           <Field

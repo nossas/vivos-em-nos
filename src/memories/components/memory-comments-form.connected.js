@@ -28,6 +28,7 @@ const validate = (values) => {
 }
 
 const mapStateToProps = (state, { memoryId }) => ({
+  memoryId,
   initialValues: { memoryId },
 })
 

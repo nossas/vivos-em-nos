@@ -2,7 +2,7 @@ import { h, Component } from 'preact' /** @jsx h */
 import { scrollStrategy } from '~src/utils/navigation'
 import Loader from './loader'
 
-export default class LoaderHOC extends Component {
+export default SelectorComponent => class LoaderHOC extends Component {
   componentWillReceiveProps(nextProps) {
     const { active, loading } = this.props
     const hasActiveChanged = active !== nextProps.active
@@ -19,10 +19,10 @@ export default class LoaderHOC extends Component {
     const { children, active, loading } = this.props
 
     return (
-      <div className="components--loader-hoc">
+      <SelectorComponent {...this.props}>
         {children}
         {(active || loading) ? <Loader /> : <div />}
-      </div>
+      </SelectorComponent>
     )
   }
 }

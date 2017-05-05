@@ -1,8 +1,7 @@
 import { connect } from 'preact-redux'
 import { graphql, compose } from 'react-apollo'
 import { reduxForm, formValueSelector, SubmissionError } from 'redux-form'
-import { hoc } from '../../utils/preact'
-import LoaderHOC from '../../loader'
+import loaderHOC from '../../loader'
 import { memoryCreate, memoryUpdate, memoryAssetCreate, memoryAssetDelete } from '../queries'
 import MemoryForm from './memory-form'
 
@@ -96,6 +95,6 @@ export default compose(
   graphql(memoryAssetDelete, { name: 'onDeleteMemoryAsset' }),
 )(connect(mapStateToProps, mapActionCreatorsToProps)(
   reduxForm({ form: FORM, validate })(
-    hoc(LoaderHOC, MemoryForm),
+    loaderHOC(MemoryForm),
   ),
 ))

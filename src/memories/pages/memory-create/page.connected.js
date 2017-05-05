@@ -1,7 +1,6 @@
 import { connect } from 'preact-redux'
 import { graphql } from 'react-apollo'
-import { hoc } from '../../../utils/preact'
-import LoaderHOC from '../../../loader'
+import loaderHOC from '../../../loader'
 import { memoryByToken } from '../../queries'
 import Page from './page'
 
@@ -18,6 +17,6 @@ const mapStateToProps = (state, { getMemoryByToken: { loading, allMemories } }) 
 
 export default graphql(memoryByToken, { name: 'getMemoryByToken' })(
   connect(mapStateToProps)(
-    hoc(LoaderHOC, Page)
-  )
+    loaderHOC(Page),
+  ),
 )

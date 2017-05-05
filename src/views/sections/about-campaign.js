@@ -11,7 +11,7 @@ const AboutCampaignSection = ({ className }) => (
     className={`section--about-campaign ${className}`}
     header={
       <SectionHeader title={<span>Sobre<br />a campanha</span>}>
-        <Silhouette variation="1" height="570" />
+        <Silhouette variation="1" forceHeight="570px" />
       </SectionHeader>
     }
   >

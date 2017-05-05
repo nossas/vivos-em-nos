@@ -5,16 +5,9 @@ import {
   Quote,
   SectionHeader,
   SectionPrimary,
-  Silhouette,
 } from '~src/views/components'
 import { Carousel, CarouselNavigator } from '~src/carousel/components'
 import * as paths from '~src/paths'
-
-const Header = ({ silhouette }) => (
-  <SectionHeader title="Veja algumas homenagens">
-    <Silhouette variation={silhouette} forceHeight="380px" />
-  </SectionHeader>
-)
 
 class FeaturedMemoriesSection extends Component {
   constructor(props) {
@@ -42,7 +35,7 @@ class FeaturedMemoriesSection extends Component {
     return loading ? null : (
       <SectionPrimary
         className={className}
-        header={<Header silhouette={memory.victimSilhouette} />}
+        header={<SectionHeader title={<span>Veja algumas<br />homenagens</span>} />}
       >
         <div className="ornament" />
         <Carousel>

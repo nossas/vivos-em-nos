@@ -23,7 +23,7 @@ export default () => (
       </ButtonPrimary>
     </div>
 
-    <div className="column--desktop column is-block-tablet is-half-tablet">
+    <div className="column--desktop column is-hidden-mobile is-half-tablet">
       <div className="menu--horizontal">
         <div className="menu--horizontal-item active">inicio</div>
         <div className="menu--horizontal-item">criar homenagem</div>

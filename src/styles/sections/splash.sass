@@ -16,17 +16,21 @@
     margin-left: calc(-90%/2)
     width: 90%
 
-  .menu--desktop
-    display: none
+  .column
+    padding: 0
+
+  .components--menu-trigger
+    margin-bottom: $base-spacing*3
 
   .logo
-    margin: $base-spacing*3 0 0
+    margin: 0 0 $base-spacing
+
+    img
+      width: 139px
+      height: 86px
+
   p
-    margin: 0 $base-spacing*2 0 0
-
-
-  h2
-    margin-bottom: $base-spacing
+    margin: 0 $base-spacing*2 $base-spacing*2.5 0
 
 //
 // greater than mobile
@@ -44,7 +48,6 @@
       opacity: 0.8
 
     .button-primary
-      background-color: $tertiary
       font-size: $base-spacing
       margin-bottom: $base-spacing
       display: inline

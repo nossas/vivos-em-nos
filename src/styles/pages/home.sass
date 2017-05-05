@@ -14,47 +14,12 @@
         font-size: 20px
         line-height: 23px
 
-  section
+  .components--memory-summary
+    .image
+      width: 220px
+      height: 150px
     .quote
       top: -50px
-
-    .ornament
-      &:before
-        content: ''
-        width: 10px
-        height: 10px
-        border-radius: 50%
-        background-color: #FF7D00
-        position: absolute
-        right: 96px
-        top: 43px
-      &:after
-        content: ''
-        width: 112px
-        height: 2px
-        background-color: #FF7D00
-        position: absolute
-        right: -16px
-        top: 47px
-
-    footer
-      margin-top: 16px
-
-      .memory-carousel-navigator
-        text-align: center
-        margin-bottom: 16px
-
-        .carousel-item
-          width: 8px
-          height: 8px
-          margin-right: 8px
-          background-color: transparent
-          border: 1px solid #FF7D00
-          display: inline-block
-          border-radius: 50%
-
-          &.active
-            background-color: #FF7D00
 
   .section--about-us
     p
@@ -73,3 +38,10 @@
 
   .components--ornament-page-footer
     margin-top: 43px
+
+@media screen and (min-width: $tablet)
+  .page__home
+    .components--memory-summary
+      .image
+        width: 220px !important
+        height: 180px !important

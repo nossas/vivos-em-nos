@@ -1,16 +1,11 @@
 .components--section-header
-  font-family: Roboto
-  font-weight: 300
-  font-size: 28px
-  color: #F7901E
-  line-height: 26px
   position: relative
   padding-bottom: 8px
 
   &:before
     content: ''
     width: 20%
-    height: 3px
+    height: 4px
     background-color: #F7901E
     position: absolute
     left: 0
@@ -19,9 +14,19 @@
   &.hide-border:before
     height: 0
 
+  .title
+    font-family: Roboto
+    line-height: 25px
+    font-size: 25px
+    color: #F7901E
+    display: block
+    margin-bottom: 1.5rem
+
+    span
+      font-weight: normal
+
   .subtitle
     font-size: 16px
     color: #464646
     line-height: 22px
-    margin-top: 10px
     font-weight: normal

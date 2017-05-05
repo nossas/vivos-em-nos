@@ -115,26 +115,29 @@ class FeaturedMemoriesSection extends Component {
                     <div className="quote">
                       {memory.victimRememberText}
                     </div>
-
-                    <nav className="pager-controls">
-                      {Array(memories.length).fill('').map((element, index) => (
-                        <button
-                          type="button"
-                          className={`pager-control ${this.state.currentView === index ? 'active' : ''}`}
-                          onClick={() => this.track.scrollTo(index)}
-                        >
-                          {index + 1}
-                        </button>
-                      ))}
-                    </nav>
-                    <a href="/memory/3" type="button" className="button-primary">
-                      Ver homenagem completa
-                    </a>
                   </div>
                 </View>
               ))}
             </Track>
           </Frame>
+          <nav className="pager-controls">
+            {Array(memories.length).fill('').map((element, index) => (
+              <button
+                type="button"
+                className={`pager-control ${this.state.currentView === index ? 'active' : ''}`}
+                onClick={() => this.track.scrollTo(index)}
+              >
+                {index + 1}
+              </button>
+            ))}
+          </nav>
+          <a
+            type="button"
+            className="button-primary"
+            href={`/memory/${memories[this.state.currentView].id}`}
+          >
+            Ver homenagem completa
+          </a>
         </ViewPager>
       </SectionPrimary>
     )

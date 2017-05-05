@@ -16,6 +16,7 @@ const secretAccessKey = process.env.AWS_SECRET_ACCESS_KEY || 'yyy'
 const distributionId = process.env.CLOUDFRONT_DISTRIBUTION_ID || 'zzz'
 const serverDomain = process.env.SERVER_DOMAIN || 'http://localhost:5001'
 const graphqlUrl = process.env.GRAPHQL_URL || 'http://localhost:3003/graphql'
+const commitSha = process.env.DRONE_COMMIT_SHA || ''
 const root = join(__dirname, '..')
 
 module.exports = (isProd) => {
@@ -46,6 +47,7 @@ module.exports = (isProd) => {
       new webpack.optimize.UglifyJsPlugin(uglify),
       new ExtractText('styles.[hash].css'),
       new SWPrecache({
+        cacheId: commitSha,
         filename: 'service-worker.js',
         dontCacheBustUrlsMatching: /./,
         navigateFallback: 'index.html',

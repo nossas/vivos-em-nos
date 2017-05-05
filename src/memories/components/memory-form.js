@@ -173,6 +173,7 @@ class MemoryForm extends Component {
             }
             name="victimGoodWords"
             type="text"
+            maxLength={12}
             component={TextField}
             formGroupClassName="column is-12"
           />

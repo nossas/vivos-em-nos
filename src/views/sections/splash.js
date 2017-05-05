@@ -1,5 +1,5 @@
 import { h } from 'preact' /** @jsx h */
-import { MenuTrigger } from '~src/menu/components'
+import { MenuHorizontal, MenuHorizontalItem, MenuTrigger } from '~src/menu/components'
 import { ButtonPrimary } from '~src/views/components'
 import * as paths from '~src/paths'
 
@@ -24,11 +24,17 @@ export default () => (
     </div>
 
     <div className="column--desktop column is-hidden-mobile is-half-tablet">
-      <div className="menu--horizontal">
-        <div className="menu--horizontal-item active">inicio</div>
-        <div className="menu--horizontal-item">criar homenagem</div>
-        <div className="menu--horizontal-item">quem somos</div>
-      </div>
+      <MenuHorizontal>
+        <MenuHorizontalItem href={paths.home()}>
+          inicio
+        </MenuHorizontalItem>
+        <MenuHorizontalItem href={paths.memoryCreate()}>
+          criar homenagem
+        </MenuHorizontalItem>
+        <MenuHorizontalItem href={paths.aboutUs()}>
+          quem somos
+        </MenuHorizontalItem>
+      </MenuHorizontal>
       <div>
         === image placeholder ===
       </div>

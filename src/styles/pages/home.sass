@@ -1,7 +1,5 @@
-/**
- * `Home` Page Component
- */
 .page__home
+
   .section--about-campaign
     p
       margin-bottom: 22px
@@ -14,16 +12,24 @@
         font-size: 20px
         line-height: 23px
 
-  .components--memory-summary
-    .image
-      width: 220px
-      height: 150px
+
+  .section--featured-memories
+    .components--memory-summary
+      .image
+        width: 220px
+        height: 150px
+
     .quote
       top: -50px
+
+    .components--carousel-navigator
+      margin-top: 0
+
 
   .section--about-us
     p
       margin-bottom: 22px
+
 
 .footer--home
   padding: 0 16px
@@ -39,6 +45,10 @@
   .components--ornament-page-footer
     margin-top: 43px
 
+
+//
+// greater than tablet
+//
 @media screen and (min-width: $tablet)
   .page__home
     .components--memory-summary

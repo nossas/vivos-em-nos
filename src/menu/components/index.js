@@ -1,4 +1,6 @@
 export { default as Menu } from './menu.connected'
 export { default as MenuClose } from './menu-close'
+export { default as MenuHorizontal } from './menu-horizontal'
+export { default as MenuHorizontalItem } from './menu-horizontal-item'
 export { default as MenuItem } from './menu-item.connected'
 export { default as MenuTrigger } from './menu-trigger.connected'

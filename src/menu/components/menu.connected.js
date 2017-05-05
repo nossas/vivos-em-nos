@@ -4,11 +4,11 @@ import * as MenuActions from '../redux/action-creators'
 import Menu from './menu'
 
 const mapStateToProps = state => ({
-  active: MenuSelectors(state).isActive()
+  active: MenuSelectors(state).isActive(),
 })
 
 const mapDispatchToProps = ({
-  setActive: MenuActions.setActive
+  setActive: MenuActions.setActive,
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Menu)

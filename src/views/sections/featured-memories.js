@@ -34,10 +34,9 @@ class FeaturedMemoriesSection extends Component {
 
     return loading ? null : (
       <SectionPrimary
-        className={className}
+        className={`section--featured-memories ${className}`}
         header={<SectionHeader title={<span>Veja algumas<br />homenagens</span>} />}
       >
-        <div className="ornament" />
         <Carousel>
           <MemorySummary
             name={memory.victimName}
@@ -57,12 +56,10 @@ class FeaturedMemoriesSection extends Component {
           </Quote>
         </Carousel>
 
-        <footer>
-          <CarouselNavigator />
-          <ButtonPrimary href={paths.memory(memory.id)}>
-            Ver homenagem completa
-          </ButtonPrimary>
-        </footer>
+        <CarouselNavigator />
+        <ButtonPrimary href={paths.memory(memory.id)}>
+          Ver homenagem completa
+        </ButtonPrimary>
       </SectionPrimary>
     )
   }

@@ -23,7 +23,7 @@ export default ({
         backgroundImage: `url(${image})`,
         width: imageWidth,
         height: imageHeight,
-        right: imageAlignment === 'right' ? 500 : undefined,
+        right: imageAlignment === 'right' ? 0 : undefined,
         left: imageAlignment === 'left' ? 0 : undefined,
       }}
     />
@@ -40,7 +40,7 @@ export default ({
         <div className="name">{name}</div>
         <span className="lifetime">{birthYear} / {deathYear}</span>
         <div className="owner">
-          Homenageada por: {owner}
+          Homenagem criada por: {owner}
         </div>
       </div>
       <div className="memory-description">

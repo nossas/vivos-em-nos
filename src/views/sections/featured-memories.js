@@ -122,7 +122,7 @@ class FeaturedMemoriesSection extends Component {
           <a
             type="button"
             className="button-primary"
-            href={`/memory/${newMemories[this.state.currentView].id}`}
+            href={`/memory/${memories[this.state.currentView].id}`}
           >
             Ver homenagem completa
           </a>

@@ -12,7 +12,7 @@ export default () => (
         width="102"
         height="63"
       /></a>
-      <a href="https://www.instintodevida.org/" target="_blank"><img
+      <a href="https://www.br.instintodevida.org/" target="_blank"><img
         src="/img/logo-instinto-de-vida.png"
         alt="Logo Instinto de Vida"
         width="85"

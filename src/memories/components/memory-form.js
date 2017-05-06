@@ -1,6 +1,7 @@
 import { h, Component } from 'preact' /** @jsx h */
-import { Field, FieldArray, SubmissionError } from 'redux-form'
+import { Field, FieldArray } from 'redux-form'
 import * as paths from '~src/paths'
+import * as string from '~src/utils/string'
 import { COUNTRIES } from '~src/memories/constants'
 import { ButtonPrimary, SectionHeader, SectionPrimary } from '~src/views/components'
 import {
@@ -20,7 +21,7 @@ class MemoryForm extends Component {
   onSubmit(values) {
     return this.props.onSave(values)
       .then(({ memory }) => this.setState({
-        redirect: memory.victimName.toLowerCase().replace(/\s/g, '-'),
+        redirect: string.slugify(memory.victimName),
       }))
   }
 

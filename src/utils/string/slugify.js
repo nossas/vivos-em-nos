@@ -1,0 +1,12 @@
+export default value => value
+  .toLowerCase()
+  .replace(/\s/g, '-')
+  .replace(/[ÂÃÄÀÁÅàáâãäå]/g, 'a')
+  .replace(/[Çç]/g, 'c')
+  .replace(/[ÈÉÊËèéêë]/g, 'e')
+  .replace(/[ÌÍÎÏìíîï]/g, 'i')
+  .replace(/[Ðð]/g, 'd')
+  .replace(/[Ññ]/g, 'n')
+  .replace(/[ÒÓÔÕÖØòóôõöø]/g, 'o')
+  .replace(/[ÙÚÛÜùúûü]/g, 'u')
+  .replace(/[Ýýÿ]/g, 'u')

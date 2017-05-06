@@ -383,3 +383,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ALTER TABLE memory_comments RENAME COLUMN first_name TO name;
 ALTER TABLE memory_comments DROP COLUMN last_name;
 
+--
+-- Migration: 20170430213358
+--
+alter table memories add column featured_site boolean default false

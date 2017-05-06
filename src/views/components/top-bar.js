@@ -1,10 +1,12 @@
 import { h } from 'preact' /** @jsx h */
 import { Link } from 'preact-router'
-import { MenuTrigger } from '../../menu/components'
+import { MenuTrigger, MenuHorizontal, MenuHorizontalItem } from '~src/menu/components'
+import * as detect from '~src/utils/detect'
+import * as paths from '~src/paths'
 
 export default () => (
   <section className="components--top-bar">
-    <div className="bar columns is-mobile">
+    {detect.mobile ? (<div className="bar columns is-mobile">
       <div className="column is-one-quarter-mobile">
         <MenuTrigger />
       </div>
@@ -13,7 +15,17 @@ export default () => (
           <img src="/img/logo-vivos-em-nos.svg" alt="logo vivos em nos" />
         </Link></h1>
       </div>
-      <div className="column is-one-quarter-mobile"></div>
-    </div>
+      <div className="column is-one-quarter-mobile"></div></div>) :
+    (<div className="bar columns is-mobile"><MenuHorizontal>
+      <MenuHorizontalItem href={paths.home()}>
+        início
+      </MenuHorizontalItem>
+      <MenuHorizontalItem href={paths.memoryCreate()}>
+        criar homenagem
+      </MenuHorizontalItem>
+      <MenuHorizontalItem href={paths.aboutUs()}>
+        quem somos
+      </MenuHorizontalItem>
+    </MenuHorizontal></div>)}
   </section>
 )

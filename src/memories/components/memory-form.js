@@ -121,7 +121,7 @@ class MemoryForm extends Component {
             component={SelectField}
             formGroupClassName="column is-half-desktop"
           >
-            {Array(75).fill('').map((e, index) => {
+            {Array(117).fill('').map((e, index) => {
               const year = currentYear - index
               return (
                 <option key={`victim-born-year-${year}`} value={year}>
@@ -136,7 +136,7 @@ class MemoryForm extends Component {
             component={SelectField}
             formGroupClassName="column is-half-desktop"
           >
-            {Array(75).fill('').map((e, index) => {
+            {Array(117).fill('').map((e, index) => {
               const year = currentYear - index
               return (
                 <option key={`victim-dead-year-${year}`} value={year}>

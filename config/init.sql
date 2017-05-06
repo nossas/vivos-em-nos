@@ -383,25 +383,3 @@ INSERT INTO "schema_migrations" (version) VALUES
 ALTER TABLE memory_comments RENAME COLUMN first_name TO name;
 ALTER TABLE memory_comments DROP COLUMN last_name;
 
---
--- Migration: 20170505182653
---
-ALTER TABLE memories RENAME COLUMN victim_name TO victim_first_name;
-ALTER TABLE memories ADD victim_last_name character varying NULL;
-UPDATE memories SET victim_last_name = '' WHERE victim_last_name IS NULL;
-ALTER TABLE memories ALTER COLUMN victim_last_name SET NOT NULL;
-
-CREATE EXTENSION IF NOT EXISTS unaccent WITH SCHEMA public;
-
-CREATE OR REPLACE FUNCTION slug(memory memories) RETURNS TEXT AS $$
-  SELECT REPLACE(LOWER(unaccent(CONCAT(
-    memory.victim_first_name, '-',
-    memory.victim_last_name
-  ))), ' ', '-');
-$$ LANGUAGE SQL IMMUTABLE;
-
-CREATE OR REPLACE FUNCTION memory_by_slug(search TEXT) RETURNS memories AS $$
-  SELECT * FROM memories
-  WHERE LOWER(slug(memories.*)) = LOWER(unaccent(search))
-  LIMIT 1
-$$ LANGUAGE SQL STABLE;

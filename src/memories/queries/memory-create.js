@@ -6,8 +6,7 @@ export default gql`
     $ownerLastName: String,
     $ownerEmail: String!,
     $ownerCountry: String!,
-    $victimFirstName: String!,
-    $victimLastName: String!,
+    $victimName: String!,
     $victimBornAt: Int!,
     $victimDeadAt: Int!,
     $victimCity: String!,
@@ -24,8 +23,7 @@ export default gql`
             ownerLastName: $ownerLastName,
             ownerEmail: $ownerEmail,
             ownerCountry: $ownerCountry,
-            victimFirstName: $victimFirstName,
-            victimLastName: $victimLastName,
+            victimName: $victimName,
             victimBornAt: $victimBornAt,
             victimDeadAt: $victimDeadAt,
             victimCity: $victimCity,
@@ -39,7 +37,7 @@ export default gql`
     }) {
       memory {
         id,
-        victimFirstName
+        victimName
       }
     }
   }

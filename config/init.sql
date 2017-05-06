@@ -386,4 +386,17 @@ ALTER TABLE memory_comments DROP COLUMN last_name;
 --
 -- Migration: 20170430213358
 --
-alter table memories add column featured_site boolean default false
+ALTER TABLE memories ADD COLUMN featured_site BOOLEAN DEFAULT FALSE;
+
+--
+-- Migration: 20170506171857
+--
+CREATE OR REPLACE FUNCTION slug(memory memories) RETURNS TEXT AS $$
+  SELECT REPLACE(LOWER(unaccent(memory.victim_name)), ' ', '-');
+$$ LANGUAGE SQL IMMUTABLE;
+
+CREATE OR REPLACE FUNCTION memory_by_slug(search TEXT) RETURNS memories AS $$
+  SELECT * FROM memories
+  WHERE LOWER(slug(memories.*)) = LOWER(unaccent(search))
+  LIMIT 1
+$$ LANGUAGE SQL STABLE;

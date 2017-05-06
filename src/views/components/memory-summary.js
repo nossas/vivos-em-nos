@@ -10,7 +10,8 @@ export default ({
   image,
   imageWidth,
   imageHeight,
-  imageAlignment,
+  imageAlignmentRight,
+  imageAlignmentLeft,
   baseFontSize,
   distanceY,
   distanceX,
@@ -23,8 +24,8 @@ export default ({
         backgroundImage: `url(${image})`,
         width: imageWidth,
         height: imageHeight,
-        right: imageAlignment === 'right' ? 0 : undefined,
-        left: imageAlignment === 'left' ? 0 : undefined,
+        right: imageAlignmentRight,
+        left: imageAlignmentLeft,
       }}
     />
     <div

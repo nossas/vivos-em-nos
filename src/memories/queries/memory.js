@@ -1,8 +1,8 @@
 import { gql } from 'react-apollo'
 
 export default gql`
-  query memoryById($id: Int!) {
-    memoryById(id: $id) {
+  query memoryBySlug($slug: String!) {
+    memoryBySlug(search: $slug) {
       id,
       ownerFirstName,
       victimBornAt,

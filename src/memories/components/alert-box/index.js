@@ -14,7 +14,7 @@ const AlertBox = ({ children, next, doneText }) => (
 )
 
 AlertBox.defaultProps = {
-  doneText: 'Ok entendi',
+  doneText: 'Ok, entendi!',
 }
 
 export default AlertBox

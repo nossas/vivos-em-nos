@@ -28,7 +28,7 @@ export default class MemoryCommentsForm extends Component {
             component="input"
           />
           <Field
-            label="Nome completo"
+            label="Nome"
             name="name"
             ref={(name) => { this.name = name }}
             type="text"
@@ -44,11 +44,11 @@ export default class MemoryCommentsForm extends Component {
             formGroupClassName="column is-half-desktop"
           />
           <Field
-            label="Texto"
+            label="Escreva aqui seu comentário"
             name="comment"
             ref={(comment) => { this.comment = comment }}
             type="text"
-            component={TextField}
+            component={TextareaField}
             formGroupClassName="column is-12"
           />
         </div>

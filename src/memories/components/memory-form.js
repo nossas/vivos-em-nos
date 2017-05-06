@@ -53,7 +53,7 @@ class MemoryForm extends Component {
               target="_blank"
               rel="noopener noreferrer"
             >
-              contato@instintodevida.org
+              <a href="mailto:contato@instintodevida.org">contato@instintodevida.org</a>
             </a>
           </p>
         </AlertBox>

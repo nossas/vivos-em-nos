@@ -19,9 +19,9 @@ class MemoryForm extends Component {
 
   onSubmit(values) {
     return this.props.onSave(values)
-      .then(({ memory }) => {
-        this.setState({ memoryId: memory.id })
-      })
+      .then(({ memory }) => this.setState({
+        redirect: memory.victimName.toLowerCase().replace(/\s/g, '-'),
+      }))
   }
 
   render() {
@@ -37,8 +37,8 @@ class MemoryForm extends Component {
       return (
         <AlertBox
           next={() => {
-            if (this.state.memoryId) {
-              window.location.href = paths.memory(this.state.memoryId)
+            if (this.state.redirect) {
+              window.location.href = paths.memory(this.state.redirect)
             } else {
               window.location.href = paths.home()
             }

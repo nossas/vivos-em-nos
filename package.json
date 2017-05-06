@@ -40,7 +40,7 @@
     "preact-layout": "^1.0.2",
     "preact-motion": "^1.0.1",
     "preact-redux": "^2.0.1",
-    "preact-router": "^2.4.1",
+    "preact-router": "nossas/preact-router",
     "raven": "^1.2.1",
     "react-apollo": "^1.0.1",
     "react-s3-uploader": "^4.1.1",

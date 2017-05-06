@@ -6452,9 +6452,9 @@ preact-render-to-string@^3.2.1, preact-render-to-string@^3.6.0:
   dependencies:
     pretty-format "^3.5.1"
 
-preact-router@^2.4.1:
-  version "2.5.2"
-  resolved "https://registry.yarnpkg.com/preact-router/-/preact-router-2.5.2.tgz#15402f809f7236006e40214fcffadcac409bd693"
+preact-router@nossas/preact-router:
+  version "2.4.1"
+  resolved "https://codeload.github.com/nossas/preact-router/tar.gz/add0f9526d93776bd50d6ee1c18e90db9434471c"
 
 preact-transition-group@^1.1.0:
   version "1.1.1"

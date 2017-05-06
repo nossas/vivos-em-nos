@@ -26,7 +26,7 @@ class MemoryForm extends Component {
 
   render() {
     const {
-      victimName,
+      victimFirstName,
       authorizedToSite,
       handleSubmit,
       error,
@@ -110,7 +110,14 @@ class MemoryForm extends Component {
         >
           <Field
             label="Nome*"
-            name="victimName"
+            name="victimFirstName"
+            type="text"
+            component={TextField}
+            formGroupClassName="column is-12"
+          />
+          <Field
+            label="Sobrenome*"
+            name="victimLastName"
             type="text"
             component={TextField}
             formGroupClassName="column is-12"
@@ -160,7 +167,7 @@ class MemoryForm extends Component {
             formGroupClassName="column is-12 is-paddingless-y"
           />
           <Field
-            label={`Quando eu penso em ${victimName || ''}, eu me lembro de: *`}
+            label={`Quando eu penso em ${victimFirstName || ''}, eu me lembro de: *`}
             name="victimRememberText"
             maxLength={500}
             component={TextareaField}
@@ -169,7 +176,7 @@ class MemoryForm extends Component {
           <Field
             label={
               'Se eu pudesse escolher uma palavra para ' +
-              `descrever ${victimName || ''}, eu escolheria`
+              `descrever ${victimFirstName || ''}, eu escolheria`
             }
             name="victimGoodWords"
             type="text"
@@ -178,7 +185,7 @@ class MemoryForm extends Component {
             formGroupClassName="column is-12"
           />
           <Field
-            label={`Selecione uma foto de ${victimName || ''}`}
+            label={`Selecione uma foto de ${victimFirstName || ''}`}
             name="victimPhoto"
             id="victimPhoto"
             component={UploadField}

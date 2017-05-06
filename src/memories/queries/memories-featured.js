@@ -12,7 +12,7 @@ export default gql`
         victimBornAt,
         victimDeadAt,
         victimHistory,
-        victimName,
+        victimFirstName,
         victimPhoto,
         victimRememberText,
         victimSilhouette,

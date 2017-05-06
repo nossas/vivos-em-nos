@@ -24,7 +24,7 @@ export default ({ id, memory, comments, assets, loading }) => (
       <div className="page pages--memory-victim">
         <section className="section--victim-data">
           <MemorySummary
-            name={memory.victimName}
+            name={memory.victimFirstName}
             owner={memory.ownerFirstName}
             birthYear={memory.victimBornAt}
             deathYear={memory.victimDeadAt}
@@ -74,13 +74,13 @@ export default ({ id, memory, comments, assets, loading }) => (
           <ShareTwitterButton
             className="share-button"
             href={`https://vivosemnos.org/memory/${memory.id}`}
-            text={`Uma homenagem para @ ${memory.victimName} `}
+            text={`Uma homenagem para @ ${memory.victimFirstName} `}
           />
           {!detect.mobile ? <i /> : (
             <ShareWhatsappButton
               className="share-button"
               text={
-                `Uma homenagem para @ ${memory.victimName} ` +
+                `Uma homenagem para @ ${memory.victimFirstName} ` +
                 `https://vivosemnos.org/memory/${memory.id}`
               }
             />

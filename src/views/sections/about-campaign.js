@@ -17,7 +17,7 @@ const AboutCampaignSection = ({ className }) => (
   >
     <div className="caption">
       <ParagraphLineRounded>
-        <span className="color--primary">No Brasil,</span> a cada duas pessoas, uma conhece
+        <span className="color--primary">No Brasil,</span> a cada quatro pessoas, uma conhece
         alguém que foi <span className="color--primary">assassinado</span>
       </ParagraphLineRounded>
     </div>

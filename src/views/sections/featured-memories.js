@@ -1,39 +1,39 @@
 import { h, Component } from 'preact' /** @jsx h */
-import { ViewPager, Frame, Track, View } from 'react-view-pager'
+import { ViewPager, Frame, Track, View, AnimatedView } from 'react-view-pager'
 import {
-  // ButtonPrimary,
-  // MemorySummary,
-  // Quote,
+  ButtonPrimary,
+  MemorySummary,
+  Quote,
   SectionHeader,
   SectionPrimary,
 } from '~src/views/components'
-// import * as paths from '~src/paths'
+import * as paths from '~src/paths'
 import './slider.scss'
 
-// const Memory = ({ memory }) => (
-//   <div>
-//     <MemorySummary
-//       name={memory.victimFirstName}
-//       owner={memory.ownerFirstName}
-//       birthYear={memory.victimBornAt}
-//       deathYear={memory.victimDeadAt}
-//       description={memory.victimHistory}
-//       image={`${process.env.SERVER_DOMAIN}${memory.victimPhoto}`}
-//       imageWidth="164px"
-//       imageHeight="132px"
-//       imageAlignment="left"
-//       distanceY="100px"
-//       distanceX="36%"
-//       width="63%"
-//     />
-//     <Quote>
-//       {memory.victimRememberText}
-//     </Quote>
-//     <ButtonPrimary href={paths.memory(memory.id)}>
-//       Ver homenagem completa
-//     </ButtonPrimary>
-//   </div>
-// )
+const Memory = ({ memory }) => (
+  <div>
+    <MemorySummary
+      name={memory.victimName}
+      owner={memory.ownerFirstName}
+      birthYear={memory.victimBornAt}
+      deathYear={memory.victimDeadAt}
+      description={memory.victimHistory}
+      image={`${process.env.SERVER_DOMAIN}${memory.victimPhoto}`}
+      imageWidth="164px"
+      imageHeight="132px"
+      imageAlignment="left"
+      distanceY="100px"
+      distanceX="36%"
+      width="63%"
+    />
+    <Quote>
+      {memory.victimRememberText}
+    </Quote>
+    <ButtonPrimary href={paths.memory(memory.id)}>
+      Ver homenagem completa
+    </ButtonPrimary>
+  </div>
+)
 
 class FeaturedMemoriesSection extends Component {
   constructor(props) {
@@ -46,7 +46,7 @@ class FeaturedMemoriesSection extends Component {
   render() {
     const { loading, memories, className } = this.props
 
-    return loading || !memories.length ? null : (
+    return loading ? null : (
       <SectionPrimary
         className={`section--featured-memories ${className}`}
         header={<SectionHeader title="Homenagens" />}
@@ -88,7 +88,7 @@ class FeaturedMemoriesSection extends Component {
                         style={{ paddingTop: 100, marginLeft: '30%', width: '63%' }}
                       >
                         <div className="memory-identity">
-                          <div className="name">{memory.victimFirstName}</div>
+                          <div className="name">{memory.victimName}</div>
                           <span className="lifetime">
                             {memory.victimBornAt} / {memory.victimDeadAt}
                           </span>

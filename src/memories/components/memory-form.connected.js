@@ -9,10 +9,9 @@ const FORM = 'memoryForm'
 
 const REQUIRED_FIELDS = [
   'ownerFirstName', 'ownerLastName', 'ownerEmail',
-  'ownerCountry', 'victimFirstName', 'victimLastName',
-  'victimBornAt', 'victimDeadAt', 'victimCity',
-  'victimHistory', 'victimRememberText', 'victimPhoto',
-  'victimSilhouette', 'authorizedToSite',
+  'ownerCountry', 'victimName', 'victimBornAt', 'victimDeadAt',
+  'victimCity', 'victimHistory', 'victimRememberText',
+  'victimPhoto', 'victimSilhouette', 'authorizedToSite',
 ]
 
 const validate = (values) => {
@@ -31,7 +30,7 @@ const validate = (values) => {
 const mapStateToProps = (state, props) => {
   const selector = formValueSelector(props.form)
   return {
-    ...selector(state, 'victimFirstName', 'authorizedToSite'),
+    ...selector(state, 'victimName', 'authorizedToSite'),
     initialValues: props.memory,
   }
 }

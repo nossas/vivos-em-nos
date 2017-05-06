@@ -1,6 +1,7 @@
 import { h, Component } from 'preact' /** @jsx h */
 import { ViewPager, Frame, Track, View } from 'react-view-pager'
 import { SectionHeader, SectionPrimary } from '~src/views/components'
+import * as string from '~src/utils/string'
 import './slider.scss'
 
 class FeaturedMemoriesSection extends Component {
@@ -90,7 +91,7 @@ class FeaturedMemoriesSection extends Component {
           <a
             type="button"
             className="button-primary"
-            href={`/memory/${memories[this.state.currentView].id}`}
+            href={string.slugify(memories[this.state.currentView].victimName)}
           >
             Ver homenagem completa
           </a>

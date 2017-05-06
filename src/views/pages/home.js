@@ -15,9 +15,9 @@ export default () => (
       <SplashSection />
 
       <div className="columns">
-        <AboutCampaignSection className="column is-one-third-tablet" />
         <FeaturedMemoriesSection className="column is-one-third-tablet" />
         <AboutUsSection className="column is-one-third-tablet" />
+        <AboutCampaignSection className="column is-one-third-tablet" />
       </div>
 
     </div>

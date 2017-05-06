@@ -1,6 +1,6 @@
 import { h } from 'preact' /** @jsx h */
-import { Header, Footer, LayoutDefault } from '~src/views/layout/layout'
-import { TopBar, OrnamentPageFooter } from '~src/views/components'
+import { Header, LayoutDefault } from '~src/views/layout/layout'
+import { TopBar } from '~src/views/components'
 import { MemoryForm } from '~src/memories/components'
 
 export default ({ token, memory }) => (

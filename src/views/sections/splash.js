@@ -26,7 +26,7 @@ export default () => (
     <div className="column--desktop column is-hidden-mobile is-half-tablet">
       <MenuHorizontal>
         <MenuHorizontalItem href={paths.home()}>
-          inicio
+          início
         </MenuHorizontalItem>
         <MenuHorizontalItem href={paths.memoryCreate()}>
           criar homenagem

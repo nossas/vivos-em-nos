@@ -53,7 +53,7 @@ class MemoryForm extends Component {
               target="_blank"
               rel="noopener noreferrer"
             >
-              contato@instintodevida.org
+              <a href="mailto:contato@instintodevida.org">contato@instintodevida.org</a>
             </a>
           </p>
         </AlertBox>
@@ -121,7 +121,7 @@ class MemoryForm extends Component {
             component={SelectField}
             formGroupClassName="column is-half-desktop"
           >
-            {Array(75).fill('').map((e, index) => {
+            {Array(117).fill('').map((e, index) => {
               const year = currentYear - index
               return (
                 <option key={`victim-born-year-${year}`} value={year}>
@@ -136,7 +136,7 @@ class MemoryForm extends Component {
             component={SelectField}
             formGroupClassName="column is-half-desktop"
           >
-            {Array(75).fill('').map((e, index) => {
+            {Array(117).fill('').map((e, index) => {
               const year = currentYear - index
               return (
                 <option key={`victim-dead-year-${year}`} value={year}>
@@ -155,7 +155,7 @@ class MemoryForm extends Component {
           <Field
             label="O que aconteceu?*"
             name="victimHistory"
-            maxLength={200}
+            maxLength={80}
             component={TextareaField}
             formGroupClassName="column is-12 is-paddingless-y"
           />
@@ -198,17 +198,27 @@ class MemoryForm extends Component {
             formGroupClassName="column is-12"
             className="columns is-multiline is-mobile"
             optionsHeight="200px"
-            optionsClassName="column is-half-mobile is-half-tablet is-one-third-desktop"
+            optionsClassName="column is-half-mobile is-half-tablet is-one-quarter-desktop"
           >
             <RadioField.Button
-              src="/img/silhouette-orange-form.svg"
+              src="/img/silhouette-1.svg"
               alt="Silhueta 1"
               value="1"
             />
             <RadioField.Button
-              src="/img/silhouette-blue-form.svg"
+              src="/img/silhouette-2.svg"
               alt="Silhueta 2"
               value="2"
+            />
+            <RadioField.Button
+              src="/img/silhouette-3.svg"
+              alt="Silhueta 3"
+              value="3"
+            />
+            <RadioField.Button
+              src="/img/silhouette-4.svg"
+              alt="Silhueta 4"
+              value="4"
             />
           </Field>
           <Field

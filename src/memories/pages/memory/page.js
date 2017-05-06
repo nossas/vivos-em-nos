@@ -47,6 +47,11 @@ export default ({ id, memory, comments, assets, loading }) => (
           <Quote>
             {memory.victimRememberText}
           </Quote>
+        </section>
+        <SectionPrimary
+          className="section--gallery"
+          header={<SectionHeader title="Galeria de imagens" hideBorder />}
+        >
           <div className="gallery columns is-multiline is-desktop">
             {assets &&
               assets
@@ -61,7 +66,7 @@ export default ({ id, memory, comments, assets, loading }) => (
               )
             }
           </div>
-        </section>
+        </SectionPrimary>
 
         <SectionPrimary
           className="section--share"

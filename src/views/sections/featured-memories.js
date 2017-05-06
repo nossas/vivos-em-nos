@@ -45,7 +45,12 @@ class FeaturedMemoriesSection extends Component {
 
   render() {
     const { loading, memories, className } = this.props
-
+    const newMemories = []
+    memories.map((m) => {
+      if ((m.id === 16) || (m.id === 22)) {
+        newMemories.push(m)
+      }
+    })
     return loading ? null : (
       <SectionPrimary
         className={`section--featured-memories ${className}`}
@@ -62,7 +67,7 @@ class FeaturedMemoriesSection extends Component {
                 this.setState({ currentView: indicies[0] })
               }}
             >
-              {memories.map(memory => (
+              {newMemories.map(memory => (
                 <View className="view">
                   <div>
                     <div className="components--memory-summary">
@@ -92,17 +97,17 @@ class FeaturedMemoriesSection extends Component {
                           <span className="lifetime">
                             {memory.victimBornAt} / {memory.victimDeadAt}
                           </span>
-                          <div className="owner">{memory.ownerFirstName}</div>
+                          <div className="owner">Homenageada por: {memory.ownerFirstName}</div>
                         </div>
                         <div className="memory-description">
                           <span className="components--paragraph-line-rounded">
-                            {memory.victimHistory}
+                            {memory.victimHistory.substring(0, 50) + (memory.victimHistory.length > 50 ? '...' : '')}
                           </span>
                         </div>
                       </div>
                     </div>
                     <div className="quote">
-                      {memory.victimRememberText}
+                      {memory.victimRememberText.substring(0, 100) + (memory.victimRememberText.length > 100 ? '...' : '')}
                     </div>
                   </div>
                 </View>

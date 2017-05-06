@@ -16,13 +16,13 @@ module.exports = (env) => {
       vendor: [
         // pull these to a `vendor.js` file
         'preact',
-        'lodash'
+        'redux-form'
       ],
     },
     output: {
       path: dist,
       filename: '[name].[hash].js',
-      publicPath: isProd ? `https://staging.vivosemnos.org/` : '/',
+      publicPath: isProd ? `https://vivosemnos.org/` : '/',
 
     },
     resolve: {

@@ -92,7 +92,7 @@ class FeaturedMemoriesSection extends Component {
                           <span className="lifetime">
                             {memory.victimBornAt} / {memory.victimDeadAt}
                           </span>
-                          <div className="owner">{memory.ownerFirstName}</div>
+                          <div className="owner">Homenageada por: {memory.ownerFirstName}</div>
                         </div>
                         <div className="memory-description">
                           <span className="components--paragraph-line-rounded">

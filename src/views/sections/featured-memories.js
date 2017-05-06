@@ -115,7 +115,7 @@ class FeaturedMemoriesSection extends Component {
             </Track>
           </Frame>
           <nav className="pager-controls">
-            {Array(memories.length).fill('').map((element, index) => (
+            {Array(newMemories.length).fill('').map((element, index) => (
               <button
                 type="button"
                 className={`pager-control ${this.state.currentView === index ? 'active' : ''}`}

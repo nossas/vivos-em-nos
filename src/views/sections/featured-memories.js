@@ -96,13 +96,13 @@ class FeaturedMemoriesSection extends Component {
                         </div>
                         <div className="memory-description">
                           <span className="components--paragraph-line-rounded">
-                            {memory.victimHistory}
+                            {memory.victimHistory.substring(0, 50) + (memory.victimHistory.length > 50 ? '...' : '')}
                           </span>
                         </div>
                       </div>
                     </div>
                     <div className="quote">
-                      {memory.victimRememberText}
+                      {memory.victimRememberText.substring(0, 100) + (memory.victimRememberText.length > 100 ? '...' : '')}
                     </div>
                   </div>
                 </View>

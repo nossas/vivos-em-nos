@@ -23,7 +23,7 @@ export default ({
         backgroundImage: `url(${image})`,
         width: imageWidth,
         height: imageHeight,
-        right: imageAlignment === 'right' ? 0 : undefined,
+        right: imageAlignment === 'right' ? 500 : undefined,
         left: imageAlignment === 'left' ? 0 : undefined,
       }}
     />

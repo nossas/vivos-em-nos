@@ -11,7 +11,7 @@ const REQUIRED_FIELDS = [
   'ownerFirstName', 'ownerLastName', 'ownerEmail',
   'ownerCountry', 'victimName', 'victimBornAt', 'victimDeadAt',
   'victimCity', 'victimHistory', 'victimRememberText',
-  'victimPhoto', 'victimSilhouette', 'authorizedToSite',
+  'victimPhoto', 'victimSilhouette',
 ]
 
 const validate = (values) => {

@@ -4,9 +4,6 @@ export default gql`query {
     allMemories(
       first: 5,
       orderBy: ID_DESC,
-      condition:{
-        featuredSite:true
-      }
     ) {
       nodes {
         id,

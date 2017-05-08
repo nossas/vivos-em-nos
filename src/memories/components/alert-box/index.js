@@ -4,12 +4,18 @@ import './styles.sass'
 
 const AlertBox = ({ children, next, doneText }) => (
   <div className="AlertBox">
-    {children}
-    {next && (
-      <ButtonOutline onClick={next}>
-        {doneText}
-      </ButtonOutline>
-    )}
+    <div className="columns">
+      <div className="container">
+        <div className="column is-half is-offset-one-quarter">
+        {children}
+        {next && (
+          <ButtonOutline onClick={next}>
+            {doneText}
+          </ButtonOutline>
+        )}
+        </div>
+      </div>
+    </div>
   </div>
 )
 

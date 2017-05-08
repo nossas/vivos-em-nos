@@ -24,7 +24,7 @@ const LayoutDefault = connect(mapStateToProps)(
         <a class="components--menu-item " target="_blank" href="https://www.facebook.com/sharer.php?u=https://vivosemnos.org">
           Compartilhar
         </a>
-        <a class="components--menu-item " target="_blank" href="https://facebook.com/vivosemnos/?ref=homepage">
+        <a class="components--menu-item " target="_blank" href="https://www.facebook.com/vivosennos/?fref=ts">
           Seguir
         </a>
       </Menu>

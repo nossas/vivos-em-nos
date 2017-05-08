@@ -1,5 +1,5 @@
 export const home = () => '/'
-export const aboutUs = () => '/#about-us'
+export const aboutUs = () => '/?section'
 export const notFound = () => '/404'
 
 //

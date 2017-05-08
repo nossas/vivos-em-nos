@@ -59,11 +59,12 @@ export default ({ id, memory, comments, assets, loading }) => (
               assets
                 .filter(asset => asset.assetType === 'image')
                 .map((asset, index) => (
-                  <img
-                    className="column column is-one-third"
-                    src={`${process.env.SERVER_DOMAIN}${asset.assetUrl}`}
-                    alt={`asset-${index}`}
-                  />
+                  <div className="column column is-one-third">
+                    <img
+                      src={`${process.env.SERVER_DOMAIN}${asset.assetUrl}`}
+                      alt={`asset-${index}`}
+                    />
+                  </div>
                 ),
               )
             }

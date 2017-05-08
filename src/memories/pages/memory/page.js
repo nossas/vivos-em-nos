@@ -36,7 +36,7 @@ export default ({ id, memory, comments, assets, loading }) => (
             imageAlignmentRight={detect.mobile ? 0 : undefined}
             imageAlignmentLeft={!detect.mobile ? 190 : undefined}
             baseFontSize="16px"
-            distanceY="84px"
+            distanceY="140px"
             width="80%"
           />
         </section>

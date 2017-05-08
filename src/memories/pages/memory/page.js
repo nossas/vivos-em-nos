@@ -13,6 +13,7 @@ import {
 } from '~src/views/components'
 import { MemoryCommentsForm } from '~src/memories/components'
 import * as detect from '~src/utils/detect'
+import * as string from '~src/utils/string'
 
 export default ({ id, memory, comments, assets, loading }) => (
   <LayoutDefault>
@@ -75,19 +76,19 @@ export default ({ id, memory, comments, assets, loading }) => (
         >
           <ShareFacebookButton
             className="share-button"
-            href={`https://vivosemnos.org/memory/${memory.id}`}
+            href={`https://vivosemnos.org/${string.slugify(memory.victimName)}`}
           />
           <ShareTwitterButton
             className="share-button"
-            href={`https://vivosemnos.org/memory/${memory.id}`}
-            text={`Uma homenagem para @ ${memory.victimName} `}
+            href={`https://vivosemnos.org/${string.slugify(memory.victimName)}`}
+            text={`Acabei de criar uma homenagem para ${memory.victimName}. Confira em `}
           />
           {!detect.mobile ? <i /> : (
             <ShareWhatsappButton
               className="share-button"
               text={
-                `Uma homenagem para @ ${memory.victimName} ` +
-                `https://vivosemnos.org/memory/${memory.id}`
+                `Acabei de criar uma homenagem para ${memory.victimName}. Confira em` +
+                `https://vivosemnos.org/memory/${string.slugify(memory.victimName)}`
               }
             />
           )}

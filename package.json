@@ -20,6 +20,7 @@
   "dependencies": {
     "aws-sdk": "^2.48.0",
     "babel-plugin-module-resolver": "^2.7.0",
+    "babel-plugin-react-intl": "^2.3.1",
     "bulma": "^0.4.1",
     "compression": "^1.6.2",
     "cors": "^2.8.3",
@@ -43,6 +44,7 @@
     "preact-router": "nossas/preact-router",
     "raven": "^1.2.1",
     "react-apollo": "^1.0.1",
+    "react-intl": "^2.2.3",
     "react-s3-uploader": "^4.1.1",
     "react-swipeable": "^3.9.2",
     "react-textarea-autosize": "^4.3.0",

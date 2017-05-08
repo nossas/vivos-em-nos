@@ -1,4 +1,5 @@
 import { h } from 'preact' /** @jsx h */
+import { FormattedMessage } from 'react-intl'
 import { MenuHorizontal, MenuHorizontalItem, MenuTrigger } from '~src/menu/components'
 import { ButtonPrimary } from '~src/views/components'
 import * as paths from '~src/paths'
@@ -14,9 +15,15 @@ export default () => (
         />
       </h1>
       <p>
-        Vamos usar a memória como ferramenta para mudança. Homenageando
-        aqueles que estão <span className="color--primary">#VivosEmNós</span>, podemos
-        transformar saudade em mobilização e, juntos, lutar por mais respeito à vida.
+        <FormattedMessage
+          id="section--splash.hero"
+          defaultMessage={
+            'Vamos usar a memória como ferramenta para mudança. Homenageando ' +
+            'aqueles que estão {hashtag}, podemos ' +
+            'transformar saudade em mobilização e, juntos, lutar por mais respeito à vida.'
+          }
+          values={{ hashtag: <span className="color--primary">#VivosEmNós</span> }}
+        />
       </p>
       <ButtonPrimary href={paths.memoryCreate()}>
         Criar sua homenagem

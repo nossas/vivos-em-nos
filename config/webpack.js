@@ -1,10 +1,9 @@
+/* eslint-disable */
 const { join } = require('path')
 const ExtractText = require('extract-text-webpack-plugin')
 
 const setup = require('./setup')
-
 const dist = join(__dirname, '../dist')
-
 const s3BucketName = process.env.AWS_BUCKET || 'vivo-em-nos-staging'
 
 module.exports = (env) => {
@@ -16,13 +15,13 @@ module.exports = (env) => {
       vendor: [
         // pull these to a `vendor.js` file
         'preact',
-        'redux-form'
+        'redux-form',
       ],
     },
     output: {
       path: dist,
       filename: '[name].[hash].js',
-      publicPath: isProd ? `https://vivosemnos.org/` : '/',
+      publicPath: isProd ? 'https://vivosemnos.org/' : '/',
 
     },
     resolve: {

@@ -1,4 +1,5 @@
 import { h } from 'preact' /** @jsx h */
+import { FormattedMessage } from 'react-intl'
 import {
   ParagraphLineRounded,
   SectionHeader,
@@ -22,10 +23,15 @@ const AboutCampaignSection = ({ className }) => (
       </ParagraphLineRounded>
     </div>
     <p>
-      As estatísticas assustam, mas os números não nos permitem enxergar o mais importante:
-      os nomes, os rostos e as histórias dessas vítimas. Tratá-las como dígitos nos
-      relatórios de segurança pública nos afasta da real dimensão do problema e nos
-      impede de cobrar soluções efetivas.
+      <FormattedMessage
+        id={'section--about-campaign.statistics'}
+        defaultMessage={
+          'As estatísticas assustam, mas os números não nos permitem enxergar o mais importante:' +
+          'os nomes, os rostos e as histórias dessas vítimas. Tratá-las como dígitos nos' +
+          'relatórios de segurança pública nos afasta da real dimensão do problema e nos' +
+          'impede de cobrar soluções efetivas.'
+        }
+      />
     </p>
     <p>
       <span className="color--primary">#VivosEmNós</span> quer usar a memória como ferramenta

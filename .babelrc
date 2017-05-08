@@ -5,6 +5,12 @@
   ],
   "plugins": [
     ["transform-react-jsx", { "pragma": "h" }],
+    [
+      "react-intl", {
+        "messagesDir": "./dist/messages",
+        "enforceDescriptions": false
+      }
+    ],
     "transform-decorators-legacy",
     "syntax-trailing-function-commas",
     "transform-object-rest-spread",

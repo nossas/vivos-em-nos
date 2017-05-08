@@ -234,7 +234,6 @@ class MemoryForm extends Component {
 
         <ButtonPrimary
           TagName="button"
-          disabled={!authorizedToSite}
           type="submit"
         >
           Publique sua homenagem

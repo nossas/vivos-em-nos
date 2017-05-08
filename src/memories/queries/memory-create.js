@@ -15,7 +15,7 @@ export default gql`
     $victimGoodWords: String,
     $victimPhoto: String!,
     $victimSilhouette: String!,
-    $authorizedToSite: Boolean!
+    $authorizedToSite: Boolean
   ) {
     createMemory(input: {
         memory: {

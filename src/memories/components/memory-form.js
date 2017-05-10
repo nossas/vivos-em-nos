@@ -28,7 +28,6 @@ class MemoryForm extends Component {
   render() {
     const {
       victimName,
-      authorizedToSite,
       handleSubmit,
       error,
       submitSucceeded,

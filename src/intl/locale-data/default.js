@@ -2,6 +2,9 @@ export default {
   'global--brand-name': '#VivosEmNós',
   'footer--home': 'Fale conosco:',
 
+  'page--memory-create.form-description': '{strong} Depois de publicada, você vai poder compartilhar essa página nas suas redes sociais e dizer a todos como essa pessoa permanece viva na sua memória.',
+  'page--memory-create.form-description.strong': 'Preenchendo o formulário abaixo, você cria uma homenagem a alguém que morreu, vítima da violência.',
+
   'section--splash.hero': 'Vamos usar a memória como ferramenta para mudança. Homenageando aqueles que estão {hashtag}, podemos transformar saudade em mobilização e, juntos, lutar por mais respeito à vida.',
 
   'section--about-campaign.header': 'Sobre{breakLine}a campanha',

@@ -1,4 +1,5 @@
 import { h, Component } from 'preact' /** @jsx h */
+import { FormattedMessage } from 'react-intl'
 import { Field } from 'redux-form'
 import { ButtonPrimary } from '~src/views/components'
 import { Form, TextField, TextareaField } from '~src/views/components/form'
@@ -29,7 +30,12 @@ export default class MemoryCommentsForm extends Component {
             component="input"
           />
           <Field
-            label="Nome"
+            label={
+              <FormattedMessage
+                id="components--memory-comment.name"
+                defaultMessage="Nome"
+              />
+            }
             name="name"
             ref={(name) => { this.name = name }}
             type="text"
@@ -37,7 +43,12 @@ export default class MemoryCommentsForm extends Component {
             formGroupClassName="column is-half-desktop"
           />
           <Field
-            label="Email"
+            label={
+              <FormattedMessage
+                id="components--memory-comment.email"
+                defaultMessage="Email"
+              />
+            }
             name="email"
             ref={(email) => { this.email = email }}
             type="email"
@@ -45,7 +56,12 @@ export default class MemoryCommentsForm extends Component {
             formGroupClassName="column is-half-desktop"
           />
           <Field
-            label="Escreva aqui seu comentário"
+            label={
+              <FormattedMessage
+                id="components--memory-comment.comment"
+                defaultMessage="Escreva aqui seu comentário"
+              />
+            }
             name="comment"
             ref={(comment) => { this.comment = comment }}
             type="text"
@@ -55,7 +71,10 @@ export default class MemoryCommentsForm extends Component {
         </div>
 
         <ButtonPrimary TagName="button" type="submit">
-          Enviar comentário
+          <FormattedMessage
+            id="components--memory-comment.submit"
+            defaultMessage="Enviar comentário"
+          />
         </ButtonPrimary>
       </Form>
     )

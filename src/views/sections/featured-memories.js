@@ -1,4 +1,5 @@
 import { h, Component } from 'preact' /** @jsx h */
+import { FormattedMessage } from 'react-intl'
 import { ViewPager, Frame, Track, View } from 'react-view-pager'
 import { SectionHeader, SectionPrimary } from '~src/views/components'
 import * as string from '~src/utils/string'
@@ -17,7 +18,16 @@ class FeaturedMemoriesSection extends Component {
     return loading || !memories.length ? null : (
       <SectionPrimary
         className={`section--featured-memories ${className}`}
-        header={<SectionHeader title="Homenagens" />}
+        header={
+          <SectionHeader
+            title={(
+              <FormattedMessage
+                id="section--featured-memories.header"
+                defaultMessage="Homenagens"
+              />
+            )}
+          />
+        }
       >
         <ViewPager>
           <Frame className="frame" autoSize="height">
@@ -93,7 +103,10 @@ class FeaturedMemoriesSection extends Component {
             className="button-primary"
             href={string.slugify(memories[this.state.currentView].victimName)}
           >
-            Ver homenagem completa
+            <FormattedMessage
+              id="section--featured-memories.cta"
+              defaultMessage="Ver homenagem completa"
+            />
           </a>
         </ViewPager>
       </SectionPrimary>

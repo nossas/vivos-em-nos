@@ -10,6 +10,9 @@ export default {
   'section--about-campaign.statistics': 'Las estadísticas asustan, pero los números no nos permiten ver lo más importante: los nombres, los rostros y las historias de esas víctimas. Tratarlas como números en informes de seguridad pública nos aleja de la real dimensión del problema y nos impide exigir soluciones efectivas.',
   'section--about-campaign.the-goal': '{hashtag} quiere usar la memoria como herramienta para transformar la solidaridad en unión, la añoranza en movilización y la indignación en fuerza para el cambio. Si conoces a alguien que ha tenido su historia interrumpida por la violencia, crea aquí una página de homenaje para unirte a la lucha por más respeto a la vida.',
 
+  'section--featured-memories.header': 'Homenajes',
+  'section--featured-memories.cta': 'Ver homenaje completa',
+
   'components--menu-item.home': 'Inicio',
   'components--menu-item.create-memory': 'Crear Homenaje',
   'components--menu-item.about-us': 'Quiénes Somos',

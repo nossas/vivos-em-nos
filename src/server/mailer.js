@@ -1,5 +1,3 @@
-
-import { URL } from 'url'
 import path from 'path'
 import fs from 'fs'
 import _ from 'lodash'
@@ -7,11 +5,13 @@ import aws from 'aws-sdk'
 import pg from 'pg'
 import mimelib from 'mimelib'
 
-function sendMail (payload, config, winstonLog) {
+function sendMail(payload, config, winstonLog) {
   const p = JSON.parse(payload)
   const fileNameEmailTemplate = path.resolve(
     __dirname, '..', '..', 'dist',
-    'notification-criacao-memoria.html'
+    p.language === 'es'
+      ? 'notification-memory-create.es.html'
+      : 'notification-memory-create.pt.html',
   )
 
   fs.readFile(fileNameEmailTemplate, 'utf8', function (err, fileContent) {
@@ -21,19 +21,7 @@ function sendMail (payload, config, winstonLog) {
     }
     const data = fileContent.toString()
     const EmailHtml = _.template(data)
-    const EmailText = `Olá ${p.owner_first_name}!
-
-Sua homenagem criada no #VivoEmNos está pronta. Caso tenha visto algo que não goste, você pode editar copiando e colando no navegador o link abaixo.
-
-https://vivosemnos.org/memory/edit?token=${p.token}
-
-Saudações,
-Equipe Vivo Em Nós
-
-Este email foi enviado porque foi criada uma homenagem no site www.vivosemnos.org. Se não foi você, desconsidere esse e-mail.
-
-Caso esse email te incomode, fique à vontade para enviar um email para notificacoes@vivosemnos.org e pedir o cancelamento.
-`
+    const EmailText = '' // notification message injection. make it work.
 
     const ses = new aws.SES({
       accessKeyId: config.accessKeyId,
@@ -43,7 +31,10 @@ Caso esse email te incomode, fique à vontade para enviar um email para notifica
 
     winstonLog.info(`MEMORY READY TO MAIL: ${EmailText}`)
 
-    const replyTo = `${mimelib.encodeMimeWord("Vivos Em Nós")} <notificacoes@vivosemnos.org>`
+    const replyTo = p.language === 'es'
+      ? `${mimelib.encodeMimeWord('Vivos En Nosotros')} <contato@vivosennosotros.org>`
+      : `${mimelib.encodeMimeWord('Vivos Em Nós')} <contato@vivosemnos.org>`
+
     const eparam = {
       Destination: {
         ToAddresses: [`${p.owner_first_name}<${p.owner_email}>`],
@@ -58,7 +49,9 @@ Caso esse email te incomode, fique à vontade para enviar um email para notifica
           },
         },
         Subject: {
-          Data: 'Sua homenagem ficou pronta, acesse!',
+          Data: p.language === 'es'
+            ? 'Su homenaje quedó lista, acceda!'
+            : 'Sua homenagem ficou pronta, acesse!',
         },
       },
       Source: replyTo,

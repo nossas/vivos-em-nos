@@ -28,6 +28,9 @@ export default {
   'section--about-us.initiative': '{hashtag} é uma iniciativa da campanha Instinto de Vida, uma aliança latino-americana criada a partir da união de organizações não governamentais que compartilham um objetivo: reduzir à metade a violência letal na região em 10 anos.',
   'section--about-us.the-goal': 'Essa meta requer muito foco, compromisso e pressão por políticas públicas efetivas. {hashtag} é o espaço que criamos para homenagear as pessoas levadas precocemente pela violência e unir todos que desejam lutar pelo respeito à vida. A sensibilização é o primeiro passo em direção à mudança.',
 
+  // component input counter
+  'components--input-counter.characters': 'caracteres',
+
   // component menu item
   'components--menu-item.home': 'Início',
   'components--menu-item.create-memory': 'Criar Homenagem',
@@ -41,4 +44,17 @@ export default {
   'components--memory-form.section--about-you.owner-last-name': 'Sobrenome*',
   'components--memory-form.section--about-you.owner-email': 'E-mail*',
   'components--memory-form.section--about-you.owner-country': 'País*',
+  'components--memory-form.section--about-victim.header': 'Sobre a pessoa que você quer homenagear',
+  'components--memory-form.section--about-victim.victim-name': 'Nome*',
+  'components--memory-form.section--about-victim.victim-born-at': 'Ano em que nasceu*',
+  'components--memory-form.section--about-victim.victim-dead-at': 'Ano do assassinato*',
+  'components--memory-form.section--about-victim.victim-city': 'Cidade onde morreu*',
+  'components--memory-form.section--about-victim.victim-history': 'O que aconteceu?*',
+  'components--memory-form.section--about-victim.victim-remember-text': 'Quando eu penso em {victimName}, eu me lembro de: *',
+  'components--memory-form.section--about-victim.victim-good-words': 'Se eu pudesse escolher uma palavra para descrever {victimName}, eu escolheria',
+  'components--memory-form.section--about-victim.victim-photo': 'Selecione uma foto de {victimName}',
+  'components--memory-form.section--about-victim.memory-assets': 'Crie uma galeria de imagens',
+  'components--memory-form.section--about-victim.victim-silhouette': 'Imagem',
+  'components--memory-form.section--about-victim.authorized-to-site': 'Autorizo a divulgação dessa homenagem no site {hashtag}',
+  'components--memory-form.submit-button': 'Publique sua homenagem',
 }

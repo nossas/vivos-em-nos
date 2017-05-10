@@ -8,6 +8,12 @@ export default {
   'page--memory-create.form-description.strong': 'Llenando el formulario abajo, usted va a crear un homenaje a alguien que murió, víctima de violencia.',
   'components--primary-button.create-memory': 'Crea su homenaje',
 
+  // page memory
+  'pages--memory-victim.section--gallery.header': 'Galería de imágenes',
+  'pages--memory-victim.section--share.header': 'Compartir',
+  'pages--memory-victim.section--known-victim.header': '¿Quieres contribuir a ese homenaje?',
+  'pages--memory-victim.section--known-victim.header.subtitle': 'Cuente aquí su memoria',
+
   // section splash
   'section--splash.hero': 'Vamos a usar la memoria como herramienta para el cambio. Homenajeando aquellos que están {hashtag}, podemos transformar la añoranza en movilización y, asimismo, luchar por más respeto a la vida.',
 

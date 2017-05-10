@@ -66,7 +66,12 @@ const mapActionCreatorsToProps = (dispatch, props) => ({
         })
     }
 
-    return props.onCreateMemory({ variables: values })
+    return props.onCreateMemory({
+      variables: {
+        ...values,
+        language: window.defaultLanguage,
+      },
+    })
       .then(({ data: { createMemory: { memory } } }) => {
         memoryAssets.map((memoryAsset) => {
           if (memoryAsset) {

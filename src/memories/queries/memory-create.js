@@ -2,6 +2,7 @@ import { gql } from 'react-apollo'
 
 export default gql`
   mutation createMemory(
+    $language: String!,
     $ownerFirstName: String!,
     $ownerLastName: String,
     $ownerEmail: String!,
@@ -19,6 +20,7 @@ export default gql`
   ) {
     createMemory(input: {
         memory: {
+            language: $language,,
             ownerFirstName: $ownerFirstName,
             ownerLastName: $ownerLastName,
             ownerEmail: $ownerEmail,

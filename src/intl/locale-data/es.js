@@ -13,6 +13,10 @@ export default {
   'section--featured-memories.header': 'Homenajes',
   'section--featured-memories.cta': 'Ver homenaje completa',
 
+  'section--about-us.header': 'Quiénes{breakLine}Somos',
+  'section--about-us.initiative': '{hashtag} es una iniciativa de la campaña Instinto de Vida, una alianza latinoamericana creada a partir de la unión de algunas organizaciones no gubernamentales de la región. Nuestra propuesta es reducir la violencia letal a la mitad en 10 años.',
+  'section--about-us.the-goal': 'Esa meta requiere mucha atención, compromiso y presión para impulsar políticas públicas innovadoras basadas en evidencias. {hashtag} es un espacio que creamos para homenajear a las personas que perdieron su vida prematuramente por la violencia y unir a todos los que queremos luchar por más respeto a la vida. La sensibilización es el primero paso en dirección al cambio.',
+
   'components--menu-item.home': 'Inicio',
   'components--menu-item.create-memory': 'Crear Homenaje',
   'components--menu-item.about-us': 'Quiénes Somos',

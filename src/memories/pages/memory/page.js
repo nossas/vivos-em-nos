@@ -15,7 +15,7 @@ import { MemoryCommentsForm } from '~src/memories/components'
 import * as detect from '~src/utils/detect'
 import * as string from '~src/utils/string'
 
-export default ({ id, memory, comments, assets, loading }) => (
+export default ({ memory, comments, assets, loading }) => (
   <LayoutDefault>
     <Header>
       <TopBar />
@@ -105,7 +105,7 @@ export default ({ id, memory, comments, assets, loading }) => (
             />
           }
         >
-          <MemoryCommentsForm memoryId={id} />
+          <MemoryCommentsForm memoryId={memory.id} victimName={memory.victimName} />
         </SectionPrimary>
 
         <SectionPrimary className="section--memory-comments">

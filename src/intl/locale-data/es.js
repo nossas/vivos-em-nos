@@ -66,7 +66,6 @@ export default {
   'components--memory-form.alert-box.done-text': 'Ok, entendi!',
   'components--memory-form.alert-box.header': 'Su página{breakLine}fue publicada.',
   'components--memory-form.alert-box.paragraph': 'Si usted desea editarla o verla de nuevo, sólo necesita seguir las instrucciones que enviamos por email. Si tiene alguna duda, escríbanos al {link}',
-  'components--memory-form.alert-box.paragraph.link': 'contacto@vivosennosotros.org',
 
   // component memory comment
   'components--memory-comment.name': 'Nombre',

@@ -69,18 +69,8 @@ class MemoryForm extends Component {
               }
               values={{
                 link: (
-                  <a
-                    href={
-                      `mailto:${intl.formatMessage({
-                        id: 'components--memory-form.alert-box.paragraph.link',
-                        defaultMessage: 'contato@instintodevida.org',
-                      })}`
-                    }
-                  >
-                    <FormattedMessage
-                      id="components--memory-form.alert-box.paragraph.link"
-                      defaultMessage="contato@instintodevida.org"
-                    />
+                  <a href="mailto:contato@instintodevida.org">
+                    contato@instintodevida.org
                   </a>
                 ),
               }}

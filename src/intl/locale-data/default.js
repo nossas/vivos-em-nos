@@ -66,7 +66,6 @@ export default {
   'components--memory-form.alert-box.done-text': 'Ok, entendi!',
   'components--memory-form.alert-box.header': 'Sua página{breakLine}foi publicada!',
   'components--memory-form.alert-box.paragraph': 'Se você quiser editá-la ou visualizá-la novamente, é só seguir as informações que acabamos de enviar por e-mail. Qualquer dúvida, entre em contato com a gente em {link}',
-  'components--memory-form.alert-box.paragraph.link': 'contato@instintodevida.org',
 
   // component memory comment
   'components--memory-comment.name': 'Nome',

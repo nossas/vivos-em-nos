@@ -57,4 +57,8 @@ export default {
   'components--memory-form.section--about-victim.victim-silhouette': 'Imagen',
   'components--memory-form.section--about-victim.authorized-to-site': 'Autorizo la divulgación de ese homenaje en el sitio {hashtag}',
   'components--memory-form.submit-button': 'Publique su homenaje',
+  'components--memory-form.alert-box.done-text': 'Ok, entendi!',
+  'components--memory-form.alert-box.header': 'Su página{breakLine}fue publicada.',
+  'components--memory-form.alert-box.paragraph': 'Si usted desea editarla o verla de nuevo, sólo necesita seguir las instrucciones que enviamos por email. Si tiene alguna duda, escríbanos al {link}',
+  'components--memory-form.alert-box.paragraph.link': 'contacto@vivosennosotros.org',
 }

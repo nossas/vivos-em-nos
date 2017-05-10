@@ -1,5 +1,5 @@
 import { h, Component } from 'preact' /** @jsx h */
-import { FormattedMessage } from 'react-intl'
+import { FormattedMessage, intlShape } from 'react-intl'
 import { Field, FieldArray } from 'redux-form'
 import * as paths from '~src/paths'
 import * as string from '~src/utils/string'
@@ -32,11 +32,18 @@ class MemoryForm extends Component {
       handleSubmit,
       error,
       submitSucceeded,
+      intl,
     } = this.props
+
+    const currentYear = new Date().getFullYear()
 
     if (submitSucceeded) {
       return (
         <AlertBox
+          doneText={intl.formatMessage({
+            id: 'components--memory-form.alert-box.done-text',
+            defaultMessage: 'Ok, entendi!',
+          })}
           next={() => {
             if (this.state.redirect) {
               window.location.href = paths.memory(this.state.redirect)
@@ -45,23 +52,43 @@ class MemoryForm extends Component {
             }
           }}
         >
-          <h1>Sua página<br />foi publicada!</h1>
+          <h1>
+            <FormattedMessage
+              id="components--memory-form.alert-box.header"
+              defaultMessage="Sua página{breakLine}foi publicada!"
+              values={{ breakLine: <br /> }}
+            />
+          </h1>
           <p>
-            Se você quiser editá-la ou visualizá-la novamente, é só seguir as informações que
-            acabamos de enviar por e-mail. Qualquer dúvida, entre em contato com a gente
-            em <a
-              href="mailto:contato@instintodevida.org"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <a href="mailto:contato@instintodevida.org">contato@instintodevida.org</a>
-            </a>
+            <FormattedMessage
+              id="components--memory-form.alert-box.paragraph"
+              defaultMessage={
+                'Se você quiser editá-la ou visualizá-la novamente, é só seguir ' +
+                'as informações que acabamos de enviar por e-mail. Qualquer dúvida, ' +
+                'entre em contato com a gente em {link}'
+              }
+              values={{
+                link: (
+                  <a
+                    href={
+                      `mailto:${intl.formatMessage({
+                        id: 'components--memory-form.alert-box.paragraph.link',
+                        defaultMessage: 'contato@instintodevida.org',
+                      })}`
+                    }
+                  >
+                    <FormattedMessage
+                      id="components--memory-form.alert-box.paragraph.link"
+                      defaultMessage="contato@instintodevida.org"
+                    />
+                  </a>
+                ),
+              }}
+            />
           </p>
         </AlertBox>
       )
     }
-
-    const currentYear = new Date().getFullYear()
 
     return (
       <Form error={error} onSubmit={handleSubmit(this.onSubmit.bind(this))}>
@@ -347,6 +374,10 @@ class MemoryForm extends Component {
       </Form>
     )
   }
+}
+
+MemoryForm.propTypes = {
+  intl: intlShape.isRequired,
 }
 
 export default MemoryForm

@@ -57,4 +57,8 @@ export default {
   'components--memory-form.section--about-victim.victim-silhouette': 'Imagem',
   'components--memory-form.section--about-victim.authorized-to-site': 'Autorizo a divulgação dessa homenagem no site {hashtag}',
   'components--memory-form.submit-button': 'Publique sua homenagem',
+  'components--memory-form.alert-box.done-text': 'Ok, entendi!',
+  'components--memory-form.alert-box.header': 'Sua página{breakLine}foi publicada!',
+  'components--memory-form.alert-box.paragraph': 'Se você quiser editá-la ou visualizá-la novamente, é só seguir as informações que acabamos de enviar por e-mail. Qualquer dúvida, entre em contato com a gente em {link}',
+  'components--memory-form.alert-box.paragraph.link': 'contato@instintodevida.org',
 }

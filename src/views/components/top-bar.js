@@ -29,7 +29,7 @@ export default () => (
       <a class="menu--horizontal-item " target="_blank" href="https://www.facebook.com/sharer.php?u=https://vivosemnos.org">
         compartilhar
       </a>
-      <a class="menu--horizontal-item " target="_blank" href="https://facebook.com/vivosemnos/?ref=homepage">
+      <a class="menu--horizontal-item " target="_blank" href="https://facebook.com/vivosennos/?ref=homepage">
         seguir
       </a>
     </MenuHorizontal></div>)}

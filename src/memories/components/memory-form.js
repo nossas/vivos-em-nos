@@ -1,4 +1,5 @@
 import { h, Component } from 'preact' /** @jsx h */
+import { FormattedMessage } from 'react-intl'
 import { Field, FieldArray } from 'redux-form'
 import * as paths from '~src/paths'
 import * as string from '~src/utils/string'
@@ -67,31 +68,60 @@ class MemoryForm extends Component {
         <SectionPrimary
           className="section--about-you"
           articleClassName="columns is-multiline"
-          header={<SectionHeader title="Sobre você" />}
+          header={
+            <SectionHeader
+              title={
+                <FormattedMessage
+                  id="components--memory-form.section--about-you.header"
+                  defaultMessage="Sobre você"
+                />
+              }
+            />
+          }
         >
           <Field
-            label="Nome*"
+            label={
+              <FormattedMessage
+                id="components--memory-form.section--about-you.owner-first-name"
+                defaultMessage="Nome*"
+              />
+            }
             name="ownerFirstName"
             type="text"
             component={TextField}
             formGroupClassName="column is-half-desktop"
           />
           <Field
-            label="Sobrenome*"
+            label={
+              <FormattedMessage
+                id="components--memory-form.section--about-you.owner-last-name"
+                defaultMessage="Sobrenome*"
+              />
+            }
             name="ownerLastName"
             type="text"
             component={TextField}
             formGroupClassName="column is-half-desktop"
           />
           <Field
-            label="E-mail*"
+            label={
+              <FormattedMessage
+                id="components--memory-form.section--about-you.owner-email"
+                defaultMessage="E-mail*"
+              />
+            }
             name="ownerEmail"
             type="email"
             component={TextField}
             formGroupClassName="column is-12"
           />
           <Field
-            label="País*"
+            label={
+              <FormattedMessage
+                id="components--memory-form.section--about-you.owner-country"
+                defaultMessage="País*"
+              />
+            }
             name="ownerCountry"
             component={SelectField}
             formGroupClassName="column is-12"

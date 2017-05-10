@@ -35,19 +35,19 @@ export default () => (
         <MenuHorizontalItem href={paths.home()}>
           <FormattedMessage
             id="components--menu-item.home"
-            defaultMessage="início"
+            defaultMessage="Início"
           />
         </MenuHorizontalItem>
         <MenuHorizontalItem href={paths.memoryCreate()}>
           <FormattedMessage
             id="components--menu-item.create-memory"
-            defaultMessage="criar homenagem"
+            defaultMessage="Criar Homenagem"
           />
         </MenuHorizontalItem>
         <MenuHorizontalItem href={paths.aboutUs()}>
           <FormattedMessage
             id="components--menu-item.about-us"
-            defaultMessage="quem somos"
+            defaultMessage="Quem Somos"
           />
         </MenuHorizontalItem>
         <a
@@ -57,7 +57,7 @@ export default () => (
         >
           <FormattedMessage
             id="components--menu-item.share"
-            defaultMessage="compartilhar"
+            defaultMessage="Compartilhar"
           />
         </a>
         <a
@@ -67,7 +67,7 @@ export default () => (
         >
           <FormattedMessage
             id="components--menu-item.follow"
-            defaultMessage="seguir"
+            defaultMessage="Seguir"
           />
         </a>
       </MenuHorizontal>

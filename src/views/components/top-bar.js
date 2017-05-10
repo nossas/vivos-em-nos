@@ -1,5 +1,6 @@
 import { h } from 'preact' /** @jsx h */
 import { Link } from 'preact-router'
+import { FormattedMessage } from 'react-intl'
 import { MenuTrigger, MenuHorizontal, MenuHorizontalItem } from '~src/menu/components'
 import * as detect from '~src/utils/detect'
 import * as paths from '~src/paths'
@@ -18,19 +19,42 @@ export default () => (
       <div className="column is-one-quarter-mobile"></div></div>) :
     (<div className="bar columns is-mobile"><MenuHorizontal>
       <MenuHorizontalItem href={paths.home()}>
-        início
+        <FormattedMessage
+          id="components--menu-item.home"
+          defaultMessage="início"
+        />
       </MenuHorizontalItem>
       <MenuHorizontalItem href={paths.memoryCreate()}>
-        criar homenagem
+        <FormattedMessage
+          id="components--menu-item.create-memory"
+          defaultMessage="criar homenagem"
+        />
       </MenuHorizontalItem>
       <MenuHorizontalItem href={paths.aboutUs()}>
-        quem somos
+        <FormattedMessage
+          id="components--menu-item.about-us"
+          defaultMessage="quem somos"
+        />
       </MenuHorizontalItem>
-      <a class="menu--horizontal-item " target="_blank" href="https://www.facebook.com/sharer.php?u=https://vivosemnos.org">
-        compartilhar
+      <a
+        className="menu--horizontal-item"
+        target="_blank"
+        href="https://www.facebook.com/sharer.php?u=https://vivosemnos.org"
+      >
+        <FormattedMessage
+          id="components--menu-item.share"
+          defaultMessage="compartilhar"
+        />
       </a>
-      <a class="menu--horizontal-item " target="_blank" href="https://facebook.com/vivosennos/?ref=homepage">
-        seguir
+      <a
+        className="menu--horizontal-item"
+        target="_blank"
+        href="https://facebook.com/vivosennos/?ref=homepage"
+      >
+        <FormattedMessage
+          id="components--menu-item.follow"
+          defaultMessage="seguir"
+        />
       </a>
     </MenuHorizontal></div>)}
   </section>

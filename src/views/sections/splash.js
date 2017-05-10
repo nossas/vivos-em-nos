@@ -33,19 +33,42 @@ export default () => (
     <div className="column--desktop column is-hidden-mobile is-half-tablet">
       <MenuHorizontal>
         <MenuHorizontalItem href={paths.home()}>
-          início
+          <FormattedMessage
+            id="components--menu-item.home"
+            defaultMessage="início"
+          />
         </MenuHorizontalItem>
         <MenuHorizontalItem href={paths.memoryCreate()}>
-          criar homenagem
+          <FormattedMessage
+            id="components--menu-item.create-memory"
+            defaultMessage="criar homenagem"
+          />
         </MenuHorizontalItem>
         <MenuHorizontalItem href={paths.aboutUs()}>
-          quem somos
+          <FormattedMessage
+            id="components--menu-item.about-us"
+            defaultMessage="quem somos"
+          />
         </MenuHorizontalItem>
-        <a class="menu--horizontal-item " target="_blank" href="https://www.facebook.com/sharer.php?u=https://vivosemnos.org">
-          compartilhar
+        <a
+          className="menu--horizontal-item"
+          target="_blank"
+          href="https://www.facebook.com/sharer.php?u=https://vivosemnos.org"
+        >
+          <FormattedMessage
+            id="components--menu-item.share"
+            defaultMessage="compartilhar"
+          />
         </a>
-        <a class="menu--horizontal-item " target="_blank" href="https://www.facebook.com/vivosennos/?fref=ts">
-          seguir
+        <a
+          className="menu--horizontal-item"
+          target="_blank"
+          href="https://www.facebook.com/vivosennos/?fref=ts"
+        >
+          <FormattedMessage
+            id="components--menu-item.follow"
+            defaultMessage="seguir"
+          />
         </a>
       </MenuHorizontal>
       <div

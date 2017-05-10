@@ -21,10 +21,18 @@ const LayoutDefault = connect(mapStateToProps)(
         <MenuItem href={paths.home()}>Início</MenuItem>
         <MenuItem href={paths.memoryCreate()}>Criar Homenagem</MenuItem>
         <MenuItem href={paths.aboutUs()}>Quem Somos</MenuItem>
-        <a class="components--menu-item " target="_blank" href="https://www.facebook.com/sharer.php?u=https://vivosemnos.org">
+        <a
+          className="components--menu-item"
+          target="_blank"
+          href="https://www.facebook.com/sharer.php?u=https://vivosemnos.org"
+        >
           Compartilhar
         </a>
-        <a class="components--menu-item " target="_blank" href="https://www.facebook.com/vivosennos/?fref=ts">
+        <a
+          className="components--menu-item"
+          target="_blank"
+          href="https://www.facebook.com/vivosennos/?fref=ts"
+        >
           Seguir
         </a>
       </Menu>

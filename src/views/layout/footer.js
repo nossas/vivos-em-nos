@@ -1,7 +1,5 @@
 import { h } from 'preact' /** @jsx h */
-import {
-  OrnamentPageFooter,
-} from '../components'
+import { FormattedMessage } from 'react-intl'
 
 export default () => (
   <footer className="footer--home">
@@ -20,7 +18,11 @@ export default () => (
       /></a>
     </div>
     <div>
-      Fale conosco: <br />
+      <FormattedMessage
+        id="footer--home"
+        defaultMessage="Fale conosco:"
+      />
+      <br />
       <a
         className="link"
         href="mailto:contato@instintodevida.org"

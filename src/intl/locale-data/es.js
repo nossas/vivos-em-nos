@@ -1,5 +1,6 @@
 export default {
   'global--brand-name': '#VivosEnNosotros',
+  'footer--home': 'Habla con nosotros:',
 
   'section--splash.hero': 'Vamos a usar la memoria como herramienta para el cambio. Homenajeando aquellos que están {hashtag}, podemos transformar la añoranza en movilización y, asimismo, luchar por más respeto a la vida.',
 

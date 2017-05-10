@@ -31,8 +31,8 @@ module.exports = (isProd) => {
       'process.env.GRAPHQL_URL': JSON.stringify(graphqlUrl),
       'process.env.SERVER_DOMAIN': JSON.stringify(serverDomain),
     }),
-    new HTML({ template: 'src/index.html' }),
-    new HTML({ template: 'src/index-es.html' }),
+    new HTML({ template: 'src/index-es.html', filename: 'index-es.html' }),
+    new HTML({ template: 'src/index.html', filename: 'index.html' }),
     new webpack.LoaderOptionsPlugin({
       options: {
         postcss: [

@@ -1,9 +1,10 @@
 import { graphql } from 'react-apollo'
 import { connect } from 'preact-redux'
 import { reduxForm, SubmissionError } from 'redux-form'
-import * as validation from '../../utils/validation'
-import * as queries from '../queries'
-import * as LoaderActions from '../../loader/redux/action-creators'
+import * as validation from '~src/utils/validation'
+import * as string from '~src/utils/string'
+import * as LoaderActions from '~src/loader/redux/action-creators'
+import * as queries from '~src/memories/queries'
 import MemoryCommentsForm from './memory-comments-form'
 
 const form = 'memoryCommentsForm'
@@ -33,14 +34,14 @@ const mapStateToProps = (state, { memoryId }) => ({
 })
 
 export default graphql(queries.memoryCommentCreate, {
-  props: ({ mutate }) => ({
+  props: ({ mutate, ownProps }) => ({
     onSave: (values, dispatch, formProps) => {
       dispatch(LoaderActions.setActive(true))
       mutate({
         variables: values,
         refetchQueries: [{
           query: queries.memory,
-          variables: { id: values.memoryId },
+          variables: { slug: string.slugify(ownProps.victimName) },
         }],
       })
         .then(() => {

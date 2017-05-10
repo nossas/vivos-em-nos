@@ -2,11 +2,12 @@ import { h, Component } from 'preact' /** @jsx h */
 import { Field } from 'redux-form'
 import { ButtonPrimary } from '~src/views/components'
 import { Form, TextField, TextareaField } from '~src/views/components/form'
+import * as string from '~src/utils/string'
 import * as paths from '~src/paths'
 
 export default class MemoryCommentsForm extends Component {
   render() {
-    const { handleSubmit, error, memoryId } = this.props
+    const { handleSubmit, error, victimName } = this.props
 
     return (
       <Form
@@ -18,7 +19,7 @@ export default class MemoryCommentsForm extends Component {
           this.comment.base.children[0].children[1].children[1].children.comment.blur()
           this.name.base.children[0].children[1].children[0].children.name.blur()
           this.email.base.children[0].children[1].children[0].children.email.blur()
-          window.location = paths.memoryComments(memoryId)
+          window.location = paths.memoryComments(string.slugify(victimName))
         })}
       >
         <div className="columns is-multiline">

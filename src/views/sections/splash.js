@@ -22,11 +22,23 @@ export default () => (
             'aqueles que estão {hashtag}, podemos ' +
             'transformar saudade em mobilização e, juntos, lutar por mais respeito à vida.'
           }
-          values={{ hashtag: <span className="color--primary">#VivosEmNós</span> }}
+          values={{
+            hashtag: (
+              <span className="color--primary">
+                <FormattedMessage
+                  id="global--brand-name"
+                  defaultMessage="#VivosEmNós"
+                />
+              </span>
+            ),
+          }}
         />
       </p>
       <ButtonPrimary href={paths.memoryCreate()}>
-        Criar sua homenagem
+        <FormattedMessage
+          id="components--primary-button.create-memory"
+          defaultMessage="Criar sua homenagem"
+        />
       </ButtonPrimary>
     </div>
 

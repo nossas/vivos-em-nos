@@ -39,8 +39,8 @@ pipeline:
     port: 22
     script:
       - sudo docker pull nossas/vivos-em-nos:${DRONE_BRANCH}
-      - sudo docker tag nossas/vivos-em-nos:${DRONE_BRANCH} dokku/ven-stg-server:latest
-      - dokku tags:deploy ven-stg-server latest
+      - sudo docker tag nossas/vivos-em-nos:${DRONE_BRANCH} dokku/ven-server-stg:latest
+      - dokku tags:deploy ven-server-stg latest
     when:
       status: success
       branch: [hotfix-*, release-*, feature-*, develop]

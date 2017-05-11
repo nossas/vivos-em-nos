@@ -400,3 +400,8 @@ CREATE OR REPLACE FUNCTION memory_by_slug(search TEXT) RETURNS memories AS $$
   WHERE LOWER(slug(memories.*)) = LOWER(unaccent(search))
   LIMIT 1
 $$ LANGUAGE SQL STABLE;
+
+--
+-- Migration: 20170510175809
+--
+ALTER TABLE memories ADD COLUMN IF NOT EXISTS language character varying DEFAULT 'pt';

@@ -1,26 +1,48 @@
 import { h } from 'preact' /** @jsx h */
-import {
-  OrnamentPageFooter,
-} from '../components'
+import { FormattedMessage, injectIntl } from 'react-intl'
 
-export default () => (
+export default injectIntl(({ intl }) => (
   <footer className="footer--home">
     <div className="container--logos">
-      <a href="https://vivosemnos.org" target="_blank"><img
-        src="/img/logo-vivos-em-nos.svg"
-        alt="Logo Vivos em Nós"
-        width="102"
-        height="63"
-      /></a>
-      <a href="https://www.br.instintodevida.org/" target="_blank"><img
-        src="/img/logo-instinto-de-vida.png"
-        alt="Logo Instinto de Vida"
-        width="85"
-        height="68"
-      /></a>
+      <a
+        target="_blank"
+        href={
+          intl.formatMessage({
+            id: 'footer--home.vivos-em-nos.link',
+            defaultMessage: 'https://vivosemnos.org',
+          })
+        }
+      >
+        <img
+          src="/img/logo-vivos-em-nos.svg"
+          alt="Logo Vivos em Nós"
+          width="102"
+          height="63"
+        />
+      </a>
+      <a
+        target="_blank"
+        href={
+          intl.formatMessage({
+            id: 'footer--home.instinto-de-vida.link',
+            defaultMessage: 'https://www.br.instintodevida.org',
+          })
+        }
+      >
+        <img
+          src="/img/logo-instinto-de-vida.png"
+          alt="Logo Instinto de Vida"
+          width="85"
+          height="68"
+        />
+      </a>
     </div>
     <div>
-      Fale conosco: <br />
+      <FormattedMessage
+        id="footer--home"
+        defaultMessage="Fale conosco:"
+      />
+      <br />
       <a
         className="link"
         href="mailto:contato@instintodevida.org"
@@ -31,4 +53,4 @@ export default () => (
       </a>
     </div>
   </footer>
-)
+))

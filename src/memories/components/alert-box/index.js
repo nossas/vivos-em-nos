@@ -7,12 +7,12 @@ const AlertBox = ({ children, next, doneText }) => (
     <div className="columns">
       <div className="container">
         <div className="column is-half is-offset-one-quarter">
-        {children}
-        {next && (
-          <ButtonOutline onClick={next}>
-            {doneText}
-          </ButtonOutline>
-        )}
+          {children}
+          {next && (
+            <ButtonOutline onClick={next}>
+              {doneText}
+            </ButtonOutline>
+          )}
         </div>
       </div>
     </div>

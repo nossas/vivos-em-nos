@@ -1,5 +1,6 @@
 import { connect } from 'preact-redux'
 import { graphql, compose } from 'react-apollo'
+import { injectIntl } from 'react-intl'
 import { reduxForm, formValueSelector, SubmissionError } from 'redux-form'
 import loaderHOC from '../../loader'
 import { memoryCreate, memoryUpdate, memoryAssetCreate, memoryAssetDelete } from '../queries'
@@ -65,7 +66,12 @@ const mapActionCreatorsToProps = (dispatch, props) => ({
         })
     }
 
-    return props.onCreateMemory({ variables: values })
+    return props.onCreateMemory({
+      variables: {
+        ...values,
+        language: window.defaultLanguage,
+      },
+    })
       .then(({ data: { createMemory: { memory } } }) => {
         memoryAssets.map((memoryAsset) => {
           if (memoryAsset) {
@@ -95,6 +101,6 @@ export default compose(
   graphql(memoryAssetDelete, { name: 'onDeleteMemoryAsset' }),
 )(connect(mapStateToProps, mapActionCreatorsToProps)(
   reduxForm({ form: FORM, validate })(
-    loaderHOC(MemoryForm),
+    injectIntl(loaderHOC(MemoryForm)),
   ),
 ))

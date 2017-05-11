@@ -1,4 +1,5 @@
 import { h } from 'preact' /** @jsx h */
+import { FormattedMessage } from 'react-intl'
 import { Header, LayoutDefault } from '~src/views/layout/layout'
 import {
   MemorySummary,
@@ -52,7 +53,17 @@ export default ({ memory, comments, assets, loading }) => (
         </section>
         <SectionPrimary
           className="section--gallery"
-          header={<SectionHeader title="Galeria de imagens" hideBorder />}
+          header={
+            <SectionHeader
+              hideBorder
+              title={
+                <FormattedMessage
+                  id="pages--memory-victim.section--gallery.header"
+                  defaultValue="Galeria de imagens"
+                />
+              }
+            />
+          }
         >
           <div className="gallery columns is-multiline is-desktop">
             {assets &&
@@ -73,7 +84,17 @@ export default ({ memory, comments, assets, loading }) => (
 
         <SectionPrimary
           className="section--share"
-          header={<SectionHeader title="Compartilhe" hideBorder />}
+          header={
+            <SectionHeader
+              hideBorder
+              title={
+                <FormattedMessage
+                  id="pages--memory-victim.section--share.header"
+                  defaultValue="Compartilhe"
+                />
+              }
+            />
+          }
         >
           <ShareFacebookButton
             className="share-button"
@@ -100,8 +121,18 @@ export default ({ memory, comments, assets, loading }) => (
           className="section--known-victim"
           header={
             <SectionHeader
-              title="Quer contribuir para essa homenagem? "
-              subtitle="Conte aqui também a sua memória"
+              title={
+                <FormattedMessage
+                  id="pages--memory-victim.section--known-victim.header"
+                  defaultValue="Quer contribuir para essa homenagem?"
+                />
+              }
+              subtitle={
+                <FormattedMessage
+                  id="pages--memory-victim.section--known-victim.header.subtitle"
+                  defaultValue="Conte aqui também a sua memória"
+                />
+              }
             />
           }
         >

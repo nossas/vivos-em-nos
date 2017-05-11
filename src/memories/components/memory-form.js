@@ -1,4 +1,5 @@
 import { h, Component } from 'preact' /** @jsx h */
+import { FormattedMessage, intlShape } from 'react-intl'
 import { Field, FieldArray } from 'redux-form'
 import * as paths from '~src/paths'
 import * as string from '~src/utils/string'
@@ -28,15 +29,21 @@ class MemoryForm extends Component {
   render() {
     const {
       victimName,
-      authorizedToSite,
       handleSubmit,
       error,
       submitSucceeded,
+      intl,
     } = this.props
+
+    const currentYear = new Date().getFullYear()
 
     if (submitSucceeded) {
       return (
         <AlertBox
+          doneText={intl.formatMessage({
+            id: 'components--memory-form.alert-box.done-text',
+            defaultMessage: 'Ok, entendi!',
+          })}
           next={() => {
             if (this.state.redirect) {
               window.location.href = paths.memory(this.state.redirect)
@@ -45,54 +52,93 @@ class MemoryForm extends Component {
             }
           }}
         >
-          <h1>Sua página<br />foi publicada!</h1>
+          <h1>
+            <FormattedMessage
+              id="components--memory-form.alert-box.header"
+              defaultMessage="Sua página{breakLine}foi publicada!"
+              values={{ breakLine: <br /> }}
+            />
+          </h1>
           <p>
-            Se você quiser editá-la ou visualizá-la novamente, é só seguir as informações que
-            acabamos de enviar por e-mail. Qualquer dúvida, entre em contato com a gente
-            em <a
-              href="mailto:contato@instintodevida.org"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <a href="mailto:contato@instintodevida.org">contato@instintodevida.org</a>
-            </a>
+            <FormattedMessage
+              id="components--memory-form.alert-box.paragraph"
+              defaultMessage={
+                'Se você quiser editá-la ou visualizá-la novamente, é só seguir ' +
+                'as informações que acabamos de enviar por e-mail. Qualquer dúvida, ' +
+                'entre em contato com a gente em {link}'
+              }
+              values={{
+                link: (
+                  <a href="mailto:contato@instintodevida.org">
+                    contato@instintodevida.org
+                  </a>
+                ),
+              }}
+            />
           </p>
         </AlertBox>
       )
     }
-
-    const currentYear = new Date().getFullYear()
 
     return (
       <Form error={error} onSubmit={handleSubmit(this.onSubmit.bind(this))}>
         <SectionPrimary
           className="section--about-you"
           articleClassName="columns is-multiline"
-          header={<SectionHeader title="Sobre você" />}
+          header={
+            <SectionHeader
+              title={
+                <FormattedMessage
+                  id="components--memory-form.section--about-you.header"
+                  defaultMessage="Sobre você"
+                />
+              }
+            />
+          }
         >
           <Field
-            label="Nome*"
+            label={
+              <FormattedMessage
+                id="components--memory-form.section--about-you.owner-first-name"
+                defaultMessage="Nome*"
+              />
+            }
             name="ownerFirstName"
             type="text"
             component={TextField}
             formGroupClassName="column is-half-desktop"
           />
           <Field
-            label="Sobrenome*"
+            label={
+              <FormattedMessage
+                id="components--memory-form.section--about-you.owner-last-name"
+                defaultMessage="Sobrenome*"
+              />
+            }
             name="ownerLastName"
             type="text"
             component={TextField}
             formGroupClassName="column is-half-desktop"
           />
           <Field
-            label="E-mail*"
+            label={
+              <FormattedMessage
+                id="components--memory-form.section--about-you.owner-email"
+                defaultMessage="E-mail*"
+              />
+            }
             name="ownerEmail"
             type="email"
             component={TextField}
             formGroupClassName="column is-12"
           />
           <Field
-            label="País*"
+            label={
+              <FormattedMessage
+                id="components--memory-form.section--about-you.owner-country"
+                defaultMessage="País*"
+              />
+            }
             name="ownerCountry"
             component={SelectField}
             formGroupClassName="column is-12"
@@ -107,17 +153,36 @@ class MemoryForm extends Component {
         <SectionPrimary
           className="section--about-victim"
           articleClassName="columns is-multiline"
-          header={<SectionHeader title="Sobre a pessoa que você quer homenagear" />}
+          header={
+            <SectionHeader
+              title={
+                <FormattedMessage
+                  id="components--memory-form.section--about-victim.header"
+                  defaultMessage="Sobre a pessoa que você quer homenagear"
+                />
+              }
+            />
+          }
         >
           <Field
-            label="Nome*"
+            label={
+              <FormattedMessage
+                id="components--memory-form.section--about-victim.victim-name"
+                defaultMessage="Nome*"
+              />
+            }
             name="victimName"
             type="text"
             component={TextField}
             formGroupClassName="column is-12"
           />
           <Field
-            label="Ano em que nasceu*"
+            label={
+              <FormattedMessage
+                id="components--memory-form.section--about-victim.victim-born-at"
+                defaultMessage="Ano em que nasceu*"
+              />
+            }
             name="victimBornAt"
             component={SelectField}
             formGroupClassName="column is-half-desktop"
@@ -132,7 +197,12 @@ class MemoryForm extends Component {
             })}
           </Field>
           <Field
-            label="Ano do assassinato*"
+            label={
+              <FormattedMessage
+                id="components--memory-form.section--about-victim.victim-dead-at"
+                defaultMessage="Ano do assassinato*"
+              />
+            }
             name="victimDeadAt"
             component={SelectField}
             formGroupClassName="column is-half-desktop"
@@ -147,21 +217,37 @@ class MemoryForm extends Component {
             })}
           </Field>
           <Field
-            label="Cidade onde morreu*"
+            label={
+              <FormattedMessage
+                id="components--memory-form.section--about-victim.victim-city"
+                defaultMessage="Cidade onde morreu*"
+              />
+            }
             name="victimCity"
             type="text"
             component={TextField}
             formGroupClassName="column is-12"
           />
           <Field
-            label="O que aconteceu?*"
+            label={
+              <FormattedMessage
+                id="components--memory-form.section--about-victim.victim-history"
+                defaultMessage="O que aconteceu?*"
+              />
+            }
             name="victimHistory"
             maxLength={80}
             component={TextareaField}
             formGroupClassName="column is-12 is-paddingless-y"
           />
           <Field
-            label={`Quando eu penso em ${victimName || ''}, eu me lembro de: *`}
+            label={
+              <FormattedMessage
+                id="components--memory-form.section--about-victim.victim-remember-text"
+                defaultMessage="Quando eu penso em {victimName}, eu me lembro de: *"
+                values={{ victimName: victimName || '' }}
+              />
+            }
             name="victimRememberText"
             maxLength={500}
             component={TextareaField}
@@ -169,8 +255,14 @@ class MemoryForm extends Component {
           />
           <Field
             label={
-              'Se eu pudesse escolher uma palavra para ' +
-              `descrever ${victimName || ''}, eu escolheria`
+              <FormattedMessage
+                id="components--memory-form.section--about-victim.victim-good-words"
+                defaultMessage={
+                  'Se eu pudesse escolher uma palavra para ' +
+                  'descrever {victimName}, eu escolheria'
+                }
+                values={{ victimName: victimName || '' }}
+              />
             }
             name="victimGoodWords"
             type="text"
@@ -179,7 +271,13 @@ class MemoryForm extends Component {
             formGroupClassName="column is-12"
           />
           <Field
-            label={`Selecione uma foto de ${victimName || ''}`}
+            label={
+              <FormattedMessage
+                id="components--memory-form.section--about-victim.victim-photo"
+                defaultMessage="Selecione uma foto de {victimName}"
+                values={{ victimName: victimName || '' }}
+              />
+            }
             name="victimPhoto"
             id="victimPhoto"
             component={UploadField}
@@ -187,13 +285,23 @@ class MemoryForm extends Component {
           />
           <FieldArray
             withRef
-            label="Crie uma galeria de imagens"
+            label={
+              <FormattedMessage
+                id="components--memory-form.section--about-victim.memory-assets"
+                defaultMessage="Crie uma galeria de imagens"
+              />
+            }
             name="memoryAssets"
             component={UploadMultiplesField}
             formGroupClassName="column is-12"
           />
           <Field
-            label="Imagem"
+            label={
+              <FormattedMessage
+                id="components--memory-form.section--about-victim.victim-silhouette"
+                defaultMessage="Imagem"
+              />
+            }
             name="victimSilhouette"
             component={RadioField.Field}
             formGroupClassName="column is-12"
@@ -227,8 +335,20 @@ class MemoryForm extends Component {
             component={CheckboxField}
             formGroupClassName="column is-12"
           >
-            Autorizo a divulgação dessa homenagem
-            no site <span className="color--primary">#VivosEmNós</span>
+            <FormattedMessage
+              id="components--memory-form.section--about-victim.authorized-to-site"
+              defaultMessage="Autorizo a divulgação dessa homenagem no site {hashtag}"
+              values={{
+                hashtag: (
+                  <span className="color--primary">
+                    <FormattedMessage
+                      id="global--brand-name"
+                      defaultMessage="#VivosEmNós"
+                    />
+                  </span>
+                )
+              }}
+            />
           </Field>
         </SectionPrimary>
 
@@ -236,11 +356,18 @@ class MemoryForm extends Component {
           TagName="button"
           type="submit"
         >
-          Publique sua homenagem
+          <FormattedMessage
+            id="components--memory-form.submit-button"
+            defaultMessage="Publique sua homenagem"
+          />
         </ButtonPrimary>
       </Form>
     )
   }
+}
+
+MemoryForm.propTypes = {
+  intl: intlShape.isRequired,
 }
 
 export default MemoryForm

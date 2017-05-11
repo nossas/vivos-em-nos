@@ -16,7 +16,10 @@ export default () => (
 
       <div className="columns">
         <AboutCampaignSection className="column is-one-third-tablet" />
-        <FeaturedMemoriesSection className="column is-one-third-tablet" />
+        <FeaturedMemoriesSection
+          className="column is-one-third-tablet"
+          language={window.defaultLanguage}
+        />
         <AboutUsSection className="column is-one-third-tablet" />
       </div>
 

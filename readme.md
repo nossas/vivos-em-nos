@@ -1,24 +1,12 @@
-# preact-starter
+# Vivos Em Nós
 
-> Webpack2 boilerplate for building SPA / PWA / offline front-end apps with :atom_symbol: [Preact](https://github.com/developit/preact)
-
-Using `preact-starter` will kickstart your next application! :100: It is designed to fit the "90% use-case" for those who want to build offline-first web apps (see [features](#features) below).
-
-> :triangular_flag_on_post: **Important:** This is meant for _client-side_ apps only; there is **no support** included for universal / server-side rendering. I plan to release my own SSR kit shortly!
-
-**Please note:** Boilerplate _does not_ incorporate the latest ["css-in-js" or "css modules" technique](https://github.com/MicheleBertoli/css-in-js). Instead, the more traditional approach is taken, wherein `styles` and `scripts` are kept separate. That said, you may **certainly and easily** take that route if desired. :white_check_mark:
-
----
-
-<p align="center">:warning: Boilerplate & commands will evolve as my own development process does. :warning:</p>
-
----
+> #VivosEmNós quer usar a memória como ferramenta para transformar solidariedade em união, saudade em mobilização e indignação em força para mudança. Se você conhece alguém que teve a sua história interrompida pela violência, crie aqui uma página de homenagem para se juntar à luta por mais respeito à vida.
 
 ## Install
 
 ```sh
-git clone https://github.com/lukeed/preact-starter
-cd preact-starter
+git clone https://github.com/nossas/vivos-em-nos.git
+cd vivos-em-nos
 npm install
 npm run build
 npm start
@@ -71,6 +59,16 @@ $ npm run watch
 
 Like [`start`](#start), but will auto-compile & auto-reload the server after any file changes within the `src` directory.
 
+### Docker Support
+
+Run all services required to develop with Vivos em Nós project.
+
+```
+docker-compose up
+```
+
+The Dockfile found in this repo is used to build [`docker image`](https://hub.docker.com/r/nossas/vivos-em-nos/).
+
 ### Dashboard
 
 With [`webpack-dashboard`](https://github.com/FormidableLabs/webpack-dashboard), it's much easier to see what's happening inside your bundles. In addition to de-cluttering your `webpack-dev-server` log, you can quickly make sense of your bundles' `import`s and sizes.
@@ -88,7 +86,3 @@ You can inspect and modify the state of your Preact UI components at runtime usi
 1. Install the [React Developer Tools](https://github.com/facebook/react-devtools) extension
 2. [Import the `preact/devtools`](src/index.js#L21) module in your app
 3. Reload and go to the 'React' tab in the browser's development tools
-
-## License
-
-MIT © [Luke Edwards](https://lukeed.com)

@@ -32,12 +32,12 @@ function sendMail(payload, config, winstonLog) {
     winstonLog.info(`MEMORY READY TO MAIL: ${EmailText}`)
 
     const replyTo = p.language === 'es'
-      ? `${mimelib.encodeMimeWord('Vivos En Nosotros')} <contato@vivosennosotros.org>`
+      ? `${mimelib.encodeMimeWord('Vivos En Nosotros')} <contato@vivosemnos.org>`
       : `${mimelib.encodeMimeWord('Vivos Em Nós')} <contato@vivosemnos.org>`
 
     const eparam = {
       Destination: {
-        ToAddresses: [`${p.owner_first_name}<${p.owner_email}>`],
+        ToAddresses: [`${p.owner_first_name} <${p.owner_email}>`],
       },
       Message: {
         Body: {

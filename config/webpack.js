@@ -21,8 +21,7 @@ module.exports = (env) => {
     output: {
       path: dist,
       filename: '[name].[hash].js',
-      publicPath: isProd ? 'https://vivosemnos.org/' : '/',
-
+      publicPath: isProd ? (s3BucketName.indexOf('prod') > 0 ? 'https://vivosemnos.org/' : 'https://staging.vivosemnos.org/') : '/',
     },
     resolve: {
       alias: {

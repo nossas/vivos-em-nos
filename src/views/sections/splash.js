@@ -1,7 +1,7 @@
 import { h } from 'preact' /** @jsx h */
 import { FormattedMessage } from 'react-intl'
 import { MenuHorizontal, MenuHorizontalItem, MenuTrigger } from '~src/menu/components'
-import { ButtonPrimary, MenuPrimary } from '~src/views/components'
+import { ButtonPrimary, Logo, MenuPrimary } from '~src/views/components'
 import * as paths from '~src/paths'
 
 export default () => (
@@ -9,10 +9,7 @@ export default () => (
     <div className="column--hybrid column is-half-tablet">
       <MenuTrigger className="is-hidden-tablet" />
       <h1 className="logo">
-        <img
-          src="/img/logo-vivos-em-nos.svg"
-          alt="logo vivos em nos"
-        />
+        <Logo />
       </h1>
       <p>
         <FormattedMessage

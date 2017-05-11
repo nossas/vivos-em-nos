@@ -1,5 +1,6 @@
 export { default as ButtonOutline } from './button-outline'
 export { default as ButtonPrimary } from './button-primary'
+export { default as Logo } from './logo'
 export { default as MemorySummary } from './memory-summary'
 export { default as MenuPrimary } from './menu-primary'
 export { default as OrnamentPageFooter } from './ornament-page-footer'

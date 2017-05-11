@@ -1,5 +1,6 @@
 import { h } from 'preact' /** @jsx h */
 import { FormattedMessage, injectIntl } from 'react-intl'
+import { Logo } from '~src/views/components'
 
 export default injectIntl(({ intl }) => (
   <footer className="footer--home">
@@ -13,12 +14,7 @@ export default injectIntl(({ intl }) => (
           })
         }
       >
-        <img
-          src="/img/logo-vivos-em-nos.svg"
-          alt="Logo Vivos em Nós"
-          width="102"
-          height="63"
-        />
+        <Logo height="63" />
       </a>
       <a
         target="_blank"

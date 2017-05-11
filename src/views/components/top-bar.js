@@ -1,7 +1,7 @@
 import { h } from 'preact' /** @jsx h */
 import { Link } from 'preact-router'
 import { MenuTrigger, MenuHorizontal, MenuHorizontalItem } from '~src/menu/components'
-import { MenuPrimary } from '~src/views/components'
+import { Logo, MenuPrimary } from '~src/views/components'
 import * as detect from '~src/utils/detect'
 
 export default () => (
@@ -12,9 +12,11 @@ export default () => (
           <MenuTrigger />
         </div>
         <div className="column has-text-centered logo">
-          <h1><Link href="/">
-            <img src="/img/logo-vivos-em-nos.svg" alt="logo vivos em nos" />
-          </Link></h1>
+          <h1>
+            <Link href="/">
+              <Logo />
+            </Link>
+          </h1>
         </div>
         <div className="column is-one-quarter-mobile" />
       </div>

@@ -12,6 +12,39 @@ pipeline:
     when:
       event: [push]
 
+  publish-staging:
+    image: plugins/docker
+    repo: nossas/vivos-em-nos
+    username: lpirola
+    password: ${DOCKER_PASSWORD}
+    tags:
+      - ${DRONE_BRANCH}
+    build_args:
+      - PUBLISH_S3=true
+      - AWS_BUCKET=vivo-em-nos-staging
+      - AWS_ACCESS_KEY_ID=${PROD_AWS_ACCESS_KEY_ID}
+      - AWS_SECRET_ACCESS_KEY=${PROD_AWS_SECRET_ACCESS_KEY}
+      - CLOUDFRONT_DISTRIBUTION_ID=${STG_AWS_CLOUDFRONT_DISTRIBUTION_ID}
+      - GRAPHQL_URL=https://staging.data.vivosemnos.org/graphql
+      - SERVER_DOMAIN=https://staging.server.vivosemnos.org
+    when:
+      status: success
+      branch: [hotfix-*, release-*, feature-*, develop]
+
+  deploy-staging:
+    image: appleboy/drone-ssh
+    host: staging.server.vivosemnos.org
+    username: ubuntu
+    command_timeout: 120
+    port: 22
+    script:
+      - sudo docker pull nossas/vivos-em-nos:${DRONE_BRANCH}
+      - sudo docker tag nossas/vivos-em-nos:${DRONE_BRANCH} dokku/ven-stg-server:latest
+      - dokku tags:deploy ven-stg-server latest
+    when:
+      status: success
+      branch: [hotfix-*, release-*, feature-*, develop]
+
   publish:
     image: plugins/ecr
     access_key: ${PROD_AWS_ACCESS_KEY_ID}

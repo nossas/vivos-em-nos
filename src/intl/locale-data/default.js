@@ -1,9 +1,9 @@
 export default {
   // globals
   'global--brand-name': '#VivosEmNós',
+  'global--home.vivos-em-nos.link': 'https://vivosemnos.org',
+  'global--home.instinto-de-vida.link': 'https://www.br.instintodevida.org',
   'footer--home': 'Fale conosco:',
-  'footer--home.vivos-em-nos.link': 'https://vivosemnos.org',
-  'footer--home.instinto-de-vida.link': 'https://www.br.instintodevida.org',
 
   // page memory create
   'page--memory-create.form-description': '{strong} Depois de publicada, você vai poder compartilhar essa página nas suas redes sociais e dizer a todos como essa pessoa permanece viva na sua memória.',

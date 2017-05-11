@@ -1,6 +1,6 @@
 import { h } from 'preact' /** @jsx h */
 import { Layout, Section } from 'preact-layout'
-import { FormattedMessage } from 'react-intl'
+import { FormattedMessage, injectIntl, intlShape } from 'react-intl'
 import { connect } from 'preact-redux'
 import { Loader } from '~src/loader/components'
 import LoaderSelectors from '~src/loader/redux/selectors'
@@ -14,8 +14,8 @@ const Footer = () => 'Footer'
 const mapStateToProps = state => ({
   isLoaderActive: LoaderSelectors(state).isActive(),
 })
-const LayoutDefault = connect(mapStateToProps)(
-  ({ children, isLoaderActive }) => (
+const LayoutDefault = connect(mapStateToProps)(injectIntl(
+  ({ children, isLoaderActive, intl }) => (
     <Layout>
       {!isLoaderActive ? <div /> : <Loader />}
       <Menu>
@@ -40,7 +40,10 @@ const LayoutDefault = connect(mapStateToProps)(
         <a
           className="components--menu-item"
           target="_blank"
-          href="https://www.facebook.com/sharer.php?u=https://vivosemnos.org"
+          href={`https://www.facebook.com/sharer.php?u=${intl.formatMessage({
+            id: 'global--home.vivos-em-nos.link',
+            defaultMessage: 'https://vivosemnos.org',
+          })}`}
         >
           <FormattedMessage
             id="components--menu-item.share"
@@ -63,7 +66,11 @@ const LayoutDefault = connect(mapStateToProps)(
       <Section type={Footer}><MainFooter /></Section>
     </Layout>
   ),
-)
+))
+
+LayoutDefault.propTypes = {
+  intl: intlShape.isRequired,
+}
 
 export {
   Footer,

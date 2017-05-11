@@ -1,11 +1,11 @@
 import { h } from 'preact' /** @jsx h */
 import { Link } from 'preact-router'
-import { FormattedMessage } from 'react-intl'
+import { FormattedMessage, injectIntl, intlShape } from 'react-intl'
 import { MenuTrigger, MenuHorizontal, MenuHorizontalItem } from '~src/menu/components'
 import * as detect from '~src/utils/detect'
 import * as paths from '~src/paths'
 
-export default () => (
+const TopBar = ({ intl }) => (
   <section className="components--top-bar">
     {detect.mobile ? (<div className="bar columns is-mobile">
       <div className="column is-one-quarter-mobile">
@@ -39,7 +39,10 @@ export default () => (
       <a
         className="menu--horizontal-item"
         target="_blank"
-        href="https://www.facebook.com/sharer.php?u=https://vivosemnos.org"
+        href={`https://www.facebook.com/sharer.php?u=${intl.formatMessage({
+          id: 'global--home.vivos-em-nos.link',
+          defaultMessage: 'https://vivosemnos.org',
+        })}`}
       >
         <FormattedMessage
           id="components--menu-item.share"
@@ -59,3 +62,9 @@ export default () => (
     </MenuHorizontal></div>)}
   </section>
 )
+
+TopBar.propTypes = {
+  intl: intlShape.isRequired,
+}
+
+export default injectIntl(TopBar)

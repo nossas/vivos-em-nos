@@ -1,10 +1,10 @@
 import { h } from 'preact' /** @jsx h */
-import { FormattedMessage } from 'react-intl'
+import { FormattedMessage, injectIntl, intlShape } from 'react-intl'
 import { MenuHorizontal, MenuHorizontalItem, MenuTrigger } from '~src/menu/components'
 import { ButtonPrimary } from '~src/views/components'
 import * as paths from '~src/paths'
 
-export default () => (
+const Splash =({ intl }) => (
   <div className="card splash columns">
     <div className="column--hybrid column is-half-tablet">
       <MenuTrigger className="is-hidden-tablet" />
@@ -65,7 +65,10 @@ export default () => (
         <a
           className="menu--horizontal-item"
           target="_blank"
-          href="https://www.facebook.com/sharer.php?u=https://vivosemnos.org"
+          href={`https://www.facebook.com/sharer.php?u=${intl.formatMessage({
+            id: 'global--home.vivos-em-nos.link',
+            defaultMessage: 'https://vivosemnos.org',
+          })}`}
         >
           <FormattedMessage
             id="components--menu-item.share"
@@ -107,3 +110,9 @@ export default () => (
     </div>
   </div>
 )
+
+Splash.propTypes = {
+  intl: intlShape.isRequired,
+}
+
+export default injectIntl(Splash)

@@ -8,7 +8,7 @@ export default injectIntl(({ intl }) => (
         target="_blank"
         href={
           intl.formatMessage({
-            id: 'footer--home.vivos-em-nos.link',
+            id: 'global--home.vivos-em-nos.link',
             defaultMessage: 'https://vivosemnos.org',
           })
         }
@@ -24,7 +24,7 @@ export default injectIntl(({ intl }) => (
         target="_blank"
         href={
           intl.formatMessage({
-            id: 'footer--home.instinto-de-vida.link',
+            id: 'global--home.instinto-de-vida.link',
             defaultMessage: 'https://www.br.instintodevida.org',
           })
         }

@@ -100,7 +100,9 @@ export default () => (
             alignItems: 'center',
             justifyContent: 'center',
           }}
-         src="/img/featured-splash.png" />
+          src={`/img/featured-splash-${window.defaultLanguage}.png`}
+          alt="Splash Featured"
+        />
       </div>
     </div>
   </div>

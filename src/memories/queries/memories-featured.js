@@ -7,7 +7,10 @@ query memoryFeaturedByLanguage(
   allMemories(
     first: 5,
     orderBy: ID_DESC,,
-    condition: { language: $language },
+    condition: {
+      language: $language,
+      authorizedToSite: true,
+    },
   ) {
     nodes {
       id,

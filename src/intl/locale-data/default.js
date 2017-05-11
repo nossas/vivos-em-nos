@@ -1,9 +1,10 @@
 export default {
   // globals
   'global--brand-name': '#VivosEmNós',
+  'global--home.vivos-em-nos.link': 'https://vivosemnos.org',
+  'global--home.vivos-em-nos.staging.link': 'https://staging.vivosemnos.org',
+  'global--home.instinto-de-vida.link': 'https://www.br.instintodevida.org',
   'footer--home': 'Fale conosco:',
-  'footer--home.vivos-em-nos.link': 'https://vivosemnos.org',
-  'footer--home.instinto-de-vida.link': 'https://www.br.instintodevida.org',
 
   // page memory create
   'page--memory-create.form-description': '{strong} Depois de publicada, você vai poder compartilhar essa página nas suas redes sociais e dizer a todos como essa pessoa permanece viva na sua memória.',
@@ -35,6 +36,10 @@ export default {
   'section--about-us.header': 'Quem{breakLine}somos',
   'section--about-us.initiative': '{hashtag} é uma iniciativa da campanha Instinto de Vida, uma aliança latino-americana criada a partir da união de organizações não governamentais que compartilham um objetivo: reduzir à metade a violência letal na região em 10 anos.',
   'section--about-us.the-goal': 'Essa meta requer muito foco, compromisso e pressão por políticas públicas efetivas. {hashtag} é o espaço que criamos para homenagear as pessoas levadas precocemente pela violência e unir todos que desejam lutar pelo respeito à vida. A sensibilização é o primeiro passo em direção à mudança.',
+
+  // component logo
+  'components--logo.image': '/img/logo-vivos-em-nos.svg',
+  'components--logo.alt': 'Logo Vivos Em Nós',
 
   // component input counter
   'components--input-counter.characters': 'caracteres',

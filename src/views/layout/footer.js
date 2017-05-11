@@ -1,5 +1,6 @@
 import { h } from 'preact' /** @jsx h */
 import { FormattedMessage, injectIntl } from 'react-intl'
+import { Logo } from '~src/views/components'
 
 export default injectIntl(({ intl }) => (
   <footer className="footer--home">
@@ -8,23 +9,18 @@ export default injectIntl(({ intl }) => (
         target="_blank"
         href={
           intl.formatMessage({
-            id: 'footer--home.vivos-em-nos.link',
+            id: 'global--home.vivos-em-nos.link',
             defaultMessage: 'https://vivosemnos.org',
           })
         }
       >
-        <img
-          src="/img/logo-vivos-em-nos.svg"
-          alt="Logo Vivos em Nós"
-          width="102"
-          height="63"
-        />
+        <Logo height="63" />
       </a>
       <a
         target="_blank"
         href={
           intl.formatMessage({
-            id: 'footer--home.instinto-de-vida.link',
+            id: 'global--home.instinto-de-vida.link',
             defaultMessage: 'https://www.br.instintodevida.org',
           })
         }

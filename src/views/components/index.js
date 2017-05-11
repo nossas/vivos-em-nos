@@ -1,6 +1,7 @@
 export { default as ButtonOutline } from './button-outline'
 export { default as ButtonPrimary } from './button-primary'
 export { default as MemorySummary } from './memory-summary'
+export { default as MenuPrimary } from './menu-primary'
 export { default as OrnamentPageFooter } from './ornament-page-footer'
 export { default as ParagraphLineRounded } from './paragraph-line-rounded'
 export { default as Quote } from './quote'

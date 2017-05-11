@@ -2,6 +2,7 @@ export default {
   // globals
   'global--brand-name': '#VivosEnNosotros',
   'global--home.vivos-em-nos.link': 'https://vivosennosotros.org',
+  'global--home.vivos-em-nos.staging.link': 'https://staging.vivosennosotros.org',
   'global--home.instinto-de-vida.link': 'https://www.instintodevida.org',
   'footer--home': 'Habla con nosotros:',
 

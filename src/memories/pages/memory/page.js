@@ -117,6 +117,19 @@ export default ({ memory, comments, assets, loading }) => (
           )}
         </SectionPrimary>
 
+        <SectionPrimary className="section--memory-comments">
+          {comments.map(comment => (
+            <div className="block--memory-comment">
+              <div className="commenter--name">
+                {comment.name}
+              </div>
+              <div className="commenter--comment">
+                {comment.comment}
+              </div>
+            </div>
+          ))}
+        </SectionPrimary>
+
         <SectionPrimary
           id="comments"
           className="section--known-victim"
@@ -138,19 +151,6 @@ export default ({ memory, comments, assets, loading }) => (
           }
         >
           <MemoryCommentsForm memoryId={memory.id} victimName={memory.victimName} />
-        </SectionPrimary>
-
-        <SectionPrimary className="section--memory-comments">
-          {comments.map(comment => (
-            <div className="block--memory-comment">
-              <div className="commenter--name">
-                {comment.name}
-              </div>
-              <div className="commenter--comment">
-                {comment.comment}
-              </div>
-            </div>
-          ))}
         </SectionPrimary>
       </div>
     )}

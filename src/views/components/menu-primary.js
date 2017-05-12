@@ -44,16 +44,6 @@ const MenuPrimary = ({ ContainerComponent, ChildrensComponent, childrensClassNam
           defaultMessage="Compartilhar"
         />
       </a>
-      <a
-        className={childrensClassName}
-        target="_blank"
-        href="https://www.facebook.com/vivosennos/?fref=ts"
-      >
-        <FormattedMessage
-          id="components--menu-item.follow"
-          defaultMessage="Seguir"
-        />
-      </a>
     </ContainerComponent>
   )
 }

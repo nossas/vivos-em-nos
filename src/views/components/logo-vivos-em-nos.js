@@ -1,7 +1,7 @@
 import { h } from 'preact' /** @jsx h */
 import { injectIntl, intlShape } from 'react-intl'
 
-const Logo = ({ intl, width, height }) => (
+const LogoVivosEmNos = ({ intl, width, height }) => (
   <img
     className="components--logo"
     src={intl.formatMessage({
@@ -16,8 +16,8 @@ const Logo = ({ intl, width, height }) => (
   />
 )
 
-Logo.propTypes = {
+LogoVivosEmNos.propTypes = {
   intl: intlShape.isRequired,
 }
 
-export default injectIntl(Logo)
+export default injectIntl(LogoVivosEmNos)

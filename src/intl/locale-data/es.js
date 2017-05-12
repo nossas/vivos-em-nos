@@ -1,9 +1,11 @@
 export default {
   // globals
   'global--brand-name': '#VivosEnNosotros',
-  'global--home.vivos-em-nos.link': 'https://vivosennosotros.org',
-  'global--home.vivos-em-nos.staging.link': 'https://staging.vivosennosotros.org',
+  'global--home.vivos-em-nos.link.site': 'https://vivosennosotros.org',
+  'global--home.vivos-em-nos.link.facebook': 'https://facebook.com/vivosennos',
+  'global--home.vivos-em-nos.staging.link.site': 'https://staging.vivosennosotros.org',
   'global--home.instinto-de-vida.link': 'https://www.instintodevida.org',
+  'global--share.default.text': '{victimName} y tantos otros siguen #VivosEnNosotros y esa pagina es un homenaje. Véala aquí',
   'footer--home': 'Habla con nosotros:',
 
   // page memory create
@@ -29,7 +31,7 @@ export default {
   'section--about-campaign.the-goal': '{hashtag} quiere usar la memoria como herramienta para transformar la solidaridad en unión, la añoranza en movilización y la indignación en fuerza para el cambio. Si conoces a alguien que ha tenido su historia interrumpida por la violencia, crea aquí una página de homenaje para unirte a la lucha por más respeto a la vida.',
 
   // section featured memories
-  'section--featured-memories.header': 'Homenajes',
+  'section--featured-memories.header': 'Los Últimos Homenajes',
   'section--featured-memories.cta': 'Ver homenaje completa',
 
   // section about us
@@ -79,4 +81,5 @@ export default {
   'components--memory-comment.email': 'Email',
   'components--memory-comment.comment': 'Escribe tu comentario',
   'components--memory-comment.submit': 'Enviar comentario',
+  'components--memory-comment.report-content': 'Denunciar este contenido',
 }

@@ -6,11 +6,11 @@ const MenuPrimary = ({ ContainerComponent, ChildrensComponent, childrensClassNam
   const isStaging = /^staging.*/.test(window.location.host)
   const shareURL = isStaging
     ? intl.formatMessage({
-      id: 'global--home.vivos-em-nos.staging.link',
+      id: 'global--home.vivos-em-nos.staging.link.site',
       defaultMessage: 'https://staging.vivosemnos.org',
     })
     : intl.formatMessage({
-      id: 'global--home.vivos-em-nos.link',
+      id: 'global--home.vivos-em-nos.link.site',
       defaultMessage: 'https://vivosemnos.org',
     })
 
@@ -34,26 +34,6 @@ const MenuPrimary = ({ ContainerComponent, ChildrensComponent, childrensClassNam
           defaultMessage="Quem Somos"
         />
       </ChildrensComponent>
-      <a
-        className={childrensClassName}
-        target="_blank"
-        href={`https://www.facebook.com/sharer.php?u=${shareURL}`}
-      >
-        <FormattedMessage
-          id="components--menu-item.share"
-          defaultMessage="Compartilhar"
-        />
-      </a>
-      <a
-        className={childrensClassName}
-        target="_blank"
-        href="https://www.facebook.com/vivosennos/?fref=ts"
-      >
-        <FormattedMessage
-          id="components--menu-item.follow"
-          defaultMessage="Seguir"
-        />
-      </a>
     </ContainerComponent>
   )
 }

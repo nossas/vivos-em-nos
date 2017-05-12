@@ -245,7 +245,7 @@ class MemoryForm extends Component {
               <FormattedMessage
                 id="components--memory-form.section--about-victim.victim-remember-text"
                 defaultMessage="Quando eu penso em {victimName}, eu me lembro de: *"
-                values={{ victimName: victimName || '' }}
+                values={{ victimName: victimName || 'FNAME' }}
               />
             }
             name="victimRememberText"
@@ -261,7 +261,7 @@ class MemoryForm extends Component {
                   'Se eu pudesse escolher uma palavra para ' +
                   'descrever {victimName}, eu escolheria'
                 }
-                values={{ victimName: victimName || '' }}
+                values={{ victimName: victimName || 'FNAME' }}
               />
             }
             name="victimGoodWords"
@@ -275,7 +275,7 @@ class MemoryForm extends Component {
               <FormattedMessage
                 id="components--memory-form.section--about-victim.victim-photo"
                 defaultMessage="Selecione uma foto de {victimName}"
-                values={{ victimName: victimName || '' }}
+                values={{ victimName: victimName || 'FNAME' }}
               />
             }
             name="victimPhoto"

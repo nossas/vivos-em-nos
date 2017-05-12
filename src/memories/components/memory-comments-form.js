@@ -70,12 +70,25 @@ export default class MemoryCommentsForm extends Component {
           />
         </div>
 
-        <ButtonPrimary TagName="button" type="submit">
-          <FormattedMessage
-            id="components--memory-comment.submit"
-            defaultMessage="Enviar comentário"
-          />
-        </ButtonPrimary>
+        <div className="container--primary-button columns is-gapless">
+          <div className="column">
+            <ButtonPrimary TagName="button" type="submit">
+              <FormattedMessage
+                id="components--memory-comment.submit"
+                defaultMessage="Enviar comentário"
+              />
+            </ButtonPrimary>
+          </div>
+
+          <div className="column column--denuntiate">
+            <a href="mailto:contato@instintodevida.org">
+              <FormattedMessage
+                id="components--memory-comment.report-content"
+                defaultMessage="Denunciar este conteúdo"
+              />
+            </a>
+          </div>
+        </div>
       </Form>
     )
   }

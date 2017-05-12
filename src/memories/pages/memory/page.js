@@ -16,7 +16,21 @@ import { MemoryCommentsForm } from '~src/memories/components'
 import * as detect from '~src/utils/detect'
 import * as string from '~src/utils/string'
 
-export default ({ memory, comments, assets, loading }) => (
+const memoryShareURL = (intl, memory) => `${intl.formatMessage({
+  id: 'global--home.vivos-em-nos.link.site',
+  defaultMessage: 'https://vivosemnos.org',
+})}/${string.slugify(memory.victimName)}`
+
+const memoryShareText = (intl, memory) => intl.formatMessage({
+  id: 'global--share.default.text',
+  defaultMessage:
+    '{victimName} e tantos outros seguem #VivosEmNós e essa página ' +
+    'é em sua homenagem. Veja aqui',
+}, {
+  victimName: memory.victimName,
+})
+
+export default ({ memory, comments, assets, loading, intl }) => (
   <LayoutDefault>
     <Header>
       <TopBar />
@@ -51,23 +65,24 @@ export default ({ memory, comments, assets, loading }) => (
             {memory.victimRememberText}
           </Quote>
         </section>
-        <SectionPrimary
-          className="section--gallery"
-          header={
-            <SectionHeader
-              hideBorder
-              title={
-                <FormattedMessage
-                  id="pages--memory-victim.section--gallery.header"
-                  defaultValue="Galeria de imagens"
-                />
-              }
-            />
-          }
-        >
-          <div className="gallery columns is-multiline is-desktop">
-            {assets &&
-              assets
+
+        {!assets || !assets.length ? null : (
+          <SectionPrimary
+            className="section--gallery"
+            header={
+              <SectionHeader
+                hideBorder
+                title={
+                  <FormattedMessage
+                    id="pages--memory-victim.section--gallery.header"
+                    defaultValue="Galeria de imagens"
+                  />
+                }
+              />
+            }
+          >
+            <div className="gallery columns is-multiline is-desktop">
+              {assets
                 .filter(asset => asset.assetType === 'image')
                 .map((asset, index) => (
                   <div className="column column is-one-third">
@@ -76,11 +91,11 @@ export default ({ memory, comments, assets, loading }) => (
                       alt={`asset-${index}`}
                     />
                   </div>
-                ),
-              )
-            }
-          </div>
-        </SectionPrimary>
+                ))
+              }
+            </div>
+          </SectionPrimary>
+        )}
 
         <SectionPrimary
           className="section--share"
@@ -98,22 +113,32 @@ export default ({ memory, comments, assets, loading }) => (
         >
           <ShareFacebookButton
             className="share-button"
-            href={`https://vivosemnos.org/${string.slugify(memory.victimName)}`}
+            href={memoryShareURL(intl, memory)}
           />
           <ShareTwitterButton
             className="share-button"
-            href={`https://vivosemnos.org/${string.slugify(memory.victimName)}`}
-            text={`Acabei de criar uma homenagem para ${memory.victimName}. Confira em `}
+            href={memoryShareURL(intl, memory)}
+            text={memoryShareText(intl, memory)}
           />
           {!detect.mobile ? <i /> : (
             <ShareWhatsappButton
               className="share-button"
-              text={
-                `Acabei de criar uma homenagem para ${memory.victimName}. Confira em` +
-                `https://vivosemnos.org/memory/${string.slugify(memory.victimName)}`
-              }
+              text={`${memoryShareText(intl, memory)} ${memoryShareURL(intl, memory)}`}
             />
           )}
+        </SectionPrimary>
+
+        <SectionPrimary className="section--memory-comments">
+          {comments.map(comment => (
+            <div className="block--memory-comment">
+              <div className="commenter--name">
+                {comment.name}
+              </div>
+              <div className="commenter--comment">
+                {comment.comment}
+              </div>
+            </div>
+          ))}
         </SectionPrimary>
 
         <SectionPrimary
@@ -137,19 +162,6 @@ export default ({ memory, comments, assets, loading }) => (
           }
         >
           <MemoryCommentsForm memoryId={memory.id} victimName={memory.victimName} />
-        </SectionPrimary>
-
-        <SectionPrimary className="section--memory-comments">
-          {comments.map(comment => (
-            <div className="block--memory-comment">
-              <div className="commenter--name">
-                {comment.name}
-              </div>
-              <div className="commenter--comment">
-                {comment.comment}
-              </div>
-            </div>
-          ))}
         </SectionPrimary>
       </div>
     )}

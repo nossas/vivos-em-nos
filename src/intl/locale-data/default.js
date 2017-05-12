@@ -69,7 +69,7 @@ export default {
   'components--memory-form.section--about-victim.victim-dead-at': 'Ano do assassinato*',
   'components--memory-form.section--about-victim.victim-city': 'Cidade onde morreu*',
   'components--memory-form.section--about-victim.victim-history': 'O que aconteceu?*',
-  'components--memory-form.section--about-victim.victim-remember-text': 'Quando eu penso em {victimName}, eu me lembro de: *',
+  'components--memory-form.section--about-victim.victim-remember-text': 'Quando eu penso em {victimName}, eu me lembro de',
   'components--memory-form.section--about-victim.victim-good-words': 'Se eu pudesse escolher uma palavra para descrever {victimName}, eu escolheria',
   'components--memory-form.section--about-victim.victim-photo': 'Selecione uma foto de {victimName}',
   'components--memory-form.section--about-victim.memory-assets': 'Crie uma galeria de imagens',
@@ -86,4 +86,7 @@ export default {
   'components--memory-comment.comment': 'Escreva aqui seu comentário',
   'components--memory-comment.submit': 'Enviar comentário',
   'components--memory-comment.report-content': 'Denunciar este conteúdo',
+
+  // component memory summary
+  'components--memory-summary.memory-created-by': 'Homenagem criada por: {owner}',
 }

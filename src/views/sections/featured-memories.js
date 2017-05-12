@@ -70,7 +70,13 @@ class FeaturedMemoriesSection extends Component {
                           <span className="lifetime">
                             {memory.victimBornAt} / {memory.victimDeadAt}
                           </span>
-                          <div className="owner">Homenagem criada por: {memory.ownerFirstName}</div>
+                          <div className="owner">
+                            <FormattedMessage
+                              id="components--memory-summary.memory-created-by"
+                              defaultMessage="Homenagem criada por: {owner}"
+                              values={{ owner: memory.ownerFirstName }}
+                            />
+                          </div>
                         </div>
                         <div className="memory-description">
                           <span className="components--paragraph-line-rounded">

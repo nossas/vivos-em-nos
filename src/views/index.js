@@ -12,7 +12,7 @@ import { scrollStrategy } from '~src/utils/navigation'
 import store, { client } from '../store'
 import Home from './pages/home'
 import Error404 from './pages/errors/404'
-import { Memory, MemoryCreate } from './pages/memories'
+import { MemoriesList, Memory, MemoryCreate } from './pages/memories'
 
 addLocaleData([...pt, ...es, ...en])
 
@@ -45,6 +45,7 @@ export default (
         <Router onChange={onChange}>
           <Home path="/" />
           <MemoryCreate path="/memory" />
+          <MemoriesList path="/memory/list" />
           <Memory path="/:slug" />
           <Error404 path="/404" />
           <Error404 default />

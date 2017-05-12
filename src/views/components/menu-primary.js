@@ -34,16 +34,6 @@ const MenuPrimary = ({ ContainerComponent, ChildrensComponent, childrensClassNam
           defaultMessage="Quem Somos"
         />
       </ChildrensComponent>
-      <a
-        className={childrensClassName}
-        target="_blank"
-        href={`https://www.facebook.com/sharer.php?u=${shareURL}`}
-      >
-        <FormattedMessage
-          id="components--menu-item.share"
-          defaultMessage="Compartilhar"
-        />
-      </a>
     </ContainerComponent>
   )
 }

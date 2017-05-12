@@ -85,9 +85,6 @@ const AboutCampaignSection = ({ className }) => (
         }
       />
     </p>
-    <p>
-
-    </p>
   </SectionPrimary>
 )
 

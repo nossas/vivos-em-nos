@@ -64,12 +64,10 @@ const AboutCampaignSection = ({ className }) => (
         }
         values={{
           hashtag: (
-            <span className="color--primary">
-              <FormattedMessage
-                id="global--brand-name"
-                defaultMessage="#VivosEmNós"
-              />
-            </span>
+            <FormattedMessage
+              id="global--brand-name"
+              defaultMessage="#VivosEmNós"
+            />
           ),
         }}
       />

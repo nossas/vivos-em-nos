@@ -9,8 +9,8 @@ export default injectIntl(({ intl }) => (
         target="_blank"
         href={
           intl.formatMessage({
-            id: 'global--home.vivos-em-nos.link',
-            defaultMessage: 'https://vivosemnos.org',
+            id: 'global--home.vivos-em-nos.link.facebook',
+            defaultMessage: 'https://facebook.com/vivosennos',
           })
         }
       >

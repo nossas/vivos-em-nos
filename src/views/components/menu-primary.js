@@ -6,11 +6,11 @@ const MenuPrimary = ({ ContainerComponent, ChildrensComponent, childrensClassNam
   const isStaging = /^staging.*/.test(window.location.host)
   const shareURL = isStaging
     ? intl.formatMessage({
-      id: 'global--home.vivos-em-nos.staging.link',
+      id: 'global--home.vivos-em-nos.staging.link.site',
       defaultMessage: 'https://staging.vivosemnos.org',
     })
     : intl.formatMessage({
-      id: 'global--home.vivos-em-nos.link',
+      id: 'global--home.vivos-em-nos.link.site',
       defaultMessage: 'https://vivosemnos.org',
     })
 

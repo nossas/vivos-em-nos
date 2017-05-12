@@ -119,8 +119,14 @@ export default ({ memory, comments, assets, loading, intl }) => (
             <ShareWhatsappButton
               className="share-button"
               text={
-                `Acabei de criar uma homenagem para ${memory.victimName}. Confira em` +
-                `https://vivosemnos.org/memory/${string.slugify(memory.victimName)}`
+                `${intl.formatMessage({
+                  id: 'global--share.default.text',
+                  defaultMessage:
+                    '{name} e tantos outros seguem #VivosEmNós e essa página ' +
+                    'é em sua homenagem. Veja aqui',
+                }, {
+                  name: memory.victimName,
+                })} https://vivosemnos.org/memory/${string.slugify(memory.victimName)}`
               }
             />
           )}

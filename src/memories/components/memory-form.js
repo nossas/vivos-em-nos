@@ -242,11 +242,14 @@ class MemoryForm extends Component {
           />
           <Field
             label={
-              <FormattedMessage
-                id="components--memory-form.section--about-victim.victim-remember-text"
-                defaultMessage="Quando eu penso em {victimName}, eu me lembro de: *"
-                values={{ victimName: victimName || '' }}
-              />
+              <span>
+                <FormattedMessage
+                  id="components--memory-form.section--about-victim.victim-remember-text"
+                  defaultMessage="Quando eu penso em {victimName}, eu me lembro de"
+                  values={{ victimName: victimName || '' }}
+                />
+                : *
+              </span>
             }
             name="victimRememberText"
             maxLength={500}

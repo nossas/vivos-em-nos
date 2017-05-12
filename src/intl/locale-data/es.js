@@ -69,7 +69,7 @@ export default {
   'components--memory-form.section--about-victim.victim-dead-at': 'Año en que fue asesinada*',
   'components--memory-form.section--about-victim.victim-city': 'Ciudad donde murió*',
   'components--memory-form.section--about-victim.victim-history': '¿Qué sucedió?*',
-  'components--memory-form.section--about-victim.victim-remember-text': 'Cuando pienso en {victimName}, me acuerdo: *',
+  'components--memory-form.section--about-victim.victim-remember-text': 'Cuando pienso en {victimName}, me acuerdo',
   'components--memory-form.section--about-victim.victim-good-words': 'Si pudiera elegir una palabra para describir {victimName}, yo elegiría',
   'components--memory-form.section--about-victim.victim-photo': 'Seleccione una foto de {victimName}',
   'components--memory-form.section--about-victim.memory-assets': 'Crea una galería de imágenes',

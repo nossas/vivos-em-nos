@@ -63,7 +63,12 @@ export default ({ memory, comments, assets, loading, intl }) => (
           </div>
           <Quote>
             <div className="header--victim-remember-text">
-              Quando eu penso em {memory.victimName} eu lembro de...
+              <FormattedMessage
+                id="components--memory-form.section--about-victim.victim-remember-text"
+                defaultValue="Quando eu penso em {victimName}, eu me lembro de"
+                values={{ victimName: memory.victimName }}
+              />
+              ...
             </div>
             {memory.victimRememberText}
           </Quote>

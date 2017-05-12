@@ -81,4 +81,5 @@ export default {
   'components--memory-comment.email': 'Email',
   'components--memory-comment.comment': 'Escribe tu comentario',
   'components--memory-comment.submit': 'Enviar comentario',
+  'components--memory-comment.report-content': 'Denunciar este contenido',
 }

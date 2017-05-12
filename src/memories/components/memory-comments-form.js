@@ -82,7 +82,10 @@ export default class MemoryCommentsForm extends Component {
 
           <div className="column column--denuntiate">
             <a href="mailto:contato@instintodevida.org">
-              Denunciar este conteúdo
+              <FormattedMessage
+                id="components--memory-comment.report-content"
+                defaultMessage="Denunciar este conteúdo"
+              />
             </a>
           </div>
         </div>

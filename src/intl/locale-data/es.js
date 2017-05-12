@@ -20,6 +20,7 @@ export default {
   // page memory
   'pages--memory-victim.section--gallery.header': 'Galería de imágenes',
   'pages--memory-victim.section--share.header': 'Compartir',
+  'pages--memory-victim.section--comments.header': 'Comentarios',
   'pages--memory-victim.section--known-victim.header': '¿Quiere contribuir con ese homenaje?',
   'pages--memory-victim.section--known-victim.header.subtitle': 'Cuéntanos también su recuerdo',
 
@@ -35,7 +36,7 @@ export default {
   'section--about-campaign.the-goal': '{hashtag} quiere usar la memoria como herramienta para transformar la solidaridad en unión, la añoranza en movilización y la indignación en fuerza para el cambio. Si conoces a alguien que ha tenido su historia interrumpida por la violencia, crea aquí una página de homenaje para unirte a la lucha por más respeto a la vida.',
 
   // section featured memories
-  'section--featured-memories.header': 'Los Últimos Homenajes',
+  'section--featured-memories.header': 'Últimos Homenajes',
   'section--featured-memories.cta': 'Ver homenaje completa',
 
   // section about us

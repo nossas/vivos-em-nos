@@ -136,18 +136,33 @@ export default ({ memory, comments, assets, loading, intl }) => (
           )}
         </SectionPrimary>
 
-        <SectionPrimary className="section--memory-comments">
-          {comments.map(comment => (
-            <div className="block--memory-comment">
-              <div className="commenter--name">
-                {comment.name}
+        {!comments || !comments.length ? null : (
+          <SectionPrimary
+            className="section--memory-comments"
+            header={
+              <SectionHeader
+                hideBorder
+                title={
+                  <FormattedMessage
+                    id="pages--memory-victim.section--comments.header"
+                    defaultValue="Comentários"
+                  />
+                }
+              />
+            }
+          >
+            {comments.map(comment => (
+              <div className="block--memory-comment">
+                <div className="commenter--name">
+                  {comment.name}
+                </div>
+                <div className="commenter--comment">
+                  {comment.comment}
+                </div>
               </div>
-              <div className="commenter--comment">
-                {comment.comment}
-              </div>
-            </div>
-          ))}
-        </SectionPrimary>
+            ))}
+          </SectionPrimary>
+        )}
 
         <SectionPrimary
           id="comments"

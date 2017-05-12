@@ -20,6 +20,7 @@ export default {
   // page memory
   'pages--memory-victim.section--gallery.header': 'Galeria de imagens',
   'pages--memory-victim.section--share.header': 'Compartilhe',
+  'pages--memory-victim.section--comments.header': 'Comentários',
   'pages--memory-victim.section--known-victim.header': 'Quer contribuir para essa homenagem?',
   'pages--memory-victim.section--known-victim.header.subtitle': 'Conte aqui também a sua memória',
 

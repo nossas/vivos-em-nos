@@ -1,5 +1,6 @@
 import { connect } from 'preact-redux'
 import { graphql } from 'react-apollo'
+import { injectIntl } from 'react-intl'
 import loaderHOC from '~src/loader'
 import * as MemoryQueries from '~src/memories/queries'
 import * as paths from '~src/paths'
@@ -24,6 +25,6 @@ const mapStateToProps = (state, { data: { loading, memoryBySlug } }) => {
 
 export default graphql(MemoryQueries.memory)(
   connect(mapStateToProps)(
-    loaderHOC(MemoryVictim),
+    loaderHOC(injectIntl(MemoryVictim)),
   ),
 )

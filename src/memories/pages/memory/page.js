@@ -16,7 +16,7 @@ import { MemoryCommentsForm } from '~src/memories/components'
 import * as detect from '~src/utils/detect'
 import * as string from '~src/utils/string'
 
-export default ({ memory, comments, assets, loading }) => (
+export default ({ memory, comments, assets, loading, intl }) => (
   <LayoutDefault>
     <Header>
       <TopBar />
@@ -104,7 +104,16 @@ export default ({ memory, comments, assets, loading }) => (
           <ShareTwitterButton
             className="share-button"
             href={`https://vivosemnos.org/${string.slugify(memory.victimName)}`}
-            text={`Acabei de criar uma homenagem para ${memory.victimName}. Confira em `}
+            text={
+              intl.formatMessage({
+                id: 'global--share.default.text',
+                defaultMessage:
+                  '{name} e tantos outros seguem #VivosEmNós e essa página ' +
+                  'é em sua homenagem. Veja aqui',
+              }, {
+                name: memory.victimName,
+              })
+            }
           />
           {!detect.mobile ? <i /> : (
             <ShareWhatsappButton

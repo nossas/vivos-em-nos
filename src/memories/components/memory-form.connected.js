@@ -1,5 +1,6 @@
 import { connect } from 'preact-redux'
 import { graphql, compose } from 'react-apollo'
+import { injectIntl } from 'react-intl'
 import { reduxForm, formValueSelector, SubmissionError } from 'redux-form'
 import loaderHOC from '../../loader'
 import { memoryCreate, memoryUpdate, memoryAssetCreate, memoryAssetDelete } from '../queries'
@@ -14,12 +15,15 @@ const REQUIRED_FIELDS = [
   'victimPhoto', 'victimSilhouette',
 ]
 
-const validate = (values) => {
+const validate = (values, { intl }) => {
   const errors = {}
 
   REQUIRED_FIELDS.map((fieldName) => {
     if (!values[fieldName]) {
-      errors[fieldName] = 'Preenchimento obrigatório'
+      errors[fieldName] = intl.formatMessage({
+        id: 'redux-form--validation.required-field',
+        defaultMessage: 'Preenchimento obrigatório',
+      })
     }
     return fieldName
   })
@@ -65,7 +69,12 @@ const mapActionCreatorsToProps = (dispatch, props) => ({
         })
     }
 
-    return props.onCreateMemory({ variables: values })
+    return props.onCreateMemory({
+      variables: {
+        ...values,
+        language: window.defaultLanguage,
+      },
+    })
       .then(({ data: { createMemory: { memory } } }) => {
         memoryAssets.map((memoryAsset) => {
           if (memoryAsset) {
@@ -88,7 +97,7 @@ const mapActionCreatorsToProps = (dispatch, props) => ({
   },
 })
 
-export default compose(
+export default injectIntl(compose(
   graphql(memoryCreate, { name: 'onCreateMemory' }),
   graphql(memoryAssetCreate, { name: 'onCreateMemoryAsset' }),
   graphql(memoryUpdate, { name: 'onUpdateMemory' }),
@@ -97,4 +106,4 @@ export default compose(
   reduxForm({ form: FORM, validate })(
     loaderHOC(MemoryForm),
   ),
-))
+)))

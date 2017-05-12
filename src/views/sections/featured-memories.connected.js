@@ -9,6 +9,6 @@ const mapStateToProps = (state, props) => ({
   loading: props.data.loading,
 })
 
-export default graphql(queries.memoriesFeatured)(
-  connect(mapStateToProps)(loaderHOC(FeaturedMemories)),
-)
+export default graphql(queries.memoriesFeatured, {
+  options: ({ language }) => ({ variables: { language } }),
+})(connect(mapStateToProps)(loaderHOC(FeaturedMemories)))

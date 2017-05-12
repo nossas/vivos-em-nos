@@ -4,7 +4,7 @@ import { connect } from 'preact-redux'
 import { Loader } from '~src/loader/components'
 import LoaderSelectors from '~src/loader/redux/selectors'
 import { Menu, MenuItem } from '~src/menu/components'
-import * as paths from '~src/paths'
+import { MenuPrimary } from '~src/views/components'
 import MainFooter from './footer'
 
 const Header = () => 'Header'
@@ -17,17 +17,11 @@ const LayoutDefault = connect(mapStateToProps)(
   ({ children, isLoaderActive }) => (
     <Layout>
       {!isLoaderActive ? <div /> : <Loader />}
-      <Menu>
-        <MenuItem href={paths.home()}>Início</MenuItem>
-        <MenuItem href={paths.memoryCreate()}>Criar Homenagem</MenuItem>
-        <MenuItem href={paths.aboutUs()}>Quem Somos</MenuItem>
-        <a class="components--menu-item " target="_blank" href="https://www.facebook.com/sharer.php?u=https://vivosemnos.org">
-          Compartilhar
-        </a>
-        <a class="components--menu-item " target="_blank" href="https://www.facebook.com/vivosennos/?fref=ts">
-          Seguir
-        </a>
-      </Menu>
+      <MenuPrimary
+        ContainerComponent={Menu}
+        ChildrensComponent={MenuItem}
+        childrensClassName="components--menu-item"
+      />
       <Section type={Header}>Header</Section>
       <Section>{children}</Section>
       <Section type={Footer}><MainFooter /></Section>

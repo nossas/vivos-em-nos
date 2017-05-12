@@ -5,12 +5,14 @@ let elem
 let App
 
 function init() {
+  // eslint-disable-next-line global-require
   App = require('./views').default
   elem = render(App, document.getElementById('root'), elem)
 }
 
 init()
 
+/* eslint-disable */
 if (process.env.NODE_ENV === 'production') {
   // cache all assets if browser supports serviceworker
   if ('serviceWorker' in navigator && location.protocol === 'https:') {
@@ -34,3 +36,4 @@ if (process.env.NODE_ENV === 'production') {
     module.hot.accept('./views', init)
   }
 }
+/* eslint-disable */

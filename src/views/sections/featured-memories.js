@@ -1,4 +1,5 @@
 import { h, Component } from 'preact' /** @jsx h */
+import { FormattedMessage } from 'react-intl'
 import { ViewPager, Frame, Track, View } from 'react-view-pager'
 import { SectionHeader, SectionPrimary } from '~src/views/components'
 import * as string from '~src/utils/string'
@@ -17,7 +18,16 @@ class FeaturedMemoriesSection extends Component {
     return loading || !memories.length ? null : (
       <SectionPrimary
         className={`section--featured-memories ${className}`}
-        header={<SectionHeader title="Homenagens" />}
+        header={
+          <SectionHeader
+            title={(
+              <FormattedMessage
+                id="section--featured-memories.header"
+                defaultMessage="Últimas Homenagens"
+              />
+            )}
+          />
+        }
       >
         <ViewPager>
           <Frame className="frame" autoSize="height">
@@ -60,7 +70,13 @@ class FeaturedMemoriesSection extends Component {
                           <span className="lifetime">
                             {memory.victimBornAt} / {memory.victimDeadAt}
                           </span>
-                          <div className="owner">Homenagem criada por: {memory.ownerFirstName}</div>
+                          <div className="owner">
+                            <FormattedMessage
+                              id="components--memory-summary.memory-created-by"
+                              defaultMessage="Homenagem criada por: {owner}"
+                              values={{ owner: memory.ownerFirstName }}
+                            />
+                          </div>
                         </div>
                         <div className="memory-description">
                           <span className="components--paragraph-line-rounded">
@@ -93,7 +109,10 @@ class FeaturedMemoriesSection extends Component {
             className="button-primary"
             href={string.slugify(memories[this.state.currentView].victimName)}
           >
-            Ver homenagem completa
+            <FormattedMessage
+              id="section--featured-memories.cta"
+              defaultMessage="Ver homenagem completa"
+            />
           </a>
         </ViewPager>
       </SectionPrimary>

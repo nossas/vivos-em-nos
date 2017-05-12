@@ -1,4 +1,5 @@
 import { h } from 'preact' /** @jsx h */
+import { FormattedMessage } from 'react-intl'
 import { Header, LayoutDefault } from '~src/views/layout/layout'
 import {
   MemorySummary,
@@ -15,7 +16,21 @@ import { MemoryCommentsForm } from '~src/memories/components'
 import * as detect from '~src/utils/detect'
 import * as string from '~src/utils/string'
 
-export default ({ memory, comments, assets, loading }) => (
+const memoryShareURL = (intl, memory) => `${intl.formatMessage({
+  id: 'global--home.vivos-em-nos.link.site',
+  defaultMessage: 'https://vivosemnos.org',
+})}/${string.slugify(memory.victimName)}`
+
+const memoryShareText = (intl, memory) => intl.formatMessage({
+  id: 'global--share.default.text',
+  defaultMessage:
+    '{victimName} e tantos outros seguem #VivosEmNós e essa página ' +
+    'é em sua homenagem. Veja aqui',
+}, {
+  victimName: memory.victimName,
+})
+
+export default ({ memory, comments, assets, loading, intl }) => (
   <LayoutDefault>
     <Header>
       <TopBar />
@@ -47,16 +62,35 @@ export default ({ memory, comments, assets, loading }) => (
             {memory.victimGoodWords}
           </div>
           <Quote>
+            <div className="header--victim-remember-text">
+              <FormattedMessage
+                id="components--memory-form.section--about-victim.victim-remember-text"
+                defaultValue="Quando eu penso em {victimName}, eu me lembro de"
+                values={{ victimName: memory.victimName }}
+              />
+              ...
+            </div>
             {memory.victimRememberText}
           </Quote>
         </section>
-        <SectionPrimary
-          className="section--gallery"
-          header={<SectionHeader title="Galeria de imagens" hideBorder />}
-        >
-          <div className="gallery columns is-multiline is-desktop">
-            {assets &&
-              assets
+
+        {!assets || !assets.length ? null : (
+          <SectionPrimary
+            className="section--gallery"
+            header={
+              <SectionHeader
+                hideBorder
+                title={
+                  <FormattedMessage
+                    id="pages--memory-victim.section--gallery.header"
+                    defaultValue="Galeria de imagens"
+                  />
+                }
+              />
+            }
+          >
+            <div className="gallery columns is-multiline is-desktop">
+              {assets
                 .filter(asset => asset.assetType === 'image')
                 .map((asset, index) => (
                   <div className="column column is-one-third">
@@ -65,60 +99,92 @@ export default ({ memory, comments, assets, loading }) => (
                       alt={`asset-${index}`}
                     />
                   </div>
-                ),
-              )
-            }
-          </div>
-        </SectionPrimary>
+                ))
+              }
+            </div>
+          </SectionPrimary>
+        )}
 
         <SectionPrimary
           className="section--share"
-          header={<SectionHeader title="Compartilhe" hideBorder />}
+          header={
+            <SectionHeader
+              hideBorder
+              title={
+                <FormattedMessage
+                  id="pages--memory-victim.section--share.header"
+                  defaultValue="Compartilhe"
+                />
+              }
+            />
+          }
         >
           <ShareFacebookButton
             className="share-button"
-            href={`https://vivosemnos.org/${string.slugify(memory.victimName)}`}
+            href={memoryShareURL(intl, memory)}
           />
           <ShareTwitterButton
             className="share-button"
-            href={`https://vivosemnos.org/${string.slugify(memory.victimName)}`}
-            text={`Acabei de criar uma homenagem para ${memory.victimName}. Confira em `}
+            href={memoryShareURL(intl, memory)}
+            text={memoryShareText(intl, memory)}
           />
           {!detect.mobile ? <i /> : (
             <ShareWhatsappButton
               className="share-button"
-              text={
-                `Acabei de criar uma homenagem para ${memory.victimName}. Confira em` +
-                `https://vivosemnos.org/memory/${string.slugify(memory.victimName)}`
-              }
+              text={`${memoryShareText(intl, memory)} ${memoryShareURL(intl, memory)}`}
             />
           )}
         </SectionPrimary>
+
+        {!comments || !comments.length ? null : (
+          <SectionPrimary
+            className="section--memory-comments"
+            header={
+              <SectionHeader
+                hideBorder
+                title={
+                  <FormattedMessage
+                    id="pages--memory-victim.section--comments.header"
+                    defaultValue="Comentários"
+                  />
+                }
+              />
+            }
+          >
+            {comments.map(comment => (
+              <div className="block--memory-comment">
+                <div className="commenter--name">
+                  {comment.name}
+                </div>
+                <div className="commenter--comment">
+                  {comment.comment}
+                </div>
+              </div>
+            ))}
+          </SectionPrimary>
+        )}
 
         <SectionPrimary
           id="comments"
           className="section--known-victim"
           header={
             <SectionHeader
-              title="Quer contribuir para essa homenagem? "
-              subtitle="Conte aqui também a sua memória"
+              title={
+                <FormattedMessage
+                  id="pages--memory-victim.section--known-victim.header"
+                  defaultValue="Quer contribuir para essa homenagem?"
+                />
+              }
+              subtitle={
+                <FormattedMessage
+                  id="pages--memory-victim.section--known-victim.header.subtitle"
+                  defaultValue="Conte aqui também a sua memória"
+                />
+              }
             />
           }
         >
           <MemoryCommentsForm memoryId={memory.id} victimName={memory.victimName} />
-        </SectionPrimary>
-
-        <SectionPrimary className="section--memory-comments">
-          {comments.map(comment => (
-            <div className="block--memory-comment">
-              <div className="commenter--name">
-                {comment.name}
-              </div>
-              <div className="commenter--comment">
-                {comment.comment}
-              </div>
-            </div>
-          ))}
         </SectionPrimary>
       </div>
     )}

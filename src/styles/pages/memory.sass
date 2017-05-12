@@ -20,6 +20,14 @@
       position: relative
       text-align: center
 
+    .header--victim-remember-text
+      position: relative
+      text-align: center
+      font-size: 1.2rem
+      margin-bottom: 20px
+      font-style: italic
+      font-weight: normal
+
     .gallery
       position: relative
       margin-top: 90px
@@ -45,14 +53,8 @@
       &:first-child
         margin-left: 0
 
-  .section--known-victim
-    margin-top: 20px
-
-    .button-primary
-      margin-top: 32px
-
   .section--memory-comments
-    margin-top: 32px
+    margin-top: 0
 
     .block--memory-comment
       position: relative
@@ -77,3 +79,23 @@
         color: #464646
         line-height: 22px
         word-break: break-word
+
+  .section--known-victim
+    .container--primary-button
+      margin-top: 32px
+
+      .column--denuntiate
+        display: flex
+        align-items: center
+        justify-content: center
+        margin-top: 1.5rem
+
+@media screen and (min-width: $tablet)
+  .pages--memory-victim
+    .section--known-victim
+      .container--primary-button
+        .column--denuntiate
+          display: flex
+          align-items: center
+          justify-content: flex-end
+          margin: 0

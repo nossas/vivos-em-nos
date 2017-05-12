@@ -5,7 +5,7 @@ export default {
   'global--home.vivos-em-nos.link.facebook': 'https://facebook.com/vivosennos',
   'global--home.vivos-em-nos.staging.link.site': 'https://staging.vivosennosotros.org',
   'global--home.instinto-de-vida.link': 'https://www.instintodevida.org',
-  'global--share.default.text': '{name} y tantos otros siguen #VivosEnNosotros y esa pagina es un homenaje. Véala aquí',
+  'global--share.default.text': '{victimName} y tantos otros siguen #VivosEnNosotros y esa pagina es un homenaje. Véala aquí',
   'footer--home': 'Habla con nosotros:',
 
   // page memory create

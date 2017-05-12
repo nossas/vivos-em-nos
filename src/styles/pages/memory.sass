@@ -48,8 +48,14 @@
   .section--known-victim
     margin-top: 20px
 
-    .button-primary
+    .container--primary-button
       margin-top: 32px
+
+      .column--denuntiate
+        display: flex
+        align-items: center
+        justify-content: center
+        margin-top: 1.5rem
 
   .section--memory-comments
     margin-top: 32px
@@ -77,3 +83,13 @@
         color: #464646
         line-height: 22px
         word-break: break-word
+
+@media screen and (min-width: $tablet)
+  .pages--memory-victim
+    .section--known-victim
+      .container--primary-button
+        .column--denuntiate
+          display: flex
+          align-items: center
+          justify-content: flex-end
+          margin: 0

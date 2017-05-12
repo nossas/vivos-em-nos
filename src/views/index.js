@@ -12,7 +12,7 @@ import { scrollStrategy } from '~src/utils/navigation'
 import store, { client } from '../store'
 import Home from './pages/home'
 import Error404 from './pages/errors/404'
-import { Memory, MemoryCreate } from '../memories/pages'
+import { Memory, MemoryCreate } from './pages/memories'
 
 addLocaleData([...pt, ...es, ...en])
 

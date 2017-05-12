@@ -8,6 +8,10 @@ export default {
   'global--share.default.text': '{victimName} y tantos otros siguen #VivosEnNosotros y esa pagina es un homenaje. Véala aquí',
   'footer--home': 'Habla con nosotros:',
 
+  // redux form validations
+  'redux-form--validation.required-field': 'Necesario rellenar los campos',
+  'redux-form--validation.email-format': 'Formato de email no valido',
+
   // page memory create
   'page--memory-create.form-description': '{strong} Después de publicada, usted podrá compartir esa página en las redes sociales y decir a todos como esa persona permanece viva en su memoria.',
   'page--memory-create.form-description.strong': 'Llenando el formulario abajo, usted va a crear un homenaje a alguien que murió, víctima de violencia.',
@@ -81,5 +85,5 @@ export default {
   'components--memory-comment.email': 'Email',
   'components--memory-comment.comment': 'Escribe tu comentario',
   'components--memory-comment.submit': 'Enviar comentario',
-  'components--memory-comment.report-content': 'Denunciar este contenido',
+  'components--memory-comment.report-content': 'Denunciar el contenido',
 }

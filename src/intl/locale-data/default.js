@@ -8,6 +8,10 @@ export default {
   'global--share.default.text': '{victimName} e tantos outros seguem #VivosEmNós e essa página é em sua homenagem. Veja aqui',
   'footer--home': 'Fale conosco:',
 
+  // redux form validations
+  'redux-form--validation.required-field': 'Preenchimento obrigatório',
+  'redux-form--validation.email-format': 'Formato de email inválido',
+
   // page memory create
   'page--memory-create.form-description': '{strong} Depois de publicada, você vai poder compartilhar essa página nas suas redes sociais e dizer a todos como essa pessoa permanece viva na sua memória.',
   'page--memory-create.form-description.strong': 'Preenchendo o formulário abaixo, você cria uma homenagem a alguém que morreu, vítima da violência.',

@@ -15,12 +15,15 @@ const REQUIRED_FIELDS = [
   'victimPhoto', 'victimSilhouette',
 ]
 
-const validate = (values) => {
+const validate = (values, { intl }) => {
   const errors = {}
 
   REQUIRED_FIELDS.map((fieldName) => {
     if (!values[fieldName]) {
-      errors[fieldName] = 'Preenchimento obrigatório'
+      errors[fieldName] = intl.formatMessage({
+        id: 'redux-form--validation.required-field',
+        defaultMessage: 'Preenchimento obrigatório',
+      })
     }
     return fieldName
   })
@@ -94,13 +97,13 @@ const mapActionCreatorsToProps = (dispatch, props) => ({
   },
 })
 
-export default compose(
+export default injectIntl(compose(
   graphql(memoryCreate, { name: 'onCreateMemory' }),
   graphql(memoryAssetCreate, { name: 'onCreateMemoryAsset' }),
   graphql(memoryUpdate, { name: 'onUpdateMemory' }),
   graphql(memoryAssetDelete, { name: 'onDeleteMemoryAsset' }),
 )(connect(mapStateToProps, mapActionCreatorsToProps)(
   reduxForm({ form: FORM, validate })(
-    injectIntl(loaderHOC(MemoryForm)),
+    loaderHOC(MemoryForm),
   ),
-))
+)))

@@ -61,6 +61,9 @@ export default ({ memory, comments, assets, loading, intl }) => (
           <div className="title">
             {memory.victimGoodWords}
           </div>
+          <div className="header--victim-remember-text">
+            Quando eu penso em {memory.victimName} eu lembro de...
+          </div>
           <Quote>
             {memory.victimRememberText}
           </Quote>

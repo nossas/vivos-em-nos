@@ -1,6 +1,7 @@
 import { h } from 'preact' /** @jsx h */
 import { Header, LayoutDefault } from '~src/views/layout/layout'
 import {
+  ButtonPrimary,
   ButtonOutline,
   MemorySummary,
   Quote,
@@ -31,8 +32,17 @@ export default ({ memory, loading }) => (
     </Header>
 
     {loading ? <div /> : (
-      <div className="page pages--memories-list">
-        <div className="columns is-multiline">
+      <section className="page pages--memories-list">
+        <header>
+          <h1 className="title">
+            VEJA TODAS AS HOMENAGENS!
+          </h1>
+          <h2 className="subtitle">
+            Mural com todas as vítimas de homicídios na América Latina.
+          </h2>
+        </header>
+
+        <article className="columns is-multiline">
           {Array(5).fill('').map(() => (
             <div className="column is-tablet is-one-third">
               <MemorySummary
@@ -60,8 +70,14 @@ export default ({ memory, loading }) => (
               </div>
             </div>
           ))}
-        </div>
-      </div>
+        </article>
+
+        <footer>
+          <ButtonPrimary>
+            Ver mais homenagens
+          </ButtonPrimary>
+        </footer>
+      </section>
     )}
   </LayoutDefault>
 )

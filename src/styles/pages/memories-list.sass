@@ -1,4 +1,28 @@
 .pages--memories-list
+  & > header
+    margin-bottom: 35px
+
+    .title
+      color: #674DA0
+      font-family: LiebeDoris
+      font-size: 60px
+      line-height: 60px
+      margin-top: 10px
+      text-align: center
+
+    .subtitle
+      color: $secondary
+      font-weight: normal
+      text-align: center
+      margin-top: 0 !important
+
+  & > footer
+    text-align: center
+
+    .button-primary
+      background-color: $secondary
+
+
   .columns
     .column
       margin-bottom: 30px
@@ -11,6 +35,23 @@
 
     .components--button-outline
       width: initial
-      color: #de5f25
+      color: $secondary
       display: inline-block
       padding: 10px 20px
+
+@media screen and (min-width: $tablet)
+  .pages--memories-list
+    & > header
+      margin-bottom: 85px
+
+      .title
+        margin-top: 30px
+        font-size: 110px
+        line-height: 110px
+        margin-bottom: 10px
+
+    & > footer
+      .button-primary
+        width: initial
+        display: inline-block
+        padding: 12px 70px

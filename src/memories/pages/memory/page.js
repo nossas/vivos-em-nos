@@ -51,23 +51,24 @@ export default ({ memory, comments, assets, loading }) => (
             {memory.victimRememberText}
           </Quote>
         </section>
-        <SectionPrimary
-          className="section--gallery"
-          header={
-            <SectionHeader
-              hideBorder
-              title={
-                <FormattedMessage
-                  id="pages--memory-victim.section--gallery.header"
-                  defaultValue="Galeria de imagens"
-                />
-              }
-            />
-          }
-        >
-          <div className="gallery columns is-multiline is-desktop">
-            {assets &&
-              assets
+
+        {!assets || !assets.length ? null : (
+          <SectionPrimary
+            className="section--gallery"
+            header={
+              <SectionHeader
+                hideBorder
+                title={
+                  <FormattedMessage
+                    id="pages--memory-victim.section--gallery.header"
+                    defaultValue="Galeria de imagens"
+                  />
+                }
+              />
+            }
+          >
+            <div className="gallery columns is-multiline is-desktop">
+              {assets
                 .filter(asset => asset.assetType === 'image')
                 .map((asset, index) => (
                   <div className="column column is-one-third">
@@ -76,11 +77,11 @@ export default ({ memory, comments, assets, loading }) => (
                       alt={`asset-${index}`}
                     />
                   </div>
-                ),
-              )
-            }
-          </div>
-        </SectionPrimary>
+                ))
+              }
+            </div>
+          </SectionPrimary>
+        )}
 
         <SectionPrimary
           className="section--share"

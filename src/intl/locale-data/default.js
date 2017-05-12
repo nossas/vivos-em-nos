@@ -30,7 +30,7 @@ export default {
   'section--about-campaign.the-goal': '{hashtag} quer usar a memória como ferramenta para transformar solidariedade em união, saudade em mobilização e indignação em força para mudança. Se você conhece alguém que teve a sua história interrompida pela violência, crie aqui uma página de homenagem para se juntar à luta por mais respeito à vida.',
 
   // section featured memories
-  'section--featured-memories.header': 'Homenagens',
+  'section--featured-memories.header': 'Últimas Homenagens',
   'section--featured-memories.cta': 'Ver homenagem completa',
 
   // section about us

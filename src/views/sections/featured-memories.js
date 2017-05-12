@@ -23,7 +23,7 @@ class FeaturedMemoriesSection extends Component {
             title={(
               <FormattedMessage
                 id="section--featured-memories.header"
-                defaultMessage="Homenagens"
+                defaultMessage="Últimas Homenagens"
               />
             )}
           />

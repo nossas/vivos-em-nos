@@ -1,6 +1,7 @@
 import { graphql } from 'react-apollo'
 import { connect } from 'preact-redux'
 import { reduxForm, SubmissionError } from 'redux-form'
+import { injectIntl } from 'react-intl'
 import * as validation from '~src/utils/validation'
 import * as string from '~src/utils/string'
 import * as LoaderActions from '~src/loader/redux/action-creators'
@@ -11,16 +12,22 @@ const form = 'memoryCommentsForm'
 
 const REQUIRED_FIELDS = ['memoryId', 'comment', 'name', 'email']
 
-const validate = (values) => {
+const validate = (values, { intl }) => {
   const errors = {}
 
   if (!validation.email(values.email)) {
-    errors.email = 'Formato de email inválido'
+    errors.email = intl.formatMessage({
+      id: 'redux-form--validation.email-format',
+      defaultMessage: 'Formato de email inválido',
+    })
   }
 
   REQUIRED_FIELDS.map((field) => {
     if (!values[field]) {
-      errors[field] = 'Preenchimento obrigatório'
+      errors[field] = intl.formatMessage({
+        id: 'redux-form--validation.required-field',
+        defaultMessage: 'Preenchimento obrigatório',
+      })
     }
     return field
   })
@@ -33,7 +40,7 @@ const mapStateToProps = (state, { memoryId }) => ({
   initialValues: { memoryId },
 })
 
-export default graphql(queries.memoryCommentCreate, {
+export default injectIntl(graphql(queries.memoryCommentCreate, {
   props: ({ mutate, ownProps }) => ({
     onSave: (values, dispatch, formProps) => {
       dispatch(LoaderActions.setActive(true))
@@ -56,4 +63,4 @@ export default graphql(queries.memoryCommentCreate, {
   }),
 })(connect(mapStateToProps)(
   reduxForm({ form, validate })(MemoryCommentsForm),
-))
+)))

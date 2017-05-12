@@ -86,4 +86,7 @@ export default {
   'components--memory-comment.comment': 'Escreva aqui seu comentário',
   'components--memory-comment.submit': 'Enviar comentário',
   'components--memory-comment.report-content': 'Denunciar este conteúdo',
+
+  // component memory summary
+  'components--memory-summary.memory-created-by': 'Homenagem criada por: {owner}',
 }

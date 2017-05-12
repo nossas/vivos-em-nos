@@ -1,5 +1,6 @@
 import { h } from 'preact' /** @jsx h */
-import { ParagraphLineRounded } from '../../views/components'
+import { FormattedMessage } from 'react-intl'
+import { ParagraphLineRounded } from '~src/views/components'
 
 export default ({
   name,
@@ -41,7 +42,11 @@ export default ({
         <div className="name">{name}</div>
         <span className="lifetime">{birthYear} / {deathYear}</span>
         <div className="owner">
-          Homenagem criada por: {owner}
+          <FormattedMessage
+            id="components--memory-summary.memory-created-by"
+            defaultMessage="Homenagem criada por: {owner}"
+            values={{ owner }}
+          />
         </div>
       </div>
       <div className="memory-description">

@@ -62,6 +62,16 @@ const AboutCampaignSection = ({ className }) => (
           'relatórios de segurança pública nos afasta da real dimensão do problema e nos' +
           'impede de cobrar soluções efetivas.'
         }
+        values={{
+          hashtag: (
+            <span className="color--primary">
+              <FormattedMessage
+                id="global--brand-name"
+                defaultMessage="#VivosEmNós"
+              />
+            </span>
+          ),
+        }}
       />
     </p>
     <p>
@@ -73,16 +83,6 @@ const AboutCampaignSection = ({ className }) => (
           'alguém que teve a sua história interrompida pela violência, crie aqui uma página de ' +
           'homenagem para se juntar à luta por mais respeito à vida.'
         }
-        values={{
-          hashtag: (
-            <span className="color--primary">
-              <FormattedMessage
-                id="global--brand-name"
-                defaultMessage="#VivosEmNós"
-              />
-            </span>
-          )
-        }}
       />
     </p>
   </SectionPrimary>

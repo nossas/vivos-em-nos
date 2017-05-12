@@ -32,8 +32,8 @@ export default {
   'section--about-campaign.paragraph-line-rounded': '{highlightBeginning} a cada quatro pessoas, uma conhece alguém que foi {highlightEnding}',
   'section--about-campaign.paragraph-line-rounded.highlight-beginning': 'No Brasil,',
   'section--about-campaign.paragraph-line-rounded.highlight-ending': 'assassinado.',
-  'section--about-campaign.statistics': 'As estatísticas assustam, mas os números não nos permitem enxergar o mais importante:os nomes, os rostos e as histórias dessas vítimas. Tratá-las como dígitos nosrelatórios de segurança pública nos afasta da real dimensão do problema e nosimpede de cobrar soluções efetivas.',
-  'section--about-campaign.the-goal': '{hashtag} quer usar a memória como ferramenta para transformar solidariedade em união, saudade em mobilização e indignação em força para mudança. Se você conhece alguém que teve a sua história interrompida pela violência, crie aqui uma página de homenagem para se juntar à luta por mais respeito à vida.',
+  'section--about-campaign.statistics': 'As estatísticas assustam, mas os números não nos permitem enxergar o mais importante: os nomes, rostos e histórias dessas vítimas. Tratá-las como dígitos nos relatórios de segurança pública nos afasta da real dimensão do problema e nos impede de cobrar soluções efetivas. {hashtag} quer usar a memória como ferramenta para transformar saudade em mobilização e a indignação em força para mudança.',
+  'section--about-campaign.the-goal': 'Se você conhece alguém que teve sua vida interrompida pela violência, crie aqui uma página de homenagem. Vamos montar um livro para contar essas histórias na Assembleia Geral da OEA (Organização dos Estados Americanos) no dia 19 de junho, onde estarão presentes os principais líderes da região. Eles precisam conhecer as histórias por trás dos números e vamos pressioná-los para mudar este cenário.',
 
   // section featured memories
   'section--featured-memories.header': 'Últimas Homenagens',

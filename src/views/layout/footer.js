@@ -1,6 +1,6 @@
 import { h } from 'preact' /** @jsx h */
 import { FormattedMessage, injectIntl } from 'react-intl'
-import { Logo } from '~src/views/components'
+import { LogoVivosEmNos, LogoInstintoDeVida } from '~src/views/components'
 
 export default injectIntl(({ intl }) => (
   <footer className="footer--home">
@@ -14,7 +14,7 @@ export default injectIntl(({ intl }) => (
           })
         }
       >
-        <Logo height="63" />
+        <LogoVivosEmNos height="68" />
       </a>
       <a
         target="_blank"
@@ -25,12 +25,7 @@ export default injectIntl(({ intl }) => (
           })
         }
       >
-        <img
-          src="/img/logo-instinto-de-vida.png"
-          alt="Logo Instinto de Vida"
-          width="85"
-          height="68"
-        />
+        <LogoInstintoDeVida height="68" />
       </a>
     </div>
     <div>

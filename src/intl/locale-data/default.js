@@ -24,6 +24,12 @@ export default {
   'pages--memory-victim.section--known-victim.header': 'Quer contribuir para essa homenagem?',
   'pages--memory-victim.section--known-victim.header.subtitle': 'Conte aqui também a sua memória',
 
+  // page memories list
+  'page--memories-list.title': 'Veja todas as homenagens!',
+  'page--memories-list.subtitle': 'Mural com todas as vítimas de homicídios na América Latina.',
+  'page--memories-list.see-memory': 'Ver homenagem',
+  'page--memories-list.see-more-memories': 'Ver mais homenagens',
+
   // section splash
   'section--splash.hero': 'Vamos usar a memória como ferramenta para mudança. Homenageando aqueles que estão {hashtag}, podemos transformar saudade em mobilização e, juntos, lutar por mais respeito à vida.',
 

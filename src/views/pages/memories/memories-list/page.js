@@ -1,5 +1,6 @@
 import { h } from 'preact' /** @jsx h */
 import { Link } from 'preact-router'
+import { FormattedMessage } from 'react-intl'
 import { Header, LayoutDefault } from '~src/views/layout/layout'
 import {
   ButtonPrimary,
@@ -22,10 +23,16 @@ export default ({ loading, allMemories, nextPage, totalCount }) => (
       <header>
         <Silhouette variation="blue-2" className="variation-blue-2" />
         <h1 className="title">
-          VEJA TODAS AS HOMENAGENS!
+          <FormattedMessage
+            id="page--memories-list.title"
+            defaultMessage="Veja todas as homenagens!"
+          />
         </h1>
         <h2 className="subtitle">
-          Mural com todas as vítimas de homicídios na América Latina.
+          <FormattedMessage
+            id="page--memories-list.subtitle"
+            defaultMessage="Mural com todas as vítimas de homicídios na América Latina."
+          />
         </h2>
       </header>
 
@@ -47,9 +54,6 @@ export default ({ loading, allMemories, nextPage, totalCount }) => (
               width="63%"
             />
             <Quote>
-              <div className="header--victim-remember-text">
-                Quando eu penso em {memory.victimName} eu lembro de...
-              </div>
               {memory.victimRememberText}
             </Quote>
             <div className="container--button">
@@ -57,7 +61,10 @@ export default ({ loading, allMemories, nextPage, totalCount }) => (
                 TagName={Link}
                 href={paths.memory(string.slugify(memory.victimName))}
               >
-                Ver homenagem
+                <FormattedMessage
+                  id="page--memories-list.see-memory"
+                  defaultMessage="Ver homenagem"
+                />
               </ButtonOutline>
             </div>
           </div>
@@ -68,7 +75,10 @@ export default ({ loading, allMemories, nextPage, totalCount }) => (
         <Silhouette variation="1" className="variation-1 is-hidden-mobile" />
         {allMemories.length < totalCount && (
           <ButtonPrimary onClick={() => { nextPage() }}>
-            Ver mais homenagens
+            <FormattedMessage
+              id="page--memories-list.see-more-memories"
+              defaultMessage="Ver mais homenagens"
+            />
           </ButtonPrimary>
         )}
       </footer>

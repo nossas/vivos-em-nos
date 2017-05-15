@@ -1,4 +1,5 @@
 import { h } from 'preact' /** @jsx h */
+import { Link } from 'preact-router'
 import { Header, LayoutDefault } from '~src/views/layout/layout'
 import {
   ButtonPrimary,
@@ -51,7 +52,10 @@ export default ({ loading, allMemories, nextPage, totalCount }) => (
               {memory.victimRememberText}
             </Quote>
             <div className="container--button">
-              <ButtonOutline onClick={paths.memory(string.slugify(memory.victimName))}>
+              <ButtonOutline
+                TagName={Link}
+                href={paths.memory(string.slugify(memory.victimName))}
+              >
                 Ver homenagem
               </ButtonOutline>
             </div>

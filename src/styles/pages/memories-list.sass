@@ -1,6 +1,16 @@
 .pages--memories-list
   & > header
     margin-bottom: 35px
+    position: relative
+
+    .components--silhouette
+      &.variation-blue-2
+        height: 370px
+        z-index: -1
+        position: absolute
+        top: 0
+        left: 50%
+        margin-left: calc(-370px/2 - 90px)
 
     .title
       color: #674DA0
@@ -50,8 +60,25 @@
         line-height: 110px
         margin-bottom: 10px
 
+      .components--silhouette
+        &.variation-blue-2
+          top: -40px
+          left: -90px
+          margin-left: 0
+          height: 451px
+
     & > footer
+      position: relative
+
       .button-primary
         width: initial
         display: inline-block
         padding: 12px 70px
+
+      .components--silhouette
+        &.variation-1
+          height: 650px
+          transform: scaleX(-1)
+          top: -490px
+          position: absolute
+          z-index: -1

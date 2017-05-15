@@ -6,7 +6,7 @@ import {
   ButtonOutline,
   MemorySummary,
   Quote,
-  // Silhouette,
+  Silhouette,
   TopBar,
 } from '~src/views/components'
 import * as string from '~src/utils/string'
@@ -20,6 +20,7 @@ export default ({ loading, allMemories, nextPage, totalCount }) => (
 
     <section className="page pages--memories-list">
       <header>
+        <Silhouette variation="blue-2" className="variation-blue-2" />
         <h1 className="title">
           VEJA TODAS AS HOMENAGENS!
         </h1>
@@ -63,13 +64,14 @@ export default ({ loading, allMemories, nextPage, totalCount }) => (
         ))}
       </article>
 
-      {allMemories.length < totalCount && (
-        <footer>
+      <footer>
+        <Silhouette variation="1" className="variation-1 is-hidden-mobile" />
+        {allMemories.length < totalCount && (
           <ButtonPrimary onClick={() => { nextPage() }}>
             Ver mais homenagens
           </ButtonPrimary>
-        </footer>
-      )}
+        )}
+      </footer>
     </section>
   </LayoutDefault>
 )

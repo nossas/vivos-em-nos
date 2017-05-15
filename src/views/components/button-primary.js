@@ -1,7 +1,7 @@
 import { h } from 'preact' /** @jsx h */
 
-const ButtonPrimary = ({ TagName, children, href, type, disabled }) => (
-  <TagName {...{ href, type, disabled }} class="button-primary">
+const ButtonPrimary = ({ TagName, children, href, type, disabled, onClick }) => (
+  <TagName {...{ href, type, disabled, onClick }} className="button-primary">
     {children}
   </TagName>
 )

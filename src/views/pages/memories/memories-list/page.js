@@ -5,79 +5,67 @@ import {
   ButtonOutline,
   MemorySummary,
   Quote,
-  Silhouette,
+  // Silhouette,
   TopBar,
 } from '~src/views/components'
-import * as detect from '~src/utils/detect'
-// import * as string from '~src/utils/string'
+import * as string from '~src/utils/string'
+import * as paths from '~src/paths'
 
-// const memoryShareURL = (intl, memory) => `${intl.formatMessage({
-//   id: 'global--home.vivos-em-nos.link.site',
-//   defaultMessage: 'https://vivosemnos.org',
-// })}/${string.slugify(memory.victimName)}`
-
-// const memoryShareText = (intl, memory) => intl.formatMessage({
-//   id: 'global--share.default.text',
-//   defaultMessage:
-//     '{victimName} e tantos outros seguem #VivosEmNós e essa página ' +
-//     'é em sua homenagem. Veja aqui',
-// }, {
-//   victimName: memory.victimName,
-// })
-
-export default ({ memory, loading }) => (
+export default ({ loading, allMemories, nextPage, totalCount }) => (
   <LayoutDefault>
     <Header>
       <TopBar />
     </Header>
 
-    {loading ? <div /> : (
-      <section className="page pages--memories-list">
-        <header>
-          <h1 className="title">
-            VEJA TODAS AS HOMENAGENS!
-          </h1>
-          <h2 className="subtitle">
-            Mural com todas as vítimas de homicídios na América Latina.
-          </h2>
-        </header>
+    <section className="page pages--memories-list">
+      <header>
+        <h1 className="title">
+          VEJA TODAS AS HOMENAGENS!
+        </h1>
+        <h2 className="subtitle">
+          Mural com todas as vítimas de homicídios na América Latina.
+        </h2>
+      </header>
 
-        <article className="columns is-multiline">
-          {Array(5).fill('').map(() => (
-            <div className="column is-tablet is-one-third">
-              <MemorySummary
-                name={'Marina'}
-                owner={'Gabriel'}
-                birthYear={'1990'}
-                deathYear={'2015'}
-                description={'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ergo in iis adolescenti'}
-                image={`${process.env.SERVER_DOMAIN}${'/s3/uploads/adventure-time.gif'}`}
-                imageWidth="220px"
-                imageHeight="180px"
-                imageAlignmentLeft={0}
-                distanceY="100px"
-                distanceX="30%"
-                width="63%"
-              />
-              <Quote>
-                <div className="header--victim-remember-text">
-                  Quando eu penso em {'memory.victimName'} eu lembro de...
-                </div>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ergo in iis adolescentibus bonam spem esse dicemus et magnam indolem, quos suis commodis inservituros et quicquid ipsis expediat facturos arbitrabimur? Ergo ita: non posse honeste vivi, nisi honeste vivatur? Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ergo in iis adolescentibus bonam spem esse dicemus et magnam indolem, quos suis commodis inservituros et quicquid ipsis expediat facturos arbitrabimur? Ergo ita: non posse honest
-              </Quote>
-              <div className="container--button">
-                <ButtonOutline>Ver homenagem</ButtonOutline>
+      <article className="columns is-multiline">
+        {!loading && allMemories.length && allMemories.map(memory => (
+          <div className="column is-tablet is-one-third">
+            <MemorySummary
+              name={memory.victimName}
+              owner={memory.ownerFirstName}
+              birthYear={memory.victimBornAt}
+              deathYear={memory.victimDeadAt}
+              description={memory.victimHistory}
+              image={`${process.env.SERVER_DOMAIN}${memory.victimPhoto}`}
+              imageWidth="220px"
+              imageHeight="180px"
+              imageAlignmentLeft={0}
+              distanceY="100px"
+              distanceX="30%"
+              width="63%"
+            />
+            <Quote>
+              <div className="header--victim-remember-text">
+                Quando eu penso em {memory.victimName} eu lembro de...
               </div>
+              {memory.victimRememberText}
+            </Quote>
+            <div className="container--button">
+              <ButtonOutline onClick={paths.memory(string.slugify(memory.victimName))}>
+                Ver homenagem
+              </ButtonOutline>
             </div>
-          ))}
-        </article>
+          </div>
+        ))}
+      </article>
 
+      {allMemories.length < totalCount && (
         <footer>
-          <ButtonPrimary>
+          <ButtonPrimary onClick={() => { nextPage() }}>
             Ver mais homenagens
           </ButtonPrimary>
         </footer>
-      </section>
-    )}
+      )}
+    </section>
   </LayoutDefault>
 )

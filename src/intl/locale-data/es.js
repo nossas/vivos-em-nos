@@ -54,6 +54,7 @@ export default {
   // component menu item
   'components--menu-item.home': 'Inicio',
   'components--menu-item.create-memory': 'Crear Homenaje',
+  'components--menu-item.memories-list': 'Homenajes',
   'components--menu-item.about-us': 'Quiénes Somos',
   'components--menu-item.share': 'Compartir',
   'components--menu-item.follow': 'Seguir',

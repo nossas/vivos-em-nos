@@ -59,7 +59,7 @@ const AboutCampaignSection = ({ className }) => (
           id="section--about-campaign.statistics"
           defaultMessage={
             'As estatísticas assustam, mas os números não nos permitem enxergar o mais ' +
-            'importante: os nomes, os rostos e as histórias dessas vítimas.'
+            'importante: os nomes, rostos e histórias dessas vítimas.'
           }
         />
       </b>
@@ -76,8 +76,8 @@ const AboutCampaignSection = ({ className }) => (
         <FormattedMessage
           id="section--about-campaign.memory-as-tool"
           defaultMessage={
-            '{hashtag} quer usar a memória como ferramenta para transformar solidariedade em ' +
-            'união, saudade em mobilização e indignação em força para mudança.'
+            '{hashtag} quer usar a memória como ferramenta para transformar saudade em ' +
+            'mobilização e a indignação em força para mudança.'
           }
           values={{
             hashtag: (

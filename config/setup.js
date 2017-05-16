@@ -59,7 +59,7 @@ module.exports = (isProd) => {
     if (publishS3 === 'true') {
       plugins.push(
         new S3Plugin({
-          include: /\.html$|\.js$|\.css$|\.svg$|\.ttf$|\.eot$|\.png$|\.otf|woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+          include: /\.json$|\.html$|\.js$|\.css$|\.svg$|\.ttf$|\.eot$|\.png$|\.otf|woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
           s3Options: {
             accessKeyId,
             secretAccessKey,

@@ -54,34 +54,72 @@ const AboutCampaignSection = ({ className }) => (
       </ParagraphLineRounded>
     </div>
     <p>
+      <b>
+        <FormattedMessage
+          id="section--about-campaign.statistics"
+          defaultMessage={
+            'As estatísticas assustam, mas os números não nos permitem enxergar o mais ' +
+            'importante: os nomes, os rostos e as histórias dessas vítimas.'
+          }
+        />
+      </b>
+      {' '}
       <FormattedMessage
-        id={'section--about-campaign.statistics'}
+        id="section--about-campaign.them-are-not-only-digits"
         defaultMessage={
-          'As estatísticas assustam, mas os números não nos permitem enxergar o mais importante:' +
-          'os nomes, os rostos e as histórias dessas vítimas. Tratá-las como dígitos nos' +
-          'relatórios de segurança pública nos afasta da real dimensão do problema e nos' +
-          'impede de cobrar soluções efetivas.'
+          'Tratá-las como dígitos nos relatórios de segurança pública nos afasta da real ' +
+          'dimensão do problema e nos impede de cobrar soluções efetivas.'
         }
-        values={{
-          hashtag: (
-            <FormattedMessage
-              id="global--brand-name"
-              defaultMessage="#VivosEmNós"
-            />
-          ),
-        }}
       />
+      {' '}
+      <b>
+        <FormattedMessage
+          id="section--about-campaign.memory-as-tool"
+          defaultMessage={
+            '{hashtag} quer usar a memória como ferramenta para transformar solidariedade em ' +
+            'união, saudade em mobilização e indignação em força para mudança.'
+          }
+          values={{
+            hashtag: (
+              <FormattedMessage
+                id="global--brand-name"
+                defaultMessage="#VivosEmNós"
+              />
+            ),
+          }}
+        />
+      </b>
     </p>
+
     <p>
+      <b>
+        <FormattedMessage
+          id="section--about-campaign.create-your-memory"
+          defaultMessage={
+            'Se você conhece alguém que teve sua vida interrompida pela violência, crie aqui ' +
+            'uma página de homenagem. Vamos montar um livro para contar essas histórias na ' +
+            'Assembleia Geral da OEA'
+          }
+        />
+      </b>
+      {' '}
       <FormattedMessage
-        id={'section--about-campaign.the-goal'}
+        id="section--about-campaign.show-it-to-the-leaders"
         defaultMessage={
-          '{hashtag} quer usar a memória como ferramenta para transformar solidariedade em ' +
-          'união, saudade em mobilização e indignação em força para mudança. Se você conhece ' +
-          'alguém que teve a sua história interrompida pela violência, crie aqui uma página de ' +
-          'homenagem para se juntar à luta por mais respeito à vida.'
+          '(Organização dos Estados Americanos) no dia 19 de junho, onde estarão presentes os ' +
+          'principais líderes da região.'
         }
       />
+      {' '}
+      <b>
+        <FormattedMessage
+          id="section--about-campaign.they-must-know"
+          defaultMessage={
+            'Eles precisam conhecer as histórias por trás dos números e vamos ' +
+            'pressioná-los para mudar este cenário.'
+          }
+        />
+      </b>
     </p>
   </SectionPrimary>
 )

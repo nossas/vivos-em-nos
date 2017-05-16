@@ -14,16 +14,3 @@ export default ({ children, href }) => {
     </Link>
   )
 }
-
-// export default ({ children, href, setActive }) => {
-
-//   return (
-//     <Link
-//       className={`components--menu-item ${dynamicClassNames.join(' ')}`}
-//       href={href}
-//       onClick={(() => setActive(false))}
-//     >
-//       {children}
-//     </Link>
-//   )
-// }

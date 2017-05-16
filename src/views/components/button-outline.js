@@ -2,7 +2,7 @@ import { h } from 'preact' /** @jsx h */
 
 const ButtonOutline = ({ TagName, children, href, type, disabled, onClick }) => (
   <TagName
-    class="button-outline"
+    class="components--button-outline"
     {...{ href, type, disabled, onClick }}
   >
     {children}

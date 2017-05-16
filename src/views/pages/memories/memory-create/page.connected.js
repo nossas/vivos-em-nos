@@ -1,7 +1,7 @@
 import { connect } from 'preact-redux'
 import { graphql } from 'react-apollo'
-import loaderHOC from '../../../loader'
-import { memoryByToken } from '../../queries'
+import loaderHOC from '~src/loader'
+import { memoryByToken } from '~src/memories/queries'
 import Page from './page'
 
 const mapStateToProps = (state, { getMemoryByToken: { loading, allMemories } }) => {

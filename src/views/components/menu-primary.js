@@ -1,45 +1,32 @@
 import { h } from 'preact' /** @jsx h */
-import { FormattedMessage, injectIntl, intlShape } from 'react-intl'
+import { FormattedMessage } from 'react-intl'
 import * as paths from '~src/paths'
 
-const MenuPrimary = ({ ContainerComponent, ChildrensComponent, childrensClassName, intl }) => {
-  const isStaging = /^staging.*/.test(window.location.host)
-  const shareURL = isStaging
-    ? intl.formatMessage({
-      id: 'global--home.vivos-em-nos.staging.link.site',
-      defaultMessage: 'https://staging.vivosemnos.org',
-    })
-    : intl.formatMessage({
-      id: 'global--home.vivos-em-nos.link.site',
-      defaultMessage: 'https://vivosemnos.org',
-    })
-
-  return (
-    <ContainerComponent>
-      <ChildrensComponent href={paths.home()}>
-        <FormattedMessage
-          id="components--menu-item.home"
-          defaultMessage="Início"
-        />
-      </ChildrensComponent>
-      <ChildrensComponent href={paths.memoryCreate()}>
-        <FormattedMessage
-          id="components--menu-item.create-memory"
-          defaultMessage="Criar Homenagem"
-        />
-      </ChildrensComponent>
-      <ChildrensComponent href={paths.aboutUs()}>
-        <FormattedMessage
-          id="components--menu-item.about-us"
-          defaultMessage="Quem Somos"
-        />
-      </ChildrensComponent>
-    </ContainerComponent>
-  )
-}
-
-MenuPrimary.propTypes = {
-  intl: intlShape.isRequired,
-}
-
-export default injectIntl(MenuPrimary)
+export default ({ ContainerComponent, ChildrensComponent }) => (
+  <ContainerComponent>
+    <ChildrensComponent href={paths.home()}>
+      <FormattedMessage
+        id="components--menu-item.home"
+        defaultMessage="Início"
+      />
+    </ChildrensComponent>
+    <ChildrensComponent href={paths.memoryCreate()}>
+      <FormattedMessage
+        id="components--menu-item.create-memory"
+        defaultMessage="Criar Homenagem"
+      />
+    </ChildrensComponent>
+    <ChildrensComponent href={paths.memoriesList()}>
+      <FormattedMessage
+        id="components--menu-item.memories-list"
+        defaultMessage="Homenagens"
+      />
+    </ChildrensComponent>
+    <ChildrensComponent href={paths.aboutUs()}>
+      <FormattedMessage
+        id="components--menu-item.about-us"
+        defaultMessage="Quem Somos"
+      />
+    </ChildrensComponent>
+  </ContainerComponent>
+)

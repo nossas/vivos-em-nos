@@ -25,7 +25,7 @@ export default ({ loading, allMemories, nextPage, totalCount }) => (
         <h1 className="title">
           <FormattedMessage
             id="page--memories-list.title"
-            defaultMessage="Veja todas as homenagens!"
+            defaultMessage="Veja todas as homenagens"
           />
         </h1>
         <h2 className="subtitle">

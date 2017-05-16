@@ -25,7 +25,7 @@ export default {
   'pages--memory-victim.section--known-victim.header.subtitle': 'Cuéntanos también su recuerdo',
 
   // page memories list
-  'page--memories-list.title': 'Galería de homenajes!',
+  'page--memories-list.title': 'Galería de homenajes',
   'page--memories-list.subtitle': '#VivosEnNosotros: La memoria es nuestra herramienta para el cambio.',
   'page--memories-list.see-memory': 'Ver homenaje',
   'page--memories-list.see-more-memories': 'Ver más homenajes',

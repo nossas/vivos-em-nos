@@ -24,6 +24,12 @@ export default {
   'pages--memory-victim.section--known-victim.header': 'Quer contribuir para essa homenagem?',
   'pages--memory-victim.section--known-victim.header.subtitle': 'Conte aqui também a sua memória',
 
+  // page memories list
+  'page--memories-list.title': 'Galeria de homenagens',
+  'page--memories-list.subtitle': '#VivosEmNós: A memória é nossa ferramenta para mudança.',
+  'page--memories-list.see-memory': 'Ver homenagem',
+  'page--memories-list.see-more-memories': 'Ver mais homenagens',
+
   // section splash
   'section--splash.hero': 'Vamos usar a memória como ferramenta para mudança. Homenageando aqueles que estão {hashtag}, podemos transformar saudade em mobilização e, juntos, lutar por mais respeito à vida.',
 
@@ -32,8 +38,12 @@ export default {
   'section--about-campaign.paragraph-line-rounded': '{highlightBeginning} a cada quatro pessoas, uma conhece alguém que foi {highlightEnding}',
   'section--about-campaign.paragraph-line-rounded.highlight-beginning': 'No Brasil,',
   'section--about-campaign.paragraph-line-rounded.highlight-ending': 'assassinado.',
-  'section--about-campaign.statistics': 'As estatísticas assustam, mas os números não nos permitem enxergar o mais importante: os nomes, rostos e histórias dessas vítimas. Tratá-las como dígitos nos relatórios de segurança pública nos afasta da real dimensão do problema e nos impede de cobrar soluções efetivas. {hashtag} quer usar a memória como ferramenta para transformar saudade em mobilização e a indignação em força para mudança.',
-  'section--about-campaign.the-goal': 'Se você conhece alguém que teve sua vida interrompida pela violência, crie aqui uma página de homenagem. Vamos montar um livro para contar essas histórias na Assembleia Geral da OEA (Organização dos Estados Americanos) no dia 19 de junho, onde estarão presentes os principais líderes da região. Eles precisam conhecer as histórias por trás dos números e vamos pressioná-los para mudar este cenário.',
+  'section--about-campaign.statistics': 'As estatísticas assustam, mas os números não nos permitem enxergar o mais importante: os nomes, rostos e histórias dessas vítimas.',
+  'section--about-campaign.them-are-not-only-digits': 'Tratá-las como dígitos nos relatórios de segurança pública nos afasta da real dimensão do problema e nos impede de cobrar soluções efetivas.',
+  'section--about-campaign.memory-as-tool': '{hashtag} quer usar a memória como ferramenta para transformar saudade em mobilização e a indignação em força para mudança.',
+  'section--about-campaign.create-your-memory': 'Se você conhece alguém que teve sua vida interrompida pela violência, crie aqui uma página de homenagem. Vamos montar um livro para contar essas histórias na Assembleia Geral da OEA',
+  'section--about-campaign.show-it-to-the-leaders': '(Organização dos Estados Americanos) no dia 19 de junho, onde estarão presentes os principais líderes da região.',
+  'section--about-campaign.they-must-know': 'Eles precisam conhecer as histórias por trás dos números e vamos pressioná-los para mudar este cenário.',
 
   // section featured memories
   'section--featured-memories.header': 'Últimas Homenagens',
@@ -54,6 +64,7 @@ export default {
   // component menu item
   'components--menu-item.home': 'Início',
   'components--menu-item.create-memory': 'Criar Homenagem',
+  'components--menu-item.memories-list': 'Galeria',
   'components--menu-item.about-us': 'Quem Somos',
   'components--menu-item.share': 'Compartilhar',
   'components--menu-item.follow': 'Seguir',

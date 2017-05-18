@@ -24,8 +24,8 @@ const memoryShareURL = (intl, memory) => `${intl.formatMessage({
 const memoryShareText = (intl, memory) => intl.formatMessage({
   id: 'global--share.default.text',
   defaultMessage:
-    '{victimName} e tantos outros seguem #VivosEmNós e essa página ' +
-    'é em sua homenagem. Veja aqui',
+    'Veja aqui a homenagem para {victimName} e tantos outros ' +
+    'que seguem #VivosEmNós: ',
 }, {
   victimName: memory.victimName,
 })

@@ -10,7 +10,7 @@ export default injectIntl(({ intl }) => (
         href={
           intl.formatMessage({
             id: 'global--home.vivos-em-nos.link.facebook',
-            defaultMessage: 'https://facebook.com/vivosennos',
+            defaultMessage: 'https://facebook.com/vivosennosotros',
           })
         }
       >

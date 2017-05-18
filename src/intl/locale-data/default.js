@@ -2,7 +2,7 @@ export default {
   // globals
   'global--brand-name': '#VivosEmNós',
   'global--home.vivos-em-nos.link.site': 'https://vivosemnos.org',
-  'global--home.vivos-em-nos.link.facebook': 'https://facebook.com/vivosennos',
+  'global--home.vivos-em-nos.link.facebook': 'https://facebook.com/vivosennosotros',
   'global--home.vivos-em-nos.staging.link.site': 'https://staging.vivosemnos.org',
   'global--home.instinto-de-vida.link': 'https://www.br.instintodevida.org',
   'global--share.default.text': '{victimName} e tantos outros seguem #VivosEmNós e essa página é em sua homenagem. Veja aqui',

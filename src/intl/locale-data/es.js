@@ -85,7 +85,7 @@ export default {
   'components--memory-form.section--about-victim.victim-good-words': 'Si pudiera elegir una palabra para describir {victimName}, yo elegiría',
   'components--memory-form.section--about-victim.victim-photo': 'Seleccione una foto de {victimName}',
   'components--memory-form.section--about-victim.memory-assets': 'Crea una galería de imágenes',
-  'components--memory-form.section--about-victim.victim-silhouette': 'Imagen',
+  'components--memory-form.section--about-victim.victim-silhouette': 'Elige una de las opciones abajo como imagen de fondo',
   'components--memory-form.section--about-victim.authorized-to-site': 'Autorizo la divulgación de ese homenaje en el sitio {hashtag}',
   'components--memory-form.submit-button': 'Publique su homenaje',
   'components--memory-form.alert-box.done-text': 'Ok, entendi!',

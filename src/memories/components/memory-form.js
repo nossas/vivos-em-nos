@@ -302,7 +302,7 @@ class MemoryForm extends Component {
             label={
               <FormattedMessage
                 id="components--memory-form.section--about-victim.victim-silhouette"
-                defaultMessage="Imagem"
+                defaultMessage="Escolha uma das opções abaixo como imagem de fundo da sua homenagem"
               />
             }
             name="victimSilhouette"

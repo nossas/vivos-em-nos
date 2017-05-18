@@ -2,10 +2,10 @@ export default {
   // globals
   'global--brand-name': '#VivosEmNós',
   'global--home.vivos-em-nos.link.site': 'https://vivosemnos.org',
-  'global--home.vivos-em-nos.link.facebook': 'https://facebook.com/vivosennos',
+  'global--home.vivos-em-nos.link.facebook': 'https://facebook.com/vivosennosotros',
   'global--home.vivos-em-nos.staging.link.site': 'https://staging.vivosemnos.org',
   'global--home.instinto-de-vida.link': 'https://www.br.instintodevida.org',
-  'global--share.default.text': '{victimName} e tantos outros seguem #VivosEmNós e essa página é em sua homenagem. Veja aqui',
+  'global--share.default.text': 'Veja aqui a homenagem para {victimName} e tantos outros que seguem #VivosEmNós: ',
   'footer--home': 'Fale conosco:',
 
   // redux form validations
@@ -85,7 +85,7 @@ export default {
   'components--memory-form.section--about-victim.victim-good-words': 'Se eu pudesse escolher uma palavra para descrever {victimName}, eu escolheria',
   'components--memory-form.section--about-victim.victim-photo': 'Selecione uma foto de {victimName}',
   'components--memory-form.section--about-victim.memory-assets': 'Crie uma galeria de imagens',
-  'components--memory-form.section--about-victim.victim-silhouette': 'Imagem',
+  'components--memory-form.section--about-victim.victim-silhouette': 'Escolha uma das opções abaixo como imagem de fundo da sua homenagem',
   'components--memory-form.section--about-victim.authorized-to-site': 'Autorizo a divulgação dessa homenagem no site {hashtag}',
   'components--memory-form.submit-button': 'Publique sua homenagem',
   'components--memory-form.alert-box.done-text': 'Ok, entendi!',

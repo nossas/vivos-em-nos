@@ -5,7 +5,7 @@ export default {
   'global--home.vivos-em-nos.link.facebook': 'https://facebook.com/vivosennosotros',
   'global--home.vivos-em-nos.staging.link.site': 'https://staging.vivosemnos.org',
   'global--home.instinto-de-vida.link': 'https://www.br.instintodevida.org',
-  'global--share.default.text': '{victimName} e tantos outros seguem #VivosEmNós e essa página é em sua homenagem. Veja aqui',
+  'global--share.default.text': 'Veja aqui a homenagem para {victimName} e tantos outros que seguem #VivosEmNós: ',
   'footer--home': 'Fale conosco:',
 
   // redux form validations
